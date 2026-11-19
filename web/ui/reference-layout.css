@@ -173,8 +173,74 @@
 @layer screen-layouts {
  @container goonk-viewport (orientation:portrait){
   #mobile-app .hero-equipment-page>.hero-army-dock-tools.ui-action-dock:has(.hero-army-split-amount:not([hidden])){display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;align-items:stretch!important}
-  #mobile-app .hero-army-dock-tools:has(.hero-army-split-amount:not([hidden]))>.hero-army-split-toggle{grid-column:1/-1!important;justify-self:start!important}
+  #mobile-app .hero-army-dock-tools:has(.hero-army-split-amount:not([hidden]))>.hero-army-split-toggle{grid-column:1/-1!important;justify-self:stretch!important}
   #mobile-app .hero-army-dock-tools>.hero-army-split-amount:not([hidden]){grid-column:1/-1!important;display:grid!important;grid-template-columns:48px minmax(0,1fr) 48px!important;gap:8px!important;min-width:0!important}
   #mobile-app .hero-army-split-amount :is(button,input){width:100%!important;min-width:0!important;height:48px!important;min-height:48px!important;box-sizing:border-box!important}
+ }
+}
+
+@layer screen-layouts {
+ @container goonk-viewport (orientation:portrait){
+  #mobile-app .hero-equipment-page>.hero-army-dock-tools.ui-action-dock{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:8px!important;align-items:stretch!important;padding:8px!important;box-sizing:border-box!important}
+  #mobile-app .hero-army-dock-tools>.hero-army-split-toggle{min-width:0!important;flex:none!important;width:auto!important;height:48px!important;display:flex!important;flex-direction:column!important;justify-content:center!important;gap:0!important;font:var(--ui-font-body-small)!important}
+  #mobile-app .hero-army-split-toggle>.MuiCheckbox-root{width:24px!important;min-width:24px!important;height:24px!important;min-height:24px!important;padding:0!important}
+  #mobile-app .hero-army-split-toggle>.MuiTypography-root{font:var(--ui-font-body-small)!important}
+  #mobile-app .hero-army-dock-tools>button{min-width:0!important;width:100%!important;height:48px!important;min-height:48px!important;padding:4px!important;font:var(--ui-font-body-small)!important}
+  #mobile-app .hero-equipment-page>.hero-bag-tabs.ui-compact-navigation{align-items:stretch!important;padding:8px!important;gap:8px!important;box-sizing:border-box!important;height:72px!important;min-height:72px!important}
+  #mobile-app .hero-bag-tabs.ui-compact-navigation>button{height:56px!important;min-height:56px!important;max-height:56px!important;box-sizing:border-box!important;align-self:stretch!important;margin:0!important;padding:4px!important}
+ }
+}
+
+@layer screen-layouts {
+ #mobile-app[data-mode=hero] button.mobile-calendar:disabled{opacity:1!important;color:var(--ui-on-surface)!important}
+ @container goonk-viewport (orientation:portrait){
+  #mobile-app .hero-bag-tabs>button{height:56px!important;min-height:56px!important;max-height:56px!important;box-sizing:border-box!important;align-self:stretch!important}
+ }
+}
+@layer screen-layouts {
+ @container goonk-viewport (orientation:portrait){
+  #mobile-app>.mobile-top>.mobile-calendar:not([hidden]){gap:4px!important}
+ }
+}
+
+@layer screen-layouts {
+ @container goonk-viewport (orientation:portrait){
+  #mobile-app .dialog-presentation[data-kind=commander]:not([data-tree=true]){grid-template-rows:65px minmax(214px,1fr) minmax(0,1fr) 80px!important;gap:8px!important}
+  #mobile-app .dialog-presentation[data-kind=commander]:not([data-tree=true])>.dialog-copy{box-sizing:border-box!important;display:grid!important;grid-template-rows:150px minmax(0,1fr)!important;gap:8px!important;padding:8px!important;overflow:hidden!important;min-height:0!important}
+  #mobile-app .dialog-presentation[data-kind=commander] .commander-summary{height:150px!important;min-height:150px!important;gap:8px!important;align-content:start!important}
+  #mobile-app .dialog-presentation[data-kind=commander] .commander-summary>.commander-preview{height:150px!important;object-fit:contain!important}
+  #mobile-app .dialog-presentation[data-kind=commander] .dialog-choice-description{min-height:0!important;overflow:auto!important;touch-action:pan-y!important;margin:0!important;padding:8px 0 0!important;font:var(--ui-font-body-small)!important}
+  #mobile-app .dialog-presentation[data-kind=commander]>.dialog-choices{box-sizing:border-box!important;min-height:0!important;grid-auto-rows:minmax(88px,1fr)!important;align-content:start!important;gap:8px!important;padding:8px!important}
+  #mobile-app .dialog-presentation[data-kind=commander] .dialog-choice{padding:4px!important;gap:4px!important;font:var(--ui-font-body-small)!important}
+  #mobile-app .dialog-presentation[data-kind=commander] .dialog-choice canvas{width:48px!important;height:48px!important}
+  #mobile-app .dialog-presentation[data-kind=commander] .dialog-choice strong{font:var(--ui-font-body-small)!important;word-break:normal!important;overflow-wrap:normal!important}
+  #mobile-app .dialog-presentation[data-kind=commander]>footer.ui-action-dock{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:8px!important;align-items:stretch!important;padding:8px!important}
+  #mobile-app .dialog-presentation[data-kind=commander]>footer>button{box-sizing:border-box!important;min-width:0!important;width:100%!important;max-width:none!important;height:64px!important;min-height:64px!important;padding:4px!important;font:var(--ui-font-body-small)!important;word-break:normal!important;overflow-wrap:normal!important}
+  #mobile-app .dialog-presentation[data-kind=commander]>footer>[data-dialog-confirm]{order:0!important}
+  #mobile-app .dialog-presentation[data-kind=commander]>footer>[data-commander-tree]{order:1!important}
+  #mobile-app .dialog-presentation[data-kind=commander]>footer>[data-dialog-classic]{order:2!important}
+ }
+}
+@layer screen-layouts {
+ #mobile-app .dialog-presentation[data-kind=commander] :is(.dialog-copy,.dialog-choices){border:1px solid var(--ui-primary)!important;border-image:none!important;box-shadow:none!important}
+ #mobile-app .dialog-presentation[data-kind=commander] .dialog-choice[aria-pressed=true]{background:var(--ui-primary-container)!important;border-color:#ffe9a8!important}
+ @container goonk-viewport (orientation:portrait){
+  #mobile-app .dialog-presentation[data-kind=commander]:not([data-tree=true]){grid-template-rows:65px minmax(214px,1fr) 144px 80px!important}
+  #mobile-app .dialog-presentation[data-kind=commander]>.dialog-choices{grid-auto-rows:minmax(0,1fr)!important;grid-template-rows:repeat(2,minmax(0,1fr))!important}
+  #mobile-app .dialog-presentation[data-kind=commander] .dialog-choice canvas{width:24px!important;height:24px!important}
+ }
+ @container goonk-viewport (orientation:landscape){
+  #mobile-app .dialog-presentation[data-kind=commander]>footer.ui-action-dock{display:flex!important;flex-direction:column!important;flex-wrap:nowrap!important;align-items:stretch!important}
+  #mobile-app .dialog-presentation[data-kind=commander]>footer>button{flex:0 0 48px!important;width:100%!important;max-width:none!important;min-height:48px!important;height:48px!important;min-width:0!important;padding:4px!important;font:var(--ui-font-body-small)!important}
+  #mobile-app .dialog-presentation[data-kind=commander]>footer>[data-dialog-confirm]{order:0!important}
+  #mobile-app .dialog-presentation[data-kind=commander]>footer>[data-commander-tree]{order:1!important}
+  #mobile-app .dialog-presentation[data-kind=commander]>footer>[data-dialog-classic]{order:2!important}
+ }
+}
+@layer screen-layouts {
+ @container goonk-viewport (orientation:portrait){
+  #mobile-app .dialog-presentation[data-kind=commander] .dialog-choice{gap:0!important;justify-content:center!important}
+  #mobile-app .dialog-presentation[data-kind=commander] .dialog-choice canvas{width:32px!important;height:32px!important;flex:0 0 32px!important}
+  #mobile-app .dialog-presentation[data-kind=commander] .dialog-choice strong{display:block!important;min-width:0!important;width:100%!important;line-height:16px!important;text-align:center!important}
  }
 }

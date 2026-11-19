@@ -29,6 +29,7 @@ export const screenCases=[
  ['mage-guild',{mode:'mage-guild',mageGuild:{town:1,levels:5,built:3,spells}}],
  ['tavern',{mode:'dialog',dialogKind:'tavern',tavern:{cost:2500,canRecruit:true,thievesGuild:true,invite:true,rumor:'A rumor from the barkeep.'},tavernHeroes:{0:{id:31,name:'Melodia',className:'Druid',level:1},1:{id:32,name:'Ryland',className:'Ranger',level:1}}}],
  ['blacksmith',{mode:'dialog',dialogKind:'blacksmith',blacksmith:{unit:{name:'Ammo Cart'},cost:1000,canBuy:true}}],
+ ['commander',{mode:'dialog',dialogKind:'commander',dialogPresentation:{title:'Commander',unit:{...unit,name:'Hierophant'},choices:['Attack','Defense','Health','Damage','Speed','Magic'].map(label=>({label,inspectable:true,description:label+' — '+unit.description})),commanderTree:{}}}],
  ['message',{mode:'dialog',dialogKind:'message',dialogPresentation:{title:'Game message',lines:[unit.description],choices:[],cancel:true}}],
  ['reward',{mode:'dialog',dialogKind:'source-campaign',campaignPending:true,dialogPresentation:{queryId:70,title:'Choose your reward',lines:[unit.description],choices:[],cancel:true}}],
  ['battle-result',{mode:'dialog',dialogKind:'battle-result',battleResult:{won:true,description:'A glorious victory!',sides:[{name:'Sylvia',winner:true,losses:[{...unit,count:1}]},{name:'Enemy',winner:false,losses:[]}]}}],
