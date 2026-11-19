@@ -27,7 +27,7 @@
     "tests/era-campaign-locals.test.mjs": "81ccbd66d4313ae19d916eb4509a948e1e113915efcc194a92348ac8b03041ee",
     "tests/era-campaign-string-locals.test.mjs": "744fadb9c3b9c7a0f6ff3f398ceb47ea75dcd699e3cf637459ed53c5112e3689",
     "tests/fixtures/era-gameplay/era3-string-locals-reference.json": "ee1577f6043201f713b121a09d51f259b292c0cb6b4877cde52e0fd97ff6ee18",
-    "docs/era-gameplay-port.md": "c3457dca14ffa54964052f08862e830b26084e0df6108aee02dd27223791bbea"
+    "docs/era-gameplay-port.md": "ffcfb9504df0e61acd701082d7f5785adbb58fba1c5871bac12ab33922d99422"
   },
   "nativeBuild": {
     "command": "ninja -j32 html5",

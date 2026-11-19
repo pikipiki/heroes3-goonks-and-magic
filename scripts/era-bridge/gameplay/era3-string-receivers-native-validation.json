@@ -18,7 +18,7 @@
     "work/browser-tests/wog-era3-string-locals-cases.mjs": "6cd07e4ca87373c7974b3cf88230de23369922a5d54d0ef31558846b6cd48110",
     "tests/era-campaign-string-receivers.test.mjs": "68121184ac8a32faeee5dfdc47fb4f31b182af22177393d302160961dd3c25a2",
     "tests/fixtures/era-gameplay/era3-string-receivers-reference.json": "663318d957dcf7df0a6589d53a2d1b569341aab473c20203ff6f499b754444b4",
-    "docs/era-gameplay-port.md": "c3457dca14ffa54964052f08862e830b26084e0df6108aee02dd27223791bbea"
+    "docs/era-gameplay-port.md": "ffcfb9504df0e61acd701082d7f5785adbb58fba1c5871bac12ab33922d99422"
   },
   "nativeBuild": {
     "command": "ninja -j32 html5",

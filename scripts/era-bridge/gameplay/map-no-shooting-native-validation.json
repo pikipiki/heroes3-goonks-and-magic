@@ -10,7 +10,7 @@
   "sourceBaseCommit": "41a6491514e9da042d44e61bd276495862d348a7",
   "sourceBindings": {
     "docs/era-compatibility.md": "ab91d69808e6fdc1d66ed896f6a543d0de67820fa0f5fe4473299489fa32cb89",
-    "docs/era-gameplay-port.md": "c3457dca14ffa54964052f08862e830b26084e0df6108aee02dd27223791bbea",
+    "docs/era-gameplay-port.md": "ffcfb9504df0e61acd701082d7f5785adbb58fba1c5871bac12ab33922d99422",
     "scripts/era-bridge/gameplay/map-rules.json": "61df54e2d12c54aecf46ae9210b1dd4e4efb8b3e6a1f16b3d7111ab477702fdd",
     "tests/era-creature-prices.test.mjs": "4abe50392f8ffeb61fbd66e6d706f1c5112ec61bcbcc6d723e08c5ad14a38188",
     "tests/era-map-double-artifacts.test.mjs": "039da5934ca956bd2d4e23c57be9aa91e64a45389ababb51d77fce5a1afa5e87",
@@ -20,7 +20,7 @@
     "tests/fixtures/era-gameplay/map-no-shooting-reference.json": "7e11ee0768f7162d6340ad568b3b88713009b57c9e3de8fc73eca71c5b5f00fb",
     "tests/native/EraMapNoShootingRules.test.cpp": "0ccc0fe2344de3ff5fd93306dbbdb0cf9f4647e2a7c48b6aabb3a0bc3a2629d7",
     "tests/native/EraWogOptionsSerialization.test.cpp": "69a7dc79798fec15ebc15824a155368aa05986807d21123545b975bedbd81627",
-    "web/wog-options.mjs": "facd663b712cdb17e72cd5b4f8d1f5f8f8f54c44dfe09b03a9cf7cb52a933b12",
+    "web/wog-options.mjs": "fb9e3e3682d0d9224e50ce49f4b4985c3588af982dfd617f9c6fa97218511b56",
     "work/browser-tests/wog-henchmen-native-e2e.mjs": "d3b47e354fa41a8bb84079ac2ef7360a87819cd32c4f2bd93b5f8bfc00dc1a2f",
     "work/browser-tests/wog-map-no-shooting-cases.mjs": "9f5be8d9ff8fd151d44a0c8203794272f2b6dce60946b185339be692f81327e4",
     "work/vcmi-wasm/client/MobileBridge.cpp": "88aef85beb1a48bd05b2124c3624d8348876b077487824ac84fc7c48575a7d88",

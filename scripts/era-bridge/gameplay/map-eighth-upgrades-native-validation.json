@@ -9,7 +9,7 @@
   "sourceBaseCommit": "161f5954234cc1a48ba95c86d03cd12a5bf00ffd",
   "sourceBindings": {
     "docs/era-compatibility.md": "ab91d69808e6fdc1d66ed896f6a543d0de67820fa0f5fe4473299489fa32cb89",
-    "docs/era-gameplay-port.md": "c3457dca14ffa54964052f08862e830b26084e0df6108aee02dd27223791bbea",
+    "docs/era-gameplay-port.md": "ffcfb9504df0e61acd701082d7f5785adbb58fba1c5871bac12ab33922d99422",
     "mod/tum-era/content/config/wog-map-rules.json": "dd4c8b05bad15f2e521e7c3a26623c98ceeb928bc911df20198bd1697a20e1c9",
     "scripts/era-bridge/gameplay/map-rules.json": "61df54e2d12c54aecf46ae9210b1dd4e4efb8b3e6a1f16b3d7111ab477702fdd",
     "tests/era-creature-prices.test.mjs": "4abe50392f8ffeb61fbd66e6d706f1c5112ec61bcbcc6d723e08c5ad14a38188",
@@ -19,7 +19,7 @@
     "tests/fixtures/era-gameplay/map-eighth-upgrades-reference.json": "3f35a15b0c9473fac6d444cafcc8a3a96a044202422e87e05e9e62d9fbb6dc0d",
     "tests/native/EraMapEighthUpgradeRules.test.cpp": "9c5feebd8418bb7ccf32fb75e796263d1dc84f6bde385d9e0c596847271e3626",
     "tests/native/EraWogOptionsSerialization.test.cpp": "69a7dc79798fec15ebc15824a155368aa05986807d21123545b975bedbd81627",
-    "web/wog-options.mjs": "facd663b712cdb17e72cd5b4f8d1f5f8f8f54c44dfe09b03a9cf7cb52a933b12",
+    "web/wog-options.mjs": "fb9e3e3682d0d9224e50ce49f4b4985c3588af982dfd617f9c6fa97218511b56",
     "work/browser-tests/wog-creature-prices-cases.mjs": "94db5cff893ed33bac656d81ec394c0a7c4a9975087cfff963068077b6493811",
     "work/browser-tests/wog-henchmen-native-e2e.mjs": "d3b47e354fa41a8bb84079ac2ef7360a87819cd32c4f2bd93b5f8bfc00dc1a2f",
     "work/browser-tests/wog-map-eighth-upgrades-cases.mjs": "82415e0a6925b8c29af453b7cc8e7800aa6d9c9462a8c383f63a80534d3491ea",

@@ -50,6 +50,10 @@ try {
     const scroller = page.locator('.lobby-scroll');
     await scroller.evaluate(node => { node.scrollTop = 0; });
     const scrollBox = await scroller.boundingBox();
+    if(width<height){
+      const margins=await scroller.evaluate(node=>{const box=node.getBoundingClientRect(),panel=node.querySelector(':scope>.lobby-panel').getBoundingClientRect();return{left:panel.left-box.left,right:box.right-panel.right};});
+      assert(Math.abs(margins.left-margins.right)<=2,'Portrait setup panels stay centered with equal side margins: '+JSON.stringify(margins));
+    }
     const x = scrollBox.x + scrollBox.width / 2, y = scrollBox.y + scrollBox.height - 24;
     await touch.send('Input.dispatchTouchEvent', {type: 'touchStart', touchPoints: [{x, y}]});
     const distance = Math.min(120, scrollBox.height - 50);
@@ -61,7 +65,7 @@ try {
     await page.waitForTimeout(150);
     const touchScroll = await scroller.evaluate(node => ({top: node.scrollTop, range: node.scrollHeight - node.clientHeight}));
     assert(touchScroll.range <= 0 || touchScroll.top > 20, 'Real touch swipe scrolls the rules: ' + JSON.stringify({width, height, scrollBox, touchScroll}));
-    const target = page.locator('input[data-wog-option="13"][value="0"]').locator('..');
+    const target = page.locator('input[data-wog-option="13"][value="0"]').locator('xpath=ancestor::label[1]');
     await target.scrollIntoViewIfNeeded();
     const box = await target.boundingBox();
     assert(box.width >= 44 && box.height >= 44, 'Touch targets remain at least44px');
@@ -81,7 +85,7 @@ try {
     report.cases.push({width, height, target: box, stable, touchScroll});
   }
   const choice = page.locator('input[data-wog-option="13"][value="1"]');
-  await choice.locator('..').tap();
+  await choice.locator('xpath=ancestor::label[1]').tap();
   assert.deepEqual((await page.evaluate(() => calls.at(-1))).slice(0, 3), [109, 13, 1]);
   assert(await page.locator('.lobby-footer [data-ui=begin]').isDisabled(), 'Start waits for the native acknowledgement');
   assert(await choice.isDisabled());

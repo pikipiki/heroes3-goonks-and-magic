@@ -1,5 +1,7 @@
 import {getLanguage} from './i18n.mjs';
-import {radioChoicesMarkup} from './ui/components.mjs';
+import {radioChoicesMarkup,renderMarkup} from './ui/material-components.mjs';
+import {createScrollAnchor} from './ui/scroll-anchor.mjs';
+import {syncMaterialFields} from './ui/mui-runtime.mjs';
 
 const rules = [
   ['Commanders', 'Commandants', 'A commander accompanies each eligible hero.', 'Un commandant accompagne chaque héros compatible.'],
@@ -36,9 +38,10 @@ const rules = [
 ];
 
 export function createWogOptions({menu, command, onChange}) {
-  let form, pending = null, timer, language, error = '';
+  let form, scrollAnchor, pending = null, timer, language, error = '';
   const fields = [];
   function finish(message = '') {
+    if(pending)scrollAnchor?.begin();
     clearTimeout(timer);
     pending = null;
     error = message;
@@ -46,11 +49,11 @@ export function createWogOptions({menu, command, onChange}) {
   function mount() {
     form = document.createElement('details');
     form.className = 'wog-options lobby-panel';
-    form.innerHTML = '<summary></summary><div class="lobby-panel-body"><p class="lobby-help"></p><div class="wog-rules"></div><p class="wog-options-status" role="status"></p></div>';
+    renderMarkup(form, '<summary></summary><div class="lobby-panel-body"><p class="lobby-help"></p><div class="wog-rules"></div><p class="wog-options-status" role="status"></p></div>');
     fields.length = 0;
     for (let index = 0; index < rules.length; index++) {
       const field = document.createElement('fieldset');
-      field.innerHTML = `<legend></legend><p class="lobby-help"></p>${radioChoicesMarkup({name:`wog-${index}`,className:"wog-rule-choices",choices:[-1,1,0].map(value=>({value,attributes:`data-wog-option="${index}"`}))})}`;
+      renderMarkup(field, `<legend></legend><p class="lobby-help"></p>${radioChoicesMarkup({name:`wog-${index}`,className:"wog-rule-choices",choices:[-1,1,0].map(value=>({value,attributes:`data-wog-option="${index}"`}))})}`);
       fields.push(field);
       form.querySelector('.wog-rules').append(field);
     }
@@ -68,6 +71,7 @@ export function createWogOptions({menu, command, onChange}) {
       command(109, request.index, request.value);
     });
     menu.querySelector('.lobby-extra-options').append(form);
+    scrollAnchor=createScrollAnchor(form);
     language = null;
   }
   return {
@@ -81,6 +85,8 @@ export function createWogOptions({menu, command, onChange}) {
       if (!visible) { if (form?.isConnected && !form.hidden) form.hidden = true; return; }
       if (!form?.isConnected) mount();
       if (form.hidden) form.hidden = false;
+      const feedbackChanged=form.getAttribute('aria-busy')!==String(!!pending);
+      if(feedbackChanged)scrollAnchor.begin();
       const fr = getLanguage() === 'fr';
       if (language !== fr) {
         language = fr;
@@ -91,7 +97,7 @@ export function createWogOptions({menu, command, onChange}) {
         fields.forEach((field, index) => {
           field.querySelector('legend').textContent = rules[index][fr ? 1 : 0];
           field.querySelector('p').textContent = rules[index][fr ? 3 : 2];
-          [...field.querySelectorAll('span')].forEach((span, i) => { span.textContent = (fr ? ['Carte', 'Oui', 'Non'] : ['Map', 'On', 'Off'])[i]; });
+          [...field.querySelectorAll('.ui-radio-label')].forEach((span, i) => { span.textContent = (fr ? ['Carte', 'Oui', 'Non'] : ['Map', 'On', 'Off'])[i]; });
         });
       }
       fields.forEach((field, index) => {
@@ -102,13 +108,16 @@ export function createWogOptions({menu, command, onChange}) {
         for (const input of field.querySelectorAll('input')) {
           const checked = Number(input.value) === (pending?.index === index ? pending.value : state.wogOptions[index]);
           if (input.checked !== checked) input.checked = checked;
+          if (input.disabled !== disabled) input.disabled = disabled;
         }
       });
+      syncMaterialFields(form);
       const status = form.querySelector('[role=status]');
-      const message = error || (pending ? fr ? 'Application du réglage…' : 'Applying setting…' : '');
+      const message = error || (pending ? fr ? 'Application du réglage…' : 'Applying setting…' : fr ? 'Options à jour.' : 'Options up to date.');
       if (status.textContent !== message) status.textContent = message;
       const busyValue = String(!!pending);
       if (form.getAttribute('aria-busy') !== busyValue) form.setAttribute('aria-busy', busyValue);
+      if(feedbackChanged)scrollAnchor.restore();
     },
   };
 }

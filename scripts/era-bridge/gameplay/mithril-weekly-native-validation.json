@@ -9,7 +9,7 @@
   "servedEngineSha256": "fb03689663d4adb24e0551bbcdfa61ffd8345b2eb91f263c57ed503f5ad8e801",
   "sourceBindings": {
     "tests/native/EraWogOptionsSerialization.test.cpp": "69a7dc79798fec15ebc15824a155368aa05986807d21123545b975bedbd81627",
-    "web/wog-options.mjs": "facd663b712cdb17e72cd5b4f8d1f5f8f8f54c44dfe09b03a9cf7cb52a933b12",
+    "web/wog-options.mjs": "fb9e3e3682d0d9224e50ce49f4b4985c3588af982dfd617f9c6fa97218511b56",
     "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "e9918ab66a4aba84ca465a9df212167facaf7361b0d5a81e058a4f19172cd7c6",
     "work/vcmi-wasm/lib/ExtraOptionsInfo.h": "dd32577cd49c971f342ccd44229d302b3b1c8f7fc59762dbf43560a4e7d2bc2b",
     "work/vcmi-wasm/lib/era/EraMithrilModel.h": "a8f8444cd669b11427042fa4ebebd170fd3c6ca3f2f8c292a3c47eb86449f13f",
@@ -25,7 +25,7 @@
     "tests/era-mithril-weekly.test.mjs": "5d2d89f66c125cdba6ba84fa5a3bc9c4ba55da6ac7f92e3b06ef26d14944c40d",
     "tests/fixtures/era-gameplay/mithril-weekly-reference.json": "b2f055835565a153e0e2e55b48ddd77c1c9e671df66f46cfa19653a6cde9817f",
     "work/browser-tests/wog-mithril-weekly-cases.mjs": "4814ce1293071883d7dc0b24505fb76bf8294e6ea677e53e9f347169395daf25",
-    "docs/era-gameplay-port.md": "c3457dca14ffa54964052f08862e830b26084e0df6108aee02dd27223791bbea"
+    "docs/era-gameplay-port.md": "ffcfb9504df0e61acd701082d7f5785adbb58fba1c5871bac12ab33922d99422"
   },
   "nativeBuild": {
     "command": "ninja -j32 html5",

@@ -10,7 +10,7 @@
   "sourceBaseCommit": "0a08553ca1ec6ab05eef96f2d3226ef159a1b7f8",
   "sourceBindings": {
     "docs/era-compatibility.md": "ab91d69808e6fdc1d66ed896f6a543d0de67820fa0f5fe4473299489fa32cb89",
-    "docs/era-gameplay-port.md": "c3457dca14ffa54964052f08862e830b26084e0df6108aee02dd27223791bbea",
+    "docs/era-gameplay-port.md": "ffcfb9504df0e61acd701082d7f5785adbb58fba1c5871bac12ab33922d99422",
     "mod/tum-era/content/translation/tum-era-ui-english.json": "af6d65ba5e48d86a9ce3d449c0eeebcb2381dcc3d10c01488306ca30219773a6",
     "mod/tum-era/content/translation/tum-era-ui-french.json": "c55f2eb53b6777b4f2daa304ba379d0662041ff272f5526eda4299b0dad4d5c8",
     "scripts/era-bridge/gameplay/map-rules.json": "61df54e2d12c54aecf46ae9210b1dd4e4efb8b3e6a1f16b3d7111ab477702fdd",
@@ -26,7 +26,7 @@
     "tests/native/EraWogOptionsSerialization.test.cpp": "69a7dc79798fec15ebc15824a155368aa05986807d21123545b975bedbd81627",
     "web/dialog-presentation.mjs": "1d320fc48eb707b38d14381bf76c9a3287b13471b0ac1c6626b73f6611a9f47d",
     "web/mobile-compact.css": "cc5d2479f42275150bf1cced2f8ebbeff3ae4c35a86dc3f75165567bdd0b2ba8",
-    "web/wog-options.mjs": "facd663b712cdb17e72cd5b4f8d1f5f8f8f54c44dfe09b03a9cf7cb52a933b12",
+    "web/wog-options.mjs": "fb9e3e3682d0d9224e50ce49f4b4985c3588af982dfd617f9c6fa97218511b56",
     "work/browser-tests/wog-henchmen-native-e2e.mjs": "d3b47e354fa41a8bb84079ac2ef7360a87819cd32c4f2bd93b5f8bfc00dc1a2f",
     "work/browser-tests/wog-map-darkness-cases.mjs": "d843530b31c8256d55ae1db30979cea44cd8da1475502f79deeab56f0d96a83e",
     "work/browser-tests/wog-map-level-artifact-cases.mjs": "a58f4a0941334d07259b9d6eeb998a145b2d9fbfcab9592fe0ae27b2dcf6c9bf",

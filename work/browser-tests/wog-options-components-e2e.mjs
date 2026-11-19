@@ -19,14 +19,17 @@ for(const[kind,engine]of Object.entries({chromium,webkit})){
     await page.route('**/wog-radio-test',route=>route.fulfill({contentType:'text/html',body:`<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><link rel=stylesheet href=/web/ui/components.css><link rel=stylesheet href=/web/wog-options${phase==='before'?'-before':''}.css><style>body{margin:0;background:#241a10;color:#fff0cc;font:16px/1.5 system-ui}#mobile-app{position:fixed;inset:0;overflow:auto;padding:8px;box-sizing:border-box}.lobby-extra-options{max-width:520px;margin:auto}fieldset p{margin:8px 0}fieldset legend{overflow-wrap:anywhere}</style><section id=mobile-app><div class=lobby-extra-options></div></section><script type=module>import {createWogOptions} from '/web/wog-options${phase==='before'?'-before':''}.mjs';import {setLanguage} from '/web/i18n.mjs';setLanguage('${language}');window.model={mode:'lobby',lobbyReady:true,wogOptionsEditable:true,wogOptions:Array(${reviewIndex+1}).fill(-1)};window.commands=[];window.choices=createWogOptions({menu:document,command:(...values)=>commands.push(values),onChange:()=>choices.update(model)});choices.update(model);document.querySelector('details').open=true;window.ready=true;</script>`}));
     await page.goto('http://localhost/wog-radio-test');await page.waitForFunction(()=>window.ready);
     const index=phase==='before'?Math.min(reviewIndex,Number(process.env.WOG_BEFORE_INDEX||16)):reviewIndex;
-    const choice=page.locator(`input[data-wog-option="${index}"][value="1"]`).locator('..');await choice.scrollIntoViewIfNeeded();
+    const choice=page.locator(`input[data-wog-option="${index}"][value="1"]`).locator('xpath=ancestor::label[1]');await choice.scrollIntoViewIfNeeded();
     await page.screenshot({path:path.join(output,`${kind}-${language}-${viewport.width}-${viewport.height}-${phase}.png`)});
     if(phase==='after'){
+     const choiceCount=await page.locator('.wog-rules fieldset').count()*3;
+     assert.equal(await page.locator('.wog-rule-choices .MuiRadio-root').count(),choiceCount,'Every WoG choice is a real MUI Radio');
+     assert.equal(await page.locator('input[data-wog-option]').count(),choiceCount,'No duplicate native inputs');
      const geometry=await choice.evaluate(label=>({w:label.getBoundingClientRect().width,h:label.getBoundingClientRect().height,radius:getComputedStyle(label).borderRadius}));assert(geometry.w>=48&&geometry.h>=48);assert.equal(geometry.radius,'0px');
      await choice.tap();await page.waitForFunction(()=>commands.length===1);assert.deepEqual(await page.evaluate(()=>commands),[[109,reviewIndex,1]]);
      assert(await page.locator('input[data-wog-option="0"]').first().isDisabled());
      await page.evaluate(i=>{model.wogOptions[i]=1;choices.observe(model);choices.update(model);},reviewIndex);assert(await page.locator(`input[data-wog-option="${reviewIndex}"][value="1"]`).isChecked());
-     assert.equal(await page.locator(`input[data-wog-option="${reviewIndex}"][value="1"]`).locator('..').textContent(),language==='fr'?'Oui':'On');
+     assert.equal(await page.locator(`input[data-wog-option="${reviewIndex}"][value="1"]`).locator('xpath=ancestor::label[1]').textContent(),language==='fr'?'Oui':'On');
      await page.evaluate(()=>choices.update(model,true));assert(await page.locator(`input[data-wog-option="${reviewIndex}"]`).first().isDisabled());
      await page.evaluate(()=>{model.wogOptions=Array(16).fill(-1);choices.update(model);});assert.equal(await page.locator('fieldset:visible').count(),16);
      await page.evaluate(()=>{model.wogOptionsEditable=false;choices.update(model);});assert(await page.locator('details').isHidden());

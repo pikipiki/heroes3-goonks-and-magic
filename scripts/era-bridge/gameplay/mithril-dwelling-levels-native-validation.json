@@ -46,7 +46,7 @@
     "tests/era-mithril-dwelling-levels.test.mjs": "22037b2d528171aa4ae8cd04b2023dc2cf3a39505fb7b247971a4421a8f02d35",
     "tests/fixtures/era-gameplay/mithril-dwelling-levels-reference.json": "aeb65486da5a06fa4d7ea4b5a373d7a507f2252fbdbb10bda9f355f587f76012",
     "scripts/era-bridge/gameplay/mithril.json": "a5471a115a6c8a16a96e7c4b5996c47d076ed9cba3e1570171e2d3508fdc7f08",
-    "docs/era-gameplay-port.md": "c3457dca14ffa54964052f08862e830b26084e0df6108aee02dd27223791bbea"
+    "docs/era-gameplay-port.md": "ffcfb9504df0e61acd701082d7f5785adbb58fba1c5871bac12ab33922d99422"
   },
   "nativeBuild": {
     "command": "ninja -j32 html5",

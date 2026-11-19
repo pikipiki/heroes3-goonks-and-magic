@@ -7,9 +7,9 @@
   "originalRuntimeObserved": false,
   "scope": "Bounded native source77 rule239: original town entrances and candidate order, frozen239/234, hidden/active typed guardians, difficulty table, original fortnight schedule and save migration. No complete ERA profile or original runtime equivalence.",
   "engineSha256": "962ad98c204cb32cdea635d943c86e2ab2d491d764e89c39182a4d17ffde5e26",
-  "sourceBaseCommit": "2f49927237b5b6c5e2ae2a2c384cd8739d9113c1",
+  "sourceBaseCommit": "35f33155f845495c7ed4e1dda088e9fb0f1d38a5",
   "sourceBindings": {
-    "docs/era-gameplay-port.md": "c3457dca14ffa54964052f08862e830b26084e0df6108aee02dd27223791bbea",
+    "docs/era-gameplay-port.md": "ffcfb9504df0e61acd701082d7f5785adbb58fba1c5871bac12ab33922d99422",
     "mod/tum-era/content/config/wog-map-rules.json": "dd4c8b05bad15f2e521e7c3a26623c98ceeb928bc911df20198bd1697a20e1c9",
     "package-lock.json": "02579445f10f8ec433d909c54f714bdb72c5874aec4dcf1f9e2d30252eac4845",
     "package.json": "ad1c7df24ff9d53896116b31ac835b7356a2d71197e5c2bcb68062ab48e899f8",
@@ -21,13 +21,22 @@
     "tests/era-map-eighth-upgrades.test.mjs": "d9948865abf13f741b3d0c5a3b901c0f9b4e3207f670c06ea5e6d418a0094dc9",
     "tests/era-map-level-artifacts.test.mjs": "7d9465a52c5811d4e23256b4751d90594263bb0aa2403456765d18e3de7727b4",
     "tests/era-map-no-shooting.test.mjs": "37f5a9ab3195d4684ed647da399fe37819de0728001367e0040d2100a9f22965",
-    "tests/era-town-banners.test.mjs": "8441a1aaddaae5684e5f31a66cc70ea2d626442a419475f35d8174c656122ada",
+    "tests/era-town-banners.test.mjs": "3e124ce047e71869f7a2314d87ba55e7673f89dccb2db859f7815c76c0143515",
     "tests/fixtures/era-gameplay/map-town-banners-reference.json": "edfaa5e1dfd975924d976b3db130ca07e583ff625b148f6513ebdbbb5c278154",
     "tests/native/EraWogOptionsSerialization.test.cpp": "69a7dc79798fec15ebc15824a155368aa05986807d21123545b975bedbd81627",
-    "web/wog-options.mjs": "facd663b712cdb17e72cd5b4f8d1f5f8f8f54c44dfe09b03a9cf7cb52a933b12",
+    "web/lobby-choices.mjs": "0b734275c5b308bf57bebf309ba9fb578adf02d152cb3161fbba1c9778a27c87",
+    "web/mobile.mjs": "2ea48d7fd68519e7a3793745669a61666a143df561ea21d88d6b0a3f24454432",
+    "web/ui/components.css": "62a22e85bc8ab8a712a4557538103c15587be07a21fd41fa59ec22c2adbd074d",
+    "web/ui/primitives.mjs": "640bad8efe65ba5d06784d895f1b14c6f17b24ca8f4b0bb1b324e6c996647c89",
+    "web/ui/scroll-anchor.mjs": "5ef9390f5a11e97101bcf7968dfe27a0960267929295a3b58514740c5fbbccda",
+    "web/wog-options.css": "6118686687b287dd1de0783a8e128796ba8b24bfd0c56884366107dfcaa4aaf8",
+    "web/wog-options.mjs": "fb9e3e3682d0d9224e50ce49f4b4985c3588af982dfd617f9c6fa97218511b56",
     "work/browser-tests/native-save-json-proof.mjs": "9af43a86a9917fa29f7d68190bcd2e7026c861d9208fa40d543a01c4022601a5",
     "work/browser-tests/wog-henchmen-native-e2e.mjs": "d3b47e354fa41a8bb84079ac2ef7360a87819cd32c4f2bd93b5f8bfc00dc1a2f",
     "work/browser-tests/wog-map-level-artifact-cases.mjs": "a58f4a0941334d07259b9d6eeb998a145b2d9fbfcab9592fe0ae27b2dcf6c9bf",
+    "work/browser-tests/wog-options-components-e2e.mjs": "3b08f22fd1dd0a79023360faa42b43ff47593340889d4488227e779d1d321592",
+    "work/browser-tests/wog-options-layout-e2e.mjs": "256e0b90c61b270536957e721a8ee0dbdd8505a142f4cf201975823908707de4",
+    "work/browser-tests/wog-options-stability-e2e.mjs": "e24407714f6329604670883d3f856b5dd99cab08c1cc3d19a8f86f05c2023f35",
     "work/browser-tests/wog-source-artifact-capacity-cases.mjs": "d778756bc39fc61d487622c1c855c76fce8c3d79d710ab32d14bb5914b57c0ec",
     "work/browser-tests/wog-source-artifact-grant-cases.mjs": "9528735866161c3fb29b30200f1106fc8928a27f67781e2588091576f48fb760",
     "work/browser-tests/wog-source-artifact-pool-cases.mjs": "10d2e23a00cdfcf96948c3f05c757011af94519f87d3ab223ba3ceba3d2da270",
@@ -1646,7 +1655,7 @@
         },
         "geometry": {
           "w": 90,
-          "h": 48,
+          "h": 86,
           "radius": "0px"
         },
         "singleActivation": true,
@@ -1663,7 +1672,7 @@
         },
         "geometry": {
           "w": 126.671875,
-          "h": 48,
+          "h": 86,
           "radius": "0px"
         },
         "singleActivation": true,
@@ -1680,7 +1689,7 @@
         },
         "geometry": {
           "w": 162,
-          "h": 48,
+          "h": 86,
           "radius": "0px"
         },
         "singleActivation": true,
@@ -1697,7 +1706,7 @@
         },
         "geometry": {
           "w": 162,
-          "h": 48,
+          "h": 86,
           "radius": "0px"
         },
         "singleActivation": true,
@@ -1714,7 +1723,7 @@
         },
         "geometry": {
           "w": 90,
-          "h": 48,
+          "h": 86,
           "radius": "0px"
         },
         "singleActivation": true,
@@ -1731,7 +1740,7 @@
         },
         "geometry": {
           "w": 126.671875,
-          "h": 48,
+          "h": 86,
           "radius": "0px"
         },
         "singleActivation": true,
@@ -1748,7 +1757,7 @@
         },
         "geometry": {
           "w": 162,
-          "h": 48,
+          "h": 86,
           "radius": "0px"
         },
         "singleActivation": true,
@@ -1765,7 +1774,7 @@
         },
         "geometry": {
           "w": 162,
-          "h": 48,
+          "h": 86,
           "radius": "0px"
         },
         "singleActivation": true,
@@ -1782,7 +1791,7 @@
         },
         "geometry": {
           "w": 90,
-          "h": 48,
+          "h": 86,
           "radius": "0px"
         },
         "singleActivation": true,
@@ -1799,7 +1808,7 @@
         },
         "geometry": {
           "w": 126.671875,
-          "h": 48,
+          "h": 86,
           "radius": "0px"
         },
         "singleActivation": true,
@@ -1816,7 +1825,7 @@
         },
         "geometry": {
           "w": 162,
-          "h": 48,
+          "h": 86,
           "radius": "0px"
         },
         "singleActivation": true,
@@ -1833,7 +1842,7 @@
         },
         "geometry": {
           "w": 162,
-          "h": 48,
+          "h": 86,
           "radius": "0px"
         },
         "singleActivation": true,
@@ -1850,7 +1859,7 @@
         },
         "geometry": {
           "w": 90,
-          "h": 48,
+          "h": 86,
           "radius": "0px"
         },
         "singleActivation": true,
@@ -1867,7 +1876,7 @@
         },
         "geometry": {
           "w": 126.671875,
-          "h": 48,
+          "h": 86,
           "radius": "0px"
         },
         "singleActivation": true,
@@ -1884,7 +1893,7 @@
         },
         "geometry": {
           "w": 162,
-          "h": 48,
+          "h": 86,
           "radius": "0px"
         },
         "singleActivation": true,
@@ -1901,7 +1910,7 @@
         },
         "geometry": {
           "w": 162,
-          "h": 48,
+          "h": 86,
           "radius": "0px"
         },
         "singleActivation": true,
@@ -2596,5 +2605,162 @@
     "Source77 rules118/127 and six selection modes of101.",
     "Source78 replacement markers, general PO:O and unrepresentable/foreign guard records remain outside this bounded rule; see reference limits.",
     "Full Henchmen/WoG/mithril and separate Advanced Classes/ERA Scripts/Reborn profiles remain unadmitted."
-  ]
+  ],
+  "parallelUiIntegration": {
+    "remoteCommit": "afc2138378fe42a2ffebb63b0bc28c45179281c7",
+    "scope": "Native gameplay reports retained on the unchanged962ad98 engine. Merged MUI radio/scroll code additionally verified with a new touch pickup and desktop maximum-difficulty guardian battle.",
+    "sourceBindings": {
+      "web/wog-options.mjs": "fb9e3e3682d0d9224e50ce49f4b4985c3588af982dfd617f9c6fa97218511b56",
+      "web/wog-options.css": "6118686687b287dd1de0783a8e128796ba8b24bfd0c56884366107dfcaa4aaf8",
+      "web/mobile.mjs": "2ea48d7fd68519e7a3793745669a61666a143df561ea21d88d6b0a3f24454432",
+      "web/lobby-choices.mjs": "0b734275c5b308bf57bebf309ba9fb578adf02d152cb3161fbba1c9778a27c87",
+      "web/ui/primitives.mjs": "640bad8efe65ba5d06784d895f1b14c6f17b24ca8f4b0bb1b324e6c996647c89",
+      "web/ui/components.css": "62a22e85bc8ab8a712a4557538103c15587be07a21fd41fa59ec22c2adbd074d",
+      "web/ui/scroll-anchor.mjs": "5ef9390f5a11e97101bcf7968dfe27a0960267929295a3b58514740c5fbbccda",
+      "work/browser-tests/wog-options-components-e2e.mjs": "3b08f22fd1dd0a79023360faa42b43ff47593340889d4488227e779d1d321592",
+      "work/browser-tests/wog-options-stability-e2e.mjs": "e24407714f6329604670883d3f856b5dd99cab08c1cc3d19a8f86f05c2023f35"
+    },
+    "nativeReports": {
+      "touch": {
+        "passed": true,
+        "scope": "native-core-only",
+        "completeRules": false,
+        "engineSha256": "962ad98c204cb32cdea635d943c86e2ab2d491d764e89c39182a4d17ffde5e26",
+        "scenarios": [
+          {
+            "active": true,
+            "choice": 1,
+            "configured": false,
+            "banned": false,
+            "difficulty": 0,
+            "catalog": false,
+            "blocked": 0,
+            "growth": false,
+            "fight": false,
+            "sourceOptions": false,
+            "records": [
+              {
+                "id": "155",
+                "count": 1,
+                "creature": "core:champion",
+                "enabled": false
+              },
+              {
+                "id": "156",
+                "count": 1,
+                "creature": {
+                  "externalStringReference": 628
+                },
+                "enabled": false
+              }
+            ],
+            "days": [],
+            "pickup": {
+              "targetX": 8,
+              "artifacts": [
+                {
+                  "allowed": false,
+                  "canAssemble": false,
+                  "canDisassemble": false,
+                  "description": "{Warlord’s Banner — Vitality}\n\nAdds 2 health, then +10% total health (native rounding). One worn item per troop.",
+                  "icon": 187,
+                  "locked": false,
+                  "movable": true,
+                  "name": "Warlord’s Banner — Vitality",
+                  "slot": 19
+                }
+              ],
+              "input": "touch",
+              "inactiveGuardDidNotFight": true,
+              "battle": null
+            },
+            "saveVersion": 938,
+            "legacyInput": null,
+            "historicalNativeControl": false,
+            "day1SaveReload": true,
+            "frozenRuleSurvivesReversedDefaults": true,
+            "externalStringReferencesRemainOpaque": true
+          }
+        ],
+        "errors": [],
+        "rawReportSha256": "279da26049edeae61948df42220e7a1fc81d6eff999f142acff4094b2fc1d009"
+      },
+      "desktop": {
+        "passed": true,
+        "scope": "native-core-only",
+        "completeRules": false,
+        "engineSha256": "962ad98c204cb32cdea635d943c86e2ab2d491d764e89c39182a4d17ffde5e26",
+        "scenarios": [
+          {
+            "active": true,
+            "choice": 1,
+            "configured": false,
+            "banned": false,
+            "difficulty": 4,
+            "catalog": false,
+            "blocked": 0,
+            "growth": false,
+            "fight": true,
+            "sourceOptions": false,
+            "records": [
+              {
+                "id": "155",
+                "count": 1,
+                "creature": "wake-of-gods.level8units:supremeArchangel",
+                "enabled": true
+              },
+              {
+                "id": "156",
+                "count": 1,
+                "creature": {
+                  "externalStringReference": 628
+                },
+                "enabled": false
+              }
+            ],
+            "days": [],
+            "pickup": {
+              "targetX": 8,
+              "artifacts": [
+                {
+                  "allowed": false,
+                  "canAssemble": false,
+                  "canDisassemble": false,
+                  "description": "{Warlord’s Banner — Vitality}\n\nAdds 2 health, then +10% total health (native rounding). One worn item per troop.",
+                  "icon": 187,
+                  "locked": false,
+                  "movable": true,
+                  "name": "Warlord’s Banner — Vitality",
+                  "slot": 19
+                }
+              ],
+              "input": "mouse",
+              "inactiveGuardDidNotFight": false,
+              "battle": {
+                "guardian": "wake-of-gods.level8units:supremeArchangel",
+                "count": 1
+              }
+            },
+            "saveVersion": 938,
+            "legacyInput": null,
+            "historicalNativeControl": false,
+            "day1SaveReload": true,
+            "frozenRuleSurvivesReversedDefaults": true,
+            "externalStringReferencesRemainOpaque": true
+          }
+        ],
+        "errors": [],
+        "rawReportSha256": "d110893578e2c7a94d67f364a501329148db18d8385e563716b807ab1cbbc22a"
+      }
+    },
+    "stability": {
+      "caseCount": 48,
+      "sha256": "243caa1ad13a64dbedaa6149366bb6775575e925e00d7143d4da14d25b9fb1ca",
+      "inputCount": 31,
+      "browsers": [
+        "chromium",
+        "webkit"
+      ]
+    }
+  }
 }
