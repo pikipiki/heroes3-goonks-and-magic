@@ -4,22 +4,23 @@
 @import url('./material3.css');
 @import url('./surfaces.css');
 @import url('./screen-layouts.css');
+@import url('./reference-layout.css');
 :is(#mobile-app,#game-menu,[data-ui-app],.ui-popup) .ui-button{
  box-sizing:border-box;min-width:var(--ui-touch)!important;min-height:var(--ui-touch)!important;margin:0!important;padding:6px 12px!important;
- border:5px solid transparent!important;border-image:url('../h3-theme/button-frame.png') 5 fill stretch!important;border-radius:var(--ui-radius-control)!important;background:var(--ui-surface-container) url('../h3-theme/stone.png')!important;color:var(--ui-on-secondary)!important;
- font:var(--ui-font-label)!important;text-shadow:none!important;box-shadow:none!important;white-space:normal;text-align:center;overflow-wrap:anywhere;touch-action:manipulation;
+ border-radius:var(--ui-radius-control)!important;color:var(--ui-on-secondary)!important;
+ font:var(--ui-font-label)!important;white-space:normal;text-align:center;overflow-wrap:anywhere;touch-action:manipulation;
 }
 :is(#mobile-app,#game-menu,[data-ui-app],.ui-popup) .ui-button[data-ui-variant=filled]{background:var(--ui-primary-container)!important;color:var(--ui-on-primary-container)!important;outline:2px solid var(--ui-primary);outline-offset:-2px}
 :is(#mobile-app,#game-menu,[data-ui-app],.ui-popup) .ui-button[data-ui-variant=danger]{background:var(--ui-error)!important;color:var(--ui-on-error)!important;border-color:transparent!important}
 :is(#mobile-app,#game-menu,[data-ui-app],.ui-popup) .ui-button:disabled{opacity:.38!important;cursor:default}
 :is(#mobile-app,#game-menu,[data-ui-app],.ui-popup) :is(.ui-button,.ui-icon-button):focus-visible{outline:3px solid var(--ui-focus)!important;outline-offset:2px}
-:is(#mobile-app,#game-menu,[data-ui-app],.ui-popup) :is(.ui-button,.ui-icon-button):not(:disabled):hover{box-shadow:inset 0 0 0 100px #ffffff14!important}
-:is(#mobile-app,#game-menu,[data-ui-app],.ui-popup) :is(.ui-button,.ui-icon-button):not(:disabled):active{box-shadow:inset 0 0 0 100px #ffffff24!important}
+:is(#mobile-app,#game-menu,[data-ui-app],.ui-popup) :is(.ui-button,.ui-icon-button):not(:disabled):hover{filter:brightness(1.08)}
+:is(#mobile-app,#game-menu,[data-ui-app],.ui-popup) :is(.ui-button,.ui-icon-button):not(:disabled):active{filter:brightness(.98)}
 :is(#mobile-app,#game-menu,[data-ui-app]) .ui-screen-header{box-sizing:border-box;display:flex!important;align-items:center!important;gap:var(--ui-space-3)!important;min-width:0;min-height:64px;padding:8px 12px!important;border:0!important;border-bottom:1px solid var(--ui-outline)!important;background:linear-gradient(#7c261be6,#3e180fe6),url('../h3-theme/stone.png')!important;color:var(--ui-on-surface)!important}
 :is(#mobile-app,#game-menu,[data-ui-app]) .ui-screen-header :is(h1,h2){min-width:0;flex:1;margin:0!important;color:var(--ui-on-surface)!important;font:var(--ui-font-title)!important;white-space:normal!important;overflow-wrap:anywhere;overflow:visible!important;text-overflow:clip!important}
 :is(#mobile-app,#game-menu,[data-ui-app]) .ui-screen-header>.ui-heading{flex:1;min-width:0}
 :is(#mobile-app,#game-menu,[data-ui-app]) .ui-screen-header .ui-heading p{margin:4px 0 0;font:var(--ui-font-label);color:var(--ui-on-surface-variant)}
-:is(#mobile-app,#game-menu,[data-ui-app]) .ui-icon-button{display:grid!important;place-items:center;box-sizing:border-box;flex:0 0 var(--ui-touch)!important;width:var(--ui-touch)!important;height:var(--ui-touch)!important;min-width:var(--ui-touch)!important;min-height:var(--ui-touch)!important;margin:0 0 0 auto!important;padding:0!important;border:5px solid transparent!important;border-image:url('../h3-theme/button-frame.png') 5 fill stretch!important;border-radius:0!important;box-shadow:none!important;background:var(--ui-surface-container)!important;color:var(--ui-on-surface)!important;font:400 24px/1 system-ui!important;touch-action:manipulation}
+:is(#mobile-app,#game-menu,[data-ui-app]) .ui-icon-button{display:grid!important;place-items:center;box-sizing:border-box;flex:0 0 var(--ui-touch)!important;width:var(--ui-touch)!important;height:var(--ui-touch)!important;min-width:var(--ui-touch)!important;min-height:var(--ui-touch)!important;margin:0 0 0 auto!important;padding:0!important;border-radius:0!important;box-shadow:none!important;background:var(--ui-surface-container)!important;color:var(--ui-on-surface)!important;font:400 24px/1 system-ui!important;touch-action:manipulation}
 :is(#mobile-app,#game-menu,[data-ui-app]) .ui-action-dock{box-sizing:border-box;display:flex!important;align-items:center;justify-content:flex-end;flex-direction:row!important;flex-wrap:wrap;gap:var(--ui-space-2)!important;min-width:0;padding:8px!important;border:0!important;border-top:1px solid var(--ui-outline)!important;background:var(--ui-surface-container) url('../h3-theme/stone.png')!important;color:var(--ui-on-surface);text-shadow:none}
 :is(#mobile-app,#game-menu,[data-ui-app]) .ui-action-dock>button{flex:1 1 112px}
 :is(#mobile-app,#game-menu,[data-ui-app]) .ui-action-dock>:is(p,.ui-dock-status){flex:1 0 100%;min-width:0;margin:0!important;font:var(--ui-font-label);color:var(--ui-on-surface-variant);overflow-wrap:anywhere;max-width:none!important}
@@ -124,23 +125,7 @@
  #mobile-app[data-dialog-presentation]>.mobile-play>.scene-tools,#mobile-app[data-mode=dialog]:has(.town-service:not([hidden]))>.mobile-play>.scene-tools{display:none!important}
 }
 @layer mui{
- #mobile-app[data-creature-view=fort] .hall-detail{grid-template-columns:minmax(0,1fr)!important;grid-template-rows:128px 64px!important;gap:8px!important;padding:8px!important;overflow:hidden!important;box-sizing:border-box!important}
- #mobile-app .hall-detail>.hall-purchase-context{grid-area:1/1!important;display:flex!important;flex-direction:column!important;gap:8px!important;min-width:0!important;min-height:0!important;overflow:auto!important;touch-action:pan-y!important;overscroll-behavior:contain!important}
- #mobile-app .hall-purchase-context>.hall-feature{flex:0 0 72px!important;min-height:0!important;overflow:auto!important}
- #mobile-app .hall-purchase-context>.hall-quantity{flex:0 0 48px!important;min-height:48px!important}
- #mobile-app .hall-detail>.hall-actions.ui-action-dock{grid-area:2/1!important;display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;min-height:64px!important;height:64px!important;padding:8px!important;gap:8px!important;align-items:stretch!important}
- #mobile-app .hall-detail>.hall-actions>button{height:48px!important;flex:1!important;min-width:0!important}
- #mobile-app .hall-detail :is(.hall-stock,.hall-total){display:none!important}
- @container goonk-viewport (orientation:landscape){#mobile-app[data-creature-view=fort] .hall-detail{grid-template-rows:minmax(0,1fr) 64px!important}}
-}
-@layer mui{
- @container goonk-viewport (orientation:portrait){
-  #mobile-app[data-creature-view=fort] .creature-presentation{display:grid!important;grid-template-columns:minmax(0,1fr)!important;grid-template-rows:auto minmax(0,1fr)!important;gap:8px!important;padding:8px!important;min-height:0!important;overflow:hidden!important}
-  #mobile-app[data-creature-view=fort] .hall-layout{display:grid!important;grid-template-rows:minmax(0,1fr) 216px!important;min-height:0!important;gap:8px!important}
- }
  @container goonk-viewport (orientation:landscape){
-  #mobile-app[data-creature-view=fort] .creature-view-head{--ui-header-padding:calc(var(--mobile-top-height,0px) + 8px) 8px 8px;--ui-header-min:48px;min-height:0!important}
-  #mobile-app[data-creature-view=fort] .creature-view-head h2{display:block!important;font:var(--ui-font-title-compact)!important}
   #mobile-app[data-mode=creature] .creature-presentation{display:grid!important;grid-template-columns:minmax(0,1fr) var(--control-rail,244px)!important;grid-template-rows:minmax(0,1fr) auto!important;gap:8px!important;padding:8px!important;min-height:0!important;overflow:hidden!important}
   #mobile-app[data-mode=creature] .creature-presentation>.creature-view-head{--ui-header-padding:calc(var(--mobile-top-height,0px) + 8px) 8px 8px;--ui-header-min:48px;position:static!important;inset:auto!important;grid-area:1/2!important;align-self:start!important;min-width:0!important}
   #mobile-app[data-mode=creature] .creature-view-head h2{display:block!important;font:var(--ui-font-title-compact)!important}
@@ -156,3 +141,10 @@
  #mobile-app .hero-exchange-page[data-army-view=true] .exchange-troop-grid .exchange-slot>span:last-child{position:absolute!important;width:1px!important;height:1px!important;overflow:hidden!important;clip-path:inset(50%)!important}
  #mobile-app .hero-exchange-page[data-army-view=true] .exchange-slot{grid-template-columns:minmax(0,1fr)!important;min-height:64px!important;padding:4px!important}
 }
+
+/* MUI input roots are transparent to the established screen grid. The native
+   input keeps its ID, name, command listeners and per-screen size. */
+.ui-native-input-root.MuiInputBase-root{display:contents}
+.ui-native-input-root>.MuiInputBase-input{box-sizing:border-box;min-height:48px!important;min-width:48px!important;font:var(--ui-font-body-medium);color:inherit;border-radius:0}
+.ui-native-slider.MuiSlider-root{box-sizing:border-box;min-width:48px;min-height:48px;padding:20px 12px;color:var(--ui-primary);align-self:center}
+.ui-native-slider input[type=range]{margin:0!important;padding:0!important;min-height:0!important;border:0!important;opacity:0!important}

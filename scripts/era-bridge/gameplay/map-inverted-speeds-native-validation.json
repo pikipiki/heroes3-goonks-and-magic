@@ -79,7 +79,7 @@
     "mod/tum-era/content/config/wog-map-rules.json": "9152c6ef91a6081dcb87beb97b9f7ea713576338ec3a5db859502240374a14a9",
     "web/wog-options.mjs": "4e632ab8dbb816d500f9b1b242ef45538c5a78617344f26a3e0e288c4c779388",
     "web/ui/components.mjs": "e08457d112d56e36b73c77b5a0694c5a77a4b5d4304c8bdb89b2d7d7b5e69783",
-    "web/ui/components.css": "f96de79fbb791906a17f1cecd329926b041120ce2b97a33e3ab87b14911f94ea",
+    "web/ui/components.css": "ccee848991f5a9ae51d2683dd512cf42773f2d9e4ef23cf0df785704011be7d7",
     "web/ui/primitives.mjs": "407d4dc0d06fa00686f4e2b45bbdcaf216733963d3292ac190fc5a98bc55238f",
     "work/browser-tests/wog-mithril-enhancements-native-e2e.mjs": "7bb06be435d15b7aec57756fa408b43e840adae66c788bc31a3673bfb70b817b",
     "work/browser-tests/wog-map-inverted-speeds-cases.mjs": "1b48b5af3576becac34793b24d1f9698a78c2bb33aca8bc70b25f985fafecb5b",
@@ -1081,5 +1081,17 @@
       "docs/era-gameplay-port.md": "3bf35625e88bcddff85c6de3fef79b1fd58eea1fc81b6150a14452ef13a4c5ea"
     },
     "currentEngineSha256": "2739a7ea706044a53136c22c5d41557dc17ef7416f16334b2d6c43a67bcebb6b"
+  },
+  "uiPresentationRefresh": {
+    "referenceBeforeComponents": "7e7633ea31754d40959fa16eceb2ac69b747164f",
+    "scope": "MUI presentation adapters and shared typography only; engine validation and gameplay admission flags are unchanged.",
+    "files": [
+      "web/ui/components.css"
+    ],
+    "checks": [
+      "work/browser-tests/material-screen-matrix-e2e.mjs",
+      "work/browser-tests/ui-native-controls-e2e.mjs",
+      "work/browser-tests/material-real-prototypes-e2e.mjs"
+    ]
   }
 }

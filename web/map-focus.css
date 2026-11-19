@@ -17,7 +17,7 @@
  min-width:44px!important;
  min-height:36px!important;
  padding:4px 10px!important;
- font-size:12.5px!important;
+ font-size:var(--ui-type-caption)!important;
  align-items:center!important;
  justify-content:center!important;
  white-space:nowrap!important;
@@ -63,7 +63,7 @@
 }
 #mobile-app[data-mode=map] .mobile-nav>button span {
  display:inline-block!important;
- font-size:14px!important;
+ font-size:var(--ui-type-body2)!important;
  margin:0 2px 0 0!important;
  line-height:1!important;
 }

@@ -1,3 +1,4 @@
+import {createUIElement} from './ui/material-components.mjs';
 import {renderMarkup} from './ui/material-components.mjs';
 import {requestHostedMatch} from './hosted-match-request.mjs';
 import {mountHostedMatchCreation} from './hosted-match-create.mjs';
@@ -84,9 +85,9 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
   layout.className = 'hosted-match-settings';
   const modes = document.createElement('div');
   modes.className = 'hosted-match-actions';
-  const createMode = document.createElement('button');
-  const joinMode = document.createElement('button');
-  const libraryMode = document.createElement('button');
+  const createMode = createUIElement('button');
+  const joinMode = createUIElement('button');
+  const libraryMode = createUIElement('button');
   createMode.type = joinMode.type = libraryMode.type = 'button';
   createMode.dataset.nativeClick = joinMode.dataset.nativeClick = libraryMode.dataset.nativeClick = '';
   createMode.textContent = fr ? 'Créer une partie' : 'Create new game';
@@ -146,11 +147,11 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
   loader.hidden = true;
   const chooser = document.createElement('label');
   const select = document.createElement('select');
-  const start = document.createElement('button');
+  const start = createUIElement('button');
   const savedActions = document.createElement('div');
-  const resume = document.createElement('button');
+  const resume = createUIElement('button');
   const personalCode = createHostedCodeCopy(fr);
-  const forget = document.createElement('button');
+  const forget = createUIElement('button');
   const savedTitle = document.createElement('h3');
   const occupancy = document.createElement('p');
   const savedCodeHelp = document.createElement('p');
@@ -174,7 +175,7 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
   management.className = 'hosted-game-options';
   const manageSummary = document.createElement('summary');
   manageSummary.textContent = fr ? 'Gérer cette partie' : 'Manage this game';
-  const remove = document.createElement('button');
+  const remove = createUIElement('button');
   remove.type = 'button';
   remove.dataset.nativeClick = '';
   remove.className = 'hosted-delete';
@@ -309,7 +310,7 @@ export function mountHostedTurnNotifications(container, {endpoint, poolEndpoint,
     if (gameList.dataset.key !== key) {
       gameList.dataset.key = key;
       gameList.replaceChildren(...seats.map(item => {
-        const button = document.createElement('button');
+        const button = createUIElement('button');
         button.type = 'button';
         button.dataset.savedId = item.matchId;
         button.dataset.nativeClick = '';

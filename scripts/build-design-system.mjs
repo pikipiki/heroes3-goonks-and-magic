@@ -1,4 +1,6 @@
 import {build} from 'esbuild';
+import {buildUI} from './build-ui.mjs';
+await buildUI();
 import fs from 'node:fs';
 import path from 'node:path';
 const out=path.resolve(process.env.HEROES_KIT_OUTPUT||'/tmp/heroes-design-system');

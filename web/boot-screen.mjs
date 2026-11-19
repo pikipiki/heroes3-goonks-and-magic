@@ -1,3 +1,4 @@
+import {renderMarkup,createUIElement,escapeUI} from './ui/material-components.mjs';
 import {formatBytes} from './loading.mjs';
 // Fallback scale when no startup download plan is known. The bar never
 // reports 100 % before the native menu is actually shown.
@@ -5,7 +6,7 @@ export const TEMPORARY_STARTUP_BYTES=405*1024*1024;
 export const temporaryProgress=(bytes,expected=TEMPORARY_STARTUP_BYTES)=>Math.min(99,Math.floor(bytes/expected*100));
 export function createTemporaryBoot(status){
  status.setAttribute('data-temporary-boot','');
- const readyStatus=document.createElement('div');
+ const readyStatus=createUIElement('div');
  readyStatus.className='temporary-boot-ready';
  readyStatus.setAttribute('role','status');
  document.body.append(readyStatus);
@@ -15,21 +16,8 @@ export function createTemporaryBoot(status){
  const watchdog=setTimeout(()=>{if(stageOne&&!finished&&!failed)api.fail(Error('Engine initialization timed out.'));},180000);
  const loading=(step,label,determinate=false)=>{
   if(failed)return;
-  const progress=document.createElement('progress');
-  progress.setAttribute('aria-label',label);
-  if(determinate){progress.max=100;progress.value=0;}
-  const stage=document.createElement('small');
-  stage.className='temporary-boot-step';
-  stage.textContent='Étape '+step+' sur 2';
-  const title=document.createElement('p');
-  title.textContent=label;
-  const info=document.createElement('p');
-  info.className='temporary-boot-detail';
-  info.setAttribute('aria-live','polite');
-  const note=document.createElement('small');
-  note.textContent='Ce premier chargement peut prendre un moment.';
-  status.replaceChildren(stage,title,progress,info,note);
-  bar=determinate?progress:null;detail=info;
+  renderMarkup(status,`<small class="temporary-boot-step">Étape ${step} sur 2</small><p>${escapeUI(label)}</p><progress aria-label="${escapeUI(label)}" ${determinate?'max="100" value="0"':''}></progress><p class="temporary-boot-detail" aria-live="polite"></p><small>Ce premier chargement peut prendre un moment.</small>`);
+  bar=determinate?status.querySelector('[role=progressbar]'):null;detail=status.querySelector('.temporary-boot-detail');
  };
  const render=()=>{
   if(!bar)return;
@@ -74,13 +62,8 @@ export function createTemporaryBoot(status){
    if(failed||!document.body.hasAttribute('data-goonk-boot'))return;
    failed=true;clearInterval(monitor);clearTimeout(watchdog);
    console.error('Temporary game startup failed',error);
-   const message=document.createElement('p');
-   message.textContent='The engine could not finish loading. Check your connection, then retry.';
-   const retry=document.createElement('button');
-   retry.type='button';
-   retry.textContent='Réessayer';
-   retry.addEventListener('click',()=>location.reload());
-   status.replaceChildren(message,retry);
+   renderMarkup(status,'<p>The engine could not finish loading. Check your connection, then retry.</p><button type="button">Réessayer</button>');
+   status.querySelector('button').addEventListener('click',()=>location.reload());
   },
  };
  if(globalThis.goonkEngineStartupError)queueMicrotask(()=>api.fail(globalThis.goonkEngineStartupError));

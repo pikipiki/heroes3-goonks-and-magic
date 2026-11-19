@@ -15,7 +15,7 @@ for(const [engineName,engine]of Object.entries({chromium,webkit})){
   await secondary.hover();
   await page.waitForFunction(()=>getComputedStyle([...document.querySelectorAll('.ds-section button')].find(e=>e.textContent==='Retour')).boxShadow!=='none');
   const finish=await secondary.evaluate(e=>{const s=getComputedStyle(e);return {shadow:s.boxShadow,border:s.borderImageSource,background:s.backgroundImage,duration:s.transitionDuration};});
-  assert.notEqual(finish.shadow,'none');assert.equal(finish.border,'none');assert(finish.background.includes('stone.png'));assert(finish.duration.split(',').some(n=>parseFloat(n)>0),'Material hover transition preserved');
+  assert.notEqual(finish.shadow,'none');assert(!finish.shadow.includes('inset'),'One thin border without inset bevels');assert.equal(await secondary.evaluate(e=>getComputedStyle(e).borderTopWidth),'1px');assert.equal(await secondary.evaluate(e=>getComputedStyle(e).fontWeight),'400');assert.equal(finish.border,'none');assert(finish.background.includes('stone.png'));assert(finish.duration.split(',').some(n=>parseFloat(n)>0),'Material hover transition preserved');
   const hoverBox=await secondary.boundingBox();assert.deepEqual(hoverBox,normalBox,'hover must not move the layout');
   await page.mouse.down();await secondary.locator('.MuiTouchRipple-ripple').waitFor({state:'attached'});await page.mouse.up();
   await page.locator('.ds-notice').getByRole('button').click();

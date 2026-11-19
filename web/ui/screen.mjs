@@ -1,3 +1,4 @@
+import {createMaterialElement} from './mui-runtime.mjs';
 import {useScreenControls} from './controls.mjs';
 import {bindPress} from '../mobile-press.mjs';
 import {screenContract,screenSelector} from './contracts.mjs';
@@ -28,7 +29,7 @@ export function applyScreenComponents(root){
  let close=buttons.find(button=>cross.test(button.textContent.trim())||button.dataset.uiHeaderClose==='true');
  const source=find(root,contract.close);
  if(!close&&source&&!header.contains(source)){
-  close=document.createElement('button');close.type='button';close.textContent='✕';close.dataset.uiHeaderClose='true';bindPress(close,()=>{const current=find(root,contract.close);if(current&&!current.disabled)current.click();});header.append(close);
+  close=createMaterialElement('button');close.type='button';close.textContent='✕';close.dataset.uiHeaderClose='true';bindPress(close,()=>{const current=find(root,contract.close);if(current&&!current.disabled)current.click();});header.append(close);
  }
  for(const button of buttons){
   if(back.test(button.textContent.trim())){

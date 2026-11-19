@@ -1,23 +1,11 @@
 import React from "react";
 import { createTheme } from "@mui/material/styles";
 import { Button, IconButton, Box, Typography, TextField, Slider, Dialog, DialogTitle, DialogContent, DialogActions, Table, TableHead, TableBody, TableRow, TableCell, Accordion, AccordionSummary, AccordionDetails, heroesTheme } from "./components.mjs";
+import {heroesControlFinish as buttonFinish,heroesSliderStyles,heroesStone} from "./control-finish.mjs";
 const h = React.createElement;
 export const kitColors = { ink: "#fff0c2", muted: "#d5c49c", gold: "#e3bd69", outline: "#a5884b", surface: "#261b10", red: "#791e12" };
-const stone = "/web/h3-theme/stone.png";
-const bevel = "inset 0 1px 0 #fff2b8, inset 0 0 0 2px #a4772d, inset 0 0 0 3px #f4d58a, 0 2px 0 #0d0805, 0 5px 10px #0009";
-const raised = "inset 0 1px 0 #fff7d2, inset 0 0 0 2px #b98a38, inset 0 0 0 3px #ffe4a0, 0 2px 0 #0d0805, 0 6px 14px #000b, 0 0 12px #edc16b30";
-const pressed = "inset 0 2px 5px #0009, inset 0 0 0 2px #a4772d, inset 0 0 0 3px #edc977, 0 1px 3px #0009";
-const buttonFinish = {
-  border: "1px solid #edca84",
-  borderImage: "none",
-  boxShadow: bevel,
-  backgroundColor: "#34200e",
-  backgroundImage: `linear-gradient(#533716b8,#231308e8),url(${stone})`,
-  textShadow: "0 1px 2px #000",
-  "&:hover": { backgroundColor: "#5f3c13", backgroundImage: `linear-gradient(#81571db8,#3d220aeb),url(${stone})`, boxShadow: raised, borderColor: "#ffe9a8" },
-  "&:active": { boxShadow: pressed },
-  "&.Mui-disabled": { boxShadow: "inset 0 0 0 2px #8b703d, 0 2px 4px #0006", opacity: 0.48, color: "#d5c49c" }
-};
+const stone = heroesStone;
+
 export const heroesReferenceTheme = createTheme({
   palette: heroesTheme.palette,
   typography: heroesTheme.typography,
@@ -33,9 +21,9 @@ export const heroesReferenceTheme = createTheme({
       textTransform: "none",
       fontSize: 14,
       lineHeight: "20px",
-      fontWeight: 600,
+      fontWeight: 400,
       "&.MuiButton-root": buttonFinish,
-      "&.MuiButton-contained": { ...buttonFinish, backgroundColor: "#751c0e", backgroundImage: `linear-gradient(#a73a23c9,#64150bec),url(${stone})`, "&:hover": { backgroundColor: "#962b12", backgroundImage: `linear-gradient(#c74a29c9,#7d1c0ced),url(${stone})`, boxShadow: raised, borderColor: "#ffe9a8" } },
+      "&.MuiButton-contained": { ...buttonFinish, backgroundColor: "#751c0e", backgroundImage: `linear-gradient(#a73a23c9,#64150bec),url(${stone})`, "&:hover": { backgroundColor: "#962b12", backgroundImage: `linear-gradient(#c74a29c9,#7d1c0ced),url(${stone})`, boxShadow: buttonFinish["&:hover"].boxShadow, borderColor: "#ffe9a8" } },
       "&.MuiButton-root[aria-pressed=true]": { backgroundImage: `linear-gradient(#a73a23c9,#64150bec),url(${stone})` },
       "&.MuiButton-root[aria-pressed=true]:hover": { backgroundImage: `linear-gradient(#c74a29c9,#7d1c0ced),url(${stone})` },
       "&:focus-visible": { outline: "3px solid #fff0ab", outlineOffset: 3 }
@@ -47,8 +35,8 @@ export const heroesReferenceTheme = createTheme({
     MuiMenuItem: { styleOverrides: { root: { minHeight: 48, whiteSpace: "normal", "&:hover": { background: "#72501d" }, "&.Mui-selected": { background: "#791e12", "&:hover": { background: "#9a321c" } } } } },
     MuiCheckbox: { styleOverrides: { root: { padding: 12, color: "#d8b56e", "&:hover": { backgroundColor: "#edca841f" }, "&.Mui-checked": { color: "#ffe19a" } } } },
     MuiRadio: { styleOverrides: { root: { padding: 12, color: "#d8b56e", "&:hover": { backgroundColor: "#edca841f" }, "&.Mui-checked": { color: "#ffe19a" } } } },
-    MuiSlider: { styleOverrides: { root: { color: "#e3bd69", height: 8, padding: "20px 0" }, rail: { height: 8, opacity: 1, background: "linear-gradient(#110b05,#4c3417)", border: "1px solid #a18448", boxShadow: "inset 0 2px 4px #000c, 0 1px 0 #ffe7a03d" }, track: { height: 8, border: "1px solid #f4d58a", background: "linear-gradient(#fff1b8,#dca344 50%,#98601d)", boxShadow: "0 1px 3px #0008" }, thumb: { width: 26, height: 26, border: "2px solid #ffedac", background: "linear-gradient(145deg,#fff0b5,#dca343 55%,#8c5416)", boxShadow: "inset 1px 1px 1px #fff4cc, inset -1px -2px 2px #71420e, 0 3px 6px #000a", "&::before": { boxShadow: "none" }, "&:hover, &.Mui-focusVisible": { boxShadow: "inset 1px 1px 1px #fff4cc, 0 3px 6px #000a, 0 0 0 7px #edca8429" }, "&.Mui-active": { boxShadow: "inset 0 2px 4px #744510, 0 0 0 10px #edca8433" } }, valueLabel: { background: "#35210e", border: "1px solid #edca84", color: kitColors.ink } } },
-    MuiAccordion: { defaultProps: { disableGutters: true }, styleOverrides: { root: { border: "1px solid #c8a560", background: "#21170e", backgroundImage: `linear-gradient(#24180ee0,#1c120beb),url(${stone})`, boxShadow: "inset 0 1px 0 #f8d68a33, 0 3px 8px #0008", "&::before": { display: "none" }, "&.Mui-expanded": { margin: 0 } } } },
+    MuiSlider: {styleOverrides:heroesSliderStyles},
+    MuiAccordion: { defaultProps: { disableGutters: true }, styleOverrides: { root: { border: "1px solid #c8a560", background: "#21170e", backgroundImage: `linear-gradient(#24180ee0,#1c120beb),url(${stone})`, boxShadow: buttonFinish.boxShadow, "&::before": { display: "none" }, "&.Mui-expanded": { margin: 0 } } } },
     MuiAccordionSummary: { styleOverrides: { root: { minHeight: 56, color: kitColors.ink, "&:hover": { backgroundColor: "#edca841a" } }, content: { gap: 12, alignItems: "center" }, expandIconWrapper: { color: "#ffe4a0", textShadow: "0 2px 2px #000" } } },
     MuiAccordionDetails: { styleOverrides: { root: { padding: "8px 16px 16px", color: kitColors.muted } } },
     MuiTab: { styleOverrides: { root: { minHeight: 48, color: kitColors.muted, textTransform: "none", fontSize: 14, "&:hover": { background: "#edca841c" }, "&.Mui-selected": { color: "#fff0c2", background: "#691b12" } } } },

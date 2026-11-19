@@ -10,7 +10,7 @@
     "mod/tum-era/content/translation/tum-era-ui-english.json": "9f79924da49232315170c2bc6e4f85caed65102f0500304418ada4dc94be6565",
     "mod/tum-era/content/translation/tum-era-ui-french.json": "975a2b1594a579b216ea4de7b943808992379780c08dbcb19930cf91d81d5b82",
     "tests/native/EraWogOptionsSerialization.test.cpp": "d6dd019fda18d602642d3594e702321a0ddf5847896e3d0a51cac9839c55bcdc",
-    "web/mithril-enhancements.mjs": "48ac8021d45e327fff8fbf8832dfd7a5c226834c18e50cdf28383103590b37fa",
+    "web/mithril-enhancements.mjs": "167a22dcc038b3f9640d17ff2cf9a86c4c336540dae61f800ca3890b4b1d994f",
     "web/wog-options.mjs": "4e632ab8dbb816d500f9b1b242ef45538c5a78617344f26a3e0e288c4c779388",
     "work/vcmi-wasm/client/MobileBridge.cpp": "4e45120603c15d1f141733e7cb363be5920792aafcc4945521f575920317e261",
     "work/vcmi-wasm/client/adventureMap/AdventureMapWidget.cpp": "e217057948f462497dad18b8177a167474c6bf213414d64c7926168502b1a610",
@@ -1841,5 +1841,17 @@
       "docs/era-gameplay-port.md": "3bf35625e88bcddff85c6de3fef79b1fd58eea1fc81b6150a14452ef13a4c5ea"
     },
     "currentEngineSha256": "2739a7ea706044a53136c22c5d41557dc17ef7416f16334b2d6c43a67bcebb6b"
+  },
+  "uiPresentationRefresh": {
+    "referenceBeforeComponents": "7e7633ea31754d40959fa16eceb2ac69b747164f",
+    "scope": "MUI presentation adapters and shared typography only; engine validation and gameplay admission flags are unchanged.",
+    "files": [
+      "web/mithril-enhancements.mjs"
+    ],
+    "checks": [
+      "work/browser-tests/material-screen-matrix-e2e.mjs",
+      "work/browser-tests/ui-native-controls-e2e.mjs",
+      "work/browser-tests/material-real-prototypes-e2e.mjs"
+    ]
   }
 }

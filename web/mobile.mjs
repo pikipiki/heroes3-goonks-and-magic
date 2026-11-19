@@ -1,3 +1,4 @@
+import {createUIElement} from './ui/material-components.mjs';
 import {useNavigation,useKingdomChrome,renderMarkup,setClickHandler} from './ui/material-components.mjs';
 import{townActionIcon,townWarMachineIcon,warmTownActionIcons}from'./town-action-icons.mjs';
 import {canInspectBattle,inspectionUnits,battleInspectionMarkup} from './battle-inspection.mjs';
@@ -75,7 +76,7 @@ function mount(){
  // One safe-area frame contains every absolute page and the shared controls.
  const viewportFrame=document.createElement('div');viewportFrame.id='mobile-viewport';root.before(viewportFrame);viewportFrame.append(root);
  const viewportAnchor=anchorMobileViewport(viewportFrame);
- const townZoom=document.createElement('button');townZoom.className='town-zoom-control';townZoom.dataset.ui='town-view';townZoom.textContent='＋ Zoom in';root.querySelector('.mobile-play').append(townZoom);
+ const townZoom=createUIElement('button');townZoom.className='town-zoom-control';townZoom.dataset.ui='town-view';townZoom.textContent='＋ Zoom in';root.querySelector('.mobile-play').append(townZoom);
  root.addEventListener('click',event=>{if(newTownBuilding&&Number(event.target.closest('[data-town-building]')?.dataset.townBuilding)===newTownBuilding.id)clearNewBuilding();},{capture:true});
  const battleResult=createBattleResult({root,command:(...args)=>command(...args)});
  const dialogPresentation=createDialogPresentation({root,command:(...args)=>command(...args),pointer:(...args)=>pointer(...args),refresh:()=>update(state,true)});
@@ -392,7 +393,7 @@ function mount(){
  function showList(kind,refresh=false){
   if(kind==='towns'&&state.towns?.length===1){command(5,state.towns[0].index);return;}
   if(kind==='heroes'){if(state.mode==='map'&&(state.heroName||state.heroes?.length)){closeSheet();if(!state.heroName)command(4,state.heroes[0].index);heroEquipment.showArmy();command(55);}else notify('Select a hero on the map first.');return;}
-  if(kind==='heroes'||kind==='towns'){openSheet(kind,kind==='heroes'?'Tes héros':'Tes villes');for(const item of state[kind]||[]){const el=document.createElement('button');el.className='mobile-card';el.style.width='100%';el.textContent=item.name+(kind==='heroes'?` · ${item.movement} points`:'');setClickHandler(el,()=>{command(kind==='heroes'?4:5,item.index);closeSheet();});body.append(el);}if(!body.children.length)body.textContent='Aucun élément disponible.';}
+  if(kind==='heroes'||kind==='towns'){openSheet(kind,kind==='heroes'?'Tes héros':'Tes villes');for(const item of state[kind]||[]){const el=createUIElement('button');el.className='mobile-card';el.style.width='100%';el.textContent=item.name+(kind==='heroes'?` · ${item.movement} points`:'');setClickHandler(el,()=>{command(kind==='heroes'?4:5,item.index);closeSheet();});body.append(el);}if(!body.children.length)body.textContent='Aucun élément disponible.';}
   if(kind==='build'&&state.mode==='town'){void townBuildings.open();return;}
   if(kind==='recruit'){openRecruit();return;}
 
@@ -542,7 +543,7 @@ function mount(){
    if(partners.length===1){command(91,partners[0].id);return;}
    openSheet('exchange-partner','Choisis un héros pour l’échange');
    for(const partner of partners){
-    const choice=document.createElement('button');
+    const choice=createUIElement('button');
     choice.type='button';choice.className='mobile-card';choice.textContent=partner.name;
     choice.addEventListener('click',()=>{
      closeSheet();
@@ -593,7 +594,7 @@ function mount(){
    battleTab='enemies';
    showBattleTargets();return;
   }if(ui==='cast-from-sheet'||ui==='creature-spell'){if(!battleCapabilities(effectiveBattle()).magic){closeSheet();notify('La magie est disponible après le placement, pendant ton tour.');return;}const creatureCast=ui==='creature-spell';closeSheet();command(14,creatureCast?1:0);return;}
-  if(ui==='commander-mobile'){dialogPresentation.show();return;}if(ui==='town-view'){townWhole=!townWhole;focus=null;resetGestures();townZoom.textContent=townWhole?'＋ Zoom in':'− Zoom out';controls();return;}if(ui==='center'){if(state.mode==='map'&&state.worldView){zoom=1;focus=null;resetGestures();command(87);return;}zoom=1;focus=null;resetGestures();command(6);if(sheetKind)closeSheet();}if(ui==='center-town'){if(state.mode==='map'&&state.towns?.length){zoom=1;focus=null;resetGestures();if(state.towns.length===1)command(56,state.towns[0].index);else{openSheet('town-focus','Choose a castle');for(const town of state.towns){const b=document.createElement('button');b.className='mobile-card';b.textContent=town.name;setClickHandler(b,()=>{command(56,town.index);closeSheet();});body.append(b);}}}return;}if(ui==='save'&&state.mode==='map'&&state.turn){command(7);closeSheet();notify('Sauvegarde demandée : Goonk-mobile');}if(ui==='endturn'&&state.mode==='map'&&state.turn){command(3);return;}
+  if(ui==='commander-mobile'){dialogPresentation.show();return;}if(ui==='town-view'){townWhole=!townWhole;focus=null;resetGestures();townZoom.textContent=townWhole?'＋ Zoom in':'− Zoom out';controls();return;}if(ui==='center'){if(state.mode==='map'&&state.worldView){zoom=1;focus=null;resetGestures();command(87);return;}zoom=1;focus=null;resetGestures();command(6);if(sheetKind)closeSheet();}if(ui==='center-town'){if(state.mode==='map'&&state.towns?.length){zoom=1;focus=null;resetGestures();if(state.towns.length===1)command(56,state.towns[0].index);else{openSheet('town-focus','Choose a castle');for(const town of state.towns){const b=createUIElement('button');b.className='mobile-card';b.textContent=town.name;setClickHandler(b,()=>{command(56,town.index);closeSheet();});body.append(b);}}}return;}if(ui==='save'&&state.mode==='map'&&state.turn){command(7);closeSheet();notify('Sauvegarde demandée : Goonk-mobile');}if(ui==='endturn'&&state.mode==='map'&&state.turn){command(3);return;}
  });
  root.addEventListener('goonk-open-army',()=>{command(63);showList('army');});
  sheet.addEventListener('keydown',event=>{if(event.key==='Escape'){closeSheet();event.stopPropagation();}if(event.key==='Tab'){const buttons=[...sheet.querySelectorAll('button:not(:disabled),input:not(:disabled)')];if(event.shiftKey&&document.activeElement===buttons[0]){buttons.at(-1)?.focus();event.preventDefault();}else if(!event.shiftKey&&document.activeElement===buttons.at(-1)){buttons[0]?.focus();event.preventDefault();}}});

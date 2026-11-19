@@ -1,5 +1,5 @@
 import {chromium,webkit}from'playwright-core';import fs from'node:fs';import path from'node:path';import assert from'node:assert/strict';import{execFileSync}from'node:child_process';import{screenCases,stateFor}from'./material-screen-cases.mjs';import{inspectMaterialPage}from'./material-audit.mjs';import{silenceTestAudio}from'./silent-audio.mjs';
-const before=process.env.UI_COMPARE_BASELINE==='1',reference='7e7633ea31754d40959fa16eceb2ac69b747164f',report={reference,before,samples:[]};
+const before=process.env.UI_COMPARE_BASELINE==='1',reference=process.env.UI_COMPARE_REF||'7e7633ea31754d40959fa16eceb2ac69b747164f',report={reference,before,samples:[]},reportPrefix=process.env.UI_REPORT_PREFIX||'/tmp/mui-screen-matrix';
 for(const[kind,engine]of Object.entries({chromium,webkit})){
  if(process.env.UI_ENGINE&&process.env.UI_ENGINE!==kind)continue;const browser=await engine.launch({headless:true});try{
  const p=await browser.newPage({hasTouch:true}),errors=[];p.on('pageerror',e=>errors.push(e.message));await silenceTestAudio(p);
@@ -12,12 +12,12 @@ for(const[kind,engine]of Object.entries({chromium,webkit})){
  for(const entry of screenCases.filter(entry=>!process.env.UI_CASES||process.env.UI_CASES.split(',').includes(entry[0]))){
   await p.evaluate(state=>{for(const dialog of document.querySelectorAll('dialog[open]'))dialog.close();dispatchEvent(new CustomEvent('goonk-state',{detail:state}));},stateFor(entry));await p.waitForTimeout(120);
   for(const selector of entry.slice(2)){const target=p.locator(selector);if(await target.count()&&!await target.isVisible()&&selector.startsWith('[data-hero-tab'))await p.locator('.hero-bag-tabs>.ui-overflow-trigger').tap();if(await target.count()&&await target.isVisible()){await target.tap({timeout:3000});await p.evaluate(state=>dispatchEvent(new CustomEvent('goonk-state',{detail:state})),stateFor(entry));await p.waitForTimeout(50);}}
-  const sample=before?{}:await inspectMaterialPage(p);report.samples.push({engine:kind,language,viewport,case:entry[0],...sample});
-  if(language==='fr'&&[320,568,716].includes(viewport.width))await p.screenshot({path:`/tmp/matrix-${before?'before':'after'}-${kind}-${entry[0]}-${viewport.width}.png`});
+  const geometry=await p.evaluate(()=>[...document.querySelectorAll('#mobile-app canvas,#mobile-app .creature-stage,#mobile-app .featured-visual,#mobile-app .hall-form img,#mobile-app .hero-portrait')].filter(n=>n.getBoundingClientRect().width&&n.getBoundingClientRect().height&&!n.closest('[hidden]')).map(n=>{const r=n.getBoundingClientRect();return {tag:n.tagName,key:n.className?.baseVal??n.className,x:r.x,y:r.y,width:r.width,height:r.height};}));const sample=before?{}:await inspectMaterialPage(p);sample.visualGeometry=geometry;report.samples.push({engine:kind,language,viewport,case:entry[0],...sample});
+  if(process.env.UI_CAPTURE_ALL==='1'||language==='fr'&&[320,568,716].includes(viewport.width)){const dir=process.env.UI_CAPTURE_DIR||'/tmp';fs.mkdirSync(dir,{recursive:true});await p.screenshot({path:`${dir}/matrix-${before?'before':'after'}-${kind}-${entry[0]}-${language}-${viewport.width}.png`});}
   assert.deepEqual(errors,[],entry[0]+' console errors');if(entry[0]==='mithril')await p.locator('[data-mithril-close]').tap();if(entry[0]==='builder')await p.locator('[data-builder-close]').tap();
  }
  }
  console.log('PASS',kind,before?'before comparison':'real screen matrix',report.samples.filter(s=>s.engine===kind).length,'screen/language/viewport cases');
- }finally{await browser.close();fs.writeFileSync('/tmp/mui-screen-matrix-'+(before?'before':'after')+'.json',JSON.stringify(report,null,2));}
+ }finally{await browser.close();fs.writeFileSync(reportPrefix+'-'+(before?'before':'after')+'.json',JSON.stringify(report,null,2));}
 }
-const failures=report.samples.flatMap(sample=>(sample.failures||[]).map(f=>({case:sample.case,engine:sample.engine,viewport:sample.viewport,...f})));fs.writeFileSync('/tmp/mui-screen-matrix-findings-'+(before?'before':'after')+'.json',JSON.stringify(failures,null,2));console.log('Findings',failures.length);if(!before&&failures.length)process.exitCode=1;
+const failures=report.samples.flatMap(sample=>(sample.failures||[]).map(f=>({case:sample.case,engine:sample.engine,viewport:sample.viewport,...f})));fs.writeFileSync(reportPrefix+'-findings-'+(before?'before':'after')+'.json',JSON.stringify(failures,null,2));console.log('Findings',failures.length);if(!before&&failures.length)process.exitCode=1;

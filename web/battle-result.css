@@ -6,16 +6,16 @@ html.goonk-mobile #mobile-app[data-battle-result]>*:not(.battle-result){display:
 #mobile-app .battle-result h2{margin:0;color:#ffe29a;font-size:clamp(21px,5vw,28px);overflow-wrap:anywhere}
 #mobile-app .battle-result p{margin:0;line-height:1.4}
 #mobile-app .result-content{min-width:0;min-height:0;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;touch-action:pan-y;display:flex;flex-direction:column;gap:10px}
-#mobile-app .result-description{padding:8px 10px;border:1px solid #b7944d;font-size:14px;overflow-wrap:anywhere}
+#mobile-app .result-description{padding:8px 10px;border:1px solid #b7944d;font-size:var(--ui-type-body2);overflow-wrap:anywhere}
 #mobile-app .result-sides{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;min-width:0;align-items:start}
 #mobile-app .result-sides>section{padding:8px;min-width:0;border:2px ridge #b99952;background:#20150dde}
 #mobile-app .result-sides header{display:grid;grid-template-columns:44px minmax(0,1fr);gap:4px 6px;align-items:center}
 #mobile-app .result-sides header canvas{grid-row:1/3;width:44px;height:49px;border:1px solid #d3ad5e;box-sizing:border-box}
-#mobile-app .result-sides h3{font-size:16px;margin:0;overflow-wrap:anywhere}
-#mobile-app .result-sides header strong{font-size:12px;overflow-wrap:anywhere}
-#mobile-app .result-sides h4{font-size:14px;color:#ffe29a;margin:12px 0 8px}
+#mobile-app .result-sides h3{font-size:var(--ui-type-body1);margin:0;overflow-wrap:anywhere}
+#mobile-app .result-sides header strong{font-size:var(--ui-type-caption);overflow-wrap:anywhere}
+#mobile-app .result-sides h4{font-size:var(--ui-type-body2);color:#ffe29a;margin:12px 0 8px}
 #mobile-app .result-losses article{display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:6px;align-items:center;min-height:52px;border-top:1px solid #967b43}
-#mobile-app .result-losses article>span{font-size:13px;overflow-wrap:anywhere}
+#mobile-app .result-losses article>span{font-size:var(--ui-type-body2);overflow-wrap:anywhere}
 #mobile-app .battle-result .result-losses .unit-portrait{display:block;width:44px;height:44px;max-height:44px;min-width:0;min-height:0;object-fit:contain}
 #mobile-app .battle-result>[data-result-confirm]{min-height:48px;min-width:44px;box-sizing:border-box;font-weight:bold}
 @container goonk-viewport (max-width:360px) and (orientation:portrait){#mobile-app .result-sides{grid-template-columns:minmax(0,1fr)}}

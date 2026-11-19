@@ -1,3 +1,4 @@
+import {createUIElement} from './ui/material-components.mjs';
 import {renderMarkup} from './ui/material-components.mjs';
 import {getLanguage} from './i18n.mjs';
 export function gameDate(day){
@@ -7,7 +8,7 @@ export function gameDate(day){
 }
 export const canViewWeeklyRecruits=state=>['map','town','fort'].includes(state.mode);
 export function createGameCalendar(root){
- const calendar=document.createElement('button');calendar.type='button';calendar.className='mobile-calendar';calendar.dataset.ui='weekly-recruits';calendar.hidden=true;
+ const calendar=createUIElement('button');calendar.type='button';calendar.className='mobile-calendar';calendar.dataset.ui='weekly-recruits';calendar.hidden=true;
  const date=document.createElement('span'),next=document.createElement('span');
  const compactDate=document.createElement('span'),cue=document.createElement('span');
  next.className='calendar-next-week';compactDate.className='calendar-compact';
