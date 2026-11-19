@@ -50,7 +50,7 @@ export function applyScreenComponents(root){
  // A synthetic header cross delegates to the native exit; retain that source
  // for its handler, but expose only one visible way to close the same panel.
  if(close&&source&&source!==close&&back.test(source.textContent.trim())&&!source.hidden)source.hidden=true;
- if(close){if(close.textContent!=='✕')close.textContent='✕';decorateButton(close,{icon:true});close.setAttribute('aria-label',uiText('Close','Fermer'));if(close.dataset.uiHeaderClose==='true'&&source&&source!==close&&close.disabled!==source.disabled)close.disabled=source.disabled;}
+ if(close){close.classList.add('ui-header-close-control');if(close.textContent!=='✕')close.textContent='✕';decorateButton(close,{icon:true});close.setAttribute('aria-label',uiText('Close','Fermer'));if(close.dataset.uiHeaderClose==='true'&&source&&source!==close&&close.disabled!==source.disabled)close.disabled=source.disabled;}
  for(const selector of [contract.headerActions,contract.extraActions].filter(Boolean))for(const button of root.querySelectorAll(selector)){if(button!==close){const dock=ensureDock(root,contract),actions=dock.querySelector(':scope>.ui-action-group')||dock;if(!actions.contains(button))actions.append(button);}}
  if(root.matches('.online-lobby')&&close&&source&&source!==close&&!source.hidden)source.hidden=true;
  const dock=find(root,contract.dock)||root.querySelector(':scope>footer.ui-action-dock');

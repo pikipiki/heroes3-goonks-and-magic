@@ -299,10 +299,23 @@ export function createTownBuildingMenu({body, getState, asset, backButton, canOp
     panel.addEventListener('click',handleClick,listen);commandDock?.addEventListener('click',handleClick);
   }
   function selectProjectBuilding(state, id) {
+    const scroll = captureViewScroll();
+    const fromStep = document.activeElement?.closest('[data-building-project-step]');
     selected = id;
     render(state);
-    body.scrollTop = 0;
-    body.querySelector('.building-detail h3')?.focus({preventScroll:true});
+    restoreViewScroll(scroll, true);
+    const focus = fromStep
+      ? body.querySelector(`[data-building-project-step="${id}"]`)
+      : body.querySelector('.building-detail h3');
+    focus?.focus({preventScroll:true});
+  }
+  function captureViewScroll() {
+    return {top:body.scrollTop,regions:['.building-list','.building-detail','.building-project [data-ui-stepper]']
+      .map(selector=>({selector,top:body.querySelector(selector)?.scrollTop??0}))};
+  }
+  function restoreViewScroll(scroll, resetDetail=false) {
+    body.scrollTop=scroll.top;
+    for(const region of scroll.regions){const node=body.querySelector(region.selector);if(node)node.scrollTop=resetDetail&&region.selector==='.building-detail'?0:region.top;}
   }
   function update(state) {
     const completed = construction === undefined ? null : state.buildings?.find(item => item.id === construction && item.built);
@@ -320,15 +333,13 @@ export function createTownBuildingMenu({body, getState, asset, backButton, canOp
     const next = JSON.stringify([state.turn, state.buildings, construction,wide]);
     if (next === signature) return;
     signature = next;
-    const regions=['.building-list','.building-detail','.building-project [data-ui-stepper]'].map(selector=>({selector,top:body.querySelector(selector)?.scrollTop??0}));
-    const scroll = body.scrollTop;
+    const scroll = captureViewScroll();
     const focus = document.activeElement;
-    const selector = ['data-building-action','data-building-prerequisite','data-building-goal','data-building-id','data-building-tab','data-building-filter']
+    const selector = ['data-building-action','data-building-prerequisite','data-building-project-step','data-building-goal','data-building-id','data-building-tab','data-building-filter']
       .find(attribute => (body.contains(focus)||commandDock?.contains(focus)) && focus.hasAttribute(attribute));
     const value = selector && focus.getAttribute(selector);
     render(state);
-    body.scrollTop = scroll;
-    for(const region of regions){const node=body.querySelector(region.selector);if(node)node.scrollTop=region.top;}
+    restoreViewScroll(scroll);
     if (selector) [...body.querySelectorAll(`[${selector}]`),...(commandDock?.querySelectorAll(`[${selector}]`)||[])].find(button => button.getAttribute(selector) === value)?.focus({preventScroll:true});
   }
   async function open(route = null) {

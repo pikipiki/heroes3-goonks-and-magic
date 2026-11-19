@@ -240,7 +240,7 @@ function mount(){
   else if(m==='campaign')items=[btn('Back','back')];
   else if(m==='lobby')items=[btn(fr?'▶ Commencer':'▶ Start game','begin'),btn(fr?'✓ Valider':'✓ Confirm','accept'),btn(fr?'↩ Retour':'↩ Back','back')];
   else items=[btn(fr?'✓ Valider':'✓ Confirm','accept',true),btn(fr?'↩ Retour':'↩ Back','back'),btn('＋ Zoom','zoom-in'),btn('− Zoom','zoom-out')];
-  if(m==='town'){const smith=state.buildings?.find(b=>b.built&&String(b.key).split(':').at(-1)==='blacksmith');items.push(`<button data-ui="town-blacksmith" class="town-action town-machine-action" ${smith?'':'disabled'}><img class="town-action-icon" src="${townWarMachineIcon(state.townWarMachine)}" width="28" height="28" alt=""><span>${escape(state.townWarMachine?.name||(fr?'Machine de guerre':'War machine'))}</span></button>`,btn('← Back','back'));}
+  if(m==='town'){const smith=state.buildings?.find(b=>b.built&&String(b.key).split(':').at(-1)==='blacksmith');items.push(`<button data-ui="town-blacksmith" class="town-action town-machine-action" ${smith?'':'disabled'}><img class="town-action-icon" src="${townWarMachineIcon(state.townWarMachine)}" width="28" height="28" alt=""><span>${escape(state.townWarMachine?.name||(fr?'Machine de guerre':'War machine'))}</span></button>`,btn(fr?'Retour':'Back','back'));}
   if(state.dialogKind==='blacksmith'||state.dialogKind==='thieves-guild')items=[];
   if(state.dialogPresentation&&!dialogPresentation.classic)items=[];
   if(m==='dialog'&&state.dialogKind==='commander'&&dialogPresentation.classic)items.push(btn('Mobile view','commander-mobile'));
@@ -372,10 +372,12 @@ function mount(){
   const route=sheetKind==='build'?townBuildings.cancel():null;
   clearTimeout(armyTimer);armyPending=false;armyFocus=null;sheet.removeAttribute('aria-busy');sheet.hidden=true;sheetKind='';delete root.dataset.sheet;armySelection=null;
   resetGestures();
+  // The shared modal boundary owns background isolation and restores the
+  // original inert state before focus returns to the revealed game panel.
+  normalizeReturnControls(document.body);
   if(weekly){command(88,0);updateCalendar(state);}
   const restore=()=>{
    if(sheetKind)return;
-   root.querySelector('.mobile-play').inert=false;nav.inert=false;
    if(route&&state.mode==='fort')creatureView.focusHallUnit(route.unitId);
    else if(previousFocus?.isConnected)previousFocus.focus({preventScroll:true});
   };
@@ -386,7 +388,7 @@ function mount(){
  bindPress(sheet.querySelector('[data-ui="sheet-back"]'),()=>{if(sheetKind!=='build'||!townBuildings.back())closeSheet();});
  function openRecruit(level){if(!recruitChoices.length){notify('Aucune recrue disponible dans les logements construits.');return;}resetGestures();activeRecruitLevel=level??recruitChoices[0].level;expectedRecruitId=recruitChoices.find(u=>u.level===activeRecruitLevel)?.id;recruitLoading=true;root.querySelector('#recruit-number').blur();controls();if(state.mode==='recruit')command(33);command(30,activeRecruitLevel);}
 
- function openSheet(kind,title){previousFocus=document.activeElement;resetGestures();root.querySelector('.mobile-play').inert=true;nav.inert=true;sheetKind=kind;root.dataset.sheet=kind;sheet.hidden=false;root.querySelector('#sheet-title').textContent=title;renderMarkup(body,'');normalizeReturnControls(document.body);sheet.querySelector(kind==='build'?'[data-ui=sheet-back]':'[data-ui=close-sheet]').focus({preventScroll:true});}
+ function openSheet(kind,title){previousFocus=document.activeElement;resetGestures();sheetKind=kind;root.dataset.sheet=kind;sheet.hidden=false;root.querySelector('#sheet-title').textContent=title;renderMarkup(body,'');normalizeReturnControls(document.body);sheet.querySelector(kind==='build'?'[data-ui=sheet-back]':'[data-ui=close-sheet]').focus({preventScroll:true});}
  function refreshArmy(){
   clearTimeout(armyTimer);armyPending=false;sheet.removeAttribute('aria-busy');
   const scroll=body.scrollTop,focused=document.activeElement,army=armyFocus?.army??focused?.dataset.army,slot=armyFocus?.slot??focused?.dataset.slot;armyFocus=null;

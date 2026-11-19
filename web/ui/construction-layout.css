@@ -46,6 +46,7 @@
  #mobile-app[data-sheet=build] .building-project .MuiAccordion-heading{flex:none!important;min-width:0!important}
  #mobile-app[data-sheet=build] .building-project .MuiCollapse-root{flex:1 1 auto!important;min-height:0!important;overflow:hidden!important}
  #mobile-app[data-sheet=build] .building-project .MuiCollapse-wrapper,#mobile-app[data-sheet=build] .building-project .MuiCollapse-wrapperInner{height:100%!important;min-height:0!important}
+ #mobile-app[data-sheet=build] .building-project .MuiAccordion-region{display:flex!important;flex-direction:column!important;height:100%!important;min-height:0!important;overflow:hidden!important}
  #mobile-app[data-sheet=build] .building-project .MuiAccordionDetails-root{display:flex!important;flex-direction:column!important;height:100%!important;min-height:0!important;box-sizing:border-box!important;padding:4px!important}
  #mobile-app[data-sheet=build] .building-project .MuiStepButton-root{border:1px solid transparent!important}
  #mobile-app[data-sheet=build] .building-project .MuiStepButton-root[aria-current=step]{border-color:var(--ui-primary)!important;background:var(--ui-secondary-container)!important}
@@ -111,6 +112,7 @@
   #mobile-app[data-sheet=build] :is(.building-list,.building-detail,.building-project,.building-side-info){grid-area:auto!important;flex:none!important;max-height:none!important;min-height:0!important;height:auto!important;overflow:visible!important}
   #mobile-app[data-sheet=build] .building-project .MuiCollapse-root{flex:none!important}
   #mobile-app[data-sheet=build] .building-project .MuiCollapse-wrapper,#mobile-app[data-sheet=build] .building-project .MuiCollapse-wrapperInner,#mobile-app[data-sheet=build] .building-project .MuiAccordionDetails-root{height:auto!important}
+  #mobile-app[data-sheet=build] .building-project .MuiAccordion-region{height:auto!important;overflow:visible!important}
   #mobile-app[data-sheet=build] .building-project [data-ui-stepper]{overflow:visible!important;max-height:none!important;height:auto!important;flex:none!important}
   #mobile-app[data-sheet=build]>.mobile-sheet>.building-actions,#mobile-app[data-sheet=build]>.mobile-sheet[data-building-project=true]>.building-actions{grid-area:3/1!important;grid-template-columns:minmax(0,1fr)!important}
   #mobile-app[data-sheet=build]>.mobile-sheet>.building-actions:has(>[data-building-back]){grid-template-columns:minmax(0,1fr) 88px!important}

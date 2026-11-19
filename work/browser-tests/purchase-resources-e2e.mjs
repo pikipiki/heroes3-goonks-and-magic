@@ -56,6 +56,20 @@ for(const [engineName,engine] of Object.entries({chromium,webkit})){
    window.buildController=createTownBuildingMenu({body:sheet.querySelector('.sheet-body'),getState:()=>model,asset:()=>'',backButton:sheet.querySelector('[data-ui=sheet-back]'),canOpen:()=>true,openSheet:()=>{},closeSheet:()=>{},command:(...args)=>calls.push(args),notify:()=>{}});await buildController.open();useKingdomChrome(root);
   });
   await check('build',viewport,language,{clone:true});
+  // Reopen the exact same native sheet/header after MUI has disposed detached content.
+  for(let reopen=0;reopen<2;reopen++){
+   await page.evaluate(async()=>{const root=document.querySelector('#mobile-app');root.querySelector('.mobile-sheet').hidden=true;delete root.dataset.sheet;(await import('/web/ui/material-components.mjs')).useKingdomChrome(root);});
+   await page.waitForTimeout(50);
+   await page.evaluate(async()=>{const root=document.querySelector('#mobile-app');root.dataset.sheet='build';root.querySelector('.mobile-sheet').hidden=false;(await import('/web/ui/material-components.mjs')).useKingdomChrome(root);});
+   await page.waitForTimeout(50);
+   const header=page.locator('.mobile-sheet>.sheet-head');assert(await header.evaluate(n=>n.classList.contains('ui-purchase-header')),'Reopening restores the shared purchase header');
+   const strip=header.locator('.ui-purchase-resources');assert.equal(await strip.locator('[role=listitem]').count(),8,'Reopening restores all native resource rows');
+   const box=await header.boundingBox(),close=await header.locator('[data-ui=close-sheet]').boundingBox();assert(box&&close&&Math.abs(box.x+box.width-close.x-close.width)<=12,'Close stays at the right edge of the shared header '+JSON.stringify({viewport,box,close}));
+   // Update only the native resource strip: no panel mutation or manual refresh.
+   await page.evaluate(async()=>{model.resources[6]-=1;(await import('/web/resources.mjs')).renderResources(document.querySelector('.mobile-resources'),model.resources,model.resourceTypes);});
+   await page.waitForFunction(()=>document.querySelector('.ui-purchase-resources [data-resource=gold] .resource-quantity')?.textContent===document.querySelector('.mobile-resources [data-resource=gold] .resource-quantity')?.textContent);
+  }
+
   await page.evaluate(()=>{buildController.cancel(true);document.querySelector('.mobile-sheet').hidden=true;delete document.querySelector('#mobile-app').dataset.sheet;});
  }
  assert.deepEqual(errors,[]);console.log('PASS',engineName,'purchase resource visibility, all eight icons, exact gold, native deltas, no purchase commands FR/EN portrait/landscape');

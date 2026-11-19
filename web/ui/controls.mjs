@@ -38,7 +38,7 @@ export function useNavigation(nav){
  const root=nav.closest('#mobile-app'),compact=root?.dataset.mode==='map'&&root.clientWidth>root.clientHeight&&root.clientHeight<400;
  nav.classList.toggle('ui-map-compact',compact);
  if(root?.dataset.mode==='battle'){useBattleControls(root);return;}
- if(root?.dataset.mode==='town')useActionDock(nav,{overflow:true,limit:3,keepButtons:buttons=>buttons.filter(button=>button.dataset.ui==='build')});
+ if(root?.dataset.mode==='town')useActionDock(nav,{overflow:true,limit:3,keepButtons:buttons=>buttons.filter(button=>['build','back'].includes(button.dataset.ui))});
  else if(compact)useActionDock(nav,{overflow:true,limit:3,keepButtons:buttons=>buttons.filter(button=>['move','endturn'].includes(button.dataset.ui))});
  else if(root?.dataset.mode==='map'&&[...nav.children].filter(node=>node.tagName==='BUTTON'&&!node.hidden&&!node.classList.contains('ui-overflow-trigger')).length>4)useActionDock(nav,{overflow:true,limit:4,keepButtons:buttons=>buttons.filter(button=>['move','heroes','endturn'].includes(button.dataset.ui))});
  else if(nav.classList.contains('ui-action-dock')){useActionDock(nav,{overflow:false});nav.classList.remove('ui-action-dock');}
