@@ -1,4 +1,5 @@
 import {useScreenComponents,renderMarkup} from './ui/material-components.mjs';
+import {createNativeViewport} from './ui/native-viewport.mjs';
 import {getLanguage} from './locale-state.mjs';
 import {spellIconURL} from './spell-icons.mjs';
 import {plainGameText} from './game-text.mjs';
@@ -14,6 +15,7 @@ export function createMageGuild({root, command, pointer, resetView, asset}) {
   panel.hidden = true;
   root.querySelector('.mobile-play').append(panel);
 
+  const nativeViewport = createNativeViewport(root.querySelector('#mobile-scene'), {className:'mage-guild-native-viewport ui-screen-content'});
   let guild, level = 1, selectedId, signature = '', classic = false;
   function render() {
     const fr = getLanguage() === 'fr';
@@ -27,24 +29,35 @@ export function createMageGuild({root, command, pointer, resetView, asset}) {
     const status = number => guild.allSpells || number <= built ? 'open' :
       number <= guild.levels ? 'sealed' : 'unavailable';
     const viewLabel = classic ? t('Vue mobile', 'Mobile view') : t('Vue classique', 'Classic view');
-    const header = `<header><h2>${title}</h2><button type="button" data-guild-view>${viewLabel}</button>
+    const illustration = townBuildingCardImage({townFaction: guild.faction}, {key: 'mageGuild' + Math.max(1, built)}, asset);
+    const header = `<header>${illustration ? `<img class="mage-guild-title-art" src="${escapeText(illustration)}" alt="">` : ''}<h2>${title}</h2><button type="button" data-guild-view>${viewLabel}</button>
       <button type="button" data-guild-close aria-label="${t('Fermer', 'Close')}">✕</button></header>`;
     panel.setAttribute('aria-label', title);
-    if (classic) { renderMarkup(panel,header); return; }
+    if (classic) {
+      nativeViewport.restore();
+      renderMarkup(panel,header);
+      nativeViewport.mount(panel);
+      return;
+    }
+    nativeViewport.restore();
 
-    const illustration = townBuildingCardImage({townFaction: guild.faction}, {key: 'mageGuild' + Math.max(1, built)}, asset);
     const levelLabel = t('Niveau', 'Level');
     const shelf = status(level);
-    const statusLabel = {open: t('Ouvert', 'Open'), sealed: t('Scellé', 'Sealed'), unavailable: t('Indisponible', 'Unavailable')};
     const emptyText = shelf === 'unavailable' ? t('Cette faction ne peut pas construire ce niveau.', 'This faction cannot build this guild level.') :
       shelf === 'sealed' ? t('Construis ce niveau de la guilde pour découvrir ses sorts.', 'Build this guild level to discover its spells.') :
       t('Aucun sort à ce niveau.', 'No spells at this level.');
-    renderMarkup(panel,`${header}
-      <div class="mage-guild-library">
-        <label class="mage-guild-level-field"><span>${levelLabel}</span><select data-guild-level-select aria-label="${t('Niveau de magie','Spell level')}">${Array.from({length:floorCount},(_,i)=>{const number=i+1;return `<option value="${number}" ${number===level?'selected':''}>${levelLabel} ${number} · ${statusLabel[status(number)]}</option>`;}).join('')}</select></label>
-        <section class="mage-guild-shelf" aria-label="${t('Rayon', 'Shelf')} ${level}">
-          <div class="mage-guild-shelf-head"><h3>${t('Rayon', 'Shelf')} ${level} <small>${statusLabel[shelf]}</small></h3>
-            ${illustration ? `<img src="${escapeText(illustration)}" alt="">` : ''}</div>
+    const shellKey = JSON.stringify([fr, floorCount, built, guild.town, illustration]);
+    if (panel.dataset.guildShell !== shellKey || !panel.querySelector('[data-guild-level-select]')) {
+      renderMarkup(panel,`${header}
+        <div class="mage-guild-level-field" translate="no"><select data-guild-level-select aria-label="${t('Niveau de magie','Spell level')}">${Array.from({length:floorCount},(_,i)=>{const number=i+1;return `<option value="${number}" ${number===level?'selected':''}>${levelLabel} ${number}</option>`;}).join('')}</select></div>
+        <div class="mage-guild-library"><section class="mage-guild-shelf"></section></div>`);
+      panel.dataset.guildShell = shellKey;
+    }
+    const field = panel.querySelector('[data-guild-level-select]');
+    field.value = String(level);
+    const shelfPanel = panel.querySelector('.mage-guild-shelf');
+    shelfPanel.setAttribute('aria-label', `${t('Niveau de magie','Spell level')} ${level}`);
+    renderMarkup(shelfPanel,`
           ${guild.allSpells ? `<div class="mage-guild-empty"><button type="button" data-guild-all>${t('Tous les sorts', 'All spells')}</button></div>` :
             selected ? `<div class="mage-guild-archive">
               <div class="mage-guild-spells">
@@ -57,10 +70,10 @@ export function createMageGuild({root, command, pointer, resetView, asset}) {
                   ${guild.canResearch ? t('Rechercher', 'Research') : t('Voir le sort', 'View spell')}</button>` : ''}
               </div>
             </div>` : `<p class="mage-guild-empty">${emptyText}</p>`}
-
-        </section>
-      </div>`);
+`);
   }
+
+  window.addEventListener('goonk-language',()=>{ if (guild && !panel.hidden) render(); });
 
   panel.addEventListener('change',event=>{
     if(!event.target.matches('[data-guild-level-select]'))return;
@@ -96,6 +109,7 @@ export function createMageGuild({root, command, pointer, resetView, asset}) {
     update(state) {
       panel.hidden = state.mode !== 'mage-guild';
       if (panel.hidden) {
+        nativeViewport.restore();
         if (state.mode === 'town' && classic) {
           classic = false;
           signature = '';
@@ -108,7 +122,7 @@ export function createMageGuild({root, command, pointer, resetView, asset}) {
       if (next.town !== guild?.town || level > Math.max(1, next.levels)) { level = 1; selectedId = undefined; }
       guild = next;
       const key = JSON.stringify(guild);
-      if (key === signature) return;
+      if (key === signature) { if(classic) nativeViewport.mount(panel); return; }
       signature = key;
       render();
     },

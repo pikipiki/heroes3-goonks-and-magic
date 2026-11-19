@@ -16,7 +16,7 @@
  #mobile-app .hero-card-head>div>p{margin:4px 0!important;font:var(--ui-font-body-small)!important}
  #mobile-app .ui-action-dock>.ui-overflow-trigger{min-height:48px!important;height:48px!important;align-self:stretch!important;color:var(--ui-primary)!important}
  #mobile-app .ui-action-dock>.ui-overflow-trigger::before{content:'◆';margin-right:8px;color:var(--ui-primary);font-size:12px}
- #mobile-viewport #mobile-app[data-mode=town]>.mobile-nav.ui-navigation.ui-action-dock{align-items:center!important}
+ #mobile-viewport #mobile-app[data-mode=town]>.mobile-nav.ui-navigation.ui-action-dock{grid-template-rows:none!important;grid-auto-rows:48px!important;min-height:0!important;height:max-content!important;max-height:none!important;align-self:end!important;align-items:center!important}
  #mobile-viewport #mobile-app[data-mode=town]>.mobile-nav.ui-navigation.ui-action-dock>button:not([hidden]){display:flex!important;flex-direction:row!important;align-items:center!important;justify-content:center!important;align-self:center!important;gap:4px!important;height:48px!important;min-height:48px!important;max-height:48px!important;padding:4px 8px!important;box-sizing:border-box!important}
  #mobile-app .market-grid button{display:grid!important;grid-template-columns:auto minmax(0,max-content)!important;grid-template-rows:auto auto!important;justify-content:center!important;justify-items:start!important;align-content:center!important;align-items:center!important;gap:4px 8px!important;padding:8px!important;min-width:0!important}
  #mobile-app .market-grid button>img{grid-area:1/1/3/2!important;width:24px!important;height:24px!important;object-fit:contain!important;margin:0!important}
@@ -127,5 +127,30 @@
   #mobile-app .ui-modal-rail-chrome>button{width:48px!important;height:48px!important;min-width:48px!important;min-height:48px!important;padding:0!important;margin:0!important}
   #mobile-app .ui-modal-rail-chrome>.ui-purchase-resources{grid-template-columns:repeat(3,minmax(0,1fr))!important;grid-auto-rows:12px!important;align-content:center!important;gap:0 2px!important}
   #mobile-app .ui-modal-rail-chrome>.ui-purchase-resources .mobile-resource{font:var(--ui-font-resource)!important}
+ }
+}
+
+/* An empty kingdom has actions, without reserving a missing hero's summary. */
+@layer ui-composition {
+ #mobile-viewport #mobile-app[data-mode=map]>.mobile-nav:not(:has(>.hero-movement-summary)){grid-template-rows:48px!important;grid-auto-rows:48px!important;min-height:0!important;height:auto!important;max-height:none!important;align-content:end!important}
+ #mobile-viewport #mobile-app[data-mode=map]>.mobile-nav.ui-map-compact:not(:has(>.hero-movement-summary))>button:not([hidden]){grid-row:1!important}
+}
+
+/* A shared menu row keeps its icon beside its label on Safari and Android. */
+@layer ui-composition {
+ .ui-material-menu{display:flex!important;flex-direction:column!important;box-sizing:border-box!important;max-height:min(320px,calc(100dvh - 32px))!important;overflow:hidden!important}
+ .ui-material-menu .ui-popup-list{flex:1 1 auto!important;min-height:0!important;overflow:auto!important;overscroll-behavior:contain!important;touch-action:pan-y!important}
+ .ui-material-menu .ui-popup-list>button{display:flex!important;flex-direction:row!important;align-items:center!important;justify-content:flex-start!important;gap:8px!important;min-height:48px!important;height:auto!important;padding:8px 12px!important;font:var(--ui-font-label)!important;white-space:normal!important}
+ .ui-material-menu .ui-popup-list>button>img{width:24px!important;height:24px!important;flex:0 0 24px!important;object-fit:contain!important;margin:0!important}
+ .ui-material-menu .ui-popup-list>button>span{display:block!important;min-width:0!important;font:inherit!important;line-height:inherit!important;margin:0!important;text-align:left!important}
+}
+
+@layer ui-composition {
+ @container goonk-viewport (orientation:portrait){
+  #mobile-viewport #mobile-app[data-mode=town]>.mobile-nav.ui-navigation.ui-action-dock{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+ }
+ @container goonk-viewport (orientation:portrait) and (max-width:360px){
+  #mobile-viewport #mobile-app[data-mode=town]>.mobile-nav.ui-navigation.ui-action-dock>button:not([hidden]){padding:4px!important}
+  #mobile-viewport #mobile-app[data-mode=town]>.mobile-nav.ui-navigation.ui-action-dock>button>.town-action-icon{width:20px!important;height:20px!important;flex:0 0 20px!important}
  }
 }

@@ -2269,38 +2269,38 @@
         "card",
         "feedback"
       ],
-      "sourceSHA256": "d18d8cfc387a03ddc4a87939d8d53de2a47c2dbc538702575a562cdc81f6c568",
+      "sourceSHA256": "51a708a849761606269dabfa9027a348d15630363c33ec933f00d1697e973cb4",
       "evidence": [
         {
-          "line": 11,
+          "line": 12,
           "excerpt": "export function createMageGuild({root, command, pointer, resetView, asset}) {"
         },
         {
-          "line": 12,
+          "line": 13,
           "excerpt": "const panel = document.createElement('section');"
         },
         {
-          "line": 30,
-          "excerpt": "const header = `<header><h2>${title}</h2><button type=\"button\" data-guild-view>${viewLabel}</button>"
+          "line": 33,
+          "excerpt": "const header = `<header>${illustration ? `<img class=\"mage-guild-title-art\" src=\"${escapeText(illustration)}\" alt=\"\">` : ''}<h2>${title}</h2><button type=\"button\" data-guild-view>$"
         },
         {
-          "line": 31,
+          "line": 34,
           "excerpt": "<button type=\"button\" data-guild-close aria-label=\"${t('Fermer', 'Close')}\">✕</button></header>`;"
         },
         {
-          "line": 44,
-          "excerpt": "<label class=\"mage-guild-level-field\"><span>${levelLabel}</span><select data-guild-level-select aria-label=\"${t('Niveau de magie','Spell level')}\">${Array.from({length:floorCount},"
+          "line": 52,
+          "excerpt": "<div class=\"mage-guild-level-field\" translate=\"no\"><select data-guild-level-select aria-label=\"${t('Niveau de magie','Spell level')}\">${Array.from({length:floorCount},(_,i)=>{const"
         },
         {
-          "line": 48,
+          "line": 61,
           "excerpt": "${guild.allSpells ? `<div class=\"mage-guild-empty\"><button type=\"button\" data-guild-all>${t('Tous les sorts', 'All spells')}</button></div>` :"
         },
         {
-          "line": 51,
+          "line": 64,
           "excerpt": "${visible.map(spell => `<button type=\"button\" data-guild-spell=\"${spell.id}\" aria-pressed=\"${spell.id === selected.id}\">"
         },
         {
-          "line": 56,
+          "line": 69,
           "excerpt": "${guild.canResearch || !selected.description ? `<button type=\"button\" data-guild-inspect=\"${selected.id}\">"
         }
       ],

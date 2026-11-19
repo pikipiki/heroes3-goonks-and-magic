@@ -26,3 +26,11 @@ test('The no-spellbook badge is independent of mana and hero selection',()=>{
  assert.equal((heroMovementSummary(state,'fr').match(/Sans grimoire/g)||[]).length,2);
  assert.match(heroMovementSummary({heroName:'Rion',heroHasSpellbook:false}),/No spellbook/);
 });
+
+test('No hero summary reserves no markup, while available heroes remain selectable',()=>{
+ for(const language of ['fr','en']){
+  assert.equal(heroMovementSummary({heroes:[],heroName:'',turn:true},language),'');
+  assert.equal(heroMovementSummary({turn:true},language),'');
+  assert.match(heroMovementSummary({heroes:[{id:42,name:'Iona',movement:0}],turn:true},language),/Iona/);
+ }
+});
