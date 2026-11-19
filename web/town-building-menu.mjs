@@ -1,4 +1,5 @@
-import {useActionDock,renderMarkup} from './ui/material-components.mjs';
+import {useActionDock,renderMarkup,useScreenControls} from './ui/material-components.mjs';
+import {buildingFunctionSummary} from './town-building-summary.mjs';
 import {getLanguage} from './i18n.mjs';
 import {plainGameText} from './game-text.mjs';
 import {creaturePortrait} from './creature-portraits.mjs';
@@ -145,14 +146,12 @@ export function createTownBuildingMenu({body, getState, asset, backButton, canOp
   }
   const displayName = building => name(building) || 'Bâtiment sans nom';
   function tile(state, building) {
-    const text = description(building);
-    const summary = text.match(/^[\s\S]*?[.!?](?=\s|$)/)?.[0] || text;
     const variants = building.variants?.length ?? 0;
     const caption = building.built ? (variants > 1 ? `<small>${variants} variantes</small>` : '') :
       building.allowed ? cost(state, building) : `<small>${escape(constructionReason(building))}</small>`;
     return `<button type="button" class="building-tile" data-building-id="${building.id}">${picture(state, building)}
       <strong>${escape(displayName(building))}</strong>
-      <span class="building-summary">${escape(summary)}</span>
+      <span class="building-summary">${escape(buildingFunctionSummary(building,state.townFaction,getLanguage()))}</span>
       ${caption}</button>`;
   }
   function group(state, label, buildings) {
@@ -163,7 +162,7 @@ export function createTownBuildingMenu({body, getState, asset, backButton, canOp
   function list(state, buildings) {
     const current = buildings.filter(building => Boolean(building.built) === (tab === 'built'));
     const visible = filter ? current.filter(building => category(building) === filter) : current;
-    const filters = ['', ...categories.filter(name => current.some(building => category(building) === name))];
+    const filters = ['', ...categories];
     const builtCount = buildings.filter(building => building.built).length;
     const grail = buildings.find(isGrail);
     const available = tab === 'unbuilt' ? visible.filter(building => state.turn && building.allowed) : [];
@@ -171,17 +170,17 @@ export function createTownBuildingMenu({body, getState, asset, backButton, canOp
     const grouped = categories.map(name => group(state, name, other.filter(building => category(building) === name))).join('');
     const collapse = available.length && other.length && !filter;
     return `<div class="building-controls">
-      <nav class="building-tabs" data-ui-tabs aria-label="${tr('Building status','État des bâtiments')}">
-       <button type="button" data-building-tab="built" aria-pressed="${tab==='built'}">${count(tr('Built','Construits'),builtCount)}</button>
-       <button type="button" data-building-tab="unbuilt" aria-pressed="${tab==='unbuilt'}">${count(tr('To build','À construire'),buildings.length-builtCount)}</button>
+      <nav class="building-tabs" data-ui-tabs data-ui-tabs-landscape aria-label="${tr('Building status','État des bâtiments')}">
+       <button type="button" id="building-tab-unbuilt" aria-controls="construction-building-list" data-building-tab="unbuilt" aria-pressed="${tab==='unbuilt'}">${count(tr('To build','À construire'),buildings.length-builtCount)}</button>
+       <button type="button" id="building-tab-built" aria-controls="construction-building-list" data-building-tab="built" aria-pressed="${tab==='built'}">${count(tr('Built','Construits'),builtCount)}</button>
       </nav>
       <label class="building-category-filter"><span class="building-control-label">${tr('Category','Catégorie')}</span><select data-building-category aria-label="${tr('Building category','Catégorie de bâtiment')}">${filters.map(value=>`<option value="${value}" ${value===filter?'selected':''}>${value?(getLanguage()==='fr'?value:categoryLabels[value]):tr('All','Toutes')}</option>`).join('')}</select></label>
       ${grail?'<button type="button" data-building-grail>Graal</button>':''}
-     </div><div class="building-list">
+     </div><div class="building-list" id="construction-building-list" role="tabpanel" aria-labelledby="building-tab-${tab}" tabindex="0">
       ${tab==='unbuilt'&&!state.turn?`<p>${tr('Available on your turn','Disponible à ton tour')}</p>`:''}
       ${group(state,tr('Available now','Disponibles maintenant'),available)}
       ${collapse?`<details class="building-locked" ${lockedOpen?'open':''}><summary>${count(tr('To unlock','À débloquer'),other.length)}</summary>${grouped}</details>`:grouped}
-      ${visible.length?'':`<p>${tab==='built'?tr('No buildings constructed yet.','Aucun bâtiment construit.'):tr('All buildings are already constructed.','Tous les bâtiments sont déjà construits.')}</p>`}
+      ${visible.length?'':`<p>${filter?tr('No buildings in this category.','Aucun bâtiment dans cette catégorie.'):tab==='built'?tr('No buildings constructed yet.','Aucun bâtiment construit.'):tr('All buildings are already constructed.','Tous les bâtiments sont déjà construits.')}</p>`}
      </div>`;
   }
   function sideInfo(state,building,completed=''){
@@ -214,11 +213,13 @@ export function createTownBuildingMenu({body, getState, asset, backButton, canOp
 </div></article>`;
   }
   function actionsFor(state,building){
-    if(!building||unlockRoute&&building.built)return '';
+    if(!building)return '';
+    const back=`<button type="button" data-building-back>${tr('Back','Retour')}</button>`;
+    if(unlockRoute&&building.built)return back;
     const prerequisite=nextBuildingPrerequisite(state,building);
-    if(prerequisite)return `<button type="button" class="primary" data-building-prerequisite="${prerequisite.id}"><span>${tr('Go to','Aller à')} ${escape(displayName(prerequisite))} ›</span></button>`;
+    if(prerequisite)return `<button type="button" class="primary" data-building-prerequisite="${prerequisite.id}"><span>${tr('Go to','Aller à')} ${escape(displayName(prerequisite))} ›</span></button>${back}`;
     const reason=building.built?'':!building.allowed?constructionReason(building):!state.turn?tr('Available on your turn','Disponible à ton tour'):'';
-    return `${building.built?'':`<div class="building-dock-cost" aria-label="${tr('Construction cost','Coût de construction')}">${cost(state,building)}</div>`}<button type="button" class="primary" data-building-action ${reason||construction!==undefined?'disabled':''}>${construction===building.id?tr('Building…','Construction en cours…'):building.built?tr('View','Voir'):isGrail(building)?tr('Install Grail','Installer le Graal'):tr('Build','Construire')}</button>`;
+    return `${building.built?'':`<div class="building-dock-cost" aria-label="${tr('Construction cost','Coût de construction')}">${cost(state,building)}</div>`}<button type="button" class="primary" data-building-action ${reason||construction!==undefined?'disabled':''}>${construction===building.id?tr('Building…','Construction en cours…'):building.built?tr('View','Voir'):isGrail(building)?tr('Install Grail','Installer le Graal'):tr('Build','Construire')}</button>${back}`;
   }
   function render(state) {
     const buildings = buildingCards(visibleBuildings(state.buildings));
@@ -233,7 +234,7 @@ export function createTownBuildingMenu({body, getState, asset, backButton, canOp
     commandDock?.remove();commandDock=undefined;
     const sheet=body.closest('.mobile-sheet');
     if(sheet){sheet.dataset.buildingView=building?'detail':'list';sheet.dataset.buildingProject=String(!!panel.querySelector('.building-project'));sheet.dataset.buildingCompleted=String(!!completedUnlock);sheet.dataset.buildingBack=String(!!building&&!completedUnlock&&(!unlockRoute||project&&selected!==project.id));}
-    body.replaceChildren(panel);
+    body.replaceChildren(panel);useScreenControls(panel);
     const commands=actionsFor(state,building);if(commands&&sheet){commandDock=document.createElement('footer');commandDock.className='building-actions';renderMarkup(commandDock,commands);sheet.append(commandDock);useActionDock(commandDock,{surface:'plain'});}
     if(!building&&document.activeElement===backButton)sheet?.querySelector('[data-ui=close-sheet]')?.focus({preventScroll:true});
     panel.addEventListener('change',event=>{if(!event.target.matches('[data-building-category]'))return;filter=event.target.value;lockedOpen=false;queueMicrotask(()=>{if(!panel.isConnected)return;render(getState());const list=body.querySelector('.building-list');if(list)list.scrollTop=0;requestAnimationFrame(()=>body.querySelector('.building-category-filter [role=combobox]')?.focus({preventScroll:true}));});});
@@ -243,6 +244,7 @@ export function createTownBuildingMenu({body, getState, asset, backButton, canOp
     const handleClick=event=>{
       const button = event.target.closest('button');
       if (!button || button.disabled) return;
+      if(button.hasAttribute('data-building-back')){if(!back())closeSheet();return;}
       const current = getState();
       if (current.mode !== (unlockRoute ? 'fort' : 'town')) return;
       if (button.hasAttribute('data-building-return')) { closeSheet(); return; }
@@ -258,7 +260,7 @@ export function createTownBuildingMenu({body, getState, asset, backButton, canOp
       } else if (button.hasAttribute('data-building-goal') && project) {
         selectProjectBuilding(current, project.id);
       } else if (buildingTab !== undefined || buildingFilter !== undefined) {
-        if (buildingTab !== undefined) { tab = buildingTab; filter = ''; }
+        if (buildingTab !== undefined) { tab = buildingTab; }
         else filter = buildingFilter;
         lockedOpen = false;
         render(current);

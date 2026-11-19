@@ -52,3 +52,8 @@ export {default as Input} from '@mui/material/Input';
 export {default as Link} from '@mui/material/Link';
 export {ThemeProvider} from '@mui/material/styles';
 export {heroesTheme} from './theme.mjs';
+
+export {default as Stepper} from '@mui/material/Stepper';
+export {default as Step} from '@mui/material/Step';
+export {default as StepButton} from '@mui/material/StepButton';
+export {default as StepLabel} from '@mui/material/StepLabel';

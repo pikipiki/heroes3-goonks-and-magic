@@ -15,6 +15,7 @@ import Menu from '@mui/material/Menu';
 import Radio from '@mui/material/Radio';
 import Checkbox from '@mui/material/Checkbox';
 import Tabs from '@mui/material/Tabs';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import Tab from '@mui/material/Tab';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
@@ -77,8 +78,9 @@ function NativeProgress({input}){
 }
 // Shared navigation primitives retain native game click commands.
 function NativeTabs({props,items}){
+ const landscape=useMediaQuery('(orientation: landscape)'),vertical=props['data-ui-tabs-landscape']!==undefined&&landscape;
  const [value,setValue]=useState(Math.max(0,items.findIndex(item=>item.getAttribute('aria-pressed')==='true')));
- return h(Tabs,{...props,component:'nav',value,variant:'fullWidth',onChange:(_,next)=>setValue(next)},items.map((item,index)=>{const native=propsFor(item);return h(Tab,{...native,key:index,value:index,'data-mui-component':'Tab',label:h(Box,{component:'span',className:'ui-tab-label'},...[...item.childNodes].map(element))});}));
+ return h(Tabs,{...props,component:'nav',value,orientation:vertical?'vertical':'horizontal',variant:vertical?'standard':'fullWidth',onChange:(_,next)=>setValue(next)},items.map((item,index)=>{const native=propsFor(item);return h(Tab,{...native,key:index,value:index,'data-mui-component':'Tab',label:h(Box,{component:'span',className:'ui-tab-label'},...[...item.childNodes].map(element))});}));
 }
 function NativeStepper({props,items}){
  const active=items.findIndex(item=>item.getAttribute('aria-current')==='step');

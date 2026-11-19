@@ -52,7 +52,8 @@ Utiliser `renderMarkup` pour rafraîchir une fabrique. Lorsqu’une galerie nati
 | Besoin | Adaptateur partagé |
 | --- | --- |
 | Rendu d’une fabrique existante | `renderMarkup` : rend de vrais `Button`, `IconButton`, `Toolbar`, `Typography`, `Paper`, `Stack` MUI et les champs reconnus, avant la pose des commandes |
-| Écran et actions | `screenHeaderMarkup`, `actionDockMarkup`, `useScreenComponents`, `useActionDock` |
+| Écran et actions | `screenHeaderMarkup`, `actionDockMarkup`, `useScreenComponents`, `useActionDock` ; `{surface: 'plain'}` donne un fond sombre uni sans texture au bandeau de commandes |
+| Navigation et dépendances | `renderMarkup` avec `data-ui-tabs` pour les vrais `Tabs` / `Tab` MUI, et `data-ui-stepper` pour `Stepper` / `StepButton` MUI ; les commandes natives restent déléguées |
 | Menus | `createPopupMenu` : `Menu` MUI, mêmes boutons de commande |
 | Sélecteurs | `createMaterialSelects` : `Select` / `MenuItem` MUI, champ natif conservé comme pont de commande |
 | Gestionnaire impératif existant | `setClickHandler` / `bindPress` ; éviter `.onclick`, que React peut réaffecter |

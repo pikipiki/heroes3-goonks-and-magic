@@ -7,7 +7,7 @@ export const factions=['castle','rampart','tower','inferno','necropolis','dungeo
 export function constructionCatalogue(faction,language='fr'){
  const goonk=faction==='goonk',base=read(goonk?'mod/goonk/Content/config/faction.json':`work/vcmi-wasm/config/factions/${faction}.json`)[faction].town.buildings;
  const extra=goonk?{}:read(`mod/third-upgrades/content/config/town-screen/${faction}/factions.json`)[`core:${faction}`].town.buildings;
- const buildings=Object.fromEntries([...new Set([...Object.keys(base),...Object.keys(extra)])].map(key=>[key,{...library[key],...base[key],...extra[key]}]));
+ const buildings=Object.fromEntries([...new Set([...Object.keys(base),...Object.keys(extra)])].filter(key=>base[key]||extra[key]).map(key=>[key,{...library[key],...base[key],...extra[key]}]));
  const clean=key=>key.split(':').at(-1),memo=new Map();
  const unique=plans=>{const map=new Map(plans.map(plan=>[[...plan].sort().join(','),plan]));return [...map.values()].filter((plan,index,all)=>!all.some((other,j)=>j!==index&&other.size<plan.size&&[...other].every(key=>plan.has(key))));};
  const combine=(a,b)=>unique(a.flatMap(left=>b.map(right=>new Set([...left,...right]))));
