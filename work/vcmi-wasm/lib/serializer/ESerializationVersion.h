@@ -115,10 +115,11 @@ enum class ESerializationVersion : int32_t
 	GOONK_ERA_TEMPORARY_ARMIES, // off-map scripted battle armies and replicated lifetime
 
 	GOONK_WOG_ROGUE_AMBUSH, // source127 visit lifecycle and thirty-two choices
+	GOONK_ERA_COMMANDER_EXPERIENCE_WORD, // commander metadata in already deployed format 941
 
 	RELEASE_170 = HOTA_MAP_STACK_COUNT,
 
-	CURRENT = GOONK_WOG_ROGUE_AMBUSH,
+	CURRENT = GOONK_ERA_COMMANDER_EXPERIENCE_WORD,
 };
 
 static_assert(ESerializationVersion::MINIMAL <= ESerializationVersion::CURRENT, "Invalid serialization version definition!");

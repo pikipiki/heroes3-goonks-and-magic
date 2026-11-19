@@ -159,9 +159,8 @@ export function createLobbyChoices({menu,getState,isScenarioPending=()=>false}){
     const heading=`<h3>${esc(title(s))}</h3>`;
     if(isRadio){
      c.dataset.control='radios';
-     let choices=radioChoicesMarkup({name:'setup-'+c.dataset.setting,className:'lobby-choice-radios',choices:list.map(o=>({...o,checked:s.value===o.value,disabled:s.disabled||o.disabled,attributes:'data-setup-choice'}))});
-     if(s.id==='mobile-difficulty'){let index=0;choices=choices.replace(/<span class="ui-radio-label">/g,()=>`<span class="ui-radio-label"><img class="lobby-difficulty-icon" src="${difficultyIcon(index++)}" alt="" aria-hidden="true" width="60" height="20">`);}
-     renderMarkup(c,heading+choices.replace('<div ',`<div data-ui-radio-group aria-label="${esc(title(s))}" `)+(s.id==='mobile-difficulty'?'<p class="lobby-choice-help"></p>':''));
+     const choices=radioChoicesMarkup({name:'setup-'+c.dataset.setting,label:title(s),className:'lobby-choice-radios',choices:list.map((o,index)=>({...o,checked:s.value===o.value,disabled:s.disabled||o.disabled,attributes:'data-setup-choice',iconSrc:s.id==='mobile-difficulty'?difficultyIcon(index):s.hasAttribute('data-custom-size')?'./web/h3-theme/adventure-map.svg':'./web/h3-theme/resource-gold.png'}))});
+     renderMarkup(c,heading+choices+(s.id==='mobile-difficulty'?'<p class="lobby-choice-help"></p>':''));
      if(!c._choiceChange){c._choiceChange=event=>{const input=event.target.closest('[data-setup-choice]');if(input?.checked)change(s,input.value);};c.addEventListener('change',c._choiceChange);}
     }else if(s.hasAttribute('data-custom-players')||s.hasAttribute('data-custom-humans')){
      c.dataset.control='counter';

@@ -52,7 +52,8 @@ int main()
     static_assert(static_cast<int>(V::GOONK_WOG_TOWN_BANNERS)==938);
     static_assert(static_cast<int>(V::GOONK_ERA_TEMPORARY_ARMIES)==939);
     static_assert(static_cast<int>(V::GOONK_WOG_ROGUE_AMBUSH)==940);
-    static_assert(V::CURRENT==V::GOONK_WOG_ROGUE_AMBUSH);
+    static_assert(static_cast<int>(V::GOONK_ERA_COMMANDER_EXPERIENCE_WORD)==941);
+    static_assert(V::CURRENT==V::GOONK_ERA_COMMANDER_EXPERIENCE_WORD);
     // Literal historical wire sizes, independent of the production constants.
     const auto countFor=[](V version){return version>=V::GOONK_WOG_ROGUE_AMBUSH?32u:
         version>=V::GOONK_WOG_TOWN_BANNERS?31u:
