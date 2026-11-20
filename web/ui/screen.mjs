@@ -61,7 +61,7 @@ export function applyScreenComponents(root){
  const dock=find(root,contract.dock)||root.querySelector(':scope>footer.ui-action-dock');
  if(dock&&contract.liftDock&&(contract.liftDock===true||dock.matches(contract.liftDock))&&dock.parentElement!==root)root.append(dock);
  if(contract.status&&dock)for(const status of root.querySelectorAll(contract.status))if(status.parentElement!==dock)dock.prepend(status);
- if(dock)useActionDock(dock,{overflow:!root.matches('#game-menu'),limit:dock.matches('.hero-army-dock-tools')?1:contract.dockLimit??3,...(dock.matches('.hero-army-dock-tools')?{keepButtons:buttons=>buttons.filter(button=>button.hasAttribute('data-hero-army-details'))}:{})});
+ if(dock)useActionDock(dock,{overflow:!root.matches('#game-menu'),limit:dock.matches('.hero-army-dock-tools')?1:contract.dockLimit??3,...(dock.matches('.hero-army-dock-tools')?{keepButtons:buttons=>buttons.filter(button=>button.hasAttribute('data-hero-army-details'))}:dock.matches('.exchange-actions')?{keepButtons:buttons=>buttons.filter(button=>button.hasAttribute('data-exchange-details'))}:{})});
  for(const button of root.querySelectorAll('button'))if(back.test(button.textContent.trim())){const label=uiText('Back','Retour');if(button.textContent!==label)button.textContent=label;button.classList.add('back-button');}
  useScreenControls(root);
  const tabs=root.querySelector('.hero-bag-tabs');if(tabs)useHeroNavigation(tabs);

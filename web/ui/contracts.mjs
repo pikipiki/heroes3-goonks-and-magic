@@ -19,7 +19,7 @@ export const screenContracts=[
  {selector:'.dialog-presentation',name:'message',railHeader:true,modal:true,requiredChoice:true,header:':scope>header',dock:':scope>footer',close:'[data-dialog-cancel]',headerActions:'[data-commander-tree]'},
  {selector:'.market-page',name:'marketplace',modal:true,railHeader:true,header:':scope>.market-header',dock:'.market-view-actions',close:'[data-market=close]',extraActions:'[data-market=trade]'},
  {selector:'.hero-equipment-page',name:'hero',modal:true,liftDock:true,header:':scope>.hero-card-head',dock:'.hero-army-dock-tools,.hero-artifact-actions',close:'[data-hero-close]'},
- {selector:'.hero-exchange-page',name:'hero-exchange',modal:true,header:':scope>.exchange-toolbar',dock:'.exchange-actions',close:'[data-exchange-close]'},
+ {selector:'.hero-exchange-page',name:'hero-exchange',modal:true,dockLimit:4,header:':scope>.exchange-toolbar',dock:'.exchange-actions',close:'[data-exchange-close]'},
  {selector:'.online-login',name:'online-login',header:'form>header',dock:'form>.ui-action-dock',close:'[data-close]',extraActions:'form>[type=submit]'},
  {selector:'.online-lobby',name:'online-lobby',dockLimit:1,body:'.online-lobby-body',header:':scope>header',dock:':scope>.online-lobby-actions',close:'[data-room-action=back]',headerActions:'[data-room-action=classic]'},
  {selector:'.campaign-setup',name:'campaign',body:'.campaign-body,.campaign-interlude',header:':scope>header',dock:':scope>footer',close:'[data-campaign-back]'},

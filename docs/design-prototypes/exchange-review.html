@@ -434,20 +434,52 @@
     text-overflow: ellipsis;
   }
 
-  .slot-stats {
-    font-size: 9.5px;
-    color: #cfb88f;
+  .slot-stats, .hero-army-slot .creature-stats {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 2px;
+    margin: 0;
+    padding: 2px 3px;
+    background: rgba(0,0,0,0.35);
+    border: 1px solid #73542766;
+    border-radius: 0;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .hero-army-slot .creature-stats > div {
     display: flex;
-    gap: 4px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+  }
+
+  .hero-army-slot .creature-stats dt {
+    font-size: 8px;
+    line-height: 1.1;
+    color: #cbb588;
+    text-transform: uppercase;
+    font-weight: 400;
+  }
+
+  .hero-army-slot .creature-stats dd {
+    font-size: 9px;
+    line-height: 1.1;
+    color: #fff0ba;
+    margin: 1px 0 0;
+    white-space: nowrap;
+    font-weight: 400;
   }
 
   /* Slot Vide (+ Libre) */
   .hero-army-slot.is-empty {
-    border-style: dashed;
+    border: 1px dashed #6d542f;
     background: #1b1107;
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    min-height: 96px;
   }
 
   .hero-army-slot.is-empty:hover {
@@ -1696,26 +1728,32 @@
 
         if (!slotUnit) {
           slotEl.innerHTML = `
-            <span class="slot-idx">${lang.slotTitle(s)}</span>
-            <div class="empty-label-group">
-              <span class="empty-plus">＋</span>
-              <span class="empty-text">${lang.freeSlot}</span>
+            <span class="slot-idx hero-army-slot-num">${lang.slotTitle(s)}</span>
+            <div class="empty-label-group hero-army-empty-content">
+              <span class="empty-plus hero-empty">＋</span>
+              <span class="empty-text hero-army-empty-label">${lang.freeSlot}</span>
             </div>
           `;
         } else {
           slotEl.innerHTML = `
-            <span class="slot-idx">${lang.slotTitle(s)}</span>
-            <div class="slot-card-body">
-              <div class="creature-avatar" style="width: 44px; height: 44px;">
+            <span class="slot-idx hero-army-slot-num">${lang.slotTitle(s)}</span>
+            <div class="slot-card-body hero-army-slot-content">
+              <div class="creature-avatar hero-army-slot-art" style="width: 44px; height: 44px;">
                 <span class="creature-emoji" style="font-size: 22px;">${slotUnit.icon}</span>
-                <span class="creature-count-badge">× ${slotUnit.count}</span>
+                <span class="creature-count-badge hero-army-slot-count">× ${slotUnit.count}</span>
               </div>
-              <div class="slot-meta">
-                <span class="slot-name">${slotUnit.name[currentLang]}</span>
-                <div class="slot-stats">
-                  <span>⚔️ ${slotUnit.atk}</span>
-                  <span>🛡️ ${slotUnit.def}</span>
+              <div class="slot-meta hero-army-slot-info">
+                <div class="hero-army-slot-title" style="display:flex;align-items:center;justify-content:space-between;width:100%;">
+                  <span class="slot-name hero-army-slot-name">${slotUnit.name[currentLang]}</span>
+                  ${slotUnit.shooter ? '<span class="hero-army-shooter-badge" title="Ranged">🏹</span>' : ''}
                 </div>
+                <dl class="creature-stats">
+                  <div><dt>ATK</dt><dd>${slotUnit.atk}</dd></div>
+                  <div><dt>DEF</dt><dd>${slotUnit.def}</dd></div>
+                  <div><dt>DMG</dt><dd>${slotUnit.dmg}</dd></div>
+                  <div><dt>HP</dt><dd>${slotUnit.hp}</dd></div>
+                  <div><dt>SPD</dt><dd>${slotUnit.spd}</dd></div>
+                </dl>
               </div>
             </div>
           `;

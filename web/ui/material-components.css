@@ -145,8 +145,8 @@
  #mobile-app .mobile-mage-guild [data-guild-spell]{grid-template-columns:24px minmax(0,1fr)!important;gap:8px!important}
 }
 @layer mui{
- #mobile-app .hero-exchange-page[data-army-view=true] .exchange-troop-grid .exchange-slot>span:last-child{position:absolute!important;width:1px!important;height:1px!important;overflow:hidden!important;clip-path:inset(50%)!important}
- #mobile-app .hero-exchange-page[data-army-view=true] .exchange-slot{grid-template-columns:minmax(0,1fr)!important;min-height:64px!important;padding:4px!important}
+ #mobile-app .hero-exchange-page[data-army-view=true] .exchange-troop-grid .exchange-slot:not(.hero-army-slot)>span:last-child{position:absolute!important;width:1px!important;height:1px!important;overflow:hidden!important;clip-path:inset(50%)!important}
+ #mobile-app .hero-exchange-page[data-army-view=true] .exchange-slot:not(.hero-army-slot){grid-template-columns:minmax(0,1fr)!important;min-height:64px!important;padding:4px!important}
 }
 
 /* MUI input roots are transparent to the established screen grid. The native

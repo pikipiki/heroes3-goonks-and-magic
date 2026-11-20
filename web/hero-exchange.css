@@ -138,3 +138,218 @@
  #mobile-app .hero-exchange-page[data-joining=true]>.exchange-joining-help{grid-column:2;grid-row:2;overflow-y:auto;min-height:0}
  #mobile-app .hero-exchange-page[data-joining=true]>.exchange-detail{grid-column:2;grid-row:3;overflow-y:auto;min-height:0}
 }
+
+/* Unified Hero Army Slots for Exchange (matching web/hero-equipment.css) */
+.hero-exchange-page[data-army-view=true] .exchange-troop-grid {
+ display: grid;
+ grid-template-columns: repeat(auto-fill, minmax(min(100%, 118px), 1fr));
+ gap: 6px;
+ padding-top: 6px;
+}
+#mobile-app .hero-exchange-page[data-army-view=true] .exchange-slot.hero-army-slot {
+ position: relative;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ justify-content: flex-start;
+ padding: 12px 3px 4px;
+ min-height: 116px;
+ min-width: 44px;
+ border: 1px solid var(--h3-border-gold, #9a7e46);
+ border-radius: 0;
+ background: #1b120ac2;
+ color: #ffeebb;
+ cursor: pointer;
+ touch-action: manipulation;
+ transition: background 0.15s ease, border-color 0.15s ease;
+ box-sizing: border-box;
+ gap: 3px;
+ font-weight: 400;
+ text-align: center;
+}
+#mobile-app .hero-exchange-page[data-army-view=true] .exchange-slot.hero-army-slot * {
+ font-weight: 400;
+}
+#mobile-app .hero-exchange-page[data-army-view=true] .exchange-slot.hero-army-slot:not(:disabled):hover {
+ border-color: var(--h3-border-gold-bright, #f4c466);
+ background: #26180dc2;
+}
+#mobile-app .hero-exchange-page[data-army-view=true] .exchange-slot.hero-army-slot.selected {
+ border-color: #ffe78a !important;
+ box-shadow: 0 0 10px rgba(230,179,76,0.65) !important;
+ background: #351f0b !important;
+}
+#mobile-app .hero-exchange-page[data-army-view=true] .exchange-slot.hero-army-slot.can-target,
+#mobile-app .hero-exchange-page[data-army-view=true] .exchange-slot.hero-army-slot.can-receive {
+ border-color: #4caf50 !important;
+ box-shadow: 0 0 8px rgba(76,175,80,0.45) !important;
+}
+#mobile-app .hero-exchange-page[data-army-view=true] .hero-army-slot-num {
+ position: absolute;
+ top: 2px;
+ left: 4px;
+ font-size: var(--ui-type-resource, 11px);
+ color: #dfbe78;
+ z-index: 2;
+}
+#mobile-app .hero-exchange-page[data-army-view=true] .hero-army-slot-content {
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ gap: 4px;
+ width: 100%;
+ min-width: 0;
+}
+#mobile-app .hero-exchange-page[data-army-view=true] .hero-army-slot-art {
+ position: relative;
+ width: 56px;
+ height: 48px;
+ flex: 0 0 48px;
+ border: 1px solid #ad8947;
+ border-radius: 0;
+ overflow: hidden;
+ background: #120c08;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+}
+#mobile-app .hero-exchange-page[data-army-view=true] .hero-army-slot-art :is(img, canvas, .unit-portrait) {
+ width: 100%;
+ height: 100%;
+ object-fit: contain;
+}
+#mobile-app .hero-exchange-page[data-army-view=true] .hero-army-slot-count {
+ position: absolute;
+ bottom: 1px;
+ right: 2px;
+ font-size: var(--ui-type-micro, 10px);
+ color: #fff;
+ background: rgba(0,0,0,0.85);
+ border: 1px solid #ffd54f;
+ padding: 0 3px;
+ border-radius: 0;
+ line-height: 1.2;
+ text-shadow: 0 1px 2px #000;
+}
+#mobile-app .hero-exchange-page[data-army-view=true] .hero-army-slot-info {
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ gap: 2px;
+ min-width: 0;
+ width: 100%;
+}
+#mobile-app .hero-exchange-page[data-army-view=true] .hero-army-slot-title {
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ gap: 3px;
+ width: 100%;
+}
+#mobile-app .hero-exchange-page[data-army-view=true] .hero-army-slot-name {
+ font-size: var(--ui-type-caption, 12px);
+ color: #ffe49a;
+ overflow: hidden;
+ text-overflow: ellipsis;
+ white-space: nowrap;
+ max-width: 100%;
+}
+#mobile-app .hero-exchange-page[data-army-view=true] .hero-army-shooter-badge {
+ font-size: var(--ui-type-caption, 12px);
+ line-height: 1;
+}
+#mobile-app .hero-exchange-page[data-army-view=true] .hero-army-slot .creature-stats {
+ display: grid;
+ grid-template-columns: repeat(5, minmax(0, 1fr));
+ gap: 2px;
+ margin: 0;
+ padding: 2px 3px;
+ background: rgba(0,0,0,0.35);
+ border: 1px solid #73542766;
+ border-radius: 0;
+ width: 100%;
+ box-sizing: border-box;
+}
+#mobile-app .hero-exchange-page[data-army-view=true] .hero-army-slot .creature-stats > div {
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ justify-content: center;
+ min-width: 0;
+ border: none;
+ padding: 0;
+}
+#mobile-app .hero-exchange-page[data-army-view=true] .hero-army-slot .creature-stats dt {
+ font-size: 8.5px;
+ line-height: 1.1;
+ color: #cbb588;
+ text-transform: uppercase;
+}
+#mobile-app .hero-exchange-page[data-army-view=true] .hero-army-slot .creature-stats dd {
+ font-size: 9.5px;
+ line-height: 1.1;
+ color: #fff0ba;
+ margin: 1px 0 0;
+ white-space: nowrap;
+}
+#mobile-app .hero-exchange-page[data-army-view=true] .exchange-slot.hero-army-slot.hero-army-empty {
+ border: 1px dashed #6d542f;
+ background: rgba(0,0,0,0.25);
+ justify-content: center;
+ min-height: 116px;
+}
+#mobile-app .hero-exchange-page[data-army-view=true] .hero-army-empty-content {
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ justify-content: center;
+ gap: 3px;
+ color: #a68953;
+}
+#mobile-app .hero-exchange-page[data-army-view=true] .hero-army-empty-content .hero-empty {
+ font-size: 18px;
+ line-height: 1;
+}
+#mobile-app .hero-exchange-page[data-army-view=true] .hero-army-empty-label {
+ font-size: var(--ui-type-caption, 12px);
+ color: #cbb588;
+}
+
+/* Danger / Dismiss button in hero-exchange */
+#mobile-app .hero-exchange-page [data-exchange-dismiss] {
+ background: linear-gradient(180deg, #4a1515 0%, #250909 100%);
+ border: 1px solid #933;
+ color: #ffcdd2;
+ border-radius: 0;
+ font-weight: 400;
+}
+#mobile-app .hero-exchange-page [data-exchange-dismiss]:hover:not(:disabled) {
+ background: #5c1b1b;
+ border-color: #e53935;
+ color: #fff;
+}
+
+/* Stepper inside exchange quantity */
+#mobile-app .hero-exchange-page .exchange-stepper {
+ display: inline-flex;
+ align-items: center;
+ gap: 3px;
+}
+#mobile-app .hero-exchange-page .exchange-stepper button {
+ width: 32px;
+ min-width: 32px;
+ height: 32px;
+ min-height: 32px;
+ padding: 0;
+ font-size: 14px;
+ border-radius: 0;
+ font-weight: 400;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+}
+#mobile-app .hero-exchange-page .exchange-stepper input {
+ text-align: center;
+ border-radius: 0;
+ font-weight: 400;
+}
