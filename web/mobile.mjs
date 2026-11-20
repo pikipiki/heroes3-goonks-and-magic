@@ -2,7 +2,7 @@ import {buttonContentMarkup} from './ui/primitives.mjs';
 import {paintEnemyLosses,enemyLossDescription} from './ui/battle-losses.mjs';
 import {createUIElement,requestMaterialConfirmation,requestMaterialNotice} from './ui/material-components.mjs';
 import {createLoadingState} from './loading-state.mjs';
-import {useNavigation,useKingdomChrome,renderMarkup,setClickHandler,createBattleLastSpell} from './ui/material-components.mjs';
+import {useNavigation,placeMithrilAction,useKingdomChrome,renderMarkup,setClickHandler,createBattleLastSpell} from './ui/material-components.mjs';
 import{townActionIcon,townWarMachineIcon,warmTownActionIcons}from'./town-action-icons.mjs';
 import {canInspectBattle,inspectionUnits,battleInspectionMarkup} from './battle-inspection.mjs';
 import {mapTwoClicks} from './map-click-preferences.mjs';
@@ -250,8 +250,10 @@ function mount(){
   if(['menu','lobby','load','campaign','spellbook','mage-guild','connecting','online-login'].includes(m))items=[];
   if(m==='battle'&&battleTargetPicker){const guidance=battleGuidance(effectiveBattle());const targets=siegePickerTargets(state,(state.battleUnits||[]).filter(u=>state.spellTargeting||(battleTab==='allies'?!u.enemy:u.enemy)),{allies:battleTab==='allies'});items=['<div class="target-picker-head">'+btn('Enemies','battle-enemies')+btn('Allies','battle-allies')+btn('Back','target-picker-back')+'</div><div class="target-picker-list">'+targets.map(u=>`<button class="battle-unit" ${guidance.invalidSpellTargets.includes(u)?'disabled':''} data-battle-target="${u.x},${u.y}">${u.siege?'<span class="siege-target-icon" aria-hidden="true">◎</span>':`<canvas width="90" height="90" data-unit-preview="${u.x},${u.y}" aria-hidden="true"></canvas>`}<span>${escape(u.name)}<small>${u.siege?(getLanguage()==='fr'?'Cible de rempart':'Wall target'):'× '+u.count}</small>${battleTargetBadge(u,guidance)}</span></button>`).join('')+'</div>'];}
   const heroScroll=nav.querySelector('.hero-movement-list')?.scrollLeft||0;
+  const parkedMithril=root.querySelector('button[data-mithril-open]');
+  if(parkedMithril&&nav.contains(parkedMithril))root.querySelector('.scene-tools')?.append(parkedMithril);
   const html=items.join(''),layout=root.clientWidth>root.clientHeight&&root.clientHeight<400?'compact':'regular';if(navHTML!==html||nav.dataset.uiLayout!==layout){renderMarkup(nav,html,{stable:true});navHTML=html;nav.dataset.uiLayout=layout;
-  }useNavigation(nav);useKingdomChrome(root);const presentationBack=nav.querySelector('[data-ui=presentation-back]');if(presentationBack&&!presentationBack.dataset.directPress)bindPress(presentationBack,()=>command(43));feedback.paint();const heroList=nav.querySelector('.hero-movement-list');if(heroList)heroList.scrollLeft=heroScroll;paintHeroMovement();
+  }useNavigation(nav);if(placeMithrilAction(root))useNavigation(nav);useKingdomChrome(root);const presentationBack=nav.querySelector('[data-ui=presentation-back]');if(presentationBack&&!presentationBack.dataset.directPress)bindPress(presentationBack,()=>command(43));feedback.paint();const heroList=nav.querySelector('.hero-movement-list');if(heroList)heroList.scrollLeft=heroScroll;paintHeroMovement();
  }
  const marketplace=createMarketplace({root,command,refresh:controls});
  function update(next,refresh=false){

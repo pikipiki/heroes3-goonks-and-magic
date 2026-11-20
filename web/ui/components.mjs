@@ -3,7 +3,7 @@ export {useActionDock} from './action-dock.mjs';
 export {createPopupMenu} from './menu.mjs';
 export {useScreenComponents,applyScreenComponents,refreshScreenComponents,installScreenComponents} from './screen.mjs';
 export {createMaterialSelects} from '../material-select.mjs';
-export {useChoiceTile,useTabs,useQuantityStepper,useScreenControls,useNavigation} from './controls.mjs';
+export {useChoiceTile,useTabs,useQuantityStepper,useScreenControls,useNavigation,placeMithrilAction} from './controls.mjs';
 export {resourceCostMarkup,statGridMarkup} from './data-display.mjs';
 
 export {useHeroSummary} from './hero-summary.mjs';

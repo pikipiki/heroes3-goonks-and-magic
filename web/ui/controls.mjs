@@ -42,8 +42,26 @@ export function useNavigation(nav){
  else if(compact)useActionDock(nav,{overflow:true,limit:3,keepButtons:buttons=>buttons.filter(button=>['move','endturn'].includes(button.dataset.ui))});
  // The exchange command stays available inside the MUI menu between native
  // snapshots; moving it there must not make the next refresh unfold the dock.
- else if(root?.dataset.mode==='map'&&(nav.querySelector('[data-ui=hero-exchange]')||[...nav.children].filter(node=>node.tagName==='BUTTON'&&!node.hidden&&!node.classList.contains('ui-overflow-trigger')).length>4))useActionDock(nav,{overflow:true,limit:4,keepButtons:buttons=>buttons.filter(button=>['move','heroes','endturn'].includes(button.dataset.ui))});
+ else if(root?.dataset.mode==='map'&&(nav.querySelector('[data-ui=hero-exchange]')||nav.querySelector('button[data-mithril-open]')||[...nav.children].filter(node=>node.tagName==='BUTTON'&&!node.hidden&&!node.classList.contains('ui-overflow-trigger')).length>4)){
+  const mithril=nav.querySelector('button[data-mithril-open]');
+  const keep=mithril?['move','endturn','towns']:['move','heroes','endturn'];
+  useActionDock(nav,{overflow:true,limit:mithril?3:4,keepButtons:buttons=>buttons.filter(button=>keep.includes(button.dataset.ui))});
+  if(mithril){const more=nav.querySelector(':scope>.ui-overflow-trigger');for(const ui of keep){const button=nav.querySelector(`:scope>[data-ui="${ui}"]`);if(button)nav.insertBefore(button,more);}}
+ }
  else if(nav.classList.contains('ui-action-dock')){useActionDock(nav,{overflow:false});nav.classList.remove('ui-action-dock');}
+}
+
+function intersects(a,b){return a.width>0&&b.width>0&&a.left<b.right&&a.right>b.left&&a.top<b.bottom&&a.bottom>b.top;}
+export function placeMithrilAction(root){
+ const button=root.querySelector('button[data-mithril-open]');
+ const tools=root.querySelector('.scene-tools');
+ const nav=root.querySelector('.mobile-nav');
+ const overview=root.querySelector('#mobile-overview');
+ if(!button||!tools||!nav)return false;
+ if(button.parentElement!==tools)tools.append(button);
+ const overlaps=root.dataset.mode==='map'&&!button.hidden&&overview&&!overview.hidden&&intersects(button.getBoundingClientRect(),overview.getBoundingClientRect());
+ if(overlaps)nav.append(button);
+ return overlaps;
 }
 
 const clicks=new WeakMap();
