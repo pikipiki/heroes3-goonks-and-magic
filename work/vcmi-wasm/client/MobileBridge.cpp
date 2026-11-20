@@ -2589,8 +2589,13 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
   // Only visible army contexts are actionable, including a hero sheet. Check
   // identity/count again so a stale confirmation cannot dismiss a replacement.
   const auto sheet=ENGINE->windows().topWindow<CHeroWindow>();
+  const auto exchangeWindow=ENGINE->windows().topWindow<CExchangeWindow>();
+  const auto garrisonWindow=ENGINE->windows().topWindow<CGarrisonWindow>();
   const auto town=townWindow?townWindow->town:ENGINE->windows().topWindow<AdventureMapInterface>()?mobileResidentTown(hero):nullptr;
-  const bool visible=owner&&((sheet&&sheet->curHero==owner)||(town&&(town->getUpperArmy()==owner||town->getVisitingHero()==owner))||(!town&&ENGINE->windows().topWindow<AdventureMapInterface>()&&hero==owner));
+  const bool inExchange=exchangeWindow&&(exchangeWindow->getExchangeHero(0)==owner||exchangeWindow->getExchangeHero(1)==owner);
+  const bool inGarrison=garrisonWindow&&(mobileCampaignExchange(*p,garrisonWindow.get())||mobileGarrisonExchange(*p,garrisonWindow.get())||mobileCampaignRewardExchange(*p,garrisonWindow.get())||mobileJoiningExchange(*p,garrisonWindow.get()))&&(garrisonWindow->getMobileArmy(0)==owner||garrisonWindow->getMobileArmy(1)==owner);
+  const auto * garrison=dynamic_cast<const CGGarrison *>(owner);
+  const bool visible=owner&&(!garrison||garrison->removableUnits)&&((sheet&&sheet->curHero==owner)||(town&&(town->getUpperArmy()==owner||town->getVisitingHero()==owner))||inExchange||inGarrison||(!town&&ENGINE->windows().topWindow<AdventureMapInterface>()&&hero==owner));
   if(!visible||owner->getOwner()!=p->playerID||!owner->hasStackAtSlot(SlotID(b))||(owner->needsLastStack()&&owner->stacksCount()<2))return;
   const auto & stack=owner->getStack(SlotID(b));
   if(stack.getId().getNum()!=c||stack.getCount()!=d||era_bridge::sourceCreatureIdForLevel(stack.getCreature()->getJsonKey()).value_or(-1)==340)return;
