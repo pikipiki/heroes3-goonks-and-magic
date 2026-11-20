@@ -30,7 +30,7 @@
 }
 .exchange-toolbar,.exchange-tabs {
  display:grid;
- grid-template-columns:minmax(0,1fr) auto auto;
+ grid-template-columns:minmax(0,1fr) auto;
  gap:6px;
  align-items:center;
  padding:5px 8px;
@@ -122,7 +122,8 @@
 }
 @container goonk-viewport (orientation:landscape) {
  .hero-exchange-page {grid-template-columns:minmax(0,1fr) minmax(210px,32%);grid-template-rows:auto auto minmax(0,1fr)}
- .exchange-toolbar {grid-column:2;grid-row:1}
+ #mobile-app .hero-exchange-page .exchange-toolbar {grid-column:2;grid-row:1;grid-template-columns:minmax(0,1fr) auto;align-items:center}
+ #mobile-app .hero-exchange-page .exchange-toolbar h2 {grid-column:1;font-size:var(--ui-type-body1,16px)}
  .exchange-tabs {grid-column:1;grid-row:1}
  .exchange-inventories {grid-column:1;grid-row:2/4}
  #mobile-app .hero-exchange-page .exchange-detail {grid-column:2;grid-row:2/4;display:flex;flex-direction:column;justify-content:flex-end;gap:8px;border-top:0;border-inline-start:1px solid var(--line);min-height:0;overflow:auto}
@@ -132,7 +133,10 @@
  .exchange-quantity {grid-column:1/-1}
 }
 #mobile-app .hero-exchange-page[data-joining=true] {grid-template-rows:auto auto minmax(0,1fr) auto}
-#mobile-app .hero-exchange-page[data-joining=true] .exchange-inventories {grid-template-columns:minmax(0,1fr)!important;align-content:start}
+#mobile-app .hero-exchange-page[data-joining=true] .exchange-inventories {display:grid!important;grid-template-columns:minmax(0,1fr)!important;grid-template-rows:auto minmax(0,1fr);overflow:hidden;align-content:stretch;gap:8px}
+#mobile-app .hero-exchange-page[data-joining=true] .exchange-joining-pool {flex:none}
+#mobile-app .hero-exchange-page[data-joining=true] .exchange-inventory:nth-child(2) {min-height:0;overflow-y:auto;overscroll-behavior:contain;touch-action:pan-y}
+#mobile-app .hero-exchange-page[data-joining=true] .exchange-inventory:nth-child(2)>header {position:sticky;top:0;z-index:2}
 #mobile-app .exchange-joining-help {margin:0;padding:4px 8px;font-size:var(--ui-type-body2);line-height:1.35;color:#ffe6af}
 @container goonk-viewport (orientation:landscape) {
  #mobile-app .hero-exchange-page[data-joining=true] {grid-template-rows:auto auto minmax(0,1fr)}

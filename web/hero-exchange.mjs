@@ -107,8 +107,7 @@ export function createHeroExchange({root,command,refresh,portrait}){
   const dismissButton=troops&&!confirmFinish&&item?.name&&heroes[source.side]?.owned?`<button type="button" class="danger" data-exchange-dismiss data-exchange-focus="dismiss" ${!canDismiss||pending?'disabled':''} title="${!canDismiss&&mustKeepOne(heroes[source.side])?(fr?'Le héros doit garder au moins une créature':'A hero must keep at least one creature'):''}">${fr?'Faire partir':'Dismiss'}</button>`:'';
   renderMarkup(panel,`<header class="exchange-toolbar">
    <h2>${joining?(fr?'Faire de la place':'Make room'):troopsOnly?(garrison?(fr?'Laisser des gardes':'Leave guards'):(fr?'Répartir les troupes':'Arrange army')):(fr?'Échange entre héros':'Hero exchange')}</h2>
-   <button type="button" data-exchange-classic data-exchange-focus="classic" ${pending||confirmFinish?'disabled':''}>${fr?'Classique':'Classic'}</button>
-   <button type="button" data-exchange-close data-exchange-focus="close" aria-label="${troopsOnly?(fr?'Terminer la répartition':'Finish arranging army'):(fr?'Fermer l’échange':'Close exchange')}" ${confirmFinish?'hidden':''} ${pending?'disabled':''}>${troopsOnly?(fr?'Terminer':'Done'):'×'}</button>
+   <button type="button" data-exchange-close data-exchange-focus="close" aria-label="${troopsOnly?(fr?'Terminer la répartition':'Finish arranging army'):(fr?'Fermer l’échange':'Close exchange')}" ${confirmFinish?'hidden':''} ${pending?'disabled':''}>×</button>
   </header>
   <nav class="exchange-tabs" ${troopsOnly?'hidden':''} aria-label="${fr?'Type d’échange':'Exchange type'}">
    <button type="button" data-exchange-tab="equipment" data-exchange-focus="equipment" aria-pressed="${!troops}" ${pending?'disabled':''}>${fr?'Équipement':'Equipment'}</button>
