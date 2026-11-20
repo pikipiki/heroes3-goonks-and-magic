@@ -25,3 +25,7 @@ html.goonk-mobile #mobile-app[data-battle-result]>*:not(.battle-result){display:
  #mobile-app .battle-result .result-content{grid-area:1/1/3/2}
  #mobile-app .battle-result>[data-result-confirm]{grid-area:2/2}
 }
+/* Shared casualty rows keep every count clear of the result card's edge. */
+@layer ui-composition {
+ #mobile-app .result-losses article{padding-inline-end:var(--ui-space-2,8px);box-sizing:border-box}
+}

@@ -1,0 +1,660 @@
+{
+  "scope": "Light Huawei capture without V8 CPU sampling; requestAnimationFrame is not unique sprite-frame cadence.",
+  "battleWallSeconds": 63.257,
+  "frames": {
+    "battle": {
+      "frames": 2678,
+      "callbackFps": 42.19,
+      "p50FrameMs": 16.47,
+      "p95FrameMs": 65.88,
+      "maxFrameMs": 263.61,
+      "above20ms": 486,
+      "above33ms": 271,
+      "above50ms": 229
+    },
+    "attack": {
+      "frames": 850,
+      "callbackFps": 46.97,
+      "p50FrameMs": 16.47,
+      "p95FrameMs": 65.84,
+      "maxFrameMs": 148.16,
+      "above20ms": 122,
+      "above33ms": 52,
+      "above50ms": 45
+    },
+    "move": {
+      "frames": 1221,
+      "callbackFps": 40.98,
+      "p50FrameMs": 16.47,
+      "p95FrameMs": 65.88,
+      "maxFrameMs": 148.13,
+      "above20ms": 259,
+      "above33ms": 162,
+      "above50ms": 135
+    },
+    "idle": {
+      "frames": 312,
+      "callbackFps": 34.51,
+      "p50FrameMs": 16.47,
+      "p95FrameMs": 82.37,
+      "maxFrameMs": 263.61,
+      "above20ms": 65,
+      "above33ms": 37,
+      "above50ms": 33
+    }
+  },
+  "longTasks": {
+    "count": 260,
+    "maxMs": 268
+  },
+  "timedCallbacks": [
+    {
+      "name": "MainLoop_runner",
+      "module": "vcmiclient.41a08e3bdec77482.js",
+      "calls": 2678,
+      "wallMs": 41432.665,
+      "cpuMs": 38152.109,
+      "meanMs": 15.471,
+      "p95Ms": 54.695,
+      "maxMs": 194.531
+    },
+    {
+      "name": "frame",
+      "module": "mobile.mjs",
+      "calls": 2678,
+      "wallMs": 5072.194,
+      "cpuMs": 5072.652,
+      "meanMs": 1.894,
+      "p95Ms": 2.301,
+      "maxMs": 74.561
+    },
+    {
+      "name": "flush",
+      "module": "screen.mjs",
+      "calls": 233,
+      "wallMs": 2287.473,
+      "cpuMs": 2292.493,
+      "meanMs": 9.817,
+      "p95Ms": 11.348,
+      "maxMs": 13.053
+    },
+    {
+      "name": "SDL2.audio.scriptProcessorNode.onaudioprocess",
+      "module": "vcmiclient.41a08e3bdec77482.js",
+      "calls": 743,
+      "wallMs": 1644.751,
+      "cpuMs": 1644.638,
+      "meanMs": 2.214,
+      "p95Ms": 2.63,
+      "maxMs": 6.49
+    },
+    {
+      "name": "handleMessage",
+      "module": "vcmiclient.41a08e3bdec77482.js",
+      "calls": 1,
+      "wallMs": 703.625,
+      "cpuMs": 654.323,
+      "meanMs": 703.625,
+      "p95Ms": 703.625,
+      "maxMs": 703.625
+    },
+    {
+      "name": "",
+      "module": "screen.mjs",
+      "calls": 3139,
+      "wallMs": 609.732,
+      "cpuMs": 609.904,
+      "meanMs": 0.194,
+      "p95Ms": 1.111,
+      "maxMs": 3.175
+    },
+    {
+      "name": "",
+      "module": "modal-boundary.mjs",
+      "calls": 5822,
+      "wallMs": 330.348,
+      "cpuMs": 330.129,
+      "meanMs": 0.057,
+      "p95Ms": 0.103,
+      "maxMs": 0.24
+    },
+    {
+      "name": "",
+      "module": "i18n.mjs",
+      "calls": 469,
+      "wallMs": 292.133,
+      "cpuMs": 293.036,
+      "meanMs": 0.623,
+      "p95Ms": 1.057,
+      "maxMs": 3.994
+    },
+    {
+      "name": "raf",
+      "module": "",
+      "calls": 2677,
+      "wallMs": 171.105,
+      "cpuMs": 166.336,
+      "meanMs": 0.064,
+      "p95Ms": 0.08,
+      "maxMs": 3.037
+    },
+    {
+      "name": "",
+      "module": "mobile-viewport.mjs",
+      "calls": 251,
+      "wallMs": 74.351,
+      "cpuMs": 76.152,
+      "meanMs": 0.296,
+      "p95Ms": 0.375,
+      "maxMs": 0.62
+    },
+    {
+      "name": "",
+      "module": "mui-runtime.mjs",
+      "calls": 935,
+      "wallMs": 52.124,
+      "cpuMs": 51.969,
+      "meanMs": 0.056,
+      "p95Ms": 0.119,
+      "maxMs": 0.946
+    },
+    {
+      "name": "",
+      "module": "rail-chrome.mjs",
+      "calls": 227,
+      "wallMs": 33.214,
+      "cpuMs": 33.972,
+      "meanMs": 0.146,
+      "p95Ms": 0.167,
+      "maxMs": 0.453
+    }
+  ],
+  "profileCategoryEventCount": 0,
+  "osWindowSeconds": 62.05,
+  "profilerCollectorCpuMs": 0,
+  "workerCpuMs": 10110,
+  "mapTransition": {
+    "lastMovingStateMs": 57319.66500008106,
+    "firstBattleStateMs": 59356.22500002384,
+    "observationGapMs": 2036.56,
+    "limitation": "Last moving state packet is not exact creature-contact time."
+  },
+  "limitations": [
+    "OS thread CPU uses cumulative USER_HZ=100 ticks at~1Hz, so short attack samples have coarse resolution.",
+    "No CPU sampling means no C++ function self-time stacks in this capture. Timed mainloop callbacks include their native work.",
+    "No instrumentation observes each native sprite-pose change; RAF cadence cannot certify50uniquecreatureposes/s."
+  ],
+  "conclusion": {
+    "stable50Fps": false,
+    "priority": "Main renderer native main-loop/presentation callback, not worker CPU saturation.",
+    "notEstablished": [
+      "Exact C++ function self-time",
+      "Unique sprite-pose cadence",
+      "Hardware GPU utilization",
+      "Exact map-contact loading duration"
+    ]
+  },
+  "engineSha256": "d6578ac4c9dce80526b1fb08351810dad75157d466f93776cff6fcbb7a75890c",
+  "threads": [
+    {
+      "name": "CrRendererMain",
+      "cpuMs": 53070,
+      "oneCorePercent": 85.53
+    },
+    {
+      "name": "CrGpuMain",
+      "cpuMs": 19080,
+      "oneCorePercent": 30.75
+    },
+    {
+      "name": "Compositor",
+      "cpuMs": 13420,
+      "oneCorePercent": 21.63
+    },
+    {
+      "name": "mali-cmar-backe",
+      "cpuMs": 10500,
+      "oneCorePercent": 16.92
+    },
+    {
+      "name": "CompositorGpuTh",
+      "cpuMs": 10340,
+      "oneCorePercent": 16.66
+    },
+    {
+      "name": "VizCompositorTh",
+      "cpuMs": 8700,
+      "oneCorePercent": 14.02
+    },
+    {
+      "name": "ThreadPoolForeg",
+      "cpuMs": 4080,
+      "oneCorePercent": 6.58
+    },
+    {
+      "name": "DedicatedWorker",
+      "cpuMs": 3380,
+      "oneCorePercent": 5.45
+    },
+    {
+      "name": "Chrome_ChildIOT",
+      "cpuMs": 1310,
+      "oneCorePercent": 2.11
+    },
+    {
+      "name": "Chrome_ChildIOT",
+      "cpuMs": 1300,
+      "oneCorePercent": 2.1
+    },
+    {
+      "name": "ThreadPoolForeg",
+      "cpuMs": 1030,
+      "oneCorePercent": 1.66
+    },
+    {
+      "name": "DedicatedWorker",
+      "cpuMs": 920,
+      "oneCorePercent": 1.48
+    },
+    {
+      "name": "AudioOutputDevi",
+      "cpuMs": 860,
+      "oneCorePercent": 1.39
+    },
+    {
+      "name": "DedicatedWorker",
+      "cpuMs": 770,
+      "oneCorePercent": 1.24
+    },
+    {
+      "name": "DedicatedWorker",
+      "cpuMs": 740,
+      "oneCorePercent": 1.19
+    },
+    {
+      "name": "DedicatedWorker",
+      "cpuMs": 740,
+      "oneCorePercent": 1.19
+    },
+    {
+      "name": "DedicatedWorker",
+      "cpuMs": 730,
+      "oneCorePercent": 1.18
+    },
+    {
+      "name": "DedicatedWorker",
+      "cpuMs": 720,
+      "oneCorePercent": 1.16
+    },
+    {
+      "name": "Binder:24686_6",
+      "cpuMs": 690,
+      "oneCorePercent": 1.11
+    },
+    {
+      "name": "DedicatedWorker",
+      "cpuMs": 680,
+      "oneCorePercent": 1.1
+    },
+    {
+      "name": "DedicatedWorker",
+      "cpuMs": 680,
+      "oneCorePercent": 1.1
+    },
+    {
+      "name": "DedicatedWorker",
+      "cpuMs": 660,
+      "oneCorePercent": 1.06
+    },
+    {
+      "name": "ThreadPoolForeg",
+      "cpuMs": 450,
+      "oneCorePercent": 0.73
+    },
+    {
+      "name": "ThreadPoolForeg",
+      "cpuMs": 300,
+      "oneCorePercent": 0.48
+    },
+    {
+      "name": "ThreadPoolForeg",
+      "cpuMs": 230,
+      "oneCorePercent": 0.37
+    },
+    {
+      "name": "ThreadPoolForeg",
+      "cpuMs": 200,
+      "oneCorePercent": 0.32
+    },
+    {
+      "name": "PerfettoTrace",
+      "cpuMs": 190,
+      "oneCorePercent": 0.31
+    },
+    {
+      "name": "ThreadPoolForeg",
+      "cpuMs": 190,
+      "oneCorePercent": 0.31
+    },
+    {
+      "name": "mali-hist-dump",
+      "cpuMs": 150,
+      "oneCorePercent": 0.24
+    },
+    {
+      "name": "ThreadPoolSingl",
+      "cpuMs": 110,
+      "oneCorePercent": 0.18
+    },
+    {
+      "name": "DedicatedWorker",
+      "cpuMs": 90,
+      "oneCorePercent": 0.15
+    },
+    {
+      "name": "mali-mem-purge",
+      "cpuMs": 70,
+      "oneCorePercent": 0.11
+    },
+    {
+      "name": "PerfettoTrace",
+      "cpuMs": 50,
+      "oneCorePercent": 0.08
+    },
+    {
+      "name": "ThreadPoolForeg",
+      "cpuMs": 0,
+      "oneCorePercent": 0.0
+    },
+    {
+      "name": "DedicatedWorker",
+      "cpuMs": 0,
+      "oneCorePercent": 0.0
+    },
+    {
+      "name": "DedicatedWorker",
+      "cpuMs": 0,
+      "oneCorePercent": 0.0
+    },
+    {
+      "name": "essService0:127",
+      "cpuMs": 0,
+      "oneCorePercent": 0.0
+    },
+    {
+      "name": "Jit thread pool",
+      "cpuMs": 0,
+      "oneCorePercent": 0.0
+    },
+    {
+      "name": "Runtime worker ",
+      "cpuMs": 0,
+      "oneCorePercent": 0.0
+    },
+    {
+      "name": "Runtime worker ",
+      "cpuMs": 0,
+      "oneCorePercent": 0.0
+    },
+    {
+      "name": "Runtime worker ",
+      "cpuMs": 0,
+      "oneCorePercent": 0.0
+    },
+    {
+      "name": "Runtime worker ",
+      "cpuMs": 0,
+      "oneCorePercent": 0.0
+    },
+    {
+      "name": "Signal Catcher",
+      "cpuMs": 0,
+      "oneCorePercent": 0.0
+    },
+    {
+      "name": "HeapTaskDaemon",
+      "cpuMs": 0,
+      "oneCorePercent": 0.0
+    },
+    {
+      "name": "ReferenceQueueD",
+      "cpuMs": 0,
+      "oneCorePercent": 0.0
+    },
+    {
+      "name": "FinalizerDaemon",
+      "cpuMs": 0,
+      "oneCorePercent": 0.0
+    },
+    {
+      "name": "FinalizerWatchd",
+      "cpuMs": 0,
+      "oneCorePercent": 0.0
+    },
+    {
+      "name": "Binder:19982_1",
+      "cpuMs": 0,
+      "oneCorePercent": 0.0
+    },
+    {
+      "name": "Binder:19982_2",
+      "cpuMs": 0,
+      "oneCorePercent": 0.0
+    },
+    {
+      "name": "Binder:19982_3",
+      "cpuMs": 0,
+      "oneCorePercent": 0.0
+    },
+    {
+      "name": "AppEyeUiProbeTh",
+      "cpuMs": 0,
+      "oneCorePercent": 0.0
+    },
+    {
+      "name": "Binder:19982_4",
+      "cpuMs": 0,
+      "oneCorePercent": 0.0
+    },
+    {
+      "name": "ThreadPoolServi",
+      "cpuMs": 0,
+      "oneCorePercent": 0.0
+    },
+    {
+      "name": "ThreadPoolPrese",
+      "cpuMs": 0,
+      "oneCorePercent": 0.0
+    },
+    {
+      "name": "ThreadPoolAudio",
+      "cpuMs": 0,
+      "oneCorePercent": 0.0
+    },
+    {
+      "name": "ThreadPoolSingl",
+      "cpuMs": 0,
+      "oneCorePercent": 0.0
+    },
+    {
+      "name": "MemoryInfra",
+      "cpuMs": 0,
+      "oneCorePercent": 0.0
+    },
+    {
+      "name": "ThreadPoolForeg",
+      "cpuMs": 0,
+      "oneCorePercent": 0.0
+    },
+    {
+      "name": "ThreadPoolForeg",
+      "cpuMs": 0,
+      "oneCorePercent": 0.0
+    },
+    {
+      "name": "Binder:24686_7",
+      "cpuMs": 0,
+      "oneCorePercent": 0.0
+    },
+    {
+      "name": "ileged_process0",
+      "cpuMs": 0,
+      "oneCorePercent": 0.0
+    },
+    {
+      "name": "Jit thread pool",
+      "cpuMs": 0,
+      "oneCorePercent": 0.0
+    },
+    {
+      "name": "Signal Catcher",
+      "cpuMs": 0,
+      "oneCorePercent": 0.0
+    },
+    {
+      "name": "HeapTaskDaemon",
+      "cpuMs": 0,
+      "oneCorePercent": 0.0
+    },
+    {
+      "name": "ReferenceQueueD",
+      "cpuMs": 0,
+      "oneCorePercent": 0.0
+    },
+    {
+      "name": "FinalizerDaemon",
+      "cpuMs": 0,
+      "oneCorePercent": 0.0
+    },
+    {
+      "name": "FinalizerWatchd",
+      "cpuMs": 0,
+      "oneCorePercent": 0.0
+    },
+    {
+      "name": "Binder:24686_1",
+      "cpuMs": 0,
+      "oneCorePercent": 0.0
+    },
+    {
+      "name": "Binder:24686_2",
+      "cpuMs": 0,
+      "oneCorePercent": 0.0
+    },
+    {
+      "name": "Binder:24686_3",
+      "cpuMs": 0,
+      "oneCorePercent": 0.0
+    },
+    {
+      "name": "AppEyeUiProbeTh",
+      "cpuMs": 0,
+      "oneCorePercent": 0.0
+    },
+    {
+      "name": "Profile Saver",
+      "cpuMs": 0,
+      "oneCorePercent": 0.0
+    },
+    {
+      "name": "ileged_process0",
+      "cpuMs": 0,
+      "oneCorePercent": 0.0
+    },
+    {
+      "name": "GpuWatchdog",
+      "cpuMs": 0,
+      "oneCorePercent": 0.0
+    },
+    {
+      "name": "mali-utility-wo",
+      "cpuMs": 0,
+      "oneCorePercent": 0.0
+    },
+    {
+      "name": "mali-utility-wo",
+      "cpuMs": 0,
+      "oneCorePercent": 0.0
+    },
+    {
+      "name": "mali-utility-wo",
+      "cpuMs": 0,
+      "oneCorePercent": 0.0
+    },
+    {
+      "name": "mali-utility-wo",
+      "cpuMs": 0,
+      "oneCorePercent": 0.0
+    },
+    {
+      "name": "mali-utility-wo",
+      "cpuMs": 0,
+      "oneCorePercent": 0.0
+    },
+    {
+      "name": "mali-utility-wo",
+      "cpuMs": 0,
+      "oneCorePercent": 0.0
+    },
+    {
+      "name": "mali-utility-wo",
+      "cpuMs": 0,
+      "oneCorePercent": 0.0
+    },
+    {
+      "name": "mali-utility-wo",
+      "cpuMs": 0,
+      "oneCorePercent": 0.0
+    },
+    {
+      "name": "ThreadPoolServi",
+      "cpuMs": 0,
+      "oneCorePercent": 0.0
+    },
+    {
+      "name": "ThreadPoolForeg",
+      "cpuMs": 0,
+      "oneCorePercent": 0.0
+    },
+    {
+      "name": "ThreadPoolPrese",
+      "cpuMs": 0,
+      "oneCorePercent": 0.0
+    },
+    {
+      "name": "ThreadPoolAudio",
+      "cpuMs": 0,
+      "oneCorePercent": 0.0
+    },
+    {
+      "name": "ThreadPoolForeg",
+      "cpuMs": 0,
+      "oneCorePercent": 0.0
+    },
+    {
+      "name": "GpuWatchdog_Com",
+      "cpuMs": 0,
+      "oneCorePercent": 0.0
+    },
+    {
+      "name": "ThreadPoolSingl",
+      "cpuMs": 0,
+      "oneCorePercent": 0.0
+    },
+    {
+      "name": "MemoryInfra",
+      "cpuMs": 0,
+      "oneCorePercent": 0.0
+    },
+    {
+      "name": "Binder:24686_4",
+      "cpuMs": 0,
+      "oneCorePercent": 0.0
+    },
+    {
+      "name": "Binder:24686_5",
+      "cpuMs": 0,
+      "oneCorePercent": 0.0
+    }
+  ]
+}
