@@ -436,10 +436,10 @@
 
   .slot-stats, .hero-army-slot .creature-stats {
     display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-    gap: 2px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 4px 2px;
     margin: 0;
-    padding: 2px 3px;
+    padding: 4px;
     background: rgba(0,0,0,0.35);
     border: 1px solid #73542766;
     border-radius: 0;
@@ -1687,7 +1687,7 @@
             <div class="creature-info">
               <div class="creature-name-row">
                 <span class="creature-name">${creature.name[currentLang]}</span>
-                <span class="creature-tier">${creature.tier}</span>
+                <span class="creature-tier">${typeof creature.tier === 'object' ? (creature.tier[currentLang] || creature.tier.fr) : creature.tier}</span>
               </div>
               <div class="creature-stats-row">
                 <span class="stat-pill">⚔️ ${creature.atk}</span>

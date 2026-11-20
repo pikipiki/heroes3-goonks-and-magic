@@ -1,9 +1,8 @@
 #mobile-app[data-mode=map] [data-ui=hero-exchange].primary {
- border:3px ridge #e57b69;
+ border:1px solid #e57b69;
  border-image:none;
  background:linear-gradient(#88291f,#4b160e);
- box-shadow:inset 0 0 0 1px #e6b177;
- font-weight:700;
+ font-weight:400;
 }
 #mobile-app[data-mode=hero-exchange] {
  grid-template-columns:minmax(0,1fr);
@@ -40,13 +39,12 @@
 .exchange-toolbar {background:linear-gradient(#681f1680,#21170d60)}
 .exchange-toolbar h2 {margin:0;color:var(--gold);font-size:clamp(16px,4.5vw,23px);line-height:1.1}
 .exchange-tabs {grid-template-columns:repeat(2,minmax(0,1fr))}
-#mobile-app .hero-exchange-page button {min-height:44px;min-width:44px;padding:4px 7px;font-size:var(--ui-type-body2)}
+#mobile-app .hero-exchange-page button {min-height:44px;min-width:44px;padding:4px 7px;font-size:var(--ui-type-body2);font-weight:400;border-radius:0}
 #mobile-app .hero-exchange-page [data-exchange-close] {font-size:var(--ui-type-h2)}
 #mobile-app .exchange-tabs button[aria-pressed=true] {
- border:2px solid #e1be6d;
+ border:1px solid #e1be6d;
  background:linear-gradient(#79271c,#41160f);
- box-shadow:inset 0 0 0 1px #cba257;
- font-weight:700;
+ font-weight:400;
 }
 .exchange-inventories {
  display:grid;
@@ -72,11 +70,12 @@
  border-bottom:1px solid var(--line);
 }
 .exchange-inventory:nth-child(2)>header {background:#343038}
-.exchange-inventory h3,.exchange-summary h3 {margin:0;color:var(--gold);font-size:var(--ui-type-body1);overflow-wrap:anywhere}
+.exchange-inventory h3,.exchange-summary h3 {margin:0;color:var(--gold);font-size:var(--ui-type-body1);font-weight:400;word-break:normal;overflow-wrap:normal}
+.exchange-inventory>header>.MuiChip-root {margin-inline-start:auto;flex:none}
 .exchange-face {display:block;width:32px;height:38px;flex:none;border:1px solid var(--line)}
 .exchange-inventory h4 {margin:7px 0 4px;color:var(--muted);font-size:var(--ui-type-caption)}
 .exchange-empty {margin:4px 0;font-size:var(--ui-type-body2);color:var(--muted)}
-#mobile-app .exchange-slot {
+#mobile-app .exchange-slot:not(.hero-army-slot) {
  width:100%;
  display:grid;
  grid-template-columns:clamp(23px,7vw,36px) minmax(0,1fr);
@@ -85,37 +84,36 @@
  margin-top:4px;
  text-align:start;
  white-space:normal;
- overflow-wrap:anywhere;
+ word-break:normal;
+ overflow-wrap:normal;
  font-size:var(--ui-type-caption);
 }
-#mobile-app .exchange-slot :is(canvas,.unit-portrait) {width:100%;height:auto;aspect-ratio:1;object-fit:contain}
-.exchange-slot>span[aria-hidden] {text-align:center;font-size:var(--ui-type-titleSmall)}
+#mobile-app .exchange-slot:not(.hero-army-slot) :is(canvas,.unit-portrait) {width:100%;height:auto;aspect-ratio:1;object-fit:contain}
+.exchange-slot:not(.hero-army-slot)>span[aria-hidden] {text-align:center;font-size:var(--ui-type-titleSmall)}
 .exchange-slot small {display:block;color:var(--muted);margin-top:2px}
-#mobile-app .exchange-slot.can-receive {border-color:#f1d587;box-shadow:inset 0 0 0 1px #bc9a53}
+#mobile-app .exchange-slot.can-receive {border-color:#4caf50;box-shadow:0 0 8px rgba(76,175,80,0.4)}
 #mobile-app .exchange-slot[aria-pressed=true] {
- border-color:#ffe9a1;
- outline:1px solid #ffe9a1;
- outline-offset:-3px;
- background:linear-gradient(#71301d,#482016);
+ border-color:#ffe78a;
+ background:#351f0b;
 }
 .exchange-detail {
  display:grid;
  gap:6px;
  padding:6px 8px;
  background:#24180e;
- border-top:2px ridge var(--line);
+ border-top:1px solid var(--line);
 }
-.exchange-summary {min-width:0;font-size:var(--ui-type-body2);line-height:1.25;overflow-wrap:anywhere}
+.exchange-summary {min-width:0;font-size:var(--ui-type-body2);line-height:1.25;word-break:normal;overflow-wrap:normal}
 .exchange-summary p {margin:2px 0}
-.exchange-route {color:var(--gold);font-weight:700}
+.exchange-route {color:var(--gold);font-weight:400}
 .exchange-description {max-height:3.75em;overflow:auto;touch-action:pan-y;color:var(--muted)}
-.exchange-actions {display:flex;align-items:stretch;gap:5px;min-width:0}
-#mobile-app .exchange-actions [data-exchange-confirm] {flex:1;border:3px ridge #ffe18a;border-image:none}
-.exchange-quantity {display:grid;align-content:center;font-size:var(--ui-type-micro);color:var(--muted)}
+.exchange-actions {display:flex;flex-wrap:wrap;align-items:center;gap:5px;min-width:0}
+#mobile-app .exchange-actions [data-exchange-confirm] {flex:1 1 auto;border:1px solid #ffe18a;border-image:none}
+.exchange-quantity {display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:var(--ui-type-micro);color:var(--muted)}
 .exchange-quantity input {
  box-sizing:border-box;
- width:58px;
- min-height:28px;
+ width:52px;
+ min-height:36px;
  background:#1c150c;
  color:var(--ink);
  border:1px solid var(--line);
@@ -123,233 +121,101 @@
  padding:2px 3px;
 }
 @container goonk-viewport (orientation:landscape) {
- .hero-exchange-page {grid-template-columns:minmax(0,1fr) minmax(190px,30%);grid-template-rows:auto auto minmax(0,1fr)}
- .exchange-toolbar {grid-column:1/-1}
- .exchange-tabs {grid-area:2/1}
- .exchange-inventories {grid-area:3/1}
- .exchange-detail {grid-area:2/2/4/3;grid-template-rows:minmax(0,1fr) auto;border-top:0;border-inline-start:1px solid var(--line)}
- .exchange-summary {overflow:auto;touch-action:pan-y}
- .exchange-actions {display:grid;grid-template-columns:1fr 1fr}
- .exchange-quantity {grid-column:1/-1;grid-template-columns:1fr auto;align-items:center}
+ .hero-exchange-page {grid-template-columns:minmax(0,1fr) minmax(210px,32%);grid-template-rows:auto auto minmax(0,1fr)}
+ .exchange-toolbar {grid-column:2;grid-row:1}
+ .exchange-tabs {grid-column:1;grid-row:1}
+ .exchange-inventories {grid-column:1;grid-row:2/4}
+ #mobile-app .hero-exchange-page .exchange-detail {grid-column:2;grid-row:2/4;display:flex;flex-direction:column;justify-content:flex-end;gap:8px;border-top:0;border-inline-start:1px solid var(--line);min-height:0;overflow:auto}
+ .exchange-summary {overflow:auto;touch-action:pan-y;flex:0 1 auto}
+ #mobile-app .hero-exchange-page .exchange-actions {display:grid;grid-template-columns:1fr 1fr;align-items:center;align-content:end;gap:6px;flex:none}
+ #mobile-app .hero-exchange-page .exchange-actions button {height:auto}
+ .exchange-quantity {grid-column:1/-1}
 }
-#mobile-app .hero-exchange-page[data-joining=true]{grid-template-rows:auto auto minmax(0,1fr) auto}
-#mobile-app .exchange-joining-help{margin:0;padding:4px 8px;font-size:var(--ui-type-body2);line-height:1.35;color:#ffe6af}
-@container goonk-viewport (orientation:landscape){
- #mobile-app .hero-exchange-page[data-joining=true]>.exchange-joining-help{grid-column:2;grid-row:2;overflow-y:auto;min-height:0}
- #mobile-app .hero-exchange-page[data-joining=true]>.exchange-detail{grid-column:2;grid-row:3;overflow-y:auto;min-height:0}
+#mobile-app .hero-exchange-page[data-joining=true] {grid-template-rows:auto auto minmax(0,1fr) auto}
+#mobile-app .hero-exchange-page[data-joining=true] .exchange-inventories {grid-template-columns:minmax(0,1fr)!important;align-content:start}
+#mobile-app .exchange-joining-help {margin:0;padding:4px 8px;font-size:var(--ui-type-body2);line-height:1.35;color:#ffe6af}
+@container goonk-viewport (orientation:landscape) {
+ #mobile-app .hero-exchange-page[data-joining=true] {grid-template-rows:auto auto minmax(0,1fr)}
+ #mobile-app .hero-exchange-page[data-joining=true]>.exchange-inventories {grid-column:1;grid-row:1/4}
+ #mobile-app .hero-exchange-page[data-joining=true]>.exchange-joining-help {grid-column:2;grid-row:2;overflow-y:auto;min-height:0}
+ #mobile-app .hero-exchange-page[data-joining=true]>.exchange-detail {grid-column:2;grid-row:3;overflow-y:auto;min-height:0}
 }
 
-/* Unified Hero Army Slots for Exchange (matching web/hero-equipment.css) */
-.hero-exchange-page[data-army-view=true] .exchange-troop-grid {
- display: grid;
- grid-template-columns: repeat(auto-fill, minmax(min(100%, 118px), 1fr));
- gap: 6px;
- padding-top: 6px;
+/* Reuse web/hero-equipment.css .hero-army-slots & .hero-army-slot; only add exchange-specific layout */
+.hero-exchange-page[data-army-view=true] .exchange-troop-grid {padding-top:6px}
+.hero-exchange-page[data-army-view=true] .hero-army-slot-name {overflow-wrap:normal;word-break:normal}
+#mobile-app .hero-exchange-page[data-army-view=true] .exchange-joining-list {
+ display:grid;
+ gap:6px;
+ padding-top:6px;
 }
-#mobile-app .hero-exchange-page[data-army-view=true] .exchange-slot.hero-army-slot {
- position: relative;
- display: flex;
- flex-direction: column;
- align-items: center;
- justify-content: flex-start;
- padding: 12px 3px 4px;
- min-height: 116px;
- min-width: 44px;
- border: 1px solid var(--h3-border-gold, #9a7e46);
- border-radius: 0;
- background: #1b120ac2;
- color: #ffeebb;
- cursor: pointer;
- touch-action: manipulation;
- transition: background 0.15s ease, border-color 0.15s ease;
- box-sizing: border-box;
- gap: 3px;
- font-weight: 400;
- text-align: center;
+#mobile-app .hero-exchange-page[data-army-view=true] .exchange-slot.exchange-joining-card {
+ min-height:0!important;
+ padding:8px 10px 8px 26px!important;
+ flex-direction:row!important;
+ align-items:center!important;
 }
-#mobile-app .hero-exchange-page[data-army-view=true] .exchange-slot.hero-army-slot * {
- font-weight: 400;
+#mobile-app .hero-exchange-page[data-army-view=true] .exchange-slot.exchange-joining-card .hero-army-slot-content {
+ flex-direction:row!important;
+ align-items:center!important;
+ gap:10px!important;
 }
-#mobile-app .hero-exchange-page[data-army-view=true] .exchange-slot.hero-army-slot:not(:disabled):hover {
- border-color: var(--h3-border-gold-bright, #f4c466);
- background: #26180dc2;
+#mobile-app .hero-exchange-page[data-army-view=true] .exchange-slot.exchange-joining-card .hero-army-slot-art {
+ width:56px!important;
+ height:56px!important;
+ flex:0 0 56px!important;
 }
-#mobile-app .hero-exchange-page[data-army-view=true] .exchange-slot.hero-army-slot.selected {
- border-color: #ffe78a !important;
- box-shadow: 0 0 10px rgba(230,179,76,0.65) !important;
- background: #351f0b !important;
+#mobile-app .hero-exchange-page[data-army-view=true] .exchange-slot.exchange-joining-card .hero-army-slot-info {
+ align-items:flex-start!important;
+ flex:1 1 auto!important;
 }
-#mobile-app .hero-exchange-page[data-army-view=true] .exchange-slot.hero-army-slot.can-target,
-#mobile-app .hero-exchange-page[data-army-view=true] .exchange-slot.hero-army-slot.can-receive {
- border-color: #4caf50 !important;
- box-shadow: 0 0 8px rgba(76,175,80,0.45) !important;
+#mobile-app .hero-exchange-page[data-army-view=true] .exchange-slot.exchange-joining-card .hero-army-slot-title {
+ justify-content:flex-start!important;
 }
-#mobile-app .hero-exchange-page[data-army-view=true] .hero-army-slot-num {
- position: absolute;
- top: 2px;
- left: 4px;
- font-size: var(--ui-type-resource, 11px);
- color: #dfbe78;
- z-index: 2;
-}
-#mobile-app .hero-exchange-page[data-army-view=true] .hero-army-slot-content {
- display: flex;
- flex-direction: column;
- align-items: center;
- gap: 4px;
- width: 100%;
- min-width: 0;
-}
-#mobile-app .hero-exchange-page[data-army-view=true] .hero-army-slot-art {
- position: relative;
- width: 56px;
- height: 48px;
- flex: 0 0 48px;
- border: 1px solid #ad8947;
- border-radius: 0;
- overflow: hidden;
- background: #120c08;
- display: flex;
- align-items: center;
- justify-content: center;
-}
-#mobile-app .hero-exchange-page[data-army-view=true] .hero-army-slot-art :is(img, canvas, .unit-portrait) {
- width: 100%;
- height: 100%;
- object-fit: contain;
-}
-#mobile-app .hero-exchange-page[data-army-view=true] .hero-army-slot-count {
- position: absolute;
- bottom: 1px;
- right: 2px;
- font-size: var(--ui-type-micro, 10px);
- color: #fff;
- background: rgba(0,0,0,0.85);
- border: 1px solid #ffd54f;
- padding: 0 3px;
- border-radius: 0;
- line-height: 1.2;
- text-shadow: 0 1px 2px #000;
-}
-#mobile-app .hero-exchange-page[data-army-view=true] .hero-army-slot-info {
- display: flex;
- flex-direction: column;
- align-items: center;
- gap: 2px;
- min-width: 0;
- width: 100%;
-}
-#mobile-app .hero-exchange-page[data-army-view=true] .hero-army-slot-title {
- display: flex;
- align-items: center;
- justify-content: center;
- gap: 3px;
- width: 100%;
-}
-#mobile-app .hero-exchange-page[data-army-view=true] .hero-army-slot-name {
- font-size: var(--ui-type-caption, 12px);
- color: #ffe49a;
- overflow: hidden;
- text-overflow: ellipsis;
- white-space: nowrap;
- max-width: 100%;
-}
-#mobile-app .hero-exchange-page[data-army-view=true] .hero-army-shooter-badge {
- font-size: var(--ui-type-caption, 12px);
- line-height: 1;
-}
-#mobile-app .hero-exchange-page[data-army-view=true] .hero-army-slot .creature-stats {
- display: grid;
- grid-template-columns: repeat(5, minmax(0, 1fr));
- gap: 2px;
- margin: 0;
- padding: 2px 3px;
- background: rgba(0,0,0,0.35);
- border: 1px solid #73542766;
- border-radius: 0;
- width: 100%;
- box-sizing: border-box;
-}
-#mobile-app .hero-exchange-page[data-army-view=true] .hero-army-slot .creature-stats > div {
- display: flex;
- flex-direction: column;
- align-items: center;
- justify-content: center;
- min-width: 0;
- border: none;
- padding: 0;
-}
-#mobile-app .hero-exchange-page[data-army-view=true] .hero-army-slot .creature-stats dt {
- font-size: 8.5px;
- line-height: 1.1;
- color: #cbb588;
- text-transform: uppercase;
-}
-#mobile-app .hero-exchange-page[data-army-view=true] .hero-army-slot .creature-stats dd {
- font-size: 9.5px;
- line-height: 1.1;
- color: #fff0ba;
- margin: 1px 0 0;
- white-space: nowrap;
-}
-#mobile-app .hero-exchange-page[data-army-view=true] .exchange-slot.hero-army-slot.hero-army-empty {
- border: 1px dashed #6d542f;
- background: rgba(0,0,0,0.25);
- justify-content: center;
- min-height: 116px;
-}
-#mobile-app .hero-exchange-page[data-army-view=true] .hero-army-empty-content {
- display: flex;
- flex-direction: column;
- align-items: center;
- justify-content: center;
- gap: 3px;
- color: #a68953;
-}
-#mobile-app .hero-exchange-page[data-army-view=true] .hero-army-empty-content .hero-empty {
- font-size: 18px;
- line-height: 1;
-}
-#mobile-app .hero-exchange-page[data-army-view=true] .hero-army-empty-label {
- font-size: var(--ui-type-caption, 12px);
- color: #cbb588;
+#mobile-app .hero-exchange-page[data-army-view=true] .exchange-slot.exchange-joining-card .creature-stats {
+ flex:none!important;
+ height:auto!important;
+ min-height:0!important;
+ grid-template-columns:repeat(5,minmax(0,1fr))!important;
+ grid-template-rows:none!important;
+ margin-top:2px!important;
 }
 
 /* Danger / Dismiss button in hero-exchange */
 #mobile-app .hero-exchange-page [data-exchange-dismiss] {
- background: linear-gradient(180deg, #4a1515 0%, #250909 100%);
- border: 1px solid #933;
- color: #ffcdd2;
- border-radius: 0;
- font-weight: 400;
+ background:linear-gradient(180deg,#4a1515 0%,#250909 100%);
+ border:1px solid #933;
+ color:#ffcdd2;
+ border-radius:0;
+ font-weight:400;
 }
 #mobile-app .hero-exchange-page [data-exchange-dismiss]:hover:not(:disabled) {
- background: #5c1b1b;
- border-color: #e53935;
- color: #fff;
+ background:#5c1b1b;
+ border-color:#e53935;
+ color:#fff;
 }
 
 /* Stepper inside exchange quantity */
 #mobile-app .hero-exchange-page .exchange-stepper {
- display: inline-flex;
- align-items: center;
- gap: 3px;
+ display:inline-flex;
+ align-items:center;
+ gap:3px;
 }
 #mobile-app .hero-exchange-page .exchange-stepper button {
- width: 32px;
- min-width: 32px;
- height: 32px;
- min-height: 32px;
- padding: 0;
- font-size: 14px;
- border-radius: 0;
- font-weight: 400;
- display: flex;
- align-items: center;
- justify-content: center;
+ width:36px;
+ min-width:36px;
+ height:36px;
+ min-height:36px;
+ padding:0;
+ font-size:15px;
+ border-radius:0;
+ font-weight:400;
+ display:flex;
+ align-items:center;
+ justify-content:center;
 }
 #mobile-app .hero-exchange-page .exchange-stepper input {
- text-align: center;
- border-radius: 0;
- font-weight: 400;
+ text-align:center;
+ border-radius:0;
+ font-weight:400;
 }

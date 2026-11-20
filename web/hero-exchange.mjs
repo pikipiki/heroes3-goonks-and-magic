@@ -1,5 +1,5 @@
-import {useScreenComponents,renderMarkup,requestMaterialConfirmation,creatureStatsMarkup} from './ui/material-components.mjs';
-import {equipmentSlotNames, paintArtifactIcons} from './hero-equipment.mjs';
+import {useScreenComponents,renderMarkup,requestMaterialConfirmation,chipMarkup} from './ui/material-components.mjs';
+import {equipmentSlotNames, paintArtifactIcons, armySlotMarkup} from './hero-equipment.mjs';
 import {plainGameText} from './game-text.mjs';
 import {getLanguage} from './locale-state.mjs';
 
@@ -57,33 +57,16 @@ export function createHeroExchange({root,command,refresh,portrait}){
    const disabled=!!pending||(item&&source.side!==side&&!compatible)||(!slot.name&&!compatible)||(troops&&!item&&!heroes[side].owned);
    const label=slot.name||(troops?(fr?'Emplacement vide':'Empty slot'):slot.backpack?(fr?'Déposer dans le sac':'Place in backpack'):slotName(slot,fr));
    if(troops){
-    if(slot.name){
-     return `<button type="button" aria-label="${escape(heroes[side].name)}, ${escape(slot.name)}, ${slot.count}" class="exchange-slot hero-army-slot${current?' selected':''}${compatible?' can-receive can-target':''}" data-exchange-slot="${side}:${slot.slot}"
-      aria-pressed="${current}" ${disabled?'disabled':''}>
-      <span class="hero-army-slot-num">#${slot.slot+1}</span>
-      <div class="hero-army-slot-content">
-       <div class="hero-army-slot-art exchange-troop-art">
-        ${portrait(slot)}
-        <strong class="hero-army-slot-count exchange-troop-count">× ${slot.count}</strong>
-       </div>
-       <div class="hero-army-slot-info">
-        <div class="hero-army-slot-title">
-         <span class="hero-army-slot-name">${escape(slot.name)}</span>
-         ${slot.shooter?'<span class="hero-army-shooter-badge" title="Ranged">🏹</span>':''}
-        </div>
-        ${creatureStatsMarkup(slot,{compact:true})}
-       </div>
-      </div>
-     </button>`;
-    }
-    return `<button type="button" aria-label="${escape(heroes[side].name)}, ${fr?'Emplacement vide':'Empty slot'}" class="exchange-slot hero-army-slot hero-army-empty${compatible?' can-receive can-target':''}" data-exchange-slot="${side}:${slot.slot}"
-     aria-pressed="${current}" ${disabled?'disabled':''}>
-     <span class="hero-army-slot-num">#${slot.slot+1}</span>
-     <div class="hero-army-empty-content">
-      <span class="hero-empty" aria-hidden="true">＋</span>
-      <span class="hero-army-empty-label">${fr?'Libre':'Empty'}</span>
-     </div>
-    </button>`;
+    return armySlotMarkup(slot.slot,slot.name?slot:null,{
+     selected:current,
+     target:compatible,
+     disabled,
+     extraClass:`exchange-slot${compatible?' can-receive':''}${joining&&side===0?' exchange-joining-card':''}`,
+     attrs:`data-exchange-slot="${side}:${slot.slot}"`,
+     ariaLabel:`${escape(heroes[side].name)}, ${escape(label)}${slot.name?`, ${slot.count}`:''}`,
+     portrait,
+     fr
+    });
    }
    return `<button type="button" aria-label="${escape(heroes[side].name)}, ${escape(label)}" class="exchange-slot${compatible?' can-receive':''}" data-exchange-slot="${side}:${slot.slot}"
     aria-pressed="${current}" ${disabled?'disabled':''}>
@@ -97,10 +80,14 @@ export function createHeroExchange({root,command,refresh,portrait}){
     const visible=hero.slots.filter(slot=>slot.backpack===backpack&&(slot.name||maximum(item,side,slot)>0));
     return `<h4>${label}</h4>${visible.length?visible.map(slot=>itemMarkup(slot,side)).join(''):`<p class="exchange-empty">${fr?'Aucun objet':'No items'}</p>`}`;
    };
-   return `<section class="exchange-inventory" aria-label="${escape(hero.name)}">
+   const isJoiningPool=troops&&joining&&side===0;
+   const occupied=troops?hero.roster.filter(slot=>slot.name&&slot.count>0):[];
+   const visibleRoster=isJoiningPool?(occupied.length?occupied:[hero.roster[0]].filter(Boolean)):hero.roster;
+   const badge=isJoiningPool?chipMarkup({label:fr?'En attente':'Pending'}):troops&&joining&&side===1?chipMarkup({label:`${occupied.length}/7${occupied.length>=7?(fr?' pleins':' full'):''}`}):troops&&hero.withdrawAllowed===false?chipMarkup({label:fr?'Retrait verrouillé':'Withdrawal locked'}):'';
+   return `<section class="exchange-inventory${isJoiningPool?' exchange-joining-pool':''}" aria-label="${escape(hero.name)}">
     <header>${hero.portrait?.w?`<canvas class="exchange-face" width="48" height="56" data-exchange-face="${side}" aria-hidden="true"></canvas>`:''}
-    <h3>${escape(hero.name)}${troops&&hero.withdrawAllowed===false?`<small> · ${fr?'Retrait verrouillé':'Withdrawal locked'}</small>`:''}</h3></header>
-    ${troops?`<div class="exchange-troop-grid hero-army-slots">${hero.roster.map(slot=>itemMarkup(slot,side)).join('')}</div>`:group(false,fr?'Objets équipés':'Equipped items')+group(true,fr?'Sac à dos':'Backpack')}
+    <h3>${escape(isJoiningPool?(fr?'Créatures prêtes à rejoindre':'Joining creatures'):hero.name)}</h3>${badge}</header>
+    ${troops?`<div class="${isJoiningPool?'exchange-joining-list':'exchange-troop-grid hero-army-slots'}">${visibleRoster.map(slot=>itemMarkup(slot,side)).join('')}</div>`:group(false,fr?'Objets équipés':'Equipped items')+group(true,fr?'Sac à dos':'Backpack')}
    </section>`;
   };
   const available=turn&&heroes.some(hero=>hero.owned);

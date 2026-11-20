@@ -1,4 +1,4 @@
-import {useScreenComponents,renderMarkup} from './ui/material-components.mjs';
+import {useScreenComponents,renderMarkup,creatureStatsMarkup} from './ui/material-components.mjs';
 import {getLanguage} from './locale-state.mjs';
 import {createTroopEquipment} from './troop-equipment.mjs';
 import {createTroopDeployment} from './troop-deployment.mjs';
@@ -22,6 +22,34 @@ export function paintArtifactIcons(panel){
   ctx.drawImage(atlas,index%8*96,Math.floor(index/8)*96,96,96,0,0,64,64);
   canvas._artifactKey=key;
  }
+}
+export function armySlotMarkup(slot,unit,{selected=false,target=false,disabled=false,extraClass='',attrs='',ariaLabel='',portrait=()=>'',fr=true}={}){
+ const label=ariaLabel||(unit?esc(`${unit.name} × ${unit.count}`):(fr?`Emplacement libre #${slot+1}`:`Empty slot #${slot+1}`));
+ if(!unit){
+  return `<button type="button" class="hero-army-slot hero-army-empty${target?' can-target':''}${extraClass?' '+extraClass:''}" ${attrs} aria-pressed="false" aria-label="${label}"${disabled?' disabled':''}>
+   <span class="hero-army-slot-num">#${slot+1}</span>
+   <div class="hero-army-empty-content">
+    <span class="hero-empty" aria-hidden="true">＋</span>
+    <span class="hero-army-empty-label">${fr?'Libre':'Empty'}</span>
+   </div>
+  </button>`;
+ }
+ return `<button type="button" class="hero-army-slot${selected?' selected':''}${target?' can-target':''}${extraClass?' '+extraClass:''}" ${attrs} aria-pressed="${selected}" aria-label="${label}"${disabled?' disabled':''}>
+  <span class="hero-army-slot-num">#${slot+1}</span>
+  <div class="hero-army-slot-content">
+   <div class="hero-army-slot-art">
+    ${portrait(unit)}
+    <strong class="hero-army-slot-count">× ${unit.count}</strong>
+   </div>
+   <div class="hero-army-slot-info">
+    <div class="hero-army-slot-title">
+     <span class="hero-army-slot-name">${esc(unit.name)}</span>
+     ${unit.shooter?'<span class="hero-army-shooter-badge" title="Ranged">🏹</span>':''}
+    </div>
+    ${creatureStatsMarkup(unit,{compact:true})}
+   </div>
+  </div>
+ </button>`;
 }
 export function createHeroEquipment({root,command,pointer=()=>{},onViewChange=()=>{},portrait=()=>'',notify=()=>{},onManage=()=>{},onUpgradeAll=()=>{}}){
  let henchmanPending=null;
@@ -71,39 +99,7 @@ export function createHeroEquipment({root,command,pointer=()=>{},onViewChange=()
     ${items.map((unit,slot)=>{
      const isSelected=selectedArmySlot===slot;
      const isTarget=hero.owned!==false&&state.turn&&selectedArmySlot!==null&&selectedArmySlot!==slot;
-     if(!unit){
-      return `
-      <button type="button" class="hero-army-slot hero-army-empty${isTarget?' can-target':''}" data-army-slot="${slot}" aria-pressed="false" aria-label="${fr?`Emplacement libre #${slot+1}`:`Empty slot #${slot+1}`}">
-       <span class="hero-army-slot-num">#${slot+1}</span>
-       <div class="hero-army-empty-content">
-        <span class="hero-empty" aria-hidden="true">＋</span>
-        <span class="hero-army-empty-label">${fr?'Libre':'Empty'}</span>
-       </div>
-      </button>`;
-     }
-     return `
-     <button type="button" class="hero-army-slot${isSelected?' selected':''}${isTarget?' can-target':''}" data-army-slot="${slot}" aria-pressed="${isSelected}" aria-label="${esc(`${unit.name} × ${unit.count}`)}">
-      <span class="hero-army-slot-num">#${slot+1}</span>
-      <div class="hero-army-slot-content">
-       <div class="hero-army-slot-art">
-        ${portrait(unit)}
-        <strong class="hero-army-slot-count">× ${unit.count}</strong>
-       </div>
-       <div class="hero-army-slot-info">
-        <div class="hero-army-slot-title">
-         <span class="hero-army-slot-name">${esc(unit.name)}</span>
-         ${unit.shooter?'<span class="hero-army-shooter-badge" title="Ranged">🏹</span>':''}
-        </div>
-        <dl class="creature-stats">
-         <div><dt aria-label="Attack">ATK</dt><dd>${unit.attack??0}</dd></div>
-         <div><dt aria-label="Defense">DEF</dt><dd>${unit.defense??0}</dd></div>
-         <div><dt aria-label="Damage">DMG</dt><dd>${unit.damageMin??0}–${unit.damageMax??0}</dd></div>
-         <div><dt aria-label="Health">HP</dt><dd>${unit.health??0}</dd></div>
-         <div><dt aria-label="Speed">SPD</dt><dd>${unit.speed??0}</dd></div>
-        </dl>
-       </div>
-      </div>
-     </button>`;
+     return armySlotMarkup(slot,unit,{selected:isSelected,target:isTarget,attrs:`data-army-slot="${slot}"`,portrait,fr});
     }).join('')}
    </div>
    <button class="army-upgrade-all" data-hero-upgrade-all ${!state.turn||hero.owned===false||!items.some(Boolean)?'disabled':''}><img src="./web/h3-theme/troops.svg" alt="" aria-hidden="true"><span>${fr?'Tout améliorer':'Upgrade all'}</span></button>
