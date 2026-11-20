@@ -57,10 +57,18 @@ export function placeMithrilAction(root){
  const tools=root.querySelector('.scene-tools');
  const nav=root.querySelector('.mobile-nav');
  const overview=root.querySelector('#mobile-overview');
- if(!button||!tools||!nav)return false;
- if(button.parentElement!==tools)tools.append(button);
- const overlaps=root.dataset.mode==='map'&&!button.hidden&&overview&&!overview.hidden&&intersects(button.getBoundingClientRect(),overview.getBoundingClientRect());
- if(overlaps)nav.append(button);
+ if(!button||!tools||!nav||!overview)return false;
+ const toolsRect=tools.getBoundingClientRect(),overRect=overview.getBoundingClientRect();
+ const buttonWidth=button.offsetWidth||69;
+ const projectedRight=button.parentElement===tools?toolsRect.right:toolsRect.right+buttonWidth+6;
+ const overlaps=root.dataset.mode==='map'&&!button.hidden&&!overview.hidden&&
+   toolsRect.top<overRect.bottom&&toolsRect.bottom>overRect.top&&
+   toolsRect.left<overRect.right&&projectedRight>overRect.left;
+ if(overlaps){
+  if(button.parentElement===tools)nav.append(button);
+ } else {
+  if(button.parentElement!==tools)tools.append(button);
+ }
  return overlaps;
 }
 

@@ -10,7 +10,7 @@ function installEvents(){
  document.addEventListener('click',event=>{if(event.isTrusted&&performance.now()<session.shieldUntil){event.preventDefault();event.stopImmediatePropagation();}},true);
  document.addEventListener('cancel',event=>{if(session.active&&event.target.contains(session.active.anchor)){event.preventDefault();session.active.close();}},true);
  document.addEventListener('close',event=>{if(session.active&&event.target.contains(session.active.anchor))session.active.close(false);},true);
- window.addEventListener('resize',()=>session.active?.close());window.visualViewport?.addEventListener('resize',()=>session.active?.close());
+ window.addEventListener('resize',()=>session.active?.close());window.visualViewport?.addEventListener('resize',()=>{if(session.active&&performance.now()>=session.shieldUntil)session.active.close();});
 }
 export function createPopupMenu({anchor,container=anchor.parentElement,role='menu',className='',label=()=>anchor.getAttribute('aria-label')||anchor.textContent,bindAnchor=true,placement}){
  installEvents();

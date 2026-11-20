@@ -14,7 +14,7 @@ export function useActionDock(dock,{overflow=true,limit=3,keepButtons,moreLabel,
  if(!record){record={buttons:[],more:null,menu:null};records.set(dock,record);}
  const found=[...dock.children].filter(node=>node.tagName==='BUTTON'&&node!==record.more&&!node.classList.contains('ui-overflow-trigger'));
  for(const button of found)if(!record.buttons.includes(button))record.buttons.push(button);
- record.buttons=record.buttons.filter(button=>dock.contains(button));
+ record.buttons=record.buttons.filter(button=>dock.contains(button)||record.menu?.list?.contains(button));
  for(const button of record.buttons)decorateButton(button);
  const shown=record.buttons.filter(button=>!button.hidden),primary=shown.find(button=>button.classList.contains('primary')||button.dataset.uiVariant==='filled'),exit=shown.find(button=>exits.test(button.textContent.trim()));
  const collapse=overflow&&shown.length>limit;

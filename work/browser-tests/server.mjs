@@ -49,6 +49,13 @@ http.createServer((req,res)=>{
  res.setHeader('Cross-Origin-Opener-Policy','same-origin');res.setHeader('Cross-Origin-Embedder-Policy','require-corp');
  res.setHeader('Cache-Control','no-cache');const url=new URL(req.url,'http://localhost');
  const {runtimeNames,engine}=getEngineBuild();
+ if(url.pathname==='/exchange-review'){
+  const prototypePath=path.join(project,'docs/design-prototypes/exchange-review.html');
+  if(fs.existsSync(prototypePath)){
+   res.setHeader('Content-Type','text/html; charset=utf-8');
+   return res.end(fs.readFileSync(prototypePath,'utf8'));
+  }
+ }
  if(url.pathname==='/'||url.pathname==='/game.html'){
   let html=renderPage(root);
   html=html.replace(/vcmiclient\.(?:data\.js|wasm|data|js)/g,name=>runtimeNames[name]||name);

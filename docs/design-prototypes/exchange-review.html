@@ -1,0 +1,1568 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Heroes Goonk · Prototype Accueil & Échange de Troupes (Joining / Make Room)</title>
+<link rel="stylesheet" href="/web/ui/tokens.css">
+<style>
+  :root {
+    --h3-bg-dark: #120c07;
+    --h3-bg-surface: #1e140b;
+    --h3-bg-card: #271a0e;
+    --h3-bg-card-hover: #352313;
+    --h3-border-gold: #9a7e46;
+    --h3-border-gold-bright: #f4c466;
+    --h3-gold-text: #f4c466;
+    --h3-gold-dim: #c59f51;
+    --h3-text-parchment: #ffebbb;
+    --h3-text-dim: #cfb991;
+    --h3-danger: #c62828;
+    --h3-success: #2e7d32;
+    --h3-font-family: Georgia, "Times New Roman", -apple-system, BlinkMacSystemFont, "Segoe UI", serif;
+  }
+
+  * {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+  }
+
+  body {
+    margin: 0;
+    padding: 16px;
+    background: #090604;
+    color: var(--h3-text-parchment);
+    font-family: var(--h3-font-family);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    min-height: 100vh;
+  }
+
+  /* Barres d'outils du simulateur d'appareils */
+  .sim-tools {
+    max-width: 1024px;
+    width: 100%;
+    background: #181008;
+    border: 1px solid var(--h3-border-gold);
+    padding: 12px 16px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .sim-title {
+    margin: 0;
+    font-size: 16px;
+    color: var(--h3-gold-text);
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .sim-groups {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .sim-btn {
+    background: #271a0e;
+    border: 1px solid var(--h3-border-gold);
+    color: var(--h3-text-parchment);
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 400;
+    padding: 6px 12px;
+    cursor: pointer;
+    border-radius: 0;
+    transition: background 0.15s ease, border-color 0.15s ease;
+  }
+
+  .sim-btn:hover {
+    background: #3a2614;
+    border-color: var(--h3-border-gold-bright);
+    color: #fff;
+  }
+
+  .sim-btn.active {
+    background: #4a3219;
+    border-color: var(--h3-border-gold-bright);
+    color: var(--h3-gold-text);
+    box-shadow: 0 0 6px rgba(244, 196, 102, 0.35);
+  }
+
+  /* Conteneur Viewport Device */
+  .device-frame-wrapper {
+    position: relative;
+    padding: 12px;
+    background: #000;
+    border: 1px solid #332212;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+  }
+
+  .device-screen {
+    position: relative;
+    background: var(--h3-bg-dark);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--h3-border-gold);
+  }
+
+  /* Dimensions téléphones */
+  .device-screen.p30-portrait { width: 360px; height: 740px; }
+  .device-screen.p30-landscape { width: 740px; height: 360px; }
+  .device-screen.iphone-portrait { width: 393px; height: 852px; }
+  .device-screen.iphone-landscape { width: 852px; height: 393px; }
+  .device-screen.ipad-portrait { width: 768px; height: 1024px; }
+  .device-screen.ipad-landscape { width: 1024px; height: 768px; }
+  .device-screen.responsive { width: min(100vw - 48px, 980px); height: min(90vh, 720px); }
+
+  /* =========================================================================
+     INTERFACE HERMES / H3 / MUI REUSABLE EXCHANGE & JOINING
+     ========================================================================= */
+  
+  .exchange-dialog {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background: var(--h3-bg-surface);
+    color: var(--h3-text-parchment);
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* En-tête Portrait */
+  .exchange-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 12px;
+    background: linear-gradient(180deg, #2b1d12 0%, #1c130b 100%);
+    border-bottom: 1px solid var(--h3-border-gold);
+    flex-shrink: 0;
+  }
+
+  .exchange-title-group {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .exchange-title {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--h3-gold-text);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .exchange-subtitle {
+    margin: 0;
+    font-size: 11px;
+    color: var(--h3-text-dim);
+  }
+
+  .exchange-close-btn {
+    width: 32px;
+    height: 32px;
+    background: #271a0e;
+    border: 1px solid var(--h3-border-gold);
+    color: var(--h3-gold-text);
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0;
+    font-weight: 400;
+  }
+
+  .exchange-close-btn:hover {
+    background: #3e2612;
+    border-color: var(--h3-border-gold-bright);
+  }
+
+  /* Corps principal avec défilement sécurisé */
+  .exchange-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  /* SECTION 1: CRÉATURES À ACCUEILLIR (JOINING) */
+  .joining-section {
+    background: #23160b;
+    border: 1px solid var(--h3-border-gold);
+    padding: 8px 10px;
+    position: relative;
+  }
+
+  .section-tag {
+    font-size: 11.5px;
+    color: var(--h3-gold-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .section-tag span.badge-status {
+    background: rgba(244, 196, 102, 0.15);
+    border: 1px solid var(--h3-border-gold);
+    color: var(--h3-gold-text);
+    padding: 2px 6px;
+    font-size: 10px;
+    border-radius: 0;
+  }
+
+  .joining-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #2d1d0e;
+    border: 1px solid var(--h3-border-gold);
+    padding: 8px;
+    cursor: pointer;
+    position: relative;
+    transition: background 0.15s, border-color 0.15s;
+  }
+
+  .joining-card:hover {
+    background: #392412;
+    border-color: var(--h3-border-gold-bright);
+  }
+
+  .joining-card.selected {
+    border-color: var(--h3-border-gold-bright);
+    background: #462c16;
+    box-shadow: 0 0 8px rgba(244, 196, 102, 0.4);
+  }
+
+  .joining-card.empty-joining {
+    opacity: 0.5;
+    cursor: default;
+    border-style: dashed;
+    justify-content: center;
+    padding: 14px;
+    color: var(--h3-text-dim);
+    font-size: 12px;
+  }
+
+  .creature-avatar {
+    width: 54px;
+    height: 54px;
+    background: #110b06;
+    border: 1px solid var(--h3-border-gold);
+    position: relative;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .creature-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .creature-avatar .creature-emoji {
+    font-size: 30px;
+  }
+
+  .creature-count-badge {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: rgba(18, 12, 7, 0.95);
+    border-top: 1px solid var(--h3-border-gold);
+    border-left: 1px solid var(--h3-border-gold);
+    color: #fff;
+    font-size: 11px;
+    padding: 1px 4px;
+    font-weight: 400;
+  }
+
+  .creature-info {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .creature-name-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .creature-name {
+    font-size: 14px;
+    color: var(--h3-gold-text);
+    font-weight: 400;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .creature-tier {
+    font-size: 10px;
+    color: #baa37b;
+  }
+
+  .creature-stats-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    font-size: 10.5px;
+    color: #e5d1ae;
+  }
+
+  .stat-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    background: #190f07;
+    padding: 1px 4px;
+    border: 1px solid #4a341b;
+  }
+
+  /* SECTION 2: ARMÉE DU HÉROS (7 SLOTS) */
+  .hero-army-section {
+    background: #23160b;
+    border: 1px solid var(--h3-border-gold);
+    padding: 8px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .hero-army-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(136px, 1fr));
+    gap: 8px;
+  }
+
+  /* Slot d'armée */
+  .hero-army-slot {
+    background: #2b1c0e;
+    border: 1px solid var(--h3-border-gold);
+    padding: 6px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    cursor: pointer;
+    min-height: 84px;
+    border-radius: 0;
+    transition: background 0.15s, border-color 0.15s;
+  }
+
+  .hero-army-slot:hover {
+    background: #392412;
+    border-color: var(--h3-border-gold-bright);
+  }
+
+  .hero-army-slot.selected {
+    border-color: var(--h3-border-gold-bright) !important;
+    background: #462c16 !important;
+    box-shadow: 0 0 10px rgba(244, 196, 102, 0.45);
+  }
+
+  .hero-army-slot.can-target {
+    border-color: #4caf50 !important;
+    box-shadow: 0 0 8px rgba(76, 175, 80, 0.5) !important;
+    animation: target-pulse 1.4s infinite;
+  }
+
+  @keyframes target-pulse {
+    0%, 100% { border-color: #4caf50; }
+    50% { border-color: #81c784; box-shadow: 0 0 14px rgba(129, 199, 132, 0.7); }
+  }
+
+  .slot-idx {
+    position: absolute;
+    top: 3px;
+    left: 4px;
+    font-size: 9px;
+    color: var(--h3-gold-dim);
+    letter-spacing: 0.5px;
+  }
+
+  .slot-card-body {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 12px;
+  }
+
+  .slot-meta {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .slot-name {
+    font-size: 11.5px;
+    color: var(--h3-gold-text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .slot-stats {
+    font-size: 9.5px;
+    color: #cfb88f;
+    display: flex;
+    gap: 4px;
+  }
+
+  /* Slot Vide (+ Libre) */
+  .hero-army-slot.is-empty {
+    border-style: dashed;
+    background: #1b1107;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  .hero-army-slot.is-empty:hover {
+    background: #27190b;
+    border-color: var(--h3-border-gold-bright);
+  }
+
+  .empty-label-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    color: var(--h3-gold-dim);
+  }
+
+  .empty-plus {
+    font-size: 18px;
+    line-height: 1;
+  }
+
+  .empty-text {
+    font-size: 11px;
+    letter-spacing: 0.5px;
+  }
+
+  /* SECTION 3: ZONE DE CONTRÔLE / DOCK D'ACTIONS */
+  .exchange-dock {
+    background: #1a1108;
+    border-top: 1px solid var(--h3-border-gold);
+    padding: 8px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+
+  .dock-hint {
+    margin: 0;
+    font-size: 11.5px;
+    color: var(--h3-gold-dim);
+    text-align: center;
+    min-height: 16px;
+    line-height: 1.3;
+  }
+
+  /* Outils de scission / split */
+  .split-panel {
+    background: #25180c;
+    border: 1px solid var(--h3-border-gold);
+    padding: 6px 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .split-panel.hidden {
+    display: none;
+  }
+
+  .split-label {
+    font-size: 12px;
+    color: var(--h3-gold-text);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    white-space: nowrap;
+  }
+
+  .split-stepper {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .split-stepper button {
+    width: 28px;
+    height: 28px;
+    background: #352110;
+    border: 1px solid var(--h3-border-gold);
+    color: #fff;
+    font-family: inherit;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 0;
+    font-weight: 400;
+  }
+
+  .split-stepper button:hover {
+    background: #4a2f17;
+    border-color: var(--h3-border-gold-bright);
+  }
+
+  .split-input {
+    width: 56px;
+    height: 28px;
+    background: #120b06;
+    border: 1px solid var(--h3-border-gold);
+    color: var(--h3-gold-text);
+    font-family: inherit;
+    font-size: 13px;
+    text-align: center;
+    border-radius: 0;
+    font-weight: 400;
+  }
+
+  .split-quick-buttons {
+    display: flex;
+    gap: 4px;
+  }
+
+  .split-quick-btn {
+    padding: 4px 8px;
+    height: 28px;
+    background: #2a1a0c;
+    border: 1px solid var(--h3-border-gold);
+    color: var(--h3-text-parchment);
+    font-size: 11px;
+    cursor: pointer;
+    border-radius: 0;
+    font-weight: 400;
+  }
+
+  .split-quick-btn:hover {
+    background: #422913;
+    border-color: var(--h3-border-gold-bright);
+  }
+
+  /* Barre de boutons d'action */
+  .dock-actions {
+    display: flex;
+    gap: 6px;
+    align-items: stretch;
+  }
+
+  .action-btn {
+    flex: 1;
+    min-height: 42px;
+    background: #271a0e;
+    border: 1px solid var(--h3-border-gold);
+    color: var(--h3-text-parchment);
+    font-family: inherit;
+    font-size: 12.5px;
+    font-weight: 400;
+    padding: 6px 10px;
+    cursor: pointer;
+    border-radius: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    white-space: nowrap;
+    transition: background 0.15s, border-color 0.15s;
+  }
+
+  .action-btn:hover:not(:disabled) {
+    background: #392412;
+    border-color: var(--h3-border-gold-bright);
+    color: #fff;
+  }
+
+  .action-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    border-color: #553e20;
+  }
+
+  .action-btn.primary {
+    background: linear-gradient(180deg, #533314 0%, #351f0b 100%);
+    border-color: var(--h3-border-gold-bright);
+    color: var(--h3-gold-text);
+  }
+
+  .action-btn.primary:hover:not(:disabled) {
+    background: linear-gradient(180deg, #6c4219 0%, #46280e 100%);
+  }
+
+  .action-btn.danger {
+    background: linear-gradient(180deg, #3d1010 0%, #250909 100%);
+    border-color: #933;
+    color: #ffcdd2;
+  }
+
+  .action-btn.danger:hover:not(:disabled) {
+    background: #4f1515;
+    border-color: #e53935;
+  }
+
+  /* =========================================================================
+     MODE PAYSAGE MOBILE (Rail de commandes à droite selon AGENTS.md)
+     ========================================================================= */
+  
+  .exchange-dialog.landscape-layout {
+    flex-direction: row;
+  }
+
+  .exchange-dialog.landscape-layout .exchange-body {
+    flex: 1;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 10px;
+    overflow-y: auto;
+  }
+
+  .exchange-dialog.landscape-layout .hero-army-grid {
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  }
+
+  .exchange-dialog.landscape-layout .exchange-dock {
+    width: 200px;
+    border-top: none;
+    border-left: 1px solid var(--h3-border-gold);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+  }
+
+  .exchange-dialog.landscape-layout .exchange-header-landscape {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 6px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--h3-border-gold);
+  }
+
+  .exchange-dialog.landscape-layout .dock-actions {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .exchange-dialog.landscape-layout .action-btn {
+    width: 100%;
+    min-height: 38px;
+  }
+
+  /* Modale Confirmation (Dismiss / Finish Warning) */
+  .modal-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.75);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    padding: 16px;
+  }
+
+  .modal-overlay.hidden {
+    display: none;
+  }
+
+  .modal-card {
+    background: #23160b;
+    border: 1px solid var(--h3-border-gold-bright);
+    max-width: 360px;
+    width: 100%;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.9);
+  }
+
+  .modal-title {
+    margin: 0;
+    font-size: 15px;
+    color: var(--h3-gold-text);
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .modal-desc {
+    margin: 0;
+    font-size: 12.5px;
+    color: var(--h3-text-parchment);
+    line-height: 1.4;
+  }
+
+  .modal-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 4px;
+  }
+
+  .modal-actions button {
+    flex: 1;
+    min-height: 38px;
+    background: #271a0e;
+    border: 1px solid var(--h3-border-gold);
+    color: var(--h3-text-parchment);
+    font-family: inherit;
+    font-size: 12.5px;
+    cursor: pointer;
+    border-radius: 0;
+    font-weight: 400;
+  }
+
+  .modal-actions button.primary {
+    background: #533314;
+    border-color: var(--h3-border-gold-bright);
+    color: var(--h3-gold-text);
+  }
+
+  .modal-actions button.danger {
+    background: #4a1515;
+    border-color: #d32f2f;
+    color: #ffcdd2;
+  }
+
+  /* Toast Notification */
+  .toast {
+    position: absolute;
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(30, 20, 11, 0.95);
+    border: 1px solid var(--h3-border-gold-bright);
+    color: var(--h3-gold-text);
+    padding: 6px 14px;
+    font-size: 12px;
+    z-index: 90;
+    pointer-events: none;
+    transition: opacity 0.3s;
+    white-space: nowrap;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.7);
+  }
+
+  .toast.hidden {
+    opacity: 0;
+    visibility: hidden;
+  }
+</style>
+</head>
+<body>
+
+  <!-- BARRE DU SIMULATEUR -->
+  <header class="sim-tools">
+    <h1 class="sim-title">
+      <span>🛡️</span>
+      <span id="proto-app-title">Prototype · Accueil &amp; Faire de la place (Joining)</span>
+    </h1>
+    <div class="sim-groups">
+      <!-- Appareils -->
+      <button class="sim-btn active" data-device="p30">Huawei P30 (360×740)</button>
+      <button class="sim-btn" data-device="iphone">iPhone 15 (393×852)</button>
+      <button class="sim-btn" data-device="ipad">iPad Mini</button>
+      <button class="sim-btn" data-device="responsive">Plein écran</button>
+      
+      <!-- Orientation -->
+      <button class="sim-btn" id="btn-orientation">🔄 <span id="label-orientation">Portrait</span></button>
+
+      <!-- Langue -->
+      <button class="sim-btn" id="btn-lang">🌐 <span id="label-lang">FR</span></button>
+
+      <!-- Reset -->
+      <button class="sim-btn" id="btn-reset">↺ <span id="label-reset">Réinitialiser</span></button>
+    </div>
+  </header>
+
+  <!-- CONTENEUR DU TÉLÉPHONE / ÉCRAN -->
+  <div class="device-frame-wrapper">
+    <div class="device-screen p30-portrait" id="screen-container">
+      
+      <!-- DIALOGUE INTERACTIF -->
+      <main class="exchange-dialog" id="exchange-dialog">
+        
+        <!-- EN-TÊTE PORTRAIT -->
+        <header class="exchange-header" id="portrait-header">
+          <div class="exchange-title-group">
+            <h2 class="exchange-title">
+              <span aria-hidden="true">🤝</span>
+              <span id="ui-title">Accueil de troupes</span>
+            </h2>
+            <p class="exchange-subtitle" id="ui-subtitle">Faire de la place dans l'armée du héros</p>
+          </div>
+          <button class="exchange-close-btn" id="btn-close-header" title="Fermer">✕</button>
+        </header>
+
+        <!-- CORPS DU DIALOGUE -->
+        <div class="exchange-body">
+          
+          <!-- SECTION 1: CRÉATURES À ACCUEILLIR -->
+          <section class="joining-section" aria-label="Troupes en attente">
+            <div class="section-tag">
+              <span id="ui-joining-heading">Créatures prêtes à rejoindre</span>
+              <span class="badge-status" id="ui-joining-badge">En attente</span>
+            </div>
+            
+            <div id="joining-cards-container">
+              <!-- Rendu dynamique de la troupe à accueillir -->
+            </div>
+          </section>
+
+          <!-- SECTION 2: ARMÉE DU HÉROS (7 SLOTS) -->
+          <section class="hero-army-section" aria-label="Armée du héros">
+            <div class="section-tag">
+              <span id="ui-hero-heading">Armée du héros (7 emplacements)</span>
+              <span class="badge-status" id="ui-hero-slots-count">7/7 pleins</span>
+            </div>
+
+            <div class="hero-army-grid" id="hero-army-grid">
+              <!-- Rendu dynamique des 7 slots de l'armée -->
+            </div>
+          </section>
+
+        </div>
+
+        <!-- DOCK DE CONTRÔLES / ACTIONS -->
+        <footer class="exchange-dock" id="exchange-dock">
+          
+          <!-- En-tête visible uniquement en paysage -->
+          <div class="exchange-header-landscape" id="landscape-header" style="display: none;">
+            <h3 class="exchange-title" style="font-size: 13.5px;">🤝 Accueil</h3>
+            <button class="exchange-close-btn" id="btn-close-landscape" title="Fermer">✕</button>
+          </div>
+
+          <!-- Ligne d'aide contextuelle -->
+          <p class="dock-hint" id="dock-hint">Touchez une troupe pour la déplacer, la scinder ou la licencier.</p>
+
+          <!-- Panneau rétractable de scission (Split) -->
+          <div class="split-panel hidden" id="split-panel">
+            <span class="split-label">➗ <span id="ui-split-label">Scinder :</span></span>
+            <div class="split-stepper">
+              <button id="btn-split-dec">−</button>
+              <input type="number" id="split-input" class="split-input" min="1" max="1" value="1">
+              <button id="btn-split-inc">＋</button>
+            </div>
+            <div class="split-quick-buttons">
+              <button class="split-quick-btn" id="btn-split-half">½</button>
+              <button class="split-quick-btn" id="btn-split-one">1</button>
+            </div>
+          </div>
+
+          <!-- Barre principale des actions -->
+          <div class="dock-actions">
+            <!-- Bouton Scinder -->
+            <button class="action-btn" id="btn-action-split" disabled>
+              <span>➗</span>
+              <span id="ui-btn-split">Scinder</span>
+            </button>
+
+            <!-- Bouton Faire partir (Dismiss) -->
+            <button class="action-btn danger" id="btn-action-dismiss" disabled>
+              <span>🗑️</span>
+              <span id="ui-btn-dismiss">Faire partir</span>
+            </button>
+
+            <!-- Bouton Terminer (Finish) -->
+            <button class="action-btn primary" id="btn-action-finish">
+              <span>✓</span>
+              <span id="ui-btn-finish">Terminer</span>
+            </button>
+          </div>
+
+        </footer>
+
+        <!-- MODALE MATERIAL DESIGN 3: CONFIRMATION DISMISS / FINISH -->
+        <div class="modal-overlay hidden" id="confirm-modal">
+          <div class="modal-card">
+            <h4 class="modal-title" id="modal-title">Confirmation</h4>
+            <p class="modal-desc" id="modal-desc">Texte explicatif...</p>
+            <div class="modal-actions">
+              <button id="modal-btn-cancel">Annuler</button>
+              <button id="modal-btn-confirm" class="primary">Confirmer</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- TOAST MESSAGE -->
+        <div class="toast hidden" id="toast-message">Message</div>
+
+      </main>
+
+    </div>
+  </div>
+
+  <script type="module">
+    // Données initiales et état du simulateur
+    const I18N = {
+      fr: {
+        appTitle: "Prototype · Accueil & Faire de la place (Joining / Make Room)",
+        title: "Accueil de troupes",
+        subtitle: "Faire de la place dans l'armée du héros",
+        joiningHeading: "Créatures prêtes à rejoindre",
+        waitingBadge: "En attente",
+        joinedBadge: "Toutes accueillies",
+        heroHeading: "Armée du héros (7 emplacements)",
+        slotsFull: "7/7 pleins",
+        slotsCount: (used) => `${used}/7 occupés`,
+        freeSlot: "+ Libre",
+        slotTitle: (idx) => `#${idx + 1}`,
+        splitLabel: "Scinder :",
+        btnSplit: "Scinder",
+        btnDismiss: "Faire partir",
+        btnFinish: "Terminer",
+        cancel: "Annuler",
+        confirm: "Confirmer",
+        back: "Retour",
+        confirmAndFinish: "Confirmer et terminer",
+        hintDefault: "Touchez une troupe pour la déplacer, la scinder ou la licencier.",
+        hintSelectedHero: (name, count) => `${name} (× ${count}) sélectionné. Touchez un slot vide ou une troupe pour échanger/fusionner.`,
+        hintSelectedJoining: (name, count) => `${name} (× ${count}) en attente. Choisissez un slot libre dans l'armée pour l'accueillir.`,
+        hintSplitReady: (count) => `Choisissez un slot libre où placer la fraction de ${count} unité(s).`,
+        toastDismissed: (name, count) => `${count} ${name} ont été licenciés.`,
+        toastMerged: (name, count) => `${count} ${name} regroupés !`,
+        toastSwapped: (n1, n2) => `Permutation de ${n1} et ${n2}.`,
+        toastMoved: (name) => `${name} déplacé vers un slot libre.`,
+        toastSplitDone: (name, amt) => `${amt} ${name} séparés dans un nouvel emplacement.`,
+        toastAllJoined: "Toutes les créatures ont rejoint votre armée !",
+        dismissModalTitle: "Licencier cette troupe ?",
+        dismissModalDesc: (name, count, slot) => `Voulez-vous vraiment faire partir ${count} ${name} pour libérer l'emplacement #${slot + 1} ? Cette action est irréversible.`,
+        dismissModalLastTroop: "Un héros doit toujours conserver au moins une troupe.",
+        finishModalTitle: "Terminer sans ces troupes ?",
+        finishModalDesc: (list) => `Attention : ${list} n'ont pas été accueillis dans votre armée. Si vous terminez maintenant, ces créatures s'enfuiront et seront perdues. Confirmer ?`,
+        finishSuccess: "Armée réorganisée avec succès !"
+      },
+      en: {
+        appTitle: "Prototype · Hero Army & Make Room (Joining)",
+        title: "Make room",
+        subtitle: "Arrange army to welcome joining creatures",
+        joiningHeading: "Creatures wishing to join",
+        waitingBadge: "Waiting",
+        joinedBadge: "All joined",
+        heroHeading: "Hero army (7 slots)",
+        slotsFull: "7/7 full",
+        slotsCount: (used) => `${used}/7 occupied`,
+        freeSlot: "+ Free",
+        slotTitle: (idx) => `#${idx + 1}`,
+        splitLabel: "Split:",
+        btnSplit: "Split",
+        btnDismiss: "Dismiss",
+        btnFinish: "Done",
+        cancel: "Cancel",
+        confirm: "Confirm",
+        back: "Back",
+        confirmAndFinish: "Confirm and finish",
+        hintDefault: "Tap a unit to move, split or dismiss it.",
+        hintSelectedHero: (name, count) => `${name} (× ${count}) selected. Tap an empty slot or another stack to swap/merge.`,
+        hintSelectedJoining: (name, count) => `${name} (× ${count}) waiting. Choose a free slot in hero army to welcome them.`,
+        hintSplitReady: (count) => `Tap a free slot to place the split stack of ${count} unit(s).`,
+        toastDismissed: (name, count) => `${count} ${name} were dismissed.`,
+        toastMerged: (name, count) => `${count} ${name} merged!`,
+        toastSwapped: (n1, n2) => `Swapped ${n1} and ${n2}.`,
+        toastMoved: (name) => `${name} moved to a free slot.`,
+        toastSplitDone: (name, amt) => `${amt} ${name} separated into a new slot.`,
+        toastAllJoined: "All creatures have joined your army!",
+        dismissModalTitle: "Dismiss this unit?",
+        dismissModalDesc: (name, count, slot) => `Are you sure you want to dismiss ${count} ${name} to free slot #${slot + 1}? This action is irreversible.`,
+        dismissModalLastTroop: "A hero must always keep at least one unit.",
+        finishModalTitle: "Finish without these units?",
+        finishModalDesc: (list) => `Warning: ${list} have not joined your army. If you finish now, these creatures will flee and be lost. Confirm?`,
+        finishSuccess: "Army reorganized successfully!"
+      }
+    };
+
+    let currentLang = 'fr';
+    let currentDevice = 'p30';
+    let isLandscape = false;
+
+    // Données du scénario de test
+    const INITIAL_STATE = {
+      joining: [
+        {
+          id: 'archangels',
+          name: { fr: 'Archanges', en: 'Archangels' },
+          count: 14,
+          icon: '👼',
+          atk: 30,
+          def: 30,
+          dmg: '50',
+          hp: 250,
+          spd: 18,
+          shooter: false,
+          tier: 'Niveau 7'
+        }
+      ],
+      heroArmy: [
+        { slot: 0, id: 'pikemen', name: { fr: 'Piquiers', en: 'Pikemen' }, count: 95, icon: '🛡️', atk: 4, def: 5, dmg: '1-3', hp: 10, spd: 4, shooter: false },
+        { slot: 1, id: 'crossbowmen', name: { fr: 'Arbalétriers', en: 'Marksmen' }, count: 64, icon: '🏹', atk: 6, def: 3, dmg: '2-3', hp: 10, spd: 6, shooter: true },
+        { slot: 2, id: 'griffins', name: { fr: 'Griffons royaux', en: 'Royal Griffins' }, count: 32, icon: '🦅', atk: 9, def: 9, dmg: '3-6', hp: 25, spd: 9, shooter: false },
+        { slot: 3, id: 'swordsmen', name: { fr: 'Épéistes', en: 'Crusaders' }, count: 28, icon: '⚔️', atk: 12, def: 12, dmg: '7-10', hp: 35, spd: 6, shooter: false },
+        { slot: 4, id: 'monks', name: { fr: 'Zélotes', en: 'Zealots' }, count: 18, icon: '✨', atk: 12, def: 10, dmg: '10-12', hp: 32, spd: 7, shooter: true },
+        { slot: 5, id: 'cavaliers', name: { fr: 'Champions', en: 'Champions' }, count: 12, icon: '🐎', atk: 16, def: 14, dmg: '20-25', hp: 100, spd: 9, shooter: false },
+        { slot: 6, id: 'angels', name: { fr: 'Anges', en: 'Angels' }, count: 6, icon: '👼', atk: 20, def: 20, dmg: '50', hp: 200, spd: 12, shooter: false }
+      ]
+    };
+
+    // État actif
+    let state = JSON.parse(JSON.stringify(INITIAL_STATE));
+    let selection = null; // { type: 'joining'|'army', index: number }
+    let splitActive = false;
+    let splitAmount = 1;
+
+    // Toast Timer
+    let toastTimer = null;
+    function showToast(msg) {
+      const el = document.getElementById('toast-message');
+      el.textContent = msg;
+      el.classList.remove('hidden');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => el.classList.add('hidden'), 2600);
+    }
+
+    // Modal
+    function openModal({ title, desc, confirmText, confirmClass, onConfirm }) {
+      const modal = document.getElementById('confirm-modal');
+      const titleEl = document.getElementById('modal-title');
+      const descEl = document.getElementById('modal-desc');
+      const confirmBtn = document.getElementById('modal-btn-confirm');
+      const cancelBtn = document.getElementById('modal-btn-cancel');
+
+      titleEl.textContent = title;
+      descEl.textContent = desc;
+      confirmBtn.textContent = confirmText || I18N[currentLang].confirm;
+      confirmBtn.className = confirmClass || 'primary';
+
+      const handleConfirm = () => {
+        modal.classList.add('hidden');
+        confirmBtn.removeEventListener('click', handleConfirm);
+        cancelBtn.removeEventListener('click', handleCancel);
+        onConfirm();
+      };
+
+      const handleCancel = () => {
+        modal.classList.add('hidden');
+        confirmBtn.removeEventListener('click', handleConfirm);
+        cancelBtn.removeEventListener('click', handleCancel);
+      };
+
+      confirmBtn.addEventListener('click', handleConfirm);
+      cancelBtn.addEventListener('click', handleCancel);
+      modal.classList.remove('hidden');
+    }
+
+    // Render principal
+    function render() {
+      const lang = I18N[currentLang];
+      
+      // Mettre à jour textes statiques
+      document.getElementById('ui-title').textContent = lang.title;
+      document.getElementById('ui-subtitle').textContent = lang.subtitle;
+      document.getElementById('ui-joining-heading').textContent = lang.joiningHeading;
+      document.getElementById('ui-hero-heading').textContent = lang.heroHeading;
+      document.getElementById('ui-split-label').textContent = lang.splitLabel;
+      document.getElementById('ui-btn-split').textContent = lang.btnSplit;
+      document.getElementById('ui-btn-dismiss').textContent = lang.btnDismiss;
+      document.getElementById('ui-btn-finish').textContent = lang.btnFinish;
+
+      // Badges
+      const hasJoining = state.joining.some(j => j && j.count > 0);
+      const joiningBadge = document.getElementById('ui-joining-badge');
+      joiningBadge.textContent = hasJoining ? lang.waitingBadge : lang.joinedBadge;
+      joiningBadge.style.color = hasJoining ? 'var(--h3-gold-text)' : '#4caf50';
+
+      const usedSlots = state.heroArmy.filter(Boolean).length;
+      document.getElementById('ui-hero-slots-count').textContent = usedSlots === 7 ? lang.slotsFull : lang.slotsCount(usedSlots);
+
+      // Rendu Section Joining
+      const joiningContainer = document.getElementById('joining-cards-container');
+      joiningContainer.innerHTML = '';
+      
+      if (!hasJoining) {
+        const emptyDiv = document.createElement('div');
+        emptyDiv.className = 'joining-card empty-joining';
+        emptyDiv.textContent = `✓ ${lang.joinedBadge}`;
+        joiningContainer.appendChild(emptyDiv);
+      } else {
+        state.joining.forEach((creature, idx) => {
+          if (!creature || creature.count <= 0) return;
+          const isSelected = selection && selection.type === 'joining' && selection.index === idx;
+          const card = document.createElement('div');
+          card.className = `joining-card ${isSelected ? 'selected' : ''}`;
+          card.setAttribute('role', 'button');
+          card.setAttribute('tabindex', '0');
+
+          card.innerHTML = `
+            <div class="creature-avatar">
+              <span class="creature-emoji">${creature.icon}</span>
+              <span class="creature-count-badge">× ${creature.count}</span>
+            </div>
+            <div class="creature-info">
+              <div class="creature-name-row">
+                <span class="creature-name">${creature.name[currentLang]}</span>
+                <span class="creature-tier">${creature.tier}</span>
+              </div>
+              <div class="creature-stats-row">
+                <span class="stat-pill">⚔️ ${creature.atk}</span>
+                <span class="stat-pill">🛡️ ${creature.def}</span>
+                <span class="stat-pill">💥 ${creature.dmg}</span>
+                <span class="stat-pill">❤️ ${creature.hp}</span>
+                <span class="stat-pill">⚡ ${creature.spd}</span>
+              </div>
+            </div>
+          `;
+
+          card.addEventListener('click', () => handleSelectJoining(idx));
+          joiningContainer.appendChild(card);
+        });
+      }
+
+      // Rendu 7 Slots Armée du Héros
+      const armyGrid = document.getElementById('hero-army-grid');
+      armyGrid.innerHTML = '';
+
+      for (let s = 0; s < 7; s++) {
+        const slotUnit = state.heroArmy[s];
+        const isSelected = selection && selection.type === 'army' && selection.index === s;
+        const canTarget = selection && (!slotUnit || (selection.type === 'joining' ? true : selection.index !== s));
+
+        const slotEl = document.createElement('div');
+        slotEl.className = `hero-army-slot ${!slotUnit ? 'is-empty' : ''} ${isSelected ? 'selected' : ''} ${canTarget ? 'can-target' : ''}`;
+        slotEl.setAttribute('role', 'button');
+        slotEl.setAttribute('tabindex', '0');
+
+        if (!slotUnit) {
+          slotEl.innerHTML = `
+            <span class="slot-idx">${lang.slotTitle(s)}</span>
+            <div class="empty-label-group">
+              <span class="empty-plus">＋</span>
+              <span class="empty-text">${lang.freeSlot}</span>
+            </div>
+          `;
+        } else {
+          slotEl.innerHTML = `
+            <span class="slot-idx">${lang.slotTitle(s)}</span>
+            <div class="slot-card-body">
+              <div class="creature-avatar" style="width: 44px; height: 44px;">
+                <span class="creature-emoji" style="font-size: 22px;">${slotUnit.icon}</span>
+                <span class="creature-count-badge">× ${slotUnit.count}</span>
+              </div>
+              <div class="slot-meta">
+                <span class="slot-name">${slotUnit.name[currentLang]}</span>
+                <div class="slot-stats">
+                  <span>⚔️ ${slotUnit.atk}</span>
+                  <span>🛡️ ${slotUnit.def}</span>
+                </div>
+              </div>
+            </div>
+          `;
+        }
+
+        slotEl.addEventListener('click', () => handleSelectArmySlot(s));
+        armyGrid.appendChild(slotEl);
+      }
+
+      // Actions & Outils
+      updateDockControls();
+    }
+
+    // Gestion de la barre d'action & du Split
+    function updateDockControls() {
+      const lang = I18N[currentLang];
+      const hintEl = document.getElementById('dock-hint');
+      const btnSplit = document.getElementById('btn-action-split');
+      const btnDismiss = document.getElementById('btn-action-dismiss');
+      const splitPanel = document.getElementById('split-panel');
+
+      if (!selection) {
+        hintEl.textContent = lang.hintDefault;
+        btnSplit.disabled = true;
+        btnDismiss.disabled = true;
+        splitPanel.classList.add('hidden');
+        splitActive = false;
+        return;
+      }
+
+      let selectedUnit = null;
+      if (selection.type === 'joining') {
+        selectedUnit = state.joining[selection.index];
+        hintEl.textContent = lang.hintSelectedJoining(selectedUnit.name[currentLang], selectedUnit.count);
+        btnDismiss.disabled = true; // On ne licencie pas les créatures à accueillir
+      } else {
+        selectedUnit = state.heroArmy[selection.index];
+        if (selectedUnit) {
+          hintEl.textContent = splitActive 
+            ? lang.hintSplitReady(splitAmount) 
+            : lang.hintSelectedHero(selectedUnit.name[currentLang], selectedUnit.count);
+          btnDismiss.disabled = false;
+        } else {
+          hintEl.textContent = lang.hintDefault;
+          btnDismiss.disabled = true;
+        }
+      }
+
+      // Bouton Split : possible si stack > 1 et appartient à l'armée
+      if (selectedUnit && selectedUnit.count > 1 && selection.type === 'army') {
+        btnSplit.disabled = false;
+      } else {
+        btnSplit.disabled = true;
+        splitPanel.classList.add('hidden');
+        splitActive = false;
+      }
+
+      if (splitActive && selectedUnit) {
+        splitPanel.classList.remove('hidden');
+        const input = document.getElementById('split-input');
+        input.max = selectedUnit.count - 1;
+        splitAmount = Math.max(1, Math.min(splitAmount, selectedUnit.count - 1));
+        input.value = splitAmount;
+      } else {
+        splitPanel.classList.add('hidden');
+      }
+    }
+
+    // Sélection Troupes à accueillir
+    function handleSelectJoining(idx) {
+      if (selection && selection.type === 'joining' && selection.index === idx) {
+        selection = null;
+      } else {
+        selection = { type: 'joining', index: idx };
+        splitActive = false;
+      }
+      render();
+    }
+
+    // Sélection Slots Armée
+    function handleSelectArmySlot(slotIdx) {
+      const clickedUnit = state.heroArmy[slotIdx];
+
+      // Cas 1 : Aucune sélection préalable
+      if (!selection) {
+        if (clickedUnit) {
+          selection = { type: 'army', index: slotIdx };
+        }
+        render();
+        return;
+      }
+
+      // Cas 2 : Re-clic sur le même slot -> désélection
+      if (selection.type === 'army' && selection.index === slotIdx) {
+        selection = null;
+        splitActive = false;
+        render();
+        return;
+      }
+
+      // Cas 3 : Action de transfert depuis "Joining" vers l'armée
+      if (selection.type === 'joining') {
+        const incoming = state.joining[selection.index];
+        if (!incoming || incoming.count <= 0) return;
+
+        // Slot vide -> Déplacement direct
+        if (!clickedUnit) {
+          state.heroArmy[slotIdx] = { ...incoming, slot: slotIdx };
+          state.joining[selection.index] = null;
+          selection = null;
+          showToast(I18N[currentLang].toastMoved(incoming.name[currentLang]));
+          checkAllJoined();
+          render();
+          return;
+        }
+
+        // Même type d'unité -> Fusion
+        if (clickedUnit.id === incoming.id) {
+          clickedUnit.count += incoming.count;
+          state.joining[selection.index] = null;
+          selection = null;
+          showToast(I18N[currentLang].toastMerged(clickedUnit.name[currentLang], clickedUnit.count));
+          checkAllJoined();
+          render();
+          return;
+        }
+
+        // Types différents -> Échange / Swap
+        const displaced = { ...clickedUnit };
+        state.heroArmy[slotIdx] = { ...incoming, slot: slotIdx };
+        state.joining[selection.index] = displaced;
+        selection = null;
+        showToast(I18N[currentLang].toastSwapped(incoming.name[currentLang], displaced.name[currentLang]));
+        render();
+        return;
+      }
+
+      // Cas 4 : Action entre deux slots de l'armée du héros
+      if (selection.type === 'army') {
+        const sourceSlot = selection.index;
+        const sourceUnit = state.heroArmy[sourceSlot];
+
+        // Mode Scission actif
+        if (splitActive && !clickedUnit) {
+          const splitFraction = splitAmount;
+          sourceUnit.count -= splitFraction;
+          state.heroArmy[slotIdx] = {
+            ...sourceUnit,
+            slot: slotIdx,
+            count: splitFraction
+          };
+          splitActive = false;
+          selection = null;
+          showToast(I18N[currentLang].toastSplitDone(sourceUnit.name[currentLang], splitFraction));
+          render();
+          return;
+        }
+
+        // Slot de destination vide -> Déplacement
+        if (!clickedUnit) {
+          state.heroArmy[slotIdx] = { ...sourceUnit, slot: slotIdx };
+          state.heroArmy[sourceSlot] = null;
+          selection = null;
+          splitActive = false;
+          showToast(I18N[currentLang].toastMoved(sourceUnit.name[currentLang]));
+          render();
+          return;
+        }
+
+        // Même type -> Fusion des stacks
+        if (clickedUnit.id === sourceUnit.id) {
+          clickedUnit.count += sourceUnit.count;
+          state.heroArmy[sourceSlot] = null;
+          selection = null;
+          splitActive = false;
+          showToast(I18N[currentLang].toastMerged(clickedUnit.name[currentLang], clickedUnit.count));
+          render();
+          return;
+        }
+
+        // Types différents -> Permutation (Swap)
+        state.heroArmy[sourceSlot] = { ...clickedUnit, slot: sourceSlot };
+        state.heroArmy[slotIdx] = { ...sourceUnit, slot: slotIdx };
+        selection = null;
+        splitActive = false;
+        showToast(I18N[currentLang].toastSwapped(sourceUnit.name[currentLang], clickedUnit.name[currentLang]));
+        render();
+        return;
+      }
+    }
+
+    function checkAllJoined() {
+      if (!state.joining.some(j => j && j.count > 0)) {
+        showToast(I18N[currentLang].toastAllJoined);
+      }
+    }
+
+    // Gestion du bouton "Faire partir" (Dismiss)
+    document.getElementById('btn-action-dismiss').addEventListener('click', () => {
+      if (!selection || selection.type !== 'army') return;
+      const lang = I18N[currentLang];
+      const slot = selection.index;
+      const unit = state.heroArmy[slot];
+      if (!unit) return;
+
+      // Règle H3 : On ne peut pas renvoyer la dernière troupe d'un héros
+      const remainingCount = state.heroArmy.filter(Boolean).length;
+      if (remainingCount <= 1) {
+        showToast(lang.dismissModalLastTroop);
+        return;
+      }
+
+      openModal({
+        title: lang.dismissModalTitle,
+        desc: lang.dismissModalDesc(unit.name[currentLang], unit.count, slot),
+        confirmText: lang.btnDismiss,
+        confirmClass: 'danger',
+        onConfirm: () => {
+          state.heroArmy[slot] = null;
+          selection = null;
+          splitActive = false;
+          showToast(lang.toastDismissed(unit.name[currentLang], unit.count));
+          render();
+        }
+      });
+    });
+
+    // Gestion du mode Scinder
+    document.getElementById('btn-action-split').addEventListener('click', () => {
+      if (!selection || selection.type !== 'army') return;
+      const unit = state.heroArmy[selection.index];
+      if (!unit || unit.count <= 1) return;
+
+      splitActive = !splitActive;
+      if (splitActive) {
+        splitAmount = Math.floor(unit.count / 2) || 1;
+      }
+      render();
+    });
+
+    document.getElementById('btn-split-dec').addEventListener('click', () => {
+      if (splitAmount > 1) {
+        splitAmount--;
+        render();
+      }
+    });
+
+    document.getElementById('btn-split-inc').addEventListener('click', () => {
+      const unit = state.heroArmy[selection.index];
+      if (unit && splitAmount < unit.count - 1) {
+        splitAmount++;
+        render();
+      }
+    });
+
+    document.getElementById('btn-split-half').addEventListener('click', () => {
+      const unit = state.heroArmy[selection.index];
+      if (unit) {
+        splitAmount = Math.max(1, Math.floor(unit.count / 2));
+        render();
+      }
+    });
+
+    document.getElementById('btn-split-one').addEventListener('click', () => {
+      splitAmount = 1;
+      render();
+    });
+
+    document.getElementById('split-input').addEventListener('input', (e) => {
+      const val = parseInt(e.target.value, 10);
+      const unit = state.heroArmy[selection?.index];
+      if (!isNaN(val) && unit) {
+        splitAmount = Math.max(1, Math.min(val, unit.count - 1));
+        render();
+      }
+    });
+
+    // Gestion du bouton "Terminer" (Finish)
+    document.getElementById('btn-action-finish').addEventListener('click', () => {
+      const lang = I18N[currentLang];
+      const unjoined = state.joining.filter(j => j && j.count > 0);
+
+      // Si des troupes n'ont pas été accueillies
+      if (unjoined.length > 0) {
+        const listStr = unjoined.map(u => `${u.name[currentLang]} (× ${u.count})`).join(', ');
+        openModal({
+          title: lang.finishModalTitle,
+          desc: lang.finishModalDesc(listStr),
+          confirmText: lang.confirmAndFinish,
+          confirmClass: 'primary',
+          onConfirm: () => {
+            showToast(lang.finishSuccess);
+            selection = null;
+            splitActive = false;
+            render();
+          }
+        });
+        return;
+      }
+
+      showToast(lang.finishSuccess);
+    });
+
+    // Boutons fermeture
+    document.getElementById('btn-close-header').addEventListener('click', () => {
+      document.getElementById('btn-action-finish').click();
+    });
+    document.getElementById('btn-close-landscape').addEventListener('click', () => {
+      document.getElementById('btn-action-finish').click();
+    });
+
+    // =========================================================================
+    // CONTRÔLES DU SIMULATEUR D'APPAREILS
+    // =========================================================================
+
+    const container = document.getElementById('screen-container');
+    const dialog = document.getElementById('exchange-dialog');
+    const portraitHeader = document.getElementById('portrait-header');
+    const landscapeHeader = document.getElementById('landscape-header');
+
+    function updateDeviceLayout() {
+      container.className = `device-screen ${currentDevice}-${isLandscape ? 'landscape' : 'portrait'}`;
+      if (currentDevice === 'responsive') {
+        container.className = 'device-screen responsive';
+      }
+
+      if (isLandscape) {
+        dialog.classList.add('landscape-layout');
+        portraitHeader.style.display = 'none';
+        landscapeHeader.style.display = 'flex';
+      } else {
+        dialog.classList.remove('landscape-layout');
+        portraitHeader.style.display = 'flex';
+        landscapeHeader.style.display = 'none';
+      }
+    }
+
+    // Boutons de sélection d'appareil
+    document.querySelectorAll('[data-device]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('[data-device]').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentDevice = btn.dataset.device;
+        updateDeviceLayout();
+      });
+    });
+
+    // Bascule Orientation
+    document.getElementById('btn-orientation').addEventListener('click', () => {
+      isLandscape = !isLandscape;
+      document.getElementById('label-orientation').textContent = isLandscape ? 'Paysage' : 'Portrait';
+      updateDeviceLayout();
+    });
+
+    // Bascule Langue
+    document.getElementById('btn-lang').addEventListener('click', () => {
+      currentLang = currentLang === 'fr' ? 'en' : 'fr';
+      document.getElementById('label-lang').textContent = currentLang.toUpperCase();
+      document.getElementById('proto-app-title').textContent = I18N[currentLang].appTitle;
+      render();
+    });
+
+    // Réinitialiser le scénario
+    document.getElementById('btn-reset').addEventListener('click', () => {
+      state = JSON.parse(JSON.stringify(INITIAL_STATE));
+      selection = null;
+      splitActive = false;
+      render();
+      showToast(currentLang === 'fr' ? 'Scénario réinitialisé' : 'Scenario reset');
+    });
+
+    // Initialisation
+    updateDeviceLayout();
+    render();
+  </script>
+</body>
+</html>
