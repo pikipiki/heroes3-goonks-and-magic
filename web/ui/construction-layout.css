@@ -124,3 +124,19 @@
   #mobile-app[data-sheet=build] .building-side-info[data-dock-cost=true] .building-price{display:none!important}
  }
 }
+
+/* Shared catalogue density; MUI Tabs includes its border in its width. */
+@layer ui-composition {
+ #mobile-app[data-sheet=build] .building-cards{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+ #mobile-app[data-sheet=build] .building-tile>:is(strong,.building-summary){overflow-wrap:anywhere!important}
+ @container goonk-viewport (orientation:landscape){
+  #mobile-app[data-sheet=build] .building-cards{grid-template-columns:repeat(4,minmax(0,1fr))!important}
+  #mobile-app[data-sheet=build] .building-controls{box-sizing:border-box!important;padding-right:4px!important}
+ }
+}
+@layer ui-composition {
+ #mobile-app[data-sheet=build] .building-controls{border:0!important;margin-bottom:0!important;padding-bottom:4px!important;gap:12px!important}
+ #mobile-app[data-sheet=build] .building-list{padding:8px!important}
+ #mobile-app[data-sheet=build] .building-group{gap:12px!important;margin-bottom:16px!important}
+ #mobile-app[data-sheet=build] .building-group h3{border:0!important;padding:4px 0!important}
+}
