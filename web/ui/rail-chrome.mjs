@@ -11,7 +11,8 @@ function createRailClose(record){
 export function useRailChrome(app){
  const chrome=app.querySelector(':scope>.mobile-top');if(!chrome)return;
  const landscape=app.clientWidth>app.clientHeight,visible=node=>node&&!node.closest('[hidden]')&&!node.closest('.MuiDialog-root[aria-hidden="true"]')&&node.getBoundingClientRect().height>0;
- const header=landscape&&visible(chrome)&&!app.dataset.sheet&&!["map","battle"].includes(app.dataset.mode)?[...app.querySelectorAll('.ui-rail-header,.hero-card-head')].filter(visible).at(-1):null;
+ const portraitHeader=!landscape&&!chrome.querySelector('.mobile-resources')?.hidden?[...app.querySelectorAll('.mobile-sheet:not([hidden])>.sheet-head')].filter(visible).at(-1):null;
+ const header=portraitHeader|| (landscape&&visible(chrome)&&!app.dataset.sheet&&!["map","battle"].includes(app.dataset.mode)?[...app.querySelectorAll('.ui-rail-header,.hero-card-head')].filter(visible).at(-1):null);
  const source=header?.querySelector('.ui-header-close-control,[data-ui-header-close],[data-hero-close]');
  let record=records.get(app);
  if(!record){record={source:null,header:null};record.close=createRailClose(record);chrome.append(record.close);records.set(app,record);}
@@ -32,14 +33,15 @@ export function useRailChrome(app){
    const nativeResources=chrome.querySelector('.mobile-resources');
    if(nativeResources){record.resourceObserver=new MutationObserver(()=>renderAvailableResources(resources,nativeResources));record.resourceObserver.observe(nativeResources,{subtree:true,childList:true,attributes:true,attributeFilter:['hidden','aria-label']});}
   }
+  record.modalChrome.dataset.uiPortrait=String(!!portraitHeader);
   if(record.modalChrome.parentElement!==paper)paper.append(record.modalChrome);
   if(record.close.parentElement!==record.modalChrome)record.modalChrome.append(record.close);
   if(record.modalChrome.hidden)record.modalChrome.hidden=false;
-  const nativeResources=chrome.querySelector('.mobile-resources');if(nativeResources)renderAvailableResources(record.resources,nativeResources);renderRecruitCalendar(record.calendar,source?NaN:Number(chrome.querySelector('.mobile-calendar')?.dataset.recruitDays));
+  const nativeResources=chrome.querySelector('.mobile-resources');if(nativeResources)renderAvailableResources(record.resources,nativeResources);renderRecruitCalendar(record.calendar,landscape&&source?NaN:Number(chrome.querySelector('.mobile-calendar')?.dataset.recruitDays));
  }else{
   if(record.modalChrome&&!record.modalChrome.hidden)record.modalChrome.hidden=true;
   if(record.close.parentElement!==chrome)chrome.append(record.close);
  }
- const active=!!source;app.dataset.uiRailChrome=String(active);if(record.close.hidden===active)record.close.hidden=!active;
+ const active=landscape&&!!source;app.dataset.uiRailChrome=String(active);if(record.close.hidden===active)record.close.hidden=!active;
  if(active){source.setAttribute('data-ui-rail-exit','');source.tabIndex=-1;header.classList.add('ui-rail-title');if(record.close.disabled!==source.disabled)record.close.disabled=source.disabled;record.close.setAttribute('aria-label',uiText('Close','Fermer'));}
 }

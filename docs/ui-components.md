@@ -62,7 +62,8 @@ Utiliser `renderMarkup` pour rafraîchir une fabrique. Lorsqu’une galerie nati
 | Fiche et recrutement de créature | `useCreatureOverview` : mêmes zones animation, statistiques et description, avec variante achat ou consultation |
 | Commandes de combat | `useBattleControls` : commandes principales et menu MUI des actions secondaires, mêmes gestionnaires natifs |
 | Comparaison de royaumes | `useRadarChart` : `RadarChart` MUI X chargé uniquement à l’ouverture, deux séries maximum, rangs explicitement normalisés et valeurs inconnues exclues |
-| Coût et caractéristiques | `resourceCostMarkup`, `statGridMarkup` |
+| Coût et caractéristiques | `resourceCostMarkup`, `statGridMarkup`, `creatureStatsMarkup` (mêmes libellés complets/abrégés sans icônes pour créatures et commandants) |
+| Rangs et états compacts | `ratingMarkup` : Rating MUI en lecture seule, losanges dorés ; `chipMarkup` : Chip MUI pour les états |
 
 Les champs de formulaire natifs dont le protocole reste impératif, les zones tactiles superposées au canvas et l’amorçage avant le chargement de React sont des adaptations particulières. Ils utilisent les tokens générés et restent dans l’audit de tailles, contrastes, défilement et appuis. Ne jamais annoncer qu’un champ natif est un composant MUI.
 

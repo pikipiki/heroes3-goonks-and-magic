@@ -1,5 +1,5 @@
 import {createUIElement} from './ui/material-components.mjs';
-import {useScreenComponents,renderMarkup} from './ui/material-components.mjs';
+import {useScreenComponents,renderMarkup,creatureStatsMarkup,commanderChoiceMarkup} from './ui/material-components.mjs';
 import {campaignDialogDraft,renderCampaignDialogForm,sendCampaignDialogReply,sendCampaignDialogDraft} from './campaign-dialog-form.mjs';
 import {highScorePresentation} from './high-score-presentation.mjs';
 import {plainGameText} from './game-text.mjs';
@@ -16,6 +16,12 @@ export function createDialogPresentation({root,command,pointer,refresh=()=>{},sc
  let state,key,dirty=false,icons=[],classic=false,inspect=0,lastMode='',captureAfter=0,hasSnapshot=false,snapshotGeometry='',treeOpen=false,treeFilter=null,replyingTo=null,campaignExit=null,campaignDraft=null;
  function holdCampaign(){panel.dataset.waiting='true';for(const button of panel.querySelectorAll('button,input'))button.disabled=true;}
  window.addEventListener('goonk-language',()=>{key=undefined;if(state)update(state);});
+ panel.addEventListener('change',event=>{
+  if(!event.target.matches('[data-commander-choice]'))return;
+  const index=Number(event.target.value),choice=state?.dialogPresentation?.choices?.[index];if(!choice)return;
+  if(choice.inspectable){inspect=index;key=undefined;queueMicrotask(()=>update(state));}
+  else if(choice.selectable&&choice.rect){const r=choice.rect;pointer({x:Math.round(r.x+r.w/2),y:Math.round(r.y+r.h/2)},1);}
+ });
  panel.addEventListener('click',event=>{
   const button=event.target.closest('button');if(!button||button.disabled)return;
   if(['source-campaign','high-score','henchman-offer','henchman-choice','henchman-resurrection'].includes(state?.dialogKind)&&(button.hasAttribute('data-dialog-confirm')||button.hasAttribute('data-dialog-cancel'))){replyingTo=state.dialogPresentation.queryId;holdCampaign();}
@@ -53,9 +59,10 @@ export function createDialogPresentation({root,command,pointer,refresh=()=>{},sc
   panel.hidden=!data;root.toggleAttribute('data-dialog-presentation',!!data);
   if(!data){closeCampaignMediaViewer();key=undefined;icons=[];hasSnapshot=false;campaignDraft=null;return;}
   const nextKey=JSON.stringify(data);if(nextKey===key)return;closeCampaignMediaViewer();key=nextKey;
-  const scroll=panel.querySelector('.commander-tree')?.scrollTop||0,choiceScroll=keepInspection?(panel.querySelector('.dialog-choices')?.scrollTop||0):0;
+  const oldTree=panel.querySelector('.commander-tree'),treeExpanded=oldTree?[...oldTree.querySelectorAll('[data-tree-ability][data-expanded=true]')].map(node=>Number(node.dataset.treeAbility)):null,masteryOpen=oldTree?.querySelector('.tree-mastery')?.open??false;
+  const scroll=oldTree?.scrollTop||0,choiceScroll=keepInspection?(panel.querySelector('.dialog-choices')?.scrollTop||0):0;
   const previous=panel.querySelector('[data-dialog-choice]:focus')?.dataset.dialogChoice;
-  panel.replaceChildren();panel.dataset.kind=next.dialogKind||'message';panel.dataset.nativeRewards=String(['summary','assembly'].includes(data.artifactGrantPhase));panel.dataset.tree=String(treeOpen&&!!data.commanderTree);panel.dataset.selectable=String((data.choices||[]).some(c=>c.selectable||c.inspectable));panel.dataset.choices=String((data.choices||[]).length);panel.dataset.detailed=String((data.choices||[]).some(c=>c.selectable&&c.label?.length>35));
+  panel.replaceChildren();panel.dataset.kind=next.dialogKind||'message';panel.dataset.commanderPicker=String(['commander','commander-level-up'].includes(next.dialogKind)&&!!data.choices?.length&&!treeOpen);panel.dataset.nativeRewards=String(['summary','assembly'].includes(data.artifactGrantPhase));panel.dataset.tree=String(treeOpen&&!!data.commanderTree);panel.dataset.selectable=String((data.choices||[]).some(c=>c.selectable||c.inspectable));panel.dataset.choices=String((data.choices||[]).length);panel.dataset.detailed=String((data.choices||[]).some(c=>c.selectable&&c.label?.length>35));
   const header=document.createElement('header'),title=document.createElement('h2');title.id='dialog-presentation-title';const heading=data.title==='Game message'?(data.lines||[]).map(line=>String(line).match(/^\{([^{}]+)\}\s*\n/)).find(Boolean)?.[1]:null;
   title.textContent=['commander','commander-level-up'].includes(next.dialogKind)?(getLanguage()==='fr'?(next.dialogKind==='commander-level-up'?'Progression du commandant':'Commandant'):(next.dialogKind==='commander-level-up'?'Commander level up':'Commander')):data.artifactGrantPhase==='summary'?(getLanguage()==='fr'?'Artefacts reçus':'Artifacts received'):['henchman-offer','henchman-choice','henchman-resurrection'].includes(next.dialogKind)?(getLanguage()==='fr'?'Compagnon':'Henchman'):heading||data.title;header.append(title);
   if(data.commanderTree){const toggle=createUIElement('button');toggle.type='button';toggle.dataset.commanderTree='';toggle.textContent=getLanguage()==='fr'?(treeOpen?'Compétences et équipement':'Arbre de spécialisation'):(treeOpen?'Skills and equipment':'Specialization tree');toggle.setAttribute('aria-pressed',String(treeOpen));header.append(toggle);}
@@ -63,11 +70,12 @@ export function createDialogPresentation({root,command,pointer,refresh=()=>{},sc
   if(data.visitedObject&&data.scriptDialog?.kind!=='bitmap'){const image=document.createElement('canvas');image.className='visited-object-art';image.width=192;image.height=160;image.setAttribute('aria-label',data.visitedObject);content.append(image);}
   const lines=next.dialogKind==='commander'?[]:next.dialogKind==='commander-level-up'?[getLanguage()==='fr'?'Choisis une compétence à améliorer.':'Choose a skill to upgrade.']:[...new Set((data.lines||[]).map(line=>text(heading?String(line).replace(/^\{[^{}]+\}\s*\n/, ''):line)).filter(line=>line&&line!=='or'))];
   for(const line of lines){const p=document.createElement('p');p.textContent=line;content.append(p);}
-  if(data.unit){const preview=document.createElement('canvas');preview.className='commander-preview';preview.width=192;preview.height=240;preview.setAttribute('aria-label',data.unit.name);const summary=document.createElement('section');summary.className='commander-summary';summary.append(preview);const name=document.createElement('h3');name.textContent=text(data.unit.name);const speed=document.createElement('small');speed.className='commander-speed';speed.textContent='➟ '+data.unit.speed;speed.setAttribute('aria-label','Speed: '+data.unit.speed);name.append(speed);summary.append(name);const stats=document.createElement('dl');stats.className='commander-facts';for(const [label,value]of [['Attack',data.unit.attack],['Defense',data.unit.defense],['Damage',data.unit.damageMin+'–'+data.unit.damageMax],['Health',data.unit.health]]){const group=document.createElement('div'),term=document.createElement('dt'),number=document.createElement('dd');term.textContent=({Attack:'⚔',Defense:'🛡',Damage:'✹',Health:'♥',Speed:'➟'})[label];term.setAttribute('aria-label',label);term.title=label;number.textContent=value;group.append(term,number);stats.append(group);}summary.append(stats);content.prepend(summary);}
+  if(data.unit){const preview=document.createElement('canvas');preview.className='commander-preview';preview.width=192;preview.height=240;preview.setAttribute('aria-label',data.unit.name);const summary=document.createElement('section');summary.className='commander-summary';summary.append(preview);const name=document.createElement('h3');name.textContent=text(data.unit.name);const speed=document.createElement('small');speed.className='commander-speed';speed.textContent='➟ '+data.unit.speed;speed.setAttribute('aria-label','Speed: '+data.unit.speed);name.append(speed);summary.append(name);const statsHost=document.createElement('div');renderMarkup(statsHost,creatureStatsMarkup(data.unit,{fields:['attack','defense','damage','health'],compact:true,className:'commander-facts'}));statsHost.style.display='contents';summary.append(statsHost);content.prepend(summary);}
   const selected=next.dialogKind==='commander'||data.artifactGrantPhase==='summary'?data.choices?.[inspect]:(data.choices||[]).find(choice=>choice.selected);
-  if(selected?.description){const description=document.createElement('p');description.className='dialog-choice-description';description.id='dialog-choice-description';description.setAttribute('aria-live','polite');description.textContent=text(selected.description);content.append(description);}
+  if(selected?.description||panel.dataset.commanderPicker==='true'){const description=document.createElement('p');description.className='dialog-choice-description';description.id='dialog-choice-description';description.setAttribute('aria-live','polite');description.textContent=text(selected?.description)||(getLanguage()==='fr'?'Choisis une compétence pour lire ses effets.':'Choose a skill to read its effects.');content.append(description);}
   const choices=document.createElement('div');choices.className='dialog-choices';icons=[];
-  for(const [index,choice] of (data.choices||[]).entries()){
+  if(panel.dataset.commanderPicker==='true'){renderMarkup(choices,commanderChoiceMarkup(data.choices,next.dialogKind==='commander'?inspect:data.choices.findIndex(choice=>choice.selected)));}
+  for(const [index,choice] of (panel.dataset.commanderPicker==='true'?[]:data.choices||[]).entries()){
    const inspectable=choice.inspectable||data.artifactGrantPhase==='summary'&&!!choice.description;
    const item=createUIElement(choice.selectable||inspectable?'button':'article');item.className='dialog-choice';
    if(choice.selectable){item.type='button';item.dataset.dialogChoice=index;item.setAttribute('aria-pressed',String(!!choice.selected));}
@@ -85,7 +93,7 @@ export function createDialogPresentation({root,command,pointer,refresh=()=>{},sc
   if(next.dialogKind==='commander'){const classicButton=createUIElement('button');classicButton.type='button';classicButton.dataset.dialogClassic='';classicButton.textContent='Classic view';actions.append(classicButton);}
   if((data.scriptDialog?data.scriptDialog.canCancel:data.cancel)&&next.dialogKind!=='commander'){const cancel=createUIElement('button');cancel.type='button';cancel.dataset.dialogCancel='';cancel.textContent=next.dialogKind==='high-score'?(getLanguage()==='fr'?'Continuer sans enregistrer':'Continue without saving'):next.dialogKind==='source-campaign'?(getLanguage()==='fr'?(data.scriptDialog?'← Annuler':'← Non'):(data.scriptDialog?'← Cancel':'← No')):'← Back';actions.append(cancel);}
   panel.append(header,content,choices,actions);
-  if(treeOpen&&data.commanderTree){const pending=(data.choices||[]).find(c=>c.selected);if(next.dialogKind==='commander-level-up'&&pending){confirm.textContent='✓ '+text(pending.label);}const tree=renderCommanderTree(data.commanderTree,data.choices||[],{filter:treeFilter,onFilter:id=>{treeFilter=id;key=undefined;update(state);},onSelect:id=>command(96,id)});content.hidden=!data.unit;choices.hidden=true;panel.insertBefore(tree,actions);tree.scrollTop=scroll;}
+  if(treeOpen&&data.commanderTree){const pending=(data.choices||[]).find(c=>c.selected);if(next.dialogKind==='commander-level-up'&&pending){confirm.textContent='✓ '+text(pending.label);}const tree=renderCommanderTree(data.commanderTree,data.choices||[],{filter:treeFilter,expanded:treeExpanded,masteryOpen,onFilter:id=>{treeFilter=id;key=undefined;update(state);},onSelect:id=>command(96,id)});content.hidden=!data.unit;choices.hidden=true;panel.insertBefore(tree,actions);}
   dirty=true;captureAfter=performance.now()+80;panel.setAttribute('aria-busy','true');
   const geometry=JSON.stringify([data.title,next.dialogKind,state.rect,(data.choices||[]).map(c=>c.rect)]);
   if(hasSnapshot&&geometry===snapshotGeometry)drawIcons();else hasSnapshot=false;snapshotGeometry=geometry;
@@ -102,7 +110,11 @@ export function createDialogPresentation({root,command,pointer,refresh=()=>{},sc
   }
   // Material UI owns the controls; the snapshot painter keeps the live canvas refs.
   renderMarkup(header,header.innerHTML);renderMarkup(actions,actions.innerHTML);
-  const rects=icons.map(icon=>icon.rect);renderMarkup(choices,choices.innerHTML);icons=[...choices.querySelectorAll('canvas')].map((canvas,index)=>({canvas,rect:rects[index]}));choices.scrollTop=choiceScroll;if(hasSnapshot)drawIcons();
+  const rects=icons.map(icon=>icon.rect);renderMarkup(choices,choices.innerHTML);icons=[...choices.querySelectorAll('canvas')].map((canvas,index)=>({canvas,rect:rects[index]}));choices.scrollTop=choiceScroll;
+  // Restore only after the real MUI header/actions have their final geometry.
+  // Earlier restoration lets browser scroll anchoring shift the content again.
+  const currentTree=panel.querySelector('.commander-tree');if(currentTree)currentTree.scrollTop=scroll;
+  if(hasSnapshot)drawIcons();
  }
  let trimmedObject=null,objectCrop=null;
  const snapshot=document.createElement('canvas');snapshot.width=800;snapshot.height=600;const context=snapshot.getContext('2d');

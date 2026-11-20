@@ -1,4 +1,4 @@
-import {useScreenComponents,renderMarkup,createUIElement,useCreatureOverview} from './ui/material-components.mjs';
+import {useScreenComponents,renderMarkup,createUIElement,useCreatureOverview,creatureStatsMarkup} from './ui/material-components.mjs';
 import{hdCreaturePortrait,paintHDCreature}from'./goonk-hd-portraits.mjs';
 import{createRecruitmentHall}from'./recruitment-families.mjs';
 import{bindPress}from'./mobile-press.mjs';
@@ -21,8 +21,7 @@ function creatureNarrative(unit,language){
  if(unit?.description)return '<p class="creature-description">'+esc(unit.description)+'</p>';
  return '<p class="creature-description">'+esc(parts.join(' ')||(fr?'Les caractéristiques ci-dessus décrivent cette créature.':'The attributes above describe this creature.'))+'</p>';
 }
-const compactStatLabel=(label,short)=>`<span class="ui-stat-full">${label}</span><abbr class="ui-stat-short" title="${label}">${short}</abbr>`;
-const stats=u=>`<dl class="creature-stats"><div><dt>${compactStatLabel(getLanguage()==='fr'?'Attaque':'Attack',getLanguage()==='fr'?'ATQ':'ATK')}</dt><dd>${u.attack??0}</dd></div><div><dt>${compactStatLabel(getLanguage()==='fr'?'Défense':'Defense',getLanguage()==='fr'?'DÉF':'DEF')}</dt><dd>${u.defense??0}</dd></div><div><dt>${compactStatLabel(getLanguage()==='fr'?'Dégâts':'Damage',getLanguage()==='fr'?'DGT':'DMG')}</dt><dd>${u.damageMin??0}–${u.damageMax??0}</dd></div><div><dt><span class="ui-stat-full">${getLanguage()==='fr'?'Points de vie':'Health'}</span><abbr class="ui-stat-short" title="${getLanguage()==='fr'?'Points de vie':'Health'}">${getLanguage()==='fr'?'PV':'HP'}</abbr></dt><dd>${u.health??0}</dd></div><div><dt>${compactStatLabel(getLanguage()==='fr'?'Vitesse':'Speed',getLanguage()==='fr'?'VIT':'SPD')}</dt><dd>${u.speed??0}</dd></div>${Number.isInteger(u.experienceRank)?'<div><dt>'+(getLanguage()==='fr'?'Rang':'Rank')+'</dt><dd>'+u.experienceRank+'</dd></div>':''}${u.inCombat?`<div><dt>${getLanguage()==='fr'?'PV actuels':'Current HP'}</dt><dd>${u.currentHealth??u.health}/${u.health}</dd></div>${u.shooter?`<div><dt>${getLanguage()==='fr'?'Tirs restants':'Shots left'}</dt><dd>${u.remainingShots??0}</dd></div>`:''}<div><dt>${getLanguage()==='fr'?'Ripostes':'Retaliations'}</dt><dd>${u.remainingRetaliations??0}</dd></div>`:''}</dl>`;
+const stats=creatureStatsMarkup;
 const prices=(u,amount=1,metadata=[])=>resourceDescriptors(u.cost||[],metadata).filter(r=>r.value>0).map(r=>{const url=resourceIconURL(r,window.goonkAssetURLs||[]);return `<span class="creature-price">${url?`<img src="${esc(url)}" alt="${esc(r.name)}">`:`<span>${esc(r.name)}</span>`}<span>${r.key==='gold'?new Intl.NumberFormat('fr-FR').format(r.value*amount).replace(/[\u00a0\u202f]/g,' '):compactResource(r.value*amount)}</span></span>`;}).join('');
 export function createCreaturePresentation({root,command,pointer,openRecruit,buildingArt,openBuildings}){
  const panel=createUIElement('section');panel.classList.add('creature-presentation');useScreenComponents(panel);panel.hidden=true;panel.setAttribute('aria-label','Creature overview');root.querySelector('.mobile-play').append(panel);

@@ -190,3 +190,12 @@ html.goonk-mobile #mobile-viewport #mobile-app .mobile-menu.ui-screen-layout:not
 #mobile-app .ui-radio-choices .ui-radio-choice-icon{display:block;max-width:100%;object-fit:contain;flex:none}
 #mobile-app .ui-radio-choices .ui-radio-label:has(.ui-radio-choice-icon){display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--ui-space-1);min-width:0}
 #mobile-app .ui-radio-choices .MuiFormControlLabel-label{min-width:0}
+
+/* Artwork shares a stable icon slot; image decode never changes a button's box. */
+:is(#mobile-app,#game-menu,[data-ui-app]) .ui-button-art{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;flex:0 0 24px;vertical-align:middle;margin:0!important}
+:is(#mobile-app,#game-menu,[data-ui-app]) .ui-button-art>img{display:block;width:24px;height:24px;object-fit:contain;margin:0}
+:is(#mobile-app,#game-menu,[data-ui-app]) .ui-button-label{font:inherit;line-height:inherit;margin:0}
+
+/* The same accessible abbreviated attributes are used by creature and commander details. */
+[data-ui-creature-stats][data-compact=true] .ui-stat-full{display:none!important}
+[data-ui-creature-stats][data-compact=true] .ui-stat-short{display:inline!important;text-decoration:none}

@@ -981,7 +981,7 @@
         "details",
         "result"
       ],
-      "sourceSHA256": "a2d1ad21d7953122692e13b8ccac12608e3eacd9b46523c7bffefaeabe9ee48b",
+      "sourceSHA256": "79f0ed2ff023551b34e1a680c7e14f705f7a243681cfcbe7f7a1efd923e07705",
       "evidence": [
         {
           "line": 73,
@@ -1532,26 +1532,26 @@
         "resources",
         "actions"
       ],
-      "sourceSHA256": "9f9a35da766b61e510a3c0be5fc5fdb2569d06a2041cdf26630c9997a16cbc53",
+      "sourceSHA256": "f09b4f6fbcf128ffba628541edd3fba47aee8fcbd67f582a137018771580a4d3",
       "evidence": [
         {
-          "line": 27,
+          "line": 26,
           "excerpt": "export function createCreaturePresentation({root,command,pointer,openRecruit,buildingArt,openBuildings}){"
         },
         {
-          "line": 52,
+          "line": 51,
           "excerpt": "if(key!==signature){if(navigation.parentElement===panel)root.append(navigation);if(state.mode==='fort'&&panel.querySelector('.hall-layout'))hall.rememberScroll();signature=key;root"
         },
         {
-          "line": 61,
+          "line": 60,
           "excerpt": "const featured=createUIElement('div');featured.classList.add('featured-creature');renderMarkup(featured,`<div class=\"creature-stage\"><canvas data-preview-creature=\"${unit?.id}\" ari"
         },
         {
-          "line": 68,
+          "line": 67,
           "excerpt": "renderMarkup(variants,choices.map(({u,index})=>`<button data-variant=\"${index}\" aria-pressed=\"${u.id===unit?.id}\">${creaturePortrait(u)}<span class=\"variant-name\">${esc(u.name)}</s"
         },
         {
-          "line": 76,
+          "line": 75,
           "excerpt": "else if(upgrades.length){const upgradePanel=createUIElement('section');upgradePanel.classList.add('creature-upgrades');upgradePanel.setAttribute('aria-label','Creature upgrades');r"
         }
       ],
@@ -2049,7 +2049,7 @@
         "skills",
         "result"
       ],
-      "sourceSHA256": "48c4ce915f4c55c9abae288431a63b4dd407ef4412c9fcc53977752ff94959d2",
+      "sourceSHA256": "07546c8fb38c7ae74af616124403a22fbd8c31472d9aa9b6e8b0d5601a3dec94",
       "evidence": [
         {
           "line": 13,
@@ -2060,28 +2060,28 @@
           "excerpt": "const panel=document.createElement('section');panel.className='dialog-presentation';useScreenComponents(panel);panel.hidden=true;panel.setAttribute('aria-labelledby','dialog-presen"
         },
         {
-          "line": 59,
+          "line": 65,
           "excerpt": "const header=document.createElement('header'),title=document.createElement('h2');title.id='dialog-presentation-title';const heading=data.title==='Game message'?(data.lines||[]).map"
         },
         {
-          "line": 62,
+          "line": 68,
           "excerpt": "const content=document.createElement('div');content.className='dialog-copy';"
         },
         {
-          "line": 63,
+          "line": 69,
           "excerpt": "if(data.visitedObject&&data.scriptDialog?.kind!=='bitmap'){const image=document.createElement('canvas');image.className='visited-object-art';image.width=192;image.height=160;image."
         },
         {
-          "line": 65,
+          "line": 71,
           "excerpt": "for(const line of lines){const p=document.createElement('p');p.textContent=line;content.append(p);}"
         },
         {
-          "line": 66,
+          "line": 72,
           "excerpt": "if(data.unit){const preview=document.createElement('canvas');preview.className='commander-preview';preview.width=192;preview.height=240;preview.setAttribute('aria-label',data.unit."
         },
         {
-          "line": 68,
-          "excerpt": "if(selected?.description){const description=document.createElement('p');description.className='dialog-choice-description';description.id='dialog-choice-description';description.set"
+          "line": 74,
+          "excerpt": "if(selected?.description||panel.dataset.commanderPicker==='true'){const description=document.createElement('p');description.className='dialog-choice-description';description.id='di"
         }
       ],
       "review": "source-reviewed"
@@ -2156,7 +2156,7 @@
         "card",
         "feedback"
       ],
-      "sourceSHA256": "0b207b88f1e7828c89246ebf43ba5b2bc96341c64ef6772df199ebf832526381",
+      "sourceSHA256": "1856aa37d072604ff454673c815e13cd30f1d638978aa4cb8b069fae80e3d745",
       "evidence": [
         {
           "line": 5,
@@ -2164,15 +2164,31 @@
         },
         {
           "line": 8,
-          "excerpt": "const el=(tag,cls,text)=>{const node=tag==='button'?createUIElement(tag):document.createElement(tag);if(cls)node.className=cls;if(text!==undefined)node.textContent=text;return node"
-        },
-        {
-          "line": 10,
           "excerpt": "export function commanderAbilityState(ability,tree){"
         },
         {
-          "line": 16,
+          "line": 15,
           "excerpt": "export function renderCommanderTree(tree,choices,{filter=null,onFilter=()=>{},onSelect=()=>{}}={}){"
+        },
+        {
+          "line": 16,
+          "excerpt": "const root=document.createElement('section');root.className='commander-tree';root.setAttribute('aria-label',tr('Commander specialization tree','Arbre de spécialisation du commandan"
+        },
+        {
+          "line": 20,
+          "excerpt": "renderMarkup(root,`<div class=\"tree-toolbar\"><label class=\"tree-filter\"><span>${escapeUI(tr('Abilities','Capacités'))}</span><select data-tree-filter aria-label=\"${escapeUI(tr('Fil"
+        },
+        {
+          "line": 22,
+          "excerpt": "const mastery=createAccordion({parent:root,className:'tree-mastery',markup:`<summary>${escapeUI(tr(`${mastered}/${tree.skills.length} Master skills`,`${mastered}/${tree.skills.leng"
+        },
+        {
+          "line": 24,
+          "excerpt": "const list=document.createElement('div');list.className='tree-abilities';root.append(list);"
+        },
+        {
+          "line": 33,
+          "excerpt": "const accordion=createAccordion({parent:list,className:'tree-ability',open:selected,markup:`<summary><span class=\"tree-ability-heading\"><span class=\"tree-combination\">${ability.req"
         }
       ],
       "review": "source-reviewed"
@@ -3168,7 +3184,7 @@
       "needs": [
         "select"
       ],
-      "sourceSHA256": "d8b54cb9a7d16eb479938277c910977b3692ccd06f972ed8ca29d14eb0711288",
+      "sourceSHA256": "00cbd76d376edb84a290314d2b0d02b77323524e95cce056da6595f37e4fb60f",
       "evidence": [
         {
           "line": 6,

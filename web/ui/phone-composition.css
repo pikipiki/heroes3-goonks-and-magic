@@ -203,3 +203,11 @@
   #mobile-app>.ui-rail-calendar>span:first-child{display:block!important;order:1!important;width:100%!important;text-align:center!important;font:var(--ui-font-resource)!important;line-height:14px!important;min-height:14px!important}
  }
 }
+@layer ui-composition {
+ @container goonk-viewport (orientation:portrait){
+  /* Keep map labels readable at 320px without squeezing the shared artwork. */
+  #mobile-viewport #mobile-app[data-mode=map]>.mobile-nav>button:not([hidden]){flex-direction:column!important;gap:2px!important;min-height:48px!important;padding:3px!important}
+  #mobile-viewport #mobile-app[data-mode=map]>.mobile-nav>button>.ui-button-label{font:inherit!important;line-height:1!important;margin:0!important}
+  #mobile-viewport #mobile-app[data-mode=map]>.mobile-nav>button>.ui-button-icon:not(.ui-button-art){font-size:16px!important;line-height:16px!important;margin:0!important}
+ }
+}

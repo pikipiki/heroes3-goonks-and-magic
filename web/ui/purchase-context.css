@@ -106,3 +106,15 @@
   #mobile-app .ui-modal-rail-chrome>[data-ui-rail-calendar]{grid-column:3!important;grid-row:1!important;padding-right:4px!important;box-sizing:border-box!important}
  }
 }
+
+/* A portrait Dialog owns the visible kingdom bar, not an inert copy behind it. */
+@layer ui-composition {
+ @container goonk-viewport (orientation:portrait){
+  #mobile-app .ui-modal-rail-chrome[data-ui-portrait=true]:not([hidden]){position:absolute!important;inset:0 0 auto!important;z-index:40!important;display:grid!important;grid-template-columns:48px minmax(0,1fr) 44px!important;align-items:center!important;gap:8px!important;width:100%!important;height:56px!important;min-height:56px!important;padding:4px!important;box-sizing:border-box!important;background:var(--ui-surface)!important;border-bottom:1px solid var(--ui-outline)!important}
+  #mobile-app .ui-modal-rail-chrome[data-ui-portrait=true]>button{width:48px!important;height:48px!important;min-width:48px!important;min-height:48px!important;padding:0!important;margin:0!important}
+  #mobile-app .ui-modal-rail-chrome[data-ui-portrait=true]>.ui-purchase-resources{grid-template-columns:repeat(3,minmax(0,1fr))!important;grid-auto-rows:12px!important;align-content:center!important;padding-inline:3px!important}
+  #mobile-app .ui-modal-rail-chrome[data-ui-portrait=true]>.ui-purchase-resources [data-resource=gold]{grid-column:span 2!important}
+  #mobile-app .ui-modal-rail-chrome[data-ui-portrait=true] [data-ui-rail-calendar]{padding-right:4px!important;box-sizing:border-box!important}
+  #mobile-app .mobile-sheet:has(>.ui-modal-rail-chrome[data-ui-portrait=true]){padding-top:64px!important}
+ }
+}

@@ -10,6 +10,7 @@ export {default as RadioGroup} from '@mui/material/RadioGroup';
 export {default as Checkbox} from '@mui/material/Checkbox';
 export {default as TextField} from '@mui/material/TextField';
 export {default as Slider} from '@mui/material/Slider';
+export {default as Rating} from '@mui/material/Rating';
 export {default as Tabs} from '@mui/material/Tabs';
 export {default as Tab} from '@mui/material/Tab';
 export {default as Stack} from '@mui/material/Stack';

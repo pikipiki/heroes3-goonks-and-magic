@@ -6,6 +6,8 @@ import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import InputBase from '@mui/material/InputBase';
 import Slider from '@mui/material/Slider';
+import Rating from '@mui/material/Rating';
+import Chip from '@mui/material/Chip';
 import Link from '@mui/material/Link';
 import LinearProgress from '@mui/material/LinearProgress';
 import IconButton from '@mui/material/IconButton';
@@ -128,6 +130,8 @@ function NativeAccordion({props,summary,content}){
   h(AccordionDetails,{'data-ui-accordion-content':''},...content.map(element)));
 }
 function element(node,index){if(node.nodeType===3)return node.textContent;if(node.nodeType!==1)return null;const props=propsFor(node);props.key=props.id||Object.entries(props).find(([key])=>key.startsWith('data-')&&!key.startsWith('data-ui-'))?.join(':')||index;
+ if(node.hasAttribute('data-ui-rating')){const max=Math.max(1,Math.min(10,Number(node.dataset.max)||5)),value=Math.max(0,Math.min(max,Number(node.dataset.value)||0));return h(Rating,{...props,value,max,readOnly:true,size:'small',icon:h('span',{'aria-hidden':true},'◆'),emptyIcon:h('span',{'aria-hidden':true},'◇')});}
+ if(node.hasAttribute('data-ui-chip'))return h(Chip,{...props,label:node.textContent,size:'small',variant:'outlined'});
  if(node.hasAttribute('data-ui-radio-group'))return h(RadioGroup,{...props,component:node.localName},...[...node.childNodes].map(element));
  if(node.tagName==='TABLE')return h(Table,{...props,size:'small'},...[...node.childNodes].map(element));
  if(node.tagName==='THEAD')return h(TableHead,props,...[...node.childNodes].map(element));
@@ -161,7 +165,7 @@ function element(node,index){if(node.nodeType===3)return node.textContent;if(nod
 // The existing bridge and canvas nodes remain owned by their original modules.
 export function renderMarkup(root,markup,{stable=false}={}){if(root.tagName==='TEMPLATE'){root.innerHTML=markup;return;}if(['SELECT','OPTION','OPTGROUP'].includes(root.tagName)){root.innerHTML=markup;return;}
  if(!stable)disposeMaterialRoot(root);const template=document.createElement('template');template.innerHTML=markup;render(root,root.matches('.game-menu-body[data-view=settings]')?h(Stack,{spacing:2,useFlexGap:true,className:'ui-form-stack'},...[...template.content.childNodes].map(element)):h(React.Fragment,null,...[...template.content.childNodes].map(element)));}
-export function renderMaterialSelect(host,{select,label,options,value,disabled,onChange}){render(host,h(Select,{value,disabled,displayEmpty:true,fullWidth:true,className:'material-select-trigger',inputProps:{'aria-label':label},MenuProps:{transitionDuration:0},onChange:event=>onChange(event.target.value)},options.map(option=>h(MenuItem,{key:option.value,value:option.value,disabled:option.disabled},option.label))));}
+export function renderMaterialSelect(host,{select,label,options,value,disabled,onChange}){render(host,h(Select,{value,disabled,displayEmpty:true,fullWidth:true,className:'material-select-trigger',inputProps:{'aria-label':label},MenuProps:{transitionDuration:0},onChange:event=>onChange(event.target.value)},options.map(option=>h(MenuItem,{key:option.value,value:option.value,disabled:option.disabled},option.icon?h(Box,{component:'span',className:'ui-select-option',sx:{display:'flex',alignItems:'center',gap:1,minWidth:0}},h(Box,{component:'img',src:option.icon,alt:'',width:20,height:20,sx:{objectFit:'contain',flexShrink:0}}),h('span',null,option.label)):option.label))));}
 export function disposeMaterialRoot(host,restoreDom=true){const root=roots.get(host);if(root){for(const child of [...roots.keys()])if(child!==host&&host.contains(child))disposeMaterialRoot(child);if(restoreDom)restore(host);root.unmount();roots.delete(host);snapshots.delete(host);}}
 export {heroesTheme};
 

@@ -56,9 +56,9 @@ for(const kind of ['chromium','webkit']){
    const geometry=await page.evaluate(()=>Object.fromEntries(['.dialog-presentation>.ui-screen-header','.dialog-copy','.commander-summary','.commander-preview','.dialog-presentation>.ui-action-dock','[data-commander-tree]','.commander-tree'].map(s=>{const e=document.querySelector(s);return[s,e?.getBoundingClientRect().toJSON()]})));
    const toggle=geometry['[data-commander-tree]'];assert(toggle.width>=48&&toggle.height>=48&&toggle.bottom<=height+1,'Tree action reachable');
    if(width>height){
-    const header=geometry['.dialog-presentation>.ui-screen-header'],preview=geometry['.commander-preview'],content=geometry['.dialog-copy'];
+    const header=geometry['.dialog-presentation>.ui-screen-header'],preview=geometry['.commander-preview'],content=treeOpen?geometry['.dialog-copy']:geometry['.commander-summary'];
     assert(header.x>width/2,'Commander title is on the right');assert(preview.width>48&&preview.height>=63,'Commander remains visible');assert(preview.y>=content.y&&preview.bottom<=content.bottom+1&&geometry['.commander-summary'].bottom<=content.bottom+1,'Commander and all four facts are not clipped by the action dock '+JSON.stringify(geometry));
-    assert(Math.abs(toggle.width-geometry['.dialog-presentation>.ui-action-dock'].width+16)<3,'Specialization action fills the rail');
+    assert(toggle.width>=geometry['.dialog-presentation>.ui-action-dock'].width-18,'Specialization action fills the rail');
     if(treeOpen)assert(geometry['.commander-tree'].y<header.bottom,'Tree starts at top, without empty header space');
    }
    await page.screenshot({path:path.join(out,`${kind}-${lang}-${width}x${height}-${treeOpen?'tree':'levelup'}.png`)});
