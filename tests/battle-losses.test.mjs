@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {enemyLossEstimates,formatEnemyLosses,overlaps,paintEnemyLosses,layoutCounterLosses} from '../web/ui/battle-losses.mjs';
+import {enemyLossEstimates,formatEnemyLosses,overlaps,paintEnemyLosses,layoutCounterLosses,spellUnitEstimates} from '../web/ui/battle-losses.mjs';
 import {battleLossEstimates,setBattleLossEstimates} from '../web/battle-preferences.mjs';
 import {verticalBattleGeometry} from '../web/battle-vertical.mjs';
 const actor={stackId:1,x:300,y:280,count:20};
@@ -42,4 +42,22 @@ test('loss text remains left-to-right and upright when a sprite left a mirrored 
  let text,transform;const ctx={font:'400 12px Georgia',canvas:{width:640,height:520,clientWidth:320,clientHeight:260},save(){},restore(){},getTransform:()=>({a:-2,b:0,c:0,d:2}),setTransform:(...v)=>{transform=v},measureText:t=>({width:t.length*7}),beginPath(){},rect(){},clip(){},fillRect(){},fillText:t=>{text=t}};
  paintEnemyLosses(ctx,state,{x:0,y:0,w:800,h:555,dx:0,dy:0,scale:.4});
  assert.deepEqual(transform,[2,0,0,2,0,0]);assert.equal(ctx.direction,'ltr');assert.equal(text,'(−2–5)');
+});
+
+test('spell annotations use signed native units, capped native healing and selected-spell identity',()=>{
+ const units=[{...enemy,spellEstimate:{spellId:15,unitsDelta:-3,hpDelta:-30}},{...actor,name:'Ally',spellEstimate:{spellId:15,unitsDelta:0,hpDelta:7}},{...actor,stackId:3,count:0,spellCorpse:true,name:'Fallen ally',spellEstimate:{spellId:15,unitsDelta:5,hpDelta:45}}];
+ const casting={...state,selectedSpellId:15,selectedSpell:'Native spell',spellTargeting:true,battleUnits:units};
+ assert.deepEqual(spellUnitEstimates(casting).map(({label,kind})=>({label,kind})),[{label:'−3',kind:'loss'},{label:'+7 HP',kind:'gain'},{label:'+5',kind:'gain'}]);
+ assert.equal(enemyLossEstimates(casting,true).length,3);
+ assert.deepEqual(enemyLossEstimates(casting,false),[]);
+ for(const patch of [{selectedSpellId:16},{autoCombat:true},{tacticsMode:true},{round:0},{manualControl:false}])assert.deepEqual(spellUnitEstimates({...casting,...patch}),[]);
+ const invalid=[{...units[0],spellEstimate:{spellId:15,unitsDelta:-100,hpDelta:-1}},{...units[0],spellEstimate:{spellId:15,unitsDelta:NaN,hpDelta:1}},{...units[1],spellEstimate:{spellId:15,unitsDelta:0,hpDelta:0}}];
+ assert.deepEqual(spellUnitEstimates({...casting,battleUnits:invalid}),[]);
+});
+
+test('spell gains and losses share the same upright attached counter layout and distinct theme colors',()=>{
+ const text=[],ctx={font:'400 12px Georgia',canvas:{},save(){},restore(){},measureText:t=>({width:t.length*5}),beginPath(){},rect(){},clip(){},fillRect(){},fillText(t){text.push([t,this.fillStyle]);}};
+ const units=[{...enemy,spellEstimate:{spellId:15,unitsDelta:-3,hpDelta:-30}},{...actor,countBounds:{x:260,y:290,w:30,h:13},name:'Ally',spellEstimate:{spellId:15,unitsDelta:5,hpDelta:45}}];
+ paintEnemyLosses(ctx,{...state,spellTargeting:true,selectedSpellId:15,battleUnits:units},{x:0,y:0,w:800,h:555,dx:0,dy:0,scale:.4});
+ assert.deepEqual(new Map(text),new Map([['(−3)','#ffb4ab'],['(+5)','#b5f07a']]));
 });

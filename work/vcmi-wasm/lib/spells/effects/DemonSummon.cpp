@@ -178,7 +178,7 @@ void DemonSummon::apply(ServerCallback * server, const Mechanics * m, const Effe
     }
 }
 
-SpellEffectValue DemonSummon::getHealthChange(const Mechanics * m, const EffectTarget & spellTarget) const
+SpellEffectValue DemonSummon::getHealthChange(const Mechanics * m, const EffectTarget & spellTarget, bool /* includeUnits */) const
 {
 	SpellEffectValue result;
 

@@ -11,10 +11,10 @@ test('Functional summaries remain three or four full words in both languages acr
 });
 test('Building functions are translated effects, independent of native description truncation',()=>{
  const summary=(key,faction,language)=>buildingFunctionSummary({key:'core:'+key,description:'Arbitrarily long description…'},faction,language);
- assert.equal(summary('tavern','castle','fr'),'Recrutement de héros');
+ assert.equal(summary('tavern','castle','fr'),'Recrute des héros');
  assert.equal(summary('mageGuild5','tower','en'),'Learn new spells');
  assert.equal(summary('marketplace','rampart','fr'),'Échange de ressources');
  assert.equal(summary('special2','dungeon','fr'),'Double le mana');
  assert.equal(summary('special3','rampart','en'),'Weekly gold interest');
- assert.equal(summary('dwellingUp2Lvl7','fortress','fr'),'Recrutement de créatures');
+ assert.equal(summary('dwellingUp2Lvl7','fortress','fr'),'Recrute des créatures');
 });

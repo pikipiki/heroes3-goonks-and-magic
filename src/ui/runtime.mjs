@@ -11,7 +11,7 @@ import Chip from '@mui/material/Chip';
 import Link from '@mui/material/Link';
 import LinearProgress from '@mui/material/LinearProgress';
 import IconButton from '@mui/material/IconButton';
-import Select from '@mui/material/Select';
+import Select from './upward-select.mjs';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import Dialog from '@mui/material/Dialog';
@@ -165,7 +165,7 @@ function element(node,index){if(node.nodeType===3)return node.textContent;if(nod
 // The existing bridge and canvas nodes remain owned by their original modules.
 export function renderMarkup(root,markup,{stable=false}={}){if(root.tagName==='TEMPLATE'){root.innerHTML=markup;return;}if(['SELECT','OPTION','OPTGROUP'].includes(root.tagName)){root.innerHTML=markup;return;}
  if(!stable)disposeMaterialRoot(root);const template=document.createElement('template');template.innerHTML=markup;render(root,root.matches('.game-menu-body[data-view=settings]')?h(Stack,{spacing:2,useFlexGap:true,className:'ui-form-stack'},...[...template.content.childNodes].map(element)):h(React.Fragment,null,...[...template.content.childNodes].map(element)));}
-export function renderMaterialSelect(host,{select,label,options,value,disabled,onChange}){render(host,h(Select,{value,disabled,displayEmpty:true,fullWidth:true,className:'material-select-trigger',inputProps:{'aria-label':label},MenuProps:{transitionDuration:0},onChange:event=>onChange(event.target.value)},options.map(option=>h(MenuItem,{key:option.value,value:option.value,disabled:option.disabled},option.icon?h(Box,{component:'span',className:'ui-select-option',sx:{display:'flex',alignItems:'center',gap:1,minWidth:0}},h(Box,{component:'img',src:option.icon,alt:'',width:20,height:20,sx:{objectFit:'contain',flexShrink:0}}),h('span',null,option.label)):option.label))));}
+export function renderMaterialSelect(host,{select,label,options,value,disabled,onChange}){render(host,h(Select,{value,disabled,displayEmpty:true,fullWidth:true,className:'material-select-trigger',inputProps:{'aria-label':label},onChange:event=>onChange(event.target.value)},options.map(option=>h(MenuItem,{key:option.value,value:option.value,disabled:option.disabled},option.icon?h(Box,{component:'span',className:'ui-select-option',sx:{display:'flex',alignItems:'center',gap:1,minWidth:0}},h(Box,{component:'img',src:option.icon,alt:'',width:20,height:20,sx:{objectFit:'contain',flexShrink:0}}),h('span',null,option.label)):option.label))));}
 export function disposeMaterialRoot(host,restoreDom=true){const root=roots.get(host);if(root){for(const child of [...roots.keys()])if(child!==host&&host.contains(child))disposeMaterialRoot(child);if(restoreDom)restore(host);root.unmount();roots.delete(host);snapshots.delete(host);}}
 export {heroesTheme};
 

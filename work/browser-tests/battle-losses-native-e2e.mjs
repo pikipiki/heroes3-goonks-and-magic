@@ -32,7 +32,7 @@ sys.stdout.buffer.write(out.getvalue())`]);
  await p.evaluate(bytes=>Module.FS.writeFile('/home/web_user/.local/share/vcmi/Maps/001-Goonks.vmap',new Uint8Array(bytes)),[...fixture]);
  await cmd(20,1);await wait(()=>goonkMobileState.mode==='lobby'&&goonkMobileState.lobbyReady);await cmd(21);await wait(()=>goonkMobileState.selectedMap?.startsWith('000'));await cmd(22);await wait(()=>goonkMobileState.mode==='map'&&goonkMobileState.turn);
  await cmd(6);await p.waitForTimeout(250);await p.evaluate(()=>Module._vcmiMobilePointer(433,281,4));await wait(()=>goonkMobileState.hasPath);await cmd(2);await wait(()=>goonkMobileState.mode==='battle');await cmd(15);await p.waitForTimeout(250);if(await p.evaluate(()=>goonkMobileState.canEndTactics))await cmd(35);
- await wait(()=>goonkMobileState.canAct&&goonkMobileState.battleLossEstimatesVersion===1&&goonkMobileState.battleUnits.some(u=>u.attackLosses));
+ await wait(()=>goonkMobileState.canAct&&goonkMobileState.battleLossEstimatesVersion>=1&&goonkMobileState.battleUnits.some(u=>u.attackLosses));
  const first=await p.evaluate(()=>structuredClone(goonkMobileState));
  const enemies=first.battleUnits.filter(u=>u.enemy&&(u.canShootAt||u.canMeleeAt));assert(enemies.length>0);assert(enemies.every(u=>u.countBounds&&u.countBounds.w>0&&u.countBounds.h>0),'Native count rectangles are exported for exact attachment');
  for(const u of enemies){assert(u.attackLosses,'Every legal native enemy receives a forecast');assert.equal(u.attackLosses.actor,first.activeStack);assert(Number.isInteger(u.attackLosses.min)&&u.attackLosses.min>=0&&u.attackLosses.max>=u.attackLosses.min&&u.attackLosses.max<=u.count);}

@@ -924,7 +924,7 @@ SpellEffectValUptr CBattleInfoCallback::getSpellEffectValue(
 	const CSpell * spell,
 	const spells::Caster * caster,
 	const spells::Mode spellMode,
-	const BattleHex & targetHex) const
+	const BattleHex & targetHex, bool includeUnits) const
 {
 	auto result = std::make_unique<spells::effects::SpellEffectValue>();
 	RETURN_IF_NOT_BATTLE(result);
@@ -943,6 +943,19 @@ SpellEffectValUptr CBattleInfoCallback::getSpellEffectValue(
 		aim.emplace_back(spells::Destination(hoveredUnit));
 
 	const spells::Target spellTarget = mech->canonicalizeTarget(aim);
+	std::set<int32_t> seenHealthEffects, ambiguousHealthEffects;
+	const auto accumulate = [&](spells::effects::SpellEffectValue value)
+	{
+		// Independent health effects use independent acquired states in the
+		// existing tooltip simulation. Do not present their summed kills as a
+		// reliable per-unit count; common one-effect spells retain full detail.
+		if(includeUnits)
+			for(const auto & [id, change] : value.affectedUnits)
+				if(!seenHealthEffects.insert(id).second)
+					ambiguousHealthEffects.insert(id);
+		*result += value;
+	};
+
 
 	mech->forEachEffect([&](const spells::effects::Effect &e){
 		if(const auto *ue = dynamic_cast<const spells::effects::UnitEffect*>(&e))
@@ -953,16 +966,17 @@ SpellEffectValUptr CBattleInfoCallback::getSpellEffectValue(
 			{
 				spells::EffectTarget single;
 				single.emplace_back(spells::Destination(hoveredUnit));
-				*result += ue->getHealthChange(mech.get(), single);
+				accumulate(ue->getHealthChange(mech.get(), single, includeUnits&&!ue->filterTarget(mech.get(),single).empty()));
 				return false;
 			}
 
 			if(!effTarget.empty())
-				*result += ue->getHealthChange(mech.get(), effTarget);
+				accumulate(ue->getHealthChange(mech.get(), effTarget, includeUnits));
 		}
 		return false; // continue iterating effects
 	});
 
+	for(const auto id : ambiguousHealthEffects)result->affectedUnits.erase(id);
 	return result;
 }
 

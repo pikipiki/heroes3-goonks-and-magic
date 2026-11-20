@@ -155,7 +155,7 @@ EffectTarget Sacrifice::transformTarget(const Mechanics * m, const Target & aimP
 	return res;
 }
 
-SpellEffectValue Sacrifice::getHealthChange(const Mechanics * m, const EffectTarget & spellTarget) const
+SpellEffectValue Sacrifice::getHealthChange(const Mechanics * m, const EffectTarget & spellTarget, bool /* includeUnits */) const
 {
 	SpellEffectValue result{};
 

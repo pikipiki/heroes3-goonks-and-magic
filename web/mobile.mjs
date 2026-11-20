@@ -2,7 +2,7 @@ import {buttonContentMarkup} from './ui/primitives.mjs';
 import {paintEnemyLosses,enemyLossDescription} from './ui/battle-losses.mjs';
 import {createUIElement,requestMaterialConfirmation,requestMaterialNotice} from './ui/material-components.mjs';
 import {createLoadingState} from './loading-state.mjs';
-import {useNavigation,useKingdomChrome,renderMarkup,setClickHandler} from './ui/material-components.mjs';
+import {useNavigation,useKingdomChrome,renderMarkup,setClickHandler,createBattleLastSpell} from './ui/material-components.mjs';
 import{townActionIcon,townWarMachineIcon,warmTownActionIcons}from'./town-action-icons.mjs';
 import {canInspectBattle,inspectionUnits,battleInspectionMarkup} from './battle-inspection.mjs';
 import {mapTwoClicks} from './map-click-preferences.mjs';
@@ -83,6 +83,7 @@ function mount(){
  const townZoom=createUIElement('button');townZoom.className='town-zoom-control';townZoom.dataset.ui='town-view';townZoom.textContent='＋ Zoom in';root.querySelector('.mobile-play').append(townZoom);
  root.addEventListener('click',event=>{if(newTownBuilding&&Number(event.target.closest('[data-town-building]')?.dataset.townBuilding)===newTownBuilding.id)clearNewBuilding();},{capture:true});
  const battleResult=createBattleResult({root,command:(...args)=>command(...args)});
+ const battleLastSpell=createBattleLastSpell(root);
  const dialogPresentation=createDialogPresentation({root,command:(...args)=>command(...args),pointer:(...args)=>pointer(...args),refresh:()=>update(state,true)});
  enableFullscreenOnPlay();
  const updateCalendar=createGameCalendar(root);
@@ -322,6 +323,7 @@ function mount(){
   if(change&&state.mode==='creature'&&sheetKind==='army')detailReturn='army';
   if(change){battleTargetPicker=false;delete root.dataset.targetPicker;if(!['lobby','load'].includes(state.mode))requestedMapName=null;mode=state.mode;if(mode==='battle'){if(!battleSession){resetVerticalBattle();portraitVertical=defaultBattleView()==='vertical';window.goonkBattleSpriteBounds=[];window.goonkBattlePlanes=null;command(15);battleCamera=null;battleView='whole';}battleSession=true;}if(mode==='town')townWhole=true;selectedPoint=null;zoom=1;focus=null;if(sheetKind)closeSheet();}
   if(state.mode==='battle'&&(change||changedActor||changedPhase)){selectedPoint=null;battleMove=false;const actor=battleGuidance(state).actor;if(actor){focus=state.focus||actor;battleCamera={...focus};}}
+  battleLastSpell.update(state,{inBattle:battleSession});
   battleResult.update(state);dialogPresentation.update(state);
   tavern.update(state);townServices.update(state);caveBuilder.update(state);
   root.querySelector('.recruit-close').hidden=state.mode!=='recruit';

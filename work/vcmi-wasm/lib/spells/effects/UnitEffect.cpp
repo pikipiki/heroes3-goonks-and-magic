@@ -81,7 +81,7 @@ bool UnitEffect::eraseByImmunityFilter(const Mechanics * m, const battle::Unit *
 	return !isReceptive(m, s);
 }
 
-SpellEffectValue UnitEffect::getHealthChange(const Mechanics * m, const EffectTarget & spellTarget) const
+SpellEffectValue UnitEffect::getHealthChange(const Mechanics * m, const EffectTarget & spellTarget, bool /* includeUnits */) const
 {
 	return {}; // no-op by default
 }

@@ -42,6 +42,8 @@
 #include "../lib/entities/artifact/CArtifactInstance.h"
 #include "../lib/battle/AccessibilityInfo.h"
 #include "../lib/battle/IBattleState.h"
+#include "../lib/spells/effects/UnitEffect.h"
+#include "../include/vcmi/spells/Caster.h"
 #include <atomic>
 #include "GameEngine.h"
 #include "globalLobby/GlobalLobbyClient.h"
@@ -1975,7 +1977,7 @@ void publishMobileState(){
    }
    for(size_t level=0;level<town->creatures.size();level++)for(size_t variant=0;variant<town->creatures[level].second.size();variant++){auto c=town->creatures[level].second[variant].toCreature();JsonNode item=creature(c,town->creatures[level].first);item["level"].Integer()=level;item["variant"].Integer()=variant;n["recruits"].Vector().push_back(item);}
   }
-  if(battleWindow&&CPlayerInterface::battleInt){const auto b=CPlayerInterface::battleInt;n["battleLossEstimatesVersion"].Integer()=1;n["battleCamera"]=b->mobileCameraSnapshot();const bool targeting=b->actionsController->heroSpellcastingModeActive()||b->actionsController->creatureSpellcastingModeActive();n["spellTargeting"].Bool()=targeting;n["creatureSpellTargeting"].Bool()=b->actionsController->creatureSpellcastingModeActive();const bool tactics=b->tacticsMode||b->getBattle()->battleTacticDist()!=0;
+  if(battleWindow&&CPlayerInterface::battleInt){const auto b=CPlayerInterface::battleInt;n["battleLossEstimatesVersion"].Integer()=2;n["battleCamera"]=b->mobileCameraSnapshot();const bool targeting=b->actionsController->heroSpellcastingModeActive()||b->actionsController->creatureSpellcastingModeActive();n["spellTargeting"].Bool()=targeting;n["creatureSpellTargeting"].Bool()=b->actionsController->creatureSpellcastingModeActive();const bool tactics=b->tacticsMode||b->getBattle()->battleTacticDist()!=0;
    const bool ownsTactics=b->getBattle()->battleTacticDist()>0&&b->getBattle()->sideToPlayer(b->getBattle()->battleGetTacticsSide())==p->playerID;
    n["tacticsMode"].Bool()=tactics;n["canEndTactics"].Bool()=b->tacticsMode&&ownsTactics&&!b->openingPlaying()&&!b->hasAnimations();
    const bool autoOn=b->curInt&&b->curInt->isAutoFightOn;
@@ -1991,15 +1993,54 @@ void publishMobileState(){
    n["heroSpellCastLimitReached"].Bool()=spellProblem==ESpellCastProblem::CASTS_PER_TURN_LIMIT;
    n["heroCanCast"].Bool()=manualControl&&!tactics&&caster&&(spellProblem==ESpellCastProblem::OK||spellProblem==ESpellCastProblem::MAGIC_IS_BLOCKED);
    n["canAct"].Bool()=manualControl&&b->makingTurn()&&!b->openingPlaying()&&!b->hasAnimations();n["round"].Integer()=b->round;n["battlePlayerAttacks"].Bool()=b->getBattle()->getBattle()->getSidePlayer(BattleSide::ATTACKER)==p->playerID;const auto active=b->stacksController->getActiveStack();if(active)n["canWait"].Bool()=!active->waitedThisTurn;n["creatureCanCast"].Bool()=!tactics&&active&&active->hasBonusOfType(BonusType::SPELLCASTER)&&active->canCast();if(active){n["activeUnit"]=creature(active->unitType(),active->getCount());n["activeUnit"]["stackId"].Integer()=active->unitId();n["activeUnit"]["nativeFlags"]["flying"].Bool()=active->hasBonusOfType(BonusType::FLYING);n["activeUnit"]["nativeFlags"]["attacksAllAdjacent"].Bool()=active->hasBonusOfType(BonusType::ATTACKS_ALL_ADJACENT);n["activeUnit"]["controlled"].Bool()=b->getBattle()->battleGetOwner(active)==p->playerID;n["activeUnit"]["commander"].Bool()=active->unitSlot()==SlotID::COMMANDER_SLOT_PLACEHOLDER;n["activeUnit"]["remainingShots"].Integer()=active->shots.available();n["activeUnit"]["canShoot"].Bool()=b->getBattle()->battleCanShoot(active);n["activeStack"].Integer()=active->unitId();const auto center=b->fieldController->hexPositionAbsolute(active->getPosition()).center();n["focus"]["x"].Integer()=center.x;n["focus"]["y"].Integer()=center.y;}
-   for(const auto stack:b->getBattle()->battleGetAllStacks()){if(stack->getCount()<=0||!stack->getPosition().isValid())continue;auto item=creature(stack->unitType(),stack->getCount());mobileSpellEffects(item,*stack);item["nativeFlags"]["flying"].Bool()=stack->hasBonusOfType(BonusType::FLYING);item["nativeFlags"]["attacksAllAdjacent"].Bool()=stack->hasBonusOfType(BonusType::ATTACKS_ALL_ADJACENT);mobileStackExperience(item,stack->base);item["stackId"].Integer()=stack->unitId();item["eraSlot"].Integer()=stack->sourceMassSlot();item["armySlot"].Integer()=stack->unitSlot().getNum();item["currentHealth"].Integer()=stack->getFirstHPleft();item["maximumHealth"].Integer()=stack->getMaxHealth();item["cloned"].Bool()=stack->isClone();item["remainingCasts"].Integer()=stack->casts.available();item["remainingShots"].Integer()=stack->shots.available();item["speed"].Integer()=stack->getMovementRange();item["remainingRetaliations"].Integer()=stack->counterAttacks.available();item["attack"].Integer()=stack->getAttack(false);item["defense"].Integer()=stack->getDefense(false);item["damageMin"].Integer()=stack->getMinDamage(stack->hasBonusOfType(BonusType::SHOOTER));item["damageMax"].Integer()=stack->getMaxDamage(stack->hasBonusOfType(BonusType::SHOOTER));item["morale"].Integer()=stack->moraleVal();item["luck"].Integer()=stack->luckVal();item["magicResistance"].Integer()=stack->magicResistance();for(const auto hex:stack->getHexes())item["occupied"].Vector().push_back(JsonNode(double(hex.toInt())));const auto center=b->fieldController->hexPositionAbsolute(stack->getPosition()).center();item["x"].Integer()=center.x;item["y"].Integer()=center.y;item["enemy"].Bool()=stack->getOwner()!=p->playerID;auto countBox=b->stacksController->mobileAmountBoxBounds(stack);countBox+=b->fieldController->hexPositionAbsolute(stack->getPosition()).topLeft()-b->fieldController->hexPositionLocal(stack->getPosition()).topLeft();item["countBounds"]=rect(countBox);n["battleUnits"].Vector().push_back(item);}const auto accessibility=b->getBattle()->getAccessibility();const auto reachable=active?b->getBattle()->battleGetAvailableHexes(active,false):BattleHexArray();
+   for(const auto stack:b->getBattle()->battleGetAllStacks()){if(!stack->getPosition().isValid())continue;const bool corpse=stack->getCount()<=0;if(corpse&&(!targeting||!manualControl||!b->actionsController->canPreviewSpellTargets()||!b->actionsController->canTargetSpellHex(stack->getPosition())))continue;auto item=creature(stack->unitType(),stack->getCount());if(corpse)item["spellCorpse"].Bool()=true;mobileSpellEffects(item,*stack);item["nativeFlags"]["flying"].Bool()=stack->hasBonusOfType(BonusType::FLYING);item["nativeFlags"]["attacksAllAdjacent"].Bool()=stack->hasBonusOfType(BonusType::ATTACKS_ALL_ADJACENT);mobileStackExperience(item,stack->base);item["stackId"].Integer()=stack->unitId();item["eraSlot"].Integer()=stack->sourceMassSlot();item["armySlot"].Integer()=stack->unitSlot().getNum();item["currentHealth"].Integer()=stack->getFirstHPleft();item["maximumHealth"].Integer()=stack->getMaxHealth();item["cloned"].Bool()=stack->isClone();item["remainingCasts"].Integer()=stack->casts.available();item["remainingShots"].Integer()=stack->shots.available();item["speed"].Integer()=stack->getMovementRange();item["remainingRetaliations"].Integer()=stack->counterAttacks.available();item["attack"].Integer()=stack->getAttack(false);item["defense"].Integer()=stack->getDefense(false);item["damageMin"].Integer()=stack->getMinDamage(stack->hasBonusOfType(BonusType::SHOOTER));item["damageMax"].Integer()=stack->getMaxDamage(stack->hasBonusOfType(BonusType::SHOOTER));item["morale"].Integer()=stack->moraleVal();item["luck"].Integer()=stack->luckVal();item["magicResistance"].Integer()=stack->magicResistance();for(const auto hex:stack->getHexes())item["occupied"].Vector().push_back(JsonNode(double(hex.toInt())));const auto center=b->fieldController->hexPositionAbsolute(stack->getPosition()).center();item["x"].Integer()=center.x;item["y"].Integer()=center.y;item["enemy"].Bool()=stack->getOwner()!=p->playerID;auto countBox=b->stacksController->mobileAmountBoxBounds(stack);countBox+=b->fieldController->hexPositionAbsolute(stack->getPosition()).topLeft()-b->fieldController->hexPositionLocal(stack->getPosition()).topLeft();item["countBounds"]=rect(countBox);n["battleUnits"].Vector().push_back(item);}const auto accessibility=b->getBattle()->getAccessibility();const auto reachable=active?b->getBattle()->battleGetAvailableHexes(active,false):BattleHexArray();
    const bool previewSpellTargets=targeting&&manualControl;
    if(!targeting)if(const auto spell=b->actionsController->targetedSpell())n["creatureSpellName"].String()=spell->getNameTranslated();
    if(targeting)
    {
     if(const auto spell=b->actionsController->targetedSpell())
-     n["selectedSpell"].String()=spell->getNameTranslated();
+    {n["selectedSpell"].String()=spell->getNameTranslated();n["selectedSpellId"].Integer()=spell->id.getNum();}
    }
    for(int row=0;row<11;row++)for(int col=1;col<16;col++){const BattleHex hex(col+17*row);const auto center=b->fieldController->hexPositionAbsolute(hex).center();JsonNode cell;cell["hex"].Integer()=hex.toInt();cell["x"].Integer()=center.x;cell["y"].Integer()=center.y;cell["kind"].Integer()=int(accessibility[hex.toInt()]);if(b->siegeController){const auto part=b->getBattle()->battleHexToWallPart(hex);if(part!=EWallPart::INVALID){cell["siegeWall"].Bool()=true;cell["wallPart"].Integer()=int(part);cell["wallState"].Integer()=int(part)<0?2:int(b->getBattle()->battleGetWallState(part));}}if(active&&active->hasBonusOfType(BonusType::CATAPULT)&&b->siegeController&&b->siegeController->isAttackableByCatapult(hex)){cell["siegeTarget"].Bool()=true;}cell["reachable"].Bool()=active&&reachable.contains(hex);if(previewSpellTargets)cell["spellTarget"].Bool()=b->actionsController->canTargetSpellHex(hex);if(manualControl&&!tactics&&!targeting&&b->makingTurn()&&!b->hasAnimations())cell["actionLabel"].String()=b->actionsController->mobileActionLabel(hex);n["battleCells"].Vector().push_back(cell);}
+   // Reuse native effect simulations, including immunities, ERA rules, chained
+   // target order and the acquired unit's real resurrection ceiling. No cast,
+   // network command or live RNG is consumed by this preview.
+   static std::string spellForecastKey;
+   static JsonNode cachedSpellForecasts;
+   if(previewSpellTargets&&n["canAct"].Bool()&&b->actionsController->canPreviewSpellTargets())
+   {
+    const auto * spell=b->actionsController->targetedSpell();
+    const auto * spellCaster=b->actionsController->getCurrentSpellcaster();
+    if(spell&&spellCaster)
+    {
+     const auto castMode=b->actionsController->getCurrentCastMode();
+     const auto descriptor=std::to_string(spell->id.getNum())+":"+std::to_string(int(castMode))+":"+
+      std::to_string(spellCaster->getEffectLevel(spell))+":"+std::to_string(spellCaster->getEffectPower(spell))+":"+
+      std::to_string(n["battleCamera"]["sequence"].Integer())+":"+n["battleUnits"].toCompactString();
+     if(descriptor!=spellForecastKey)
+     {
+      spellForecastKey=descriptor;cachedSpellForecasts=JsonNode();
+      for(const auto & unit:n["battleUnits"].Vector())
+      {
+       const auto * target=b->getBattle()->battleGetStackByID(unit["stackId"].Integer(),false);
+       if(!target||!b->actionsController->canTargetSpellHex(target->getPosition()))continue;
+       const auto value=b->getBattle()->getSpellEffectValue(spell,spellCaster,castMode,target->getPosition(),true);
+       const auto change=value->affectedUnits.find(target->unitId());
+       if(change==value->affectedUnits.end())continue;
+       auto & estimate=cachedSpellForecasts[std::to_string(target->unitId())];
+       estimate["unitsDelta"].Integer()=change->second.unitsDelta;
+       estimate["hpDelta"].Integer()=change->second.hpDelta;
+       estimate["spellId"].Integer()=spell->id.getNum();
+      }
+     }
+     for(auto & unit:n["battleUnits"].Vector())
+     {
+      const auto & estimate=cachedSpellForecasts[std::to_string(unit["stackId"].Integer())];
+      if(!estimate.isNull())unit["spellEstimate"]=estimate;
+     }
+    }
+   }
+   else {spellForecastKey.clear();cachedSpellForecasts=JsonNode();}
    const bool forecastReady=n["canAct"].Bool()&&!tactics&&!targeting;
    const auto forecastDistances=forecastReady&&active?b->getBattle()->battleGetDistances(active,active->getPosition()):ReachabilityInfo::TDistances{};
    const auto hovered=b->fieldController->getHoveredStack();if(hovered)n["targetUnit"]=creature(hovered->unitType(),hovered->getCount());if(active)for(auto & unit:n["battleUnits"].Vector()){const BattleHex position(unit["occupied"].Vector().empty()?0:unit["occupied"].Vector()[0].Integer());unit["canShootAt"].Bool()=b->getBattle()->battleCanShoot(active,position);unit["canMeleeAt"].Bool()=std::any_of(unit["occupied"].Vector().begin(),unit["occupied"].Vector().end(),[&](const JsonNode & hex){return b->getBattle()->battleCanAttackHex(reachable,active,BattleHex(hex.Integer()));});

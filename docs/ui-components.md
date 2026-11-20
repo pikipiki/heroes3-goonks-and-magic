@@ -55,12 +55,12 @@ Utiliser `renderMarkup` pour rafraîchir une fabrique. Lorsqu’une galerie nati
 | Écran et actions | `screenHeaderMarkup`, `actionDockMarkup`, `useScreenComponents`, `useActionDock` ; `{surface: 'plain'}` donne un fond sombre uni sans texture au bandeau de commandes |
 | Navigation et dépendances | `renderMarkup` avec `data-ui-tabs` pour les vrais `Tabs` / `Tab` MUI, et `data-ui-stepper` pour `Stepper` / `StepButton` MUI ; les commandes natives restent déléguées |
 | Menus | `createPopupMenu` : `Menu` MUI, mêmes boutons de commande |
-| Sélecteurs | `createMaterialSelects` : `Select` / `MenuItem` MUI, champ natif conservé comme pont de commande |
+| Sélecteurs | `createMaterialSelects` et `Select` React partagent `UpwardSelect` : vrais `Select` / `MenuItem` MUI ouverts vers le haut, liste défilante bornée par l’espace disponible ; champ natif conservé comme pont de commande |
 | Gestionnaire impératif existant | `setClickHandler` / `bindPress` ; éviter `.onclick`, que React peut réaffecter |
 | Choix natifs WoG dans un groupe nommé | `radioChoicesMarkup` crée toujours un vrai `RadioGroup` MUI ; `labelledBy` relie sa légende et `iconSrc` ajoute le média associé dans une taille commune du thème ; pont natif conservé |
 | Contexte d’achat | `usePurchaseContext` : ressources préchargées visibles, sans bouton à ouvrir ; le bandeau de modale réserve titre/fermeture puis ressources |
 | Fiche et recrutement de créature | `useCreatureOverview` : mêmes zones animation, statistiques et description, avec variante achat ou consultation |
-| Commandes de combat | `useBattleControls` : commandes principales et menu MUI des actions secondaires, mêmes gestionnaires natifs |
+| Commandes de combat | `useBattleControls` : commandes principales et menu MUI des actions secondaires, mêmes gestionnaires natifs ; `createBattleLastSpell` : rappel du dernier lancement confirmé, sans modifier le canvas |
 | Comparaison de royaumes | `useRadarChart` : `RadarChart` MUI X chargé uniquement à l’ouverture, deux séries maximum, rangs explicitement normalisés et valeurs inconnues exclues |
 | Coût et caractéristiques | `resourceCostMarkup`, `statGridMarkup`, `creatureStatsMarkup` (mêmes libellés complets/abrégés sans icônes pour créatures et commandants) |
 | Rangs et états compacts | `ratingMarkup` : Rating MUI en lecture seule, losanges dorés ; `chipMarkup` : Chip MUI pour les états |

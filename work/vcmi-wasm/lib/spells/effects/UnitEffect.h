@@ -11,6 +11,7 @@
 #pragma once
 
 #include "Effect.h"
+#include <map>
 #include "lib/constants/EntityIdentifiers.h"
 
 VCMI_LIB_NAMESPACE_BEGIN
@@ -20,14 +21,26 @@ namespace spells
 namespace effects
 {
 
+struct SpellUnitHealthChange
+{
+	int64_t hpDelta = 0;
+	int64_t unitsDelta = 0;
+};
+
 struct SpellEffectValue
 {
 	int64_t hpDelta = 0; // positive -> healed health points, negative -> damage
 	int64_t unitsDelta = 0; // positive -> resurrected / summoned (demons) / animated (undeads), negative -> kills
+	std::map<int32_t, SpellUnitHealthChange> affectedUnits; // read-only per-stack preview, preserving chain order
 	CreatureID unitType = CreatureID::NONE; // type of creatures summoned / resurrected / animated / etc.
 
-	SpellEffectValue & operator+=(const SpellEffectValue & rhs) noexcept
+	SpellEffectValue & operator+=(const SpellEffectValue & rhs)
 	{
+		for(const auto & [id, change] : rhs.affectedUnits)
+		{
+			affectedUnits[id].hpDelta += change.hpDelta;
+			affectedUnits[id].unitsDelta += change.unitsDelta;
+		}
 		hpDelta += rhs.hpDelta;
 		unitsDelta += rhs.unitsDelta;
 		if(unitType == CreatureID::NONE)
@@ -55,7 +68,7 @@ public:
 
     virtual bool eraseByImmunityFilter(const Mechanics * m, const battle::Unit * s) const;
 
-	virtual SpellEffectValue getHealthChange(const Mechanics * m, const EffectTarget & spellTarget) const;
+	virtual SpellEffectValue getHealthChange(const Mechanics * m, const EffectTarget & spellTarget, bool includeUnits = false) const;
 
 protected:
 	int32_t chainLength = 0;

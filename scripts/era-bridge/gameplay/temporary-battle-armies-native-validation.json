@@ -10,9 +10,9 @@
   "sourceBaseCommit": "c449be89dcfda668edad13c72d453db9c79ffc56",
   "sourceBindings": {
     "docs/era-gameplay-port.md": "daf2b4746a3d6a9b4e6d0ada857e6e5b7a74dac1091378e6e906fd64ba299a86",
-    "package-lock.json": "e10b7d3f7471b4c7631b659c1a026ca44833725835997500e4c5450c0f636dbc",
-    "package.json": "38ff8ce945be17015be4f43d0f049d1ae4241d1850eb066344185e58e1aed66b",
-    "scripts/prepare-web.mjs": "07cb3de579e44de90912dab5cd5f025f4e8a6dda5653aed466c620f1f9d358d2",
+    "package-lock.json": "933b98ff99d42d530244b0de5f94ad138077ca0eb5e17ad79b90bebce35d748f",
+    "package.json": "1b96d93bf5d1c0d62813700c83c180d16ff29ce0460d9366ac9d0adc5a04fc0c",
+    "scripts/prepare-web.mjs": "212512d5e277a3657c7dd5a9adf0eb017d83075a79904d2c2bbaf118930ca718",
     "tests/era-temporary-battle-armies.test.mjs": "ad5f36eb5d24b205573d849bcdda0709f262ea5168159b9682220054d00ae098",
     "tests/fixtures/era-gameplay/map-rogue-ambush-reference.json": "ff1c4ddaa813aeaaa2260c83afa452a192a9f34fa930a5b59d8ec938fc2ff17b",
     "tests/native/EraWogOptionsSerialization.test.cpp": "c6ae5d8f810a0fc0851f4bc6b50cc8dfb5921e87d460e292b743d6f444885878",
@@ -825,7 +825,7 @@
       "tracked": false
     },
     "sourceBindings": {
-      "src/ui/theme.mjs": "53e8fa5ec315569cd41c890ccfdcda359e838efe2c569083403cb8ee9dcbdc74",
+      "src/ui/theme.mjs": "eb68cf90b5d7c2912a0d4dea9c291e0985de4ed15a92a4a86f850184b58b1714",
       "scripts/build-ui.mjs": "4aec9e826e99f4b17f2eba3195832bea3c2ac614ace6676ed8a7be947c2f0f5e"
     },
     "stability": {
@@ -958,16 +958,16 @@
     "upstreamCommit": "d3733a98",
     "engineUnchanged": true,
     "sourceBindings": {
-      "src/ui/runtime.mjs": "11b910ee8fe97cf837fe6ab691e8071dd60275234619a669ff7210528cf4d20f",
-      "src/ui/theme.mjs": "53e8fa5ec315569cd41c890ccfdcda359e838efe2c569083403cb8ee9dcbdc74",
-      "web/town-building-menu.mjs": "2c7a0f2be3b48feafcb611a9e3c86d16e7dd8478723b204b9982597b4701ba3d",
+      "src/ui/runtime.mjs": "fa13e9a408bc23c2c5b26dd74b15d94c7c6cc7c6998e4cd6d075debb90a0cc44",
+      "src/ui/theme.mjs": "eb68cf90b5d7c2912a0d4dea9c291e0985de4ed15a92a4a86f850184b58b1714",
+      "web/town-building-menu.mjs": "5db60146b1bdf66e38ba9f7cdad55661556f498e478aad11e141801a2ac5e2c8",
       "web/ui/action-dock.mjs": "7cf6eae29e2023e627754f4d8e2c17ec08ebeeb34901de03624eed33a98a55a7",
-      "web/ui/construction-layout.css": "ce0ee7e3f272a93747f7f8902177bae7a9eb88f4e36ae841f6afb339a6895d44",
+      "web/ui/construction-layout.css": "a15269fb085a6fea3367232047c2146b3866f7f07d07d11904ad47fb29e8aba0",
       "web/ui/controls.mjs": "2998b68f7f4e8fce5953f2f19ec4c2139cb870dd1d2f5d488c0d5d654f8c26ad",
       "web/ui/material-components.css": "2e99f38550ab9c001d5a1417a978aa8e5a132975e450565f4b7ef24f54d568dd",
       "web/ui/surfaces.css": "85209d269f81cf00e7ebba9416ae9a5321c48f81cdcdaded4ed1240ee670b875",
       "work/browser-tests/construction-catalogue.mjs": "3581fdd88e0cf7d8e902d4772d6c14f9b1699c7e886b38777b5d91ee78b16967",
-      "work/browser-tests/construction-flow-e2e.mjs": "10936d31c9a8febf647ba5926ce42786ca40a3ddef1c83754f1a2a4719a875e3"
+      "work/browser-tests/construction-flow-e2e.mjs": "e24839d3b293b09454f056f85b5926045871dc05c280fb2fc6e934107d210b16"
     },
     "mockConstructionFlow": {
       "passed": true,

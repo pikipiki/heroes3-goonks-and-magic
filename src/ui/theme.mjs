@@ -5,7 +5,7 @@ const frame=new URL('../../web/h3-theme/button-frame.png',import.meta.url).href;
 const stone=new URL('../../web/h3-theme/stone.png',import.meta.url).href;
 // One theme owns typography, spacing, shape and control states for every screen.
 export const heroesTheme=createTheme({
- spacing:8,shape:{borderRadius:0},palette:{mode:'dark',primary:{main:'#edca84',contrastText:'#302007'},secondary:{main:'#dec8a4'},error:{main:'#ffb4ab'},background:{default:'#241a10',paper:'#302318'},text:{primary:'#fff0cc',secondary:'#dec8a4'},divider:'#a88c63'},
+ spacing:8,shape:{borderRadius:0},palette:{mode:'dark',primary:{main:'#edca84',contrastText:'#302007'},secondary:{main:'#dec8a4'},error:{main:'#ffb4ab'},success:{main:'#b5f07a'},background:{default:'#241a10',paper:'#302318'},text:{primary:'#fff0cc',secondary:'#dec8a4'},divider:'#a88c63'},
  typography:heroesTypography,
  zIndex:{modal:2147483000,tooltip:2147483001},
  components:{
@@ -44,6 +44,6 @@ export const heroesTokens={
  'space-1':heroesTheme.spacing(.5),'space-2':heroesTheme.spacing(1),'space-3':heroesTheme.spacing(1.5),'space-4':heroesTheme.spacing(2),'space-6':heroesTheme.spacing(3),
  touch:'48px',field:'56px',appbar:'64px',icon:'24px','radius-field':'0px','radius-control':'0px','radius-panel':'0px',
  surface:heroesTheme.palette.background.default,'surface-container':heroesTheme.palette.background.paper,'surface-high':'#423323','on-surface':heroesTheme.palette.text.primary,'on-surface-variant':heroesTheme.palette.text.secondary,outline:heroesTheme.palette.divider,
- primary:heroesTheme.palette.primary.main,'primary-container':'#651c10','on-primary-container':heroesTheme.palette.text.primary,'on-primary':heroesTheme.palette.primary.contrastText,'secondary-container':'#57452d','on-secondary':'#ffedc8',error:heroesTheme.palette.error.main,'on-error':'#690005',focus:'#fff0b1',
+ primary:heroesTheme.palette.primary.main,'primary-container':'#651c10','on-primary-container':heroesTheme.palette.text.primary,'on-primary':heroesTheme.palette.primary.contrastText,'secondary-container':'#57452d','on-secondary':'#ffedc8',success:heroesTheme.palette.success.main,error:heroesTheme.palette.error.main,'on-error':'#690005',focus:'#fff0b1',
  'font-resource':font('resource'),'font-resource-value':font('resourceValue'),'font-title':font('h2'),'font-title-compact':font('h3'),'font-tab':font('caption'),'font-label':font('button'),'font-label-medium':'500 12px/16px '+heroesTheme.typography.fontFamily,'font-body':font('body1'),'font-body-medium':font('body2'),'font-body-small':font('caption'),'motion-fast':'120ms','elevation-menu':heroesTheme.shadows[8]
 };

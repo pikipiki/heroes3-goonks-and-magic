@@ -1,0 +1,132 @@
+{
+  "scope": "Read-only mobile spell forecasts and signed counter annotations. Original cast mechanics and serialized saves unchanged. Native detail collection is opt-in; AI and existing tooltip callers keep the default without per-stack map allocations.",
+  "build": {
+    "command": "ninja -j32 html5",
+    "exitCode": 0,
+    "wasmSha256": "d6578ac4c9dce80526b1fb08351810dad75157d466f93776cff6fcbb7a75890c"
+  },
+  "archive": {
+    "file": "outputs/vcmi-wasm-goonk-0.4.311-engine.tar.gz",
+    "sha256": "f4e2c12b1e4e32263b924aa979e829ddefec95c1812a9316a5b07c15dc1fe65f"
+  },
+  "nativeValidation": {
+    "test": "work/browser-tests/battle-spell-estimates-native-e2e.mjs",
+    "browser": "Chromium",
+    "sameCompiledBytes": true,
+    "testOnlyExtraHeroCasts": true,
+    "originalSpellPayloadsUnchanged": true,
+    "idleArmiesUnchanged": true,
+    "cases": [
+      {
+        "name": "magicArrow",
+        "forecast": {
+          "hpDelta": -30,
+          "spellId": 15,
+          "unitsDelta": -5
+        },
+        "before": 100,
+        "after": 95
+      },
+      {
+        "name": "chainLightning",
+        "forecast": {
+          "hpDelta": -65,
+          "spellId": 19,
+          "unitsDelta": -10
+        },
+        "before": 95,
+        "after": 85
+      },
+      {
+        "name": "fireball",
+        "forecast": {
+          "hpDelta": -25,
+          "spellId": 21,
+          "unitsDelta": -2
+        },
+        "before": 100,
+        "after": 98
+      },
+      {
+        "name": "cure",
+        "forecast": {
+          "hpDelta": 5,
+          "spellId": 37,
+          "unitsDelta": 0
+        }
+      },
+      {
+        "name": "resurrection",
+        "forecast": {
+          "hpDelta": 20,
+          "spellId": 38,
+          "unitsDelta": 2
+        }
+      },
+      {
+        "name": "corpse-resurrection",
+        "forecast": {
+          "hpDelta": 10,
+          "spellId": 38,
+          "unitsDelta": 1
+        }
+      }
+    ]
+  },
+  "presentation": {
+    "unitTests": 7,
+    "browserTest": "work/browser-tests/battle-spell-estimates-e2e.mjs",
+    "browsers": [
+      "Chromium",
+      "WebKit"
+    ],
+    "languages": [
+      "fr",
+      "en"
+    ],
+    "denseMixedArmyCases": 64,
+    "views": [
+      "Classic",
+      "Vertical"
+    ],
+    "adjacentUnits": 16,
+    "counterAndAnnotationOverlaps": 0,
+    "uprightLTR": true,
+    "instantPreferenceToggle": true
+  },
+  "previewRules": {
+    "cache": "selected spell/mode/power/mastery, battle action sequence, current unit states; reused across unchanged snapshots",
+    "legalCorpseTargetsIncludedOnlyWhileTargeting": true,
+    "healing": "Cure displays actual capped HP restored, never invents resurrected creatures. Resurrection displays native recovered creature count.",
+    "ambiguousIndependentHealthEffects": "Per-stack details withheld when multiple independent health effects would make summed casualty counts unreliable. Existing aggregate tooltip unchanged.",
+    "randomEffects": "Estimates do not guarantee random resistance or interception outcomes."
+  },
+  "sourceBindings": {
+    "work/vcmi-wasm/lib/battle/CBattleInfoCallback.h": "e628b5c93b024da63ca909385a631be9a121f9b5182b39d43e9ecab2b061666b",
+    "work/vcmi-wasm/lib/battle/CBattleInfoCallback.cpp": "9fa7a0720e64b5289a7d566d70ea2ef06980a8de7a8485c8310ad8723f3af688",
+    "work/vcmi-wasm/lib/spells/effects/UnitEffect.h": "9849004bc73788e5c2c1017df433b46ec95728413026e309a4b7a6005779d2ec",
+    "work/vcmi-wasm/lib/spells/effects/UnitEffect.cpp": "c4b780137c17105facc3971011d688fa79e30ab4e97474508304844aeddc10fc",
+    "work/vcmi-wasm/lib/spells/effects/Damage.h": "082a635cab8fbf80648ef99a19550bf1f60713b4351fb07dc5dbd13fe43ada85",
+    "work/vcmi-wasm/lib/spells/effects/Damage.cpp": "36517523f2e26b42d1a5b11066e20e3f37d642ba28a6ac812ef4f06305cbcbd6",
+    "work/vcmi-wasm/lib/spells/effects/Heal.h": "fdfeb881d979d5d0ea97fb87ecae74ab14d09901ba9709455db6376a72c533ed",
+    "work/vcmi-wasm/lib/spells/effects/Heal.cpp": "78766aca769727b27865be7dfd4f90446ebdf95ba8f4b81d5cc9ca4416911d93",
+    "work/vcmi-wasm/lib/spells/effects/DemonSummon.h": "c32bb10f28e813901b90c36ccc822cb9d59f120862c45f76c94896ed3f189b79",
+    "work/vcmi-wasm/lib/spells/effects/DemonSummon.cpp": "65db48111709cdbd06202b48fdb65af03b22c9177a15f2f559a9d8faf8255785",
+    "work/vcmi-wasm/lib/spells/effects/Sacrifice.h": "b09f30a79dc608b3e79913745dd5aee14e2f5b822e565b49a70345c11d9e1c64",
+    "work/vcmi-wasm/lib/spells/effects/Sacrifice.cpp": "76d267ed192987d7243d4e750f4961cb5ce2b206785f3d660b1072ec9420acc1",
+    "work/vcmi-wasm/client/MobileBridge.cpp": "572e01acfff778f2c379e316ca67a49d4c8451f476c2e9bb64da592171ff4264"
+  },
+  "physicalAttackRegression": {
+    "test": "work/browser-tests/battle-losses-native-e2e.mjs",
+    "browser": "Chromium",
+    "passed": true,
+    "checks": [
+      "Native attack forecasts remain bounded to legal enemy targets",
+      "Count rectangle metadata retained",
+      "Idle armies unchanged",
+      "Classic and Vertical rotations",
+      "Instant preference toggle",
+      "Defend and Magic navigation"
+    ]
+  }
+}

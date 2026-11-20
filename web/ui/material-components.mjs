@@ -22,3 +22,5 @@ export {useCreatureOverview} from './creature-overview.mjs';
 export {createCommanderSkillIcon,commanderSkillArt,commanderChoiceMarkup} from './commander-skill.mjs';
 
 export {ratingMarkup,chipMarkup,creatureStatsMarkup} from './data-display.mjs';
+
+export {createBattleLastSpell} from './battle-last-spell.mjs';

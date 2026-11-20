@@ -26,7 +26,7 @@ function category({key}) {
 }
 
 const buildingText = text => plainGameText(text).replaceAll('{}', '').trim();
-const name = building => buildingText(building.name);
+const name = building => {const value=buildingText(building.name),key=String(building.key||'').split(':').at(-1);return value===key?value.replace(/([a-z])([A-Z])/g,'$1 $2'):value;};
 const description = building => buildingText(building.description);
 const isGrail = building => building.key?.split(':').at(-1) === 'grail';
 const constructionReason = building => building.needsGrail && building.state !== 2

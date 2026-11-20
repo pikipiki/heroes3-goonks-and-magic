@@ -217,7 +217,7 @@ void Damage::apply(ServerCallback * server, const Mechanics * m, const EffectTar
 		server->apply(blm);
 }
 
-SpellEffectValue Damage::getHealthChange(const Mechanics * m, const EffectTarget & spellTarget) const
+SpellEffectValue Damage::getHealthChange(const Mechanics * m, const EffectTarget & spellTarget, bool includeUnits) const
 {
 	SpellEffectValue result {};
 
@@ -229,6 +229,8 @@ SpellEffectValue Damage::getHealthChange(const Mechanics * m, const EffectTarget
 		const battle::Unit * unit = t.unitValue;
 		if(unit && unit->alive() && !eraCreatureSpellDamageCanceled(m,unit))
 		{
+			const auto previousHP = result.hpDelta;
+			const auto previousUnits = result.unitsDelta;
 			BattleStackAttacked bsa;
 			bsa.damageAmount = damageForTarget(targetIndex, m, unit);
             if(eraDeflectionSpell(m))
@@ -259,6 +261,12 @@ SpellEffectValue Damage::getHealthChange(const Mechanics * m, const EffectTarget
                 result.unitsDelta += state->getCount() - unit->getCount();
             else
                 result.unitsDelta -= static_cast<int32_t>(bsa.killedAmount);
+			if(includeUnits)
+			{
+				auto & forecast = result.affectedUnits[unit->unitId()];
+				forecast.hpDelta += result.hpDelta - previousHP;
+				forecast.unitsDelta += result.unitsDelta - previousUnits;
+			}
 		}
 
 		targetIndex++;

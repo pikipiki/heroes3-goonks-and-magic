@@ -31,7 +31,7 @@ public:
 
 	EffectTarget transformTarget(const Mechanics * m, const Target & aimPoint, const Target & spellTarget) const override;
 
-	SpellEffectValue getHealthChange(const Mechanics * m, const EffectTarget & spellTarget) const final;
+	SpellEffectValue getHealthChange(const Mechanics * m, const EffectTarget & spellTarget, bool includeUnits = false) const final;
 
 protected:
 	bool isValidTarget(const Mechanics * m, const battle::Unit * unit) const override;

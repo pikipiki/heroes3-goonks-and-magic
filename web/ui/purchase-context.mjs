@@ -1,6 +1,17 @@
 import {renderMarkup,createMaterialElement} from './mui-runtime.mjs';
 import {escapeUI,uiText} from './primitives.mjs';
 const records=new WeakMap(),sources=new WeakMap(),strips=new WeakMap();
+let titleMeasure;
+// Short landscape titles share the same compact resource header. Measure the
+// actual theme font rather than guessing from a language-specific string length.
+function compactPurchaseTitle(root,header){
+ if(root.clientWidth<=root.clientHeight||header.clientWidth<240)return false;
+ const title=header.querySelector(':scope>h2,:scope>.ui-heading h2');if(!title)return false;
+ if(header.querySelector(':scope>.ui-heading p')?.textContent.trim())return false;
+ titleMeasure??=document.createElement('canvas').getContext('2d');
+ titleMeasure.font=getComputedStyle(title).font;
+ return titleMeasure.measureText(title.textContent.trim()).width<=header.clientWidth-64;
+}
 // A single non-interactive resource strip, composed from the preloaded kingdom
 // artwork. Purchase screens never require opening a resources popup.
 export function usePurchaseContext(root){
@@ -33,7 +44,7 @@ export function usePurchaseContext(root){
  const provider=header.parentElement.querySelector('[data-ui-header-calendar]'),calendar=root.querySelector('.mobile-calendar');
  const days=Number(provider?.dataset.days??calendar?.dataset.recruitDays),valid=Number.isInteger(days)&&days>0;
  if(record.calendarHost.hidden===valid)record.calendarHost.hidden=!valid;
- record.calendarHost.dataset.compactTitle=String(!!provider?.hasAttribute('data-compact-title'));
+ record.calendarHost.dataset.compactTitle=String(!!provider?.hasAttribute('data-compact-title')||compactPurchaseTitle(root,header));
  renderRecruitCalendar(record.calendarHost,days);
  if(record.calendarHost.parentElement!==header)header.append(record.calendarHost);
 

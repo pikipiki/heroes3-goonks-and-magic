@@ -11,10 +11,10 @@
   "engineSha256": "bf6aacf6ef7aa2e8fa8f233ef77adcfb1330d1c964b991c97f655cc68486b7b6",
   "sourceBaseCommit": "26632499ffd0b439fbc7142364f4321f5eadeb03",
   "sourceBindings": {
-    "package-lock.json": "e10b7d3f7471b4c7631b659c1a026ca44833725835997500e4c5450c0f636dbc",
-    "package.json": "38ff8ce945be17015be4f43d0f049d1ae4241d1850eb066344185e58e1aed66b",
+    "package-lock.json": "933b98ff99d42d530244b0de5f94ad138077ca0eb5e17ad79b90bebce35d748f",
+    "package.json": "1b96d93bf5d1c0d62813700c83c180d16ff29ce0460d9366ac9d0adc5a04fc0c",
     "scripts/era-bridge/campaigns/parser.mjs": "70f65f26c3636c7f352ec8c8ba751cb82812151f4ece87e71f432bdccfdf4c9f",
-    "scripts/prepare-web.mjs": "07cb3de579e44de90912dab5cd5f025f4e8a6dda5653aed466c620f1f9d358d2",
+    "scripts/prepare-web.mjs": "212512d5e277a3657c7dd5a9adf0eb017d83075a79904d2c2bbaf118930ca718",
     "tests/native/EraWogOptionsSerialization.test.cpp": "c6ae5d8f810a0fc0851f4bc6b50cc8dfb5921e87d460e292b743d6f444885878",
     "work/browser-tests/wog-commander-words-cases.mjs": "d79893bb43a45199034b527f730a67ea676dbe416431856cd6d686cc0872f5ab",
     "work/browser-tests/wog-creature-prices-cases.mjs": "fe98dcb45fe3f649d0165ce922f0a56c86cc9ec502dfc91e81a22ca7b8f9aafe",
@@ -35,7 +35,7 @@
     "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "affc617663efdca4ff34bb9bb4da1716fe06758ec1e4915e2f6f2bb4e472b767",
     "tests/era-commander-experience-native.test.mjs": "a93b0f35d61c18a18fd1913b6f93311d713668183e4593613e6d23c86d0275dc",
     "scripts/era-bridge/gameplay/map-rules.json": "a7946c8a311b8642a257f9d93f2192b9e7d22a0b361da870f56160f02423115e",
-    "work/vcmi-wasm/client/MobileBridge.cpp": "256e2b5a5a999313ef4c049b5685ecad543c418d45262f8cbff823114baacb3d",
+    "work/vcmi-wasm/client/MobileBridge.cpp": "572e01acfff778f2c379e316ca67a49d4c8451f476c2e9bb64da592171ff4264",
     "work/browser-tests/native-ui-actions.mjs": "01d7ce13668520252cb39a7b5f76733517823cf72658c469ec8d3298a55f6ee6",
     "work/browser-tests/wog-henchmen-prompt-cases.mjs": "268768b1eb9a35899af25e90b7590c52db9af9066a211a071d505507ab2d976e"
   },

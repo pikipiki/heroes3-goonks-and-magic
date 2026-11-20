@@ -10,19 +10,37 @@ globalThis.addEventListener?.('goonk-battle-loss-preference',refresh);
 globalThis.addEventListener?.('storage',refresh);
 
 export function enemyLossEstimates(state,show=enabled){
- if(!show||state.mode!=='battle'||!battleCapabilities(state).combatReady||state.spellTargeting||state.animating)return [];
+ if(!show||state.mode!=='battle'||state.animating)return [];
+ if(state.spellTargeting)return spellUnitEstimates(state);
+ if(!battleCapabilities(state).combatReady)return [];
  const actor=(state.battleUnits||[]).find(u=>u.stackId===state.activeStack);
  if(!actor||(state.activeUnit?.controlled??!actor.enemy)===false)return [];
  return (state.battleUnits||[]).filter(u=>{
   const p=u.attackLosses;
   return u.enemy&&u.count>0&&(u.canShootAt||u.canMeleeAt)&&p?.actor===state.activeStack&&
    Number.isSafeInteger(p.min)&&Number.isSafeInteger(p.max)&&p.min>=0&&p.max>=p.min&&p.max<=u.count;
- }).map(unit=>({unit,label:formatEnemyLosses(unit.attackLosses)}));
+ }).map(unit=>({unit,label:formatEnemyLosses(unit.attackLosses),kind:'loss'}));
+}
+// The engine has already simulated each legal aim with its own spell mechanics.
+// Ordinary cure restores HP, never dead creatures; show HP explicitly instead
+// of inventing a positive unit count. Resurrection uses the real units delta.
+export function spellUnitEstimates(state){
+ if(!battleCapabilities(state).targeting)return [];
+ return (state.battleUnits||[]).flatMap(unit=>{
+  const p=unit.spellEstimate;
+  if(!p||!Number.isSafeInteger(p.unitsDelta)||!Number.isSafeInteger(p.hpDelta)||p.spellId!==state.selectedSpellId)return [];
+  if(p.unitsDelta<0&&-p.unitsDelta>unit.count)return [];
+  const change=p.unitsDelta;
+  if(change===0&&p.hpDelta===0)return [];
+  const gain=change>0||change===0&&p.hpDelta>0;
+  const label=change===0&&gain?`+${p.hpDelta} ${uiText('HP','PV')}`:change>0?`+${change}`:`−${Math.abs(change)}`;
+  return [{unit,label,kind:gain?'gain':'loss'}];
+ });
 }
 export function formatEnemyLosses({min,max}){return min===max?`−${min}`:`−${min}–${max}`;}
 export function enemyLossDescription(state){
  const entries=enemyLossEstimates(state);
- return entries.length?uiText('Estimated enemy casualties per strike (random effects excluded): ','Pertes ennemies estimées par frappe (hors effets aléatoires) : ')+entries.map(({unit,label})=>`${unit.name} : ${label}`).join('; '):'';
+ return entries.length?(state.spellTargeting?uiText('Estimated spell effect on each target (random effects excluded): ','Effet du sort estimé sur chaque cible (hors effets aléatoires) : '):uiText('Estimated enemy casualties per strike (random effects excluded): ','Pertes ennemies estimées par frappe (hors effets aléatoires) : '))+entries.map(({unit,label})=>`${unit.name} : ${label}`).join('; '):'';
 }
 export function overlaps(a,b,gap=2){return a.x<b.x+b.w+gap&&a.x+a.w+gap>b.x&&a.y<b.y+b.h+gap&&a.y+a.h+gap>b.y;}
 const styles=new WeakMap();
@@ -33,7 +51,7 @@ function theme(ctx){
  const token=(name,fallback)=>css?.getPropertyValue('--ui-'+name).trim()||fallback;
  const font=token('font-body-small',ctx.font).replace(/\/[\d.]+(?:px)?/,'');
  const value={font,height:(parseFloat(font.match(/([\d.]+)px/)?.[1])||12)+6,
-  background:token('surface','#1e140c'),loss:token('error','#ffb4ab')};
+  background:token('surface','#1e140c'),loss:token('error','#ffb4ab'),gain:token('success','#b5f07a')};
  if(canvas&&css)styles.set(canvas,value);return value;
 }
 
@@ -79,6 +97,6 @@ export function paintEnemyLosses(ctx,state,layout,{occlusion=[],counters=occlusi
  const result=cached?.signature===signature?cached.result:layoutCounterLosses(entries,bounds,nativeCounters,cached?.result?.placed);
  if(ctx.canvas)layouts.set(ctx.canvas,{signature,result});
  ctx.beginPath();ctx.rect(bounds.x,bounds.y,bounds.w,bounds.h);ctx.clip();ctx.textAlign='center';ctx.textBaseline='middle';
- for(const r of result.placed){ctx.globalAlpha=.94;ctx.fillStyle=t.background;ctx.fillRect(r.x,r.y,r.w,r.h);ctx.globalAlpha=1;ctx.fillStyle=t.loss;ctx.fillText(r.label,r.x+r.w/2,r.y+r.h/2);}
+ for(const r of result.placed){ctx.globalAlpha=.94;ctx.fillStyle=t.background;ctx.fillRect(r.x,r.y,r.w,r.h);ctx.globalAlpha=1;ctx.fillStyle=r.kind==='gain'?t.gain:t.loss;ctx.fillText(r.label,r.x+r.w/2,r.y+r.h/2);}
  ctx.restore();return result.placed;
 }

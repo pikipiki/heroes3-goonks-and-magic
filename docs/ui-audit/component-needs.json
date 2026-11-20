@@ -981,7 +981,7 @@
         "details",
         "result"
       ],
-      "sourceSHA256": "79f0ed2ff023551b34e1a680c7e14f705f7a243681cfcbe7f7a1efd923e07705",
+      "sourceSHA256": "9144ec4ed6d979d8be03805eb0412bd8f0a642baea915bd0364df3408c2463fe",
       "evidence": [
         {
           "line": 73,
@@ -996,23 +996,23 @@
           "excerpt": "const viewportFrame=document.createElement('div');viewportFrame.id='mobile-viewport';root.before(viewportFrame);viewportFrame.append(root);"
         },
         {
-          "line": 115,
+          "line": 116,
           "excerpt": "renderMarkup(menu,homeMenu+'<button type=\"button\" data-open-multiplayer>Multijoueur</button>');"
         },
         {
-          "line": 123,
+          "line": 124,
           "excerpt": "renderMarkup(menu,'<h1 tabindex=\"-1\">Multijoueur</h1><button type=\"button\" data-action=\"75\">Appareil de l’hôte</button><button type=\"button\" data-open-hosted-match>Serveur dédié</b"
         },
         {
-          "line": 141,
+          "line": 142,
           "excerpt": "const launchStatus=document.createElement('section');launchStatus.className='menu-launch-status';launchStatus.hidden=true;launchStatus.setAttribute('role','status');root.querySelec"
         },
         {
-          "line": 142,
+          "line": 143,
           "excerpt": "function renderLaunch(value){const active=!!value;for(const button of root.querySelectorAll('.mobile-menu [data-action]')){button.disabled=active;if(active&&!value.failed&&Number(b"
         },
         {
-          "line": 190,
+          "line": 191,
           "excerpt": "root.addEventListener('error',event=>{const image=event.target;if(image.matches?.('img[data-native-portrait]')){const holder=document.createElement('span');renderMarkup(holder,crea"
         }
       ],
@@ -1054,7 +1054,7 @@
         "storage",
         "confirm"
       ],
-      "sourceSHA256": "570a1c2df3480518f50ab3230edc69c8da932f791fdf9db152a5bafd89218d1d",
+      "sourceSHA256": "f26fc20e7b6c759b84ccc7a27434601ad289aeee88c34ffc47e21811c4e8603d",
       "evidence": [
         {
           "line": 27,
@@ -1672,7 +1672,7 @@
         "confirm",
         "feedback"
       ],
-      "sourceSHA256": "2c7a0f2be3b48feafcb611a9e3c86d16e7dd8478723b204b9982597b4701ba3d",
+      "sourceSHA256": "5db60146b1bdf66e38ba9f7cdad55661556f498e478aad11e141801a2ac5e2c8",
       "evidence": [
         {
           "line": 66,
@@ -1985,34 +1985,38 @@
         "feedback",
         "accordion"
       ],
-      "sourceSHA256": "b6ef819e3cf79d3bc88ef9081ff4307b1d60d415047350014a1956e226fca69c",
+      "sourceSHA256": "94915edc9e191dfc78fd35217c1605c17ca564a92f2f2d52b4928509b42c5c02",
       "evidence": [
         {
-          "line": 6,
+          "line": 4,
+          "excerpt": "if(typeof document!=='undefined'){const link=document.createElement('link');link.rel='stylesheet';link.href=new URL('./ui/mithril-layout.css',import.meta.url).href;document.head.ap"
+        },
+        {
+          "line": 7,
           "excerpt": "export function renderMithrilOffers(data,{pending=false,canAct=false,selectedTerrains={}}={}){"
         },
         {
-          "line": 23,
+          "line": 24,
           "excerpt": "${offer.terrainChoices?`<label>${fr?'Terrain de siège':'Siege terrain'}<select data-mithril-terrain=\"${offer.id}\" ${pending||!canAct?'disabled':''}>${offer.terrainChoices.map(row=>"
         },
         {
-          "line": 24,
+          "line": 25,
           "excerpt": "${offer.active?`<p>${offer.days?`${offer.days} ${fr?'jours restants':'days remaining'}`:(fr?'Amélioré':'Enhanced')}</p>`:`<button data-mithril-buy=\"${offer.id}\" data-mithril-choice"
         },
         {
-          "line": 27,
+          "line": 28,
           "excerpt": "export function createMithrilEnhancements({root,command}){"
         },
         {
-          "line": 30,
+          "line": 31,
           "excerpt": "const panel=document.createElement('section');panel.className='mithril-panel';useScreenComponents(panel);panel.hidden=true;panel.setAttribute('role','dialog');panel.setAttribute('a"
         },
         {
-          "line": 31,
+          "line": 32,
           "excerpt": "renderMarkup(panel,'<header><h2 id=\"mithril-title\">Mithril</h2><button data-mithril-close aria-label=\"Fermer\">✕</button></header><div class=\"mithril-content\"></div>');"
         },
         {
-          "line": 56,
+          "line": 57,
           "excerpt": "const information=info?`<section class=\"mithril-information\"><p>${esc(info.total)}</p>${info.prices?.length?`<button data-mithril-prices aria-expanded=\"${pricesOpen}\" aria-controls"
         }
       ],
@@ -2049,7 +2053,7 @@
         "skills",
         "result"
       ],
-      "sourceSHA256": "07546c8fb38c7ae74af616124403a22fbd8c31472d9aa9b6e8b0d5601a3dec94",
+      "sourceSHA256": "7dbc96d26f2bb0eb2d3580fffdcdfb70ae510b814841f107c8c2d356dd50f1ef",
       "evidence": [
         {
           "line": 13,
@@ -2060,27 +2064,27 @@
           "excerpt": "const panel=document.createElement('section');panel.className='dialog-presentation';useScreenComponents(panel);panel.hidden=true;panel.setAttribute('aria-labelledby','dialog-presen"
         },
         {
-          "line": 65,
+          "line": 66,
           "excerpt": "const header=document.createElement('header'),title=document.createElement('h2');title.id='dialog-presentation-title';const heading=data.title==='Game message'?(data.lines||[]).map"
         },
         {
-          "line": 68,
+          "line": 69,
           "excerpt": "const content=document.createElement('div');content.className='dialog-copy';"
         },
         {
-          "line": 69,
+          "line": 70,
           "excerpt": "if(data.visitedObject&&data.scriptDialog?.kind!=='bitmap'){const image=document.createElement('canvas');image.className='visited-object-art';image.width=192;image.height=160;image."
         },
         {
-          "line": 71,
+          "line": 72,
           "excerpt": "for(const line of lines){const p=document.createElement('p');p.textContent=line;content.append(p);}"
         },
         {
-          "line": 72,
+          "line": 73,
           "excerpt": "if(data.unit){const preview=document.createElement('canvas');preview.className='commander-preview';preview.width=192;preview.height=240;preview.setAttribute('aria-label',data.unit."
         },
         {
-          "line": 74,
+          "line": 75,
           "excerpt": "if(selected?.description||panel.dataset.commanderPicker==='true'){const description=document.createElement('p');description.className='dialog-choice-description';description.id='di"
         }
       ],
@@ -2156,7 +2160,7 @@
         "card",
         "feedback"
       ],
-      "sourceSHA256": "1856aa37d072604ff454673c815e13cd30f1d638978aa4cb8b069fae80e3d745",
+      "sourceSHA256": "9455f10c5bb4da78679f9f6cb7de951a0bfb80b0d7dcbfc7c0d59de8c3c9ae04",
       "evidence": [
         {
           "line": 5,
@@ -2168,7 +2172,7 @@
         },
         {
           "line": 15,
-          "excerpt": "export function renderCommanderTree(tree,choices,{filter=null,onFilter=()=>{},onSelect=()=>{}}={}){"
+          "excerpt": "export function renderCommanderTree(tree,choices,{filter=null,expanded=null,masteryOpen=false,onFilter=()=>{},onSelect=()=>{}}={}){"
         },
         {
           "line": 16,
@@ -2180,7 +2184,7 @@
         },
         {
           "line": 22,
-          "excerpt": "const mastery=createAccordion({parent:root,className:'tree-mastery',markup:`<summary>${escapeUI(tr(`${mastered}/${tree.skills.length} Master skills`,`${mastered}/${tree.skills.leng"
+          "excerpt": "const mastery=createAccordion({parent:root,className:'tree-mastery',open:masteryOpen,markup:`<summary>${escapeUI(tr(`${mastered}/${tree.skills.length} Master skills`,`${mastered}/$"
         },
         {
           "line": 24,
@@ -2188,7 +2192,7 @@
         },
         {
           "line": 33,
-          "excerpt": "const accordion=createAccordion({parent:list,className:'tree-ability',open:selected,markup:`<summary><span class=\"tree-ability-heading\"><span class=\"tree-combination\">${ability.req"
+          "excerpt": "const accordion=createAccordion({parent:list,className:'tree-ability',open:expanded?expanded.includes(ability.id):selected,markup:`<summary><span class=\"tree-ability-heading\"><span"
         }
       ],
       "review": "source-reviewed"

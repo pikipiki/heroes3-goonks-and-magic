@@ -2,7 +2,7 @@
 // Existing native-bridge factories use renderMarkup through web/ui/components.
 export {default as Button} from '@mui/material/Button';
 export {default as IconButton} from '@mui/material/IconButton';
-export {default as Select} from '@mui/material/Select';
+export {default as Select} from './upward-select.mjs';
 export {default as MenuItem} from '@mui/material/MenuItem';
 export {default as Menu} from '@mui/material/Menu';
 export {default as Radio} from '@mui/material/Radio';

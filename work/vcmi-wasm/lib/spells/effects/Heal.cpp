@@ -32,7 +32,7 @@ void Heal::apply(ServerCallback * server, const Mechanics * m, const EffectTarge
 	apply(m->getEffectValue(), server, m, target);
 }
 
-SpellEffectValue Heal::getHealthChange(const Mechanics * m, const EffectTarget & spellTarget) const
+SpellEffectValue Heal::getHealthChange(const Mechanics * m, const EffectTarget & spellTarget, bool includeUnits) const
 {
 	SpellEffectValue result;
 
@@ -42,7 +42,16 @@ SpellEffectValue Heal::getHealthChange(const Mechanics * m, const EffectTarget &
 
 		if(unit)
 		{
-			result += getHealEffectValue(m->getEffectValue(), m, unit);
+			auto state = unit->acquire();
+			const auto beforeHP = state->getAvailableHealth();
+			const auto effect = getHealEffectValue(m->getEffectValue(), m, unit, state);
+			result += effect;
+			if(includeUnits)
+			{
+				auto & forecast = result.affectedUnits[unit->unitId()];
+				forecast.hpDelta += state->getAvailableHealth() - beforeHP;
+				forecast.unitsDelta += effect.unitsDelta;
+			}
 			result.unitType = unit->creatureId();
 		}
 	}

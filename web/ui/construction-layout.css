@@ -11,7 +11,7 @@
  #mobile-app[data-sheet=build] :is(.building-list,.building-detail,.building-side-info){min-height:0!important;min-width:0!important;box-sizing:border-box!important;overflow-y:auto!important;overflow-x:hidden!important;overscroll-behavior:contain!important;touch-action:pan-y!important}
  #mobile-app[data-sheet=build] .building-list{grid-area:3/1!important;padding:4px!important}
  #mobile-app[data-sheet=build] .building-cards{gap:8px!important}
- #mobile-app[data-sheet=build] .building-tile{grid-template-columns:minmax(0,1fr)!important;grid-template-rows:var(--ui-screen-head-height,56px) auto 1fr auto!important;gap:8px!important;padding:8px!important;overflow-wrap:normal!important;word-break:normal!important;hyphens:none!important}
+ #mobile-app[data-sheet=build] .building-tile{grid-template-columns:minmax(0,1fr)!important;grid-template-rows:var(--ui-screen-head-height,56px) auto 1fr auto!important;gap:8px!important;padding:4px!important;overflow-wrap:normal!important;word-break:normal!important;hyphens:none!important}
  #mobile-app[data-sheet=build] .building-tile>.building-card-image{height:56px!important;width:100%!important;object-fit:contain!important}
  #mobile-app[data-sheet=build] .building-tile>.building-summary{font:var(--ui-font-body-small)!important;white-space:normal!important;word-break:normal!important;overflow-wrap:normal!important;overflow:visible!important;display:block!important;-webkit-line-clamp:unset!important;max-height:none!important}
  #mobile-app[data-sheet=build] .building-tile>strong{font:var(--ui-font-label)!important;font-weight:400!important;white-space:normal!important;overflow-wrap:normal!important;word-break:normal!important;min-width:0!important}
@@ -67,7 +67,7 @@
  #mobile-app[data-sheet=build] .mobile-sheet[data-building-project=true]>.ui-action-dock:not(.building-actions){grid-area:6/1!important}
  #mobile-app[data-sheet=build] .mobile-sheet[data-building-project=true]{grid-template-rows:var(--ui-screen-head-height,56px) auto minmax(0,1fr) auto auto!important}
  @container goonk-viewport (orientation:landscape){
-  #mobile-app[data-sheet=build] .mobile-sheet,#mobile-app[data-sheet=build] .mobile-sheet[data-building-project=true]{grid-template-columns:minmax(0,1fr) clamp(184px,28cqw,220px)!important;grid-template-rows:var(--ui-screen-head-height,56px) minmax(0,1fr) auto!important}
+  #mobile-app[data-sheet=build] .mobile-sheet,#mobile-app[data-sheet=build] .mobile-sheet[data-building-project=true]{grid-template-columns:minmax(0,1fr) clamp(240px,32cqw,256px)!important;grid-template-rows:var(--ui-screen-head-height,56px) minmax(0,1fr) auto!important}
   #mobile-app[data-sheet=build] .mobile-sheet>.sheet-head{grid-area:1/2!important}
   #mobile-app[data-sheet=build] .building-list,#mobile-app[data-sheet=build] .building-detail{grid-area:1/1/-1/2!important}
   #mobile-app[data-sheet=build] .building-controls,#mobile-app[data-sheet=build] .building-side-info,#mobile-app[data-sheet=build] .mobile-sheet[data-building-project=true] .building-side-info{grid-area:2/2!important;align-self:stretch!important}
@@ -90,7 +90,7 @@
   #mobile-app[data-sheet=build] .mobile-sheet[data-building-project=false] .building-detail{grid-area:1/1!important}
  }
  @container goonk-viewport (orientation:landscape) and (min-width:640px){
-  #mobile-app[data-sheet=build] .mobile-sheet[data-building-project=true]{grid-template-columns:clamp(136px,22cqw,176px) minmax(0,1fr) clamp(184px,28cqw,220px)!important}
+  #mobile-app[data-sheet=build] .mobile-sheet[data-building-project=true]{grid-template-columns:clamp(136px,22cqw,176px) minmax(0,1fr) clamp(240px,32cqw,256px)!important}
   #mobile-app[data-sheet=build] .mobile-sheet[data-building-project=true]>.sheet-head{grid-area:1/3!important}
   #mobile-app[data-sheet=build] .mobile-sheet[data-building-project=true] .building-project{grid-area:1/1/-1/2!important}
   #mobile-app[data-sheet=build] .mobile-sheet[data-building-project=true] .building-detail{grid-area:1/2/-1/3!important}
@@ -128,7 +128,7 @@
 /* Shared catalogue density; MUI Tabs includes its border in its width. */
 @layer ui-composition {
  #mobile-app[data-sheet=build] .building-cards{grid-template-columns:repeat(3,minmax(0,1fr))!important}
- #mobile-app[data-sheet=build] .building-tile>:is(strong,.building-summary){overflow-wrap:anywhere!important}
+ #mobile-app[data-sheet=build] .building-tile>:is(strong,.building-summary){overflow-wrap:normal!important;word-break:normal!important;hyphens:none!important}
  @container goonk-viewport (orientation:landscape){
   #mobile-app[data-sheet=build] .building-cards{grid-template-columns:repeat(4,minmax(0,1fr))!important}
   #mobile-app[data-sheet=build] .building-controls{box-sizing:border-box!important;padding-right:4px!important}
@@ -139,4 +139,27 @@
  #mobile-app[data-sheet=build] .building-list{padding:8px!important}
  #mobile-app[data-sheet=build] .building-group{gap:12px!important;margin-bottom:16px!important}
  #mobile-app[data-sheet=build] .building-group h3{border:0!important;padding:4px 0!important}
+}
+
+@layer ui-composition {
+ @container goonk-viewport (orientation:landscape) and (max-width:639px){
+  #mobile-app[data-sheet=build] .building-cards{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+ }
+}
+
+/* Reserve the full two-tab/selector stack after the general control spacing. */
+@layer ui-composition {
+ @container goonk-viewport (orientation:landscape){
+  #mobile-app[data-sheet=build] .building-controls{grid-template-rows:100px 48px!important;gap:8px!important;padding:0 4px 0 0!important}
+ }
+}
+
+/* Small cards keep full words in the shared compact type role. */
+@layer ui-composition {
+ @container goonk-viewport (max-width:639px){
+  #mobile-app[data-sheet=build] .building-tile>strong{font:var(--ui-font-body-small)!important;font-weight:400!important}
+ }
+ @container goonk-viewport (max-width:359px){
+  #mobile-app[data-sheet=build] .building-cards{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ }
 }

@@ -133,7 +133,7 @@ public:
 
 	/// preview of damage / restored HP and units killed or raised/summoned for given parameters
 	/// returns hpDelta and unitsDelta
-	SpellEffectValUptr getSpellEffectValue(const CSpell * spell, const spells::Caster * caster, const spells::Mode spellMode, const BattleHex & targetHex) const;
+	SpellEffectValUptr getSpellEffectValue(const CSpell * spell, const spells::Caster * caster, const spells::Mode spellMode, const BattleHex & targetHex, bool includeUnits = false) const;
 
 	/// damage estimation for spell-like-attack case, eg. Death Cloud
 	DamageEstimation estimateSpellLikeAttackDamage(const battle::Unit * shooter, const CSpell * spell,const BattleHex & aimHex) const;
