@@ -11,7 +11,7 @@ export const screenContracts=[
  {selector:'.lobby-picker',name:'scenario-picker',modal:true,header:':scope>header',dock:':scope>footer',close:'[data-picker-close]',return:'[data-picker-back]'},
  {selector:'#game-menu',name:'game-menu',modal:true,header:':scope>header',dock:':scope>.game-menu-return',close:'[data-menu=close]',return:'.game-menu-return [data-menu=back]'},
  {selector:'.progression-page',name:'progression',modal:true,header:':scope>header',dock:':scope>footer',close:'[data-army-upgrade-cancel],[data-progression-cancel],[data-troop-action=back],[data-deployment-cancel],[data-troop-close]'},
- {selector:'.creature-presentation',name:'creature',modal:true,railHeader:true,dockLimit:2,header:':scope>.creature-view-head',dock:'.hall-actions,:scope>footer',close:'[data-presentation-close]',headerActions:'[data-recruit-all]'},
+ {selector:'.creature-presentation',name:'creature',modal:true,railHeader:true,dockLimit:3,header:'.creature-view-head',dock:'.hall-actions,:scope>footer,:scope>.ui-recruit-actions',close:'[data-presentation-close]',headerActions:'[data-recruit-all]'},
  {selector:'.mobile-spellbook',name:'spellbook',modal:true,header:':scope>header',dock:':scope>footer',close:'[data-close-book]'},
  {selector:'.mobile-mage-guild',name:'mage-guild',modal:true,railHeader:true,body:'.mage-guild-library',header:':scope>header',dock:':scope>.ui-action-dock',close:'[data-guild-close]',headerActions:'[data-guild-view]'},
  {selector:'.town-service',name:'town-service',modal:true,railHeader:true,header:':scope>header',dock:':scope>footer',close:'[data-service-back]'},

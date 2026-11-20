@@ -78,3 +78,21 @@
   #mobile-app .ui-rail-header>button{width:48px!important;height:48px!important;min-width:48px!important;min-height:48px!important;flex:0 0 48px!important;margin:0!important;padding:0!important}
  }
 }
+
+/* A reusable context rail leaves the main panel the full landscape height. */
+@layer ui-composition {
+ #mobile-app .MuiDialog-paper:has([data-ui-close-only])>.ui-action-dock{display:none!important}
+ #mobile-app .ui-context-layout>[data-ui-rail-context]{display:grid;gap:8px;min-width:0}
+ #mobile-app .ui-context-layout>[data-ui-rail-notes]{display:grid;gap:8px;min-width:0}
+ @container goonk-viewport (orientation:landscape){
+  #mobile-app .MuiDialog-paper:has(.ui-context-layout){display:grid!important;grid-template-columns:minmax(0,1fr) var(--control-rail,244px)!important;grid-template-rows:auto auto minmax(0,1fr)!important;gap:0 8px!important}
+  #mobile-app .MuiDialog-paper:has(.ui-context-layout)>header{grid-area:1/2!important}
+  #mobile-app .MuiDialog-paper>.sheet-body:has(>.ui-context-layout),#mobile-app .MuiDialog-paper .ui-context-layout{display:contents!important}
+  #mobile-app .ui-context-layout>[data-ui-main-panel]{grid-area:1/1/-1/2!important;min-width:0!important;min-height:0!important;overflow:auto!important;touch-action:pan-y!important;padding:8px!important;box-sizing:border-box!important}
+  #mobile-app .ui-context-layout>[data-ui-rail-context]{grid-area:2/2!important;padding:8px!important;align-content:start!important}
+  #mobile-app .ui-context-layout>[data-ui-rail-context] h3{font:var(--ui-font-title-compact)!important;margin:0!important}
+  #mobile-app .ui-context-layout>[data-ui-rail-context] p{font:var(--ui-font-body-small)!important;margin:0!important}
+  #mobile-app .ui-context-layout>[data-ui-rail-notes]{grid-area:3/2!important;min-height:0!important;overflow:auto!important;touch-action:pan-y!important;padding:8px!important;align-content:start!important}
+  #mobile-app .MuiDialog-paper:has(.ui-context-layout)>.ui-action-dock{grid-area:4/2!important}
+ }
+}

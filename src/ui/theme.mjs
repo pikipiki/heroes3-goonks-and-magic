@@ -34,7 +34,7 @@ export const heroesTheme=createTheme({
  }
 });
 
-const font=(role)=>{const value=heroesTheme.typography[role];return `${value.fontWeight||400} ${typeof value.fontSize==='number'?value.fontSize+'px':value.fontSize}/${value.lineHeight} ${heroesTheme.typography.fontFamily}`;};
+const font=(role)=>{const value=heroesTheme.typography[role];return `${value.fontWeight||400} ${typeof value.fontSize==='number'?value.fontSize+'px':value.fontSize}/${value.lineHeight} ${value.fontFamily||heroesTheme.typography.fontFamily}`;};
 // CSS-only game/canvas layouts consume the same values as the React components.
 export const heroesTokens={
  'control-shadow':heroesControlFinish.boxShadow,'control-shadow-hover':heroesControlFinish['&:hover'].boxShadow,
@@ -43,5 +43,5 @@ export const heroesTokens={
  touch:'48px',field:'56px',appbar:'64px',icon:'24px','radius-field':'0px','radius-control':'0px','radius-panel':'0px',
  surface:heroesTheme.palette.background.default,'surface-container':heroesTheme.palette.background.paper,'surface-high':'#423323','on-surface':heroesTheme.palette.text.primary,'on-surface-variant':heroesTheme.palette.text.secondary,outline:heroesTheme.palette.divider,
  primary:heroesTheme.palette.primary.main,'primary-container':'#651c10','on-primary-container':heroesTheme.palette.text.primary,'on-primary':heroesTheme.palette.primary.contrastText,'secondary-container':'#57452d','on-secondary':'#ffedc8',error:heroesTheme.palette.error.main,'on-error':'#690005',focus:'#fff0b1',
- 'font-resource':font('resource'),'font-title':font('h2'),'font-title-compact':font('h3'),'font-tab':font('caption'),'font-label':font('button'),'font-label-medium':'500 12px/16px '+heroesTheme.typography.fontFamily,'font-body':font('body1'),'font-body-medium':font('body2'),'font-body-small':font('caption'),'motion-fast':'120ms','elevation-menu':heroesTheme.shadows[8]
+ 'font-resource':font('resource'),'font-resource-value':font('resourceValue'),'font-title':font('h2'),'font-title-compact':font('h3'),'font-tab':font('caption'),'font-label':font('button'),'font-label-medium':'500 12px/16px '+heroesTheme.typography.fontFamily,'font-body':font('body1'),'font-body-medium':font('body2'),'font-body-small':font('caption'),'motion-fast':'120ms','elevation-menu':heroesTheme.shadows[8]
 };

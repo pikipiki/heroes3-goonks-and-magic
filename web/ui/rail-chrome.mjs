@@ -1,4 +1,4 @@
-import {renderAvailableResources} from './purchase-context.mjs';
+import {renderAvailableResources,renderRecruitCalendar} from './purchase-context.mjs';
 import {createMaterialElement} from './mui-runtime.mjs';
 import {decorateButton,uiText} from './primitives.mjs';
 const records=new WeakMap();
@@ -28,14 +28,14 @@ export function useRailChrome(app){
    const bar=createMaterialElement('div');bar.classList.add('ui-modal-rail-chrome');
    const menu=createMaterialElement('button');menu.type='button';menu.textContent='≡';menu.dataset.uiModalMenu='';decorateButton(menu,{icon:true});menu.setAttribute('aria-label',uiText('Menu','Menu'));menu.addEventListener('click',()=>chrome.querySelector('#game-menu-toggle')?.click());
    const resources=createMaterialElement('div');resources.classList.add('ui-purchase-resources');
-   bar.append(menu,resources,record.close);record.modalChrome=bar;record.resources=resources;
+   const calendar=createMaterialElement('div');calendar.classList.add('ui-header-calendar');calendar.dataset.uiRailCalendar='';record.calendar=calendar;bar.append(menu,resources,calendar,record.close);record.modalChrome=bar;record.resources=resources;
    const nativeResources=chrome.querySelector('.mobile-resources');
    if(nativeResources){record.resourceObserver=new MutationObserver(()=>renderAvailableResources(resources,nativeResources));record.resourceObserver.observe(nativeResources,{subtree:true,childList:true,attributes:true,attributeFilter:['hidden','aria-label']});}
   }
   if(record.modalChrome.parentElement!==paper)paper.append(record.modalChrome);
   if(record.close.parentElement!==record.modalChrome)record.modalChrome.append(record.close);
   if(record.modalChrome.hidden)record.modalChrome.hidden=false;
-  const nativeResources=chrome.querySelector('.mobile-resources');if(nativeResources)renderAvailableResources(record.resources,nativeResources);
+  const nativeResources=chrome.querySelector('.mobile-resources');if(nativeResources)renderAvailableResources(record.resources,nativeResources);renderRecruitCalendar(record.calendar,source?NaN:Number(chrome.querySelector('.mobile-calendar')?.dataset.recruitDays));
  }else{
   if(record.modalChrome&&!record.modalChrome.hidden)record.modalChrome.hidden=true;
   if(record.close.parentElement!==chrome)chrome.append(record.close);

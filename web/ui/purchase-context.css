@@ -1,10 +1,10 @@
 @layer ui-composition {
  #mobile-app .ui-creature-overview .mobile-recruit-amount .MuiSlider-root{width:calc(100% - 24px)!important;min-width:0!important;margin-inline:12px!important;box-sizing:border-box!important}
  #mobile-app .ui-purchase-resources{display:grid!important;grid-template-columns:repeat(9,minmax(0,1fr))!important;align-items:center!important;gap:0!important;min-width:0!important;width:100%!important;box-sizing:border-box!important}
- #mobile-app .ui-purchase-resources .mobile-resource{display:flex!important;flex-direction:row!important;align-items:center!important;justify-content:center!important;gap:2px!important;min-width:0!important;height:12px!important;min-height:12px!important;font:var(--ui-font-resource)!important;white-space:nowrap!important}
+ #mobile-app .ui-purchase-resources .mobile-resource{display:flex!important;flex-direction:row!important;align-items:center!important;justify-content:flex-start!important;gap:2px!important;min-width:0!important;height:12px!important;min-height:12px!important;font:var(--ui-font-resource)!important;white-space:nowrap!important}
  #mobile-app .ui-purchase-resources [data-resource=gold]{grid-column:span 2!important}
- #mobile-app .ui-purchase-resources .resource-quantity{font:var(--ui-font-resource)!important;line-height:12px!important;white-space:nowrap!important}
- #mobile-app .ui-purchase-resources img{width:12px!important;height:12px!important;object-fit:contain!important}
+ #mobile-app .ui-purchase-resources .resource-quantity{font:var(--ui-font-resource-value)!important;line-height:12px!important;white-space:nowrap!important}
+ #mobile-app .ui-purchase-resources img{width:11px!important;height:11px!important;object-fit:contain!important}
  #mobile-app .ui-purchase-header{display:grid!important;grid-template-columns:minmax(0,1fr) 48px!important;grid-template-rows:48px 36px!important;height:88px!important;min-height:88px!important;max-height:88px!important;gap:0 8px!important;padding:0 4px!important}
  #mobile-app .ui-purchase-header>:is(h2,.ui-heading){grid-area:1/1!important;align-self:center!important;min-height:0!important;height:auto!important;margin:0!important;padding:0!important}
  #mobile-app .ui-purchase-header h2{font:var(--ui-font-title-compact)!important;min-height:0!important;height:auto!important;margin:0!important;padding:0!important}
@@ -33,5 +33,76 @@
   #mobile-app .recruitment-view .creature-view-head h2{min-height:32px!important;height:auto!important;line-height:20px!important}
   #mobile-app .recruitment-view .recruit-economy{width:100%!important;min-width:0!important}
   #mobile-app .recruitment-view .featured-price{overflow:visible!important;white-space:normal!important}
+ }
+}
+
+/* Reserve the close control's column; ordinary balances need four digits,
+   while gold keeps two cells and room for a seven-digit balance. */
+@layer ui-composition {
+ #mobile-app .ui-purchase-resources{column-gap:2.4px!important;font:var(--ui-font-resource)!important;font-variant-numeric:tabular-nums!important}
+ #mobile-app .ui-purchase-resources .resource-quantity{font-variant-numeric:tabular-nums!important}
+ @container goonk-viewport (orientation:landscape){
+  #mobile-app .ui-purchase-header>.ui-purchase-resources{grid-area:2/1/3/2!important;max-width:calc(46.8px + 16.5ch)!important;justify-self:start!important}
+  #mobile-app .ui-modal-rail-chrome:not([hidden]){column-gap:4px!important}
+  #mobile-app .ui-purchase-resources .mobile-resource:not([data-resource=gold]) .resource-quantity{min-width:5.5ch!important}
+  #mobile-app .ui-purchase-resources .mobile-resource[data-resource=gold] .resource-quantity{min-width:10ch!important}
+ }
+}
+@layer ui-composition {
+ #mobile-app .ui-header-calendar:not([hidden]){display:grid!important;grid-template-rows:auto auto!important;align-content:center!important;justify-items:center!important;gap:2px!important;min-width:0!important;font:var(--ui-font-resource)!important;white-space:nowrap!important}
+ #mobile-app .ui-header-calendar>*{font:inherit!important;line-height:14px!important}
+ #mobile-app .ui-purchase-header:has(>.ui-header-calendar:not([hidden])){grid-template-columns:minmax(0,1fr) 72px!important}
+ #mobile-app .ui-purchase-header:has(>.ui-header-calendar:not([hidden]))>:is(h2,.ui-heading){grid-area:1/1/2/-1!important;padding-right:56px!important;box-sizing:border-box!important}
+ #mobile-app .ui-purchase-header:has(>.ui-header-calendar:not([hidden]))>button{grid-area:1/2!important;justify-self:end!important}
+ #mobile-app .ui-purchase-header:has(>.ui-header-calendar:not([hidden]))>.ui-purchase-resources{grid-area:2/1!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;grid-auto-rows:12px!important;gap:0 2.4px!important;max-width:calc(46.8px + 16.5ch)!important;justify-self:start!important}
+ #mobile-app .ui-purchase-header>.ui-header-calendar{grid-area:2/2!important}
+}
+@layer ui-composition {
+ #mobile-app .ui-purchase-header{height:105px!important;min-height:105px!important;max-height:105px!important;grid-template-rows:48px 36px!important;row-gap:4px!important;padding:8px!important;box-sizing:border-box!important}
+ #mobile-app .ui-purchase-header>:is(h2,.ui-heading){align-self:start!important}
+ #mobile-app .mobile-sheet:has(>.ui-purchase-header){--ui-screen-head-height:105px}
+}
+
+/* A compact header retains its title, three balance rows, a two-line
+   counter and the original 48px close target. */
+@layer ui-composition {
+ #mobile-app .ui-purchase-header:has(>.ui-header-calendar[data-compact-title=true]){grid-template-columns:minmax(0,1fr) 40px 48px!important;grid-template-rows:24px 36px!important;gap:0 4px!important;height:68px!important;min-height:68px!important;max-height:68px!important;padding:4px!important;align-items:center!important}
+ #mobile-app .ui-purchase-header:has(>.ui-header-calendar[data-compact-title=true])>:is(h2,.ui-heading){grid-area:1/1/2/3!important;position:static!important;width:auto!important;height:auto!important;padding:0!important;margin:0!important;clip-path:none!important;white-space:nowrap!important;align-self:center!important;font:var(--ui-font-title-compact)!important}
+ #mobile-app .ui-purchase-header:has(>.ui-header-calendar[data-compact-title=true])>button{grid-area:1/3/3/4!important;align-self:start!important}
+ #mobile-app .ui-purchase-header>.ui-header-calendar[data-compact-title=true]{grid-area:2/2!important;font:var(--ui-font-resource)!important}
+ #mobile-app .ui-purchase-header:has(>.ui-header-calendar[data-compact-title=true])>.ui-purchase-resources{grid-area:2/1!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;grid-auto-rows:12px!important;gap:0 2.4px!important;width:100%!important;max-width:none!important;align-content:center!important}
+ #mobile-app .ui-purchase-header:has(>.ui-header-calendar[data-compact-title=true]) [data-resource=wood]{grid-area:1/1!important}
+ #mobile-app .ui-purchase-header:has(>.ui-header-calendar[data-compact-title=true]) [data-resource=mercury]{grid-area:1/2!important}
+ #mobile-app .ui-purchase-header:has(>.ui-header-calendar[data-compact-title=true]) [data-resource=ore]{grid-area:1/3!important}
+ #mobile-app .ui-purchase-header:has(>.ui-header-calendar[data-compact-title=true]) [data-resource=sulfur]{grid-area:2/1!important}
+ #mobile-app .ui-purchase-header:has(>.ui-header-calendar[data-compact-title=true]) [data-resource=crystal]{grid-area:2/2!important}
+ #mobile-app .ui-purchase-header:has(>.ui-header-calendar[data-compact-title=true]) [data-resource=gems]{grid-area:2/3!important}
+ #mobile-app .ui-purchase-header:has(>.ui-header-calendar[data-compact-title=true]) [data-resource=gold]{grid-area:3/1/4/3!important}
+ #mobile-app .ui-purchase-header:has(>.ui-header-calendar[data-compact-title=true]) .mobile-resource:last-child:not([data-resource=gold]){grid-area:3/3!important}
+ #mobile-app .mobile-sheet:has(>.ui-purchase-header>.ui-header-calendar[data-compact-title=true]){--ui-screen-head-height:68px}
+}
+@layer ui-composition {
+ @container goonk-viewport (orientation:portrait){
+  #mobile-app .ui-purchase-header:has(>.ui-header-calendar[data-compact-title=true]){grid-template-columns:minmax(0,1fr) 48px 48px!important}
+  #mobile-app .ui-purchase-header>.ui-header-calendar[data-compact-title=true]{padding-right:8px!important;box-sizing:border-box!important}
+ }
+}
+
+/* Portrait already exposes the kingdom strip beside Menu. Avoid mirroring it
+   a second time in the sheet while keeping the title and one close control. */
+@layer ui-composition {
+ @container goonk-viewport (orientation:portrait){
+  #mobile-app[data-has-resources=true] .ui-purchase-header:is(.ui-purchase-header)>.ui-purchase-resources,#mobile-app[data-has-resources=true] .ui-purchase-header:is(.ui-purchase-header)>.ui-header-calendar{display:none!important}
+  #mobile-app[data-has-resources=true] .ui-purchase-header:is(.ui-purchase-header){grid-template-columns:minmax(0,1fr) 48px!important;grid-template-rows:48px!important;height:56px!important;min-height:56px!important;max-height:56px!important;gap:0 8px!important;padding:4px!important}
+  #mobile-app[data-has-resources=true] .ui-purchase-header:is(.ui-purchase-header)>:is(h2,.ui-heading){grid-area:1/1!important;padding:0!important;align-self:center!important;white-space:normal!important}
+  #mobile-app[data-has-resources=true] .ui-purchase-header:is(.ui-purchase-header)>button{grid-area:1/2!important}
+  #mobile-app[data-has-resources=true] .mobile-sheet:has(>.ui-purchase-header:is(.ui-purchase-header)){--ui-screen-head-height:56px}
+ }
+}
+@layer ui-composition {
+ @container goonk-viewport (orientation:landscape){
+  #mobile-app .ui-modal-rail-chrome>.ui-purchase-resources{padding-inline:3px!important;box-sizing:border-box!important}
+  #mobile-app .ui-modal-rail-chrome:has(>[data-ui-rail-close][hidden]){grid-template-columns:48px minmax(0,1fr) 40px!important}
+  #mobile-app .ui-modal-rail-chrome>[data-ui-rail-calendar]{grid-column:3!important;grid-row:1!important;padding-right:4px!important;box-sizing:border-box!important}
  }
 }

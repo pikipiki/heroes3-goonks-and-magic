@@ -1532,26 +1532,26 @@
         "resources",
         "actions"
       ],
-      "sourceSHA256": "d5ddda8d15b3dc8d113a27ecb95642e2edfe0e20b898a69a578e0d2983ed8f2c",
+      "sourceSHA256": "9f9a35da766b61e510a3c0be5fc5fdb2569d06a2041cdf26630c9997a16cbc53",
       "evidence": [
         {
-          "line": 26,
+          "line": 27,
           "excerpt": "export function createCreaturePresentation({root,command,pointer,openRecruit,buildingArt,openBuildings}){"
         },
         {
-          "line": 50,
-          "excerpt": "if(key!==signature){if(state.mode==='fort'&&panel.querySelector('.hall-layout'))hall.rememberScroll();signature=key;root.querySelector('.mobile-play').append(choices,amount);const "
+          "line": 52,
+          "excerpt": "if(key!==signature){if(navigation.parentElement===panel)root.append(navigation);if(state.mode==='fort'&&panel.querySelector('.hall-layout'))hall.rememberScroll();signature=key;root"
         },
         {
-          "line": 59,
+          "line": 61,
           "excerpt": "const featured=createUIElement('div');featured.classList.add('featured-creature');renderMarkup(featured,`<div class=\"creature-stage\"><canvas data-preview-creature=\"${unit?.id}\" ari"
         },
         {
-          "line": 66,
+          "line": 68,
           "excerpt": "renderMarkup(variants,choices.map(({u,index})=>`<button data-variant=\"${index}\" aria-pressed=\"${u.id===unit?.id}\">${creaturePortrait(u)}<span class=\"variant-name\">${esc(u.name)}</s"
         },
         {
-          "line": 74,
+          "line": 76,
           "excerpt": "else if(upgrades.length){const upgradePanel=createUIElement('section');upgradePanel.classList.add('creature-upgrades');upgradePanel.setAttribute('aria-label','Creature upgrades');r"
         }
       ],
@@ -2600,18 +2600,18 @@
         "calendar",
         "resources"
       ],
-      "sourceSHA256": "17cc76480d44b1a57bc7c32fb6c407b88cbc5cf299eba2b17da1e659f71d5280",
+      "sourceSHA256": "41995b16f1ef3a9eaa2c68ed1ccbe3d8ce2a8011ec728e5929ca833f3362ec52",
       "evidence": [
         {
           "line": 10,
           "excerpt": "export function createWeeklyRecruits(body){"
         },
         {
-          "line": 32,
+          "line": 30,
           "excerpt": "const townControl=towns.length>1?`<label class=\"weekly-town\">${fr?'Ville':'Town'} <select>${towns.map(item=>`<option value=\"${item.id}\" ${item.id===townId?'selected':''}>${escape(i"
         },
         {
-          "line": 36,
+          "line": 34,
           "excerpt": "<table aria-label=\"${fr?'Recrues par niveau':'Recruits by level'}\"><thead><tr><th scope=\"col\">${fr?'Créatures':'Creatures'}</th><th scope=\"col\">${fr?'En stock':'In stock'}</th><th "
         }
       ],
@@ -2850,7 +2850,7 @@
         "calendar",
         "resources"
       ],
-      "sourceSHA256": "6410bff9576f71682b04721b1f2ce7bbefc59c01895e19d4c76760ea122b7009",
+      "sourceSHA256": "3682c7847de2bddf82ebf808076432c980d29bdbb053be2d4ae53ee3993c6c7e",
       "evidence": [
         {
           "line": 4,
@@ -3412,7 +3412,7 @@
       "needs": [
         "resources"
       ],
-      "sourceSHA256": "e18c13649d2a5e9b8b3b4cbe8fc24426299190ec40538a7dab07b208d16c3d13",
+      "sourceSHA256": "0b86d460bb1f0191ad6bcf6a79530851c2640bd4279eec5855b37ef6a2e0b6b2",
       "evidence": [
         {
           "line": 7,

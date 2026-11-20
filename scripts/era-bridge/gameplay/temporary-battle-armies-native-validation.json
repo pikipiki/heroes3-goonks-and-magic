@@ -10,8 +10,8 @@
   "sourceBaseCommit": "c449be89dcfda668edad13c72d453db9c79ffc56",
   "sourceBindings": {
     "docs/era-gameplay-port.md": "daf2b4746a3d6a9b4e6d0ada857e6e5b7a74dac1091378e6e906fd64ba299a86",
-    "package-lock.json": "0dc424f1c2542d461356329d05452d0975008a4e4c80cd311c1fb991cc90a00c",
-    "package.json": "130833d4c3c15377d06c4ff77d7092286f873b323e2cb77a2419c3264a94ccba",
+    "package-lock.json": "161a86927dd854b0f93eade17e88fbc70a1cf85e9e096fdc9334d953c67a7258",
+    "package.json": "263e9be5ea0acd181fb70c3cf75d5256acfff55f1b5f2ecabb5e2cb1ed51213e",
     "scripts/prepare-web.mjs": "07cb3de579e44de90912dab5cd5f025f4e8a6dda5653aed466c620f1f9d358d2",
     "tests/era-temporary-battle-armies.test.mjs": "ad5f36eb5d24b205573d849bcdda0709f262ea5168159b9682220054d00ae098",
     "tests/fixtures/era-gameplay/map-rogue-ambush-reference.json": "ff1c4ddaa813aeaaa2260c83afa452a192a9f34fa930a5b59d8ec938fc2ff17b",
@@ -825,7 +825,7 @@
       "tracked": false
     },
     "sourceBindings": {
-      "src/ui/theme.mjs": "7e7e3f1c200600aa513b6132de7cc046e722f411da6a3fc2dd35e364735dbec2",
+      "src/ui/theme.mjs": "59a57b12ea39158477cbf7396ec32b9746e1bae6fe6531687d45d8d385552ba4",
       "scripts/build-ui.mjs": "4aec9e826e99f4b17f2eba3195832bea3c2ac614ace6676ed8a7be947c2f0f5e"
     },
     "stability": {
@@ -958,8 +958,8 @@
     "upstreamCommit": "d3733a98",
     "engineUnchanged": true,
     "sourceBindings": {
-      "src/ui/runtime.mjs": "0b94c614d8de355ceb23b4f83890dff67638c0e7b9bd5a4614c136b8b4598970",
-      "src/ui/theme.mjs": "7e7e3f1c200600aa513b6132de7cc046e722f411da6a3fc2dd35e364735dbec2",
+      "src/ui/runtime.mjs": "af806727b8b0d7cd89e28c2d02039ed684d320c5ae3733cc6f0b94fd37435ce3",
+      "src/ui/theme.mjs": "59a57b12ea39158477cbf7396ec32b9746e1bae6fe6531687d45d8d385552ba4",
       "web/town-building-menu.mjs": "2c7a0f2be3b48feafcb611a9e3c86d16e7dd8478723b204b9982597b4701ba3d",
       "web/ui/action-dock.mjs": "7cf6eae29e2023e627754f4d8e2c17ec08ebeeb34901de03624eed33a98a55a7",
       "web/ui/construction-layout.css": "745bdd0d46268cf49eedeced3a65bdea4a12199fe17dd92321261e7ed7bea80f",

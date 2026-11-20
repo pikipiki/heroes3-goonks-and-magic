@@ -232,3 +232,71 @@ html.goonk-mobile #mobile-app .recruitment-view .recruit-unavailable{flex-basis:
   #mobile-app .recruitment-view .recruit-summary{grid-column:1/-1!important;margin:0!important}
  }
 }
+
+@layer ui-composition {
+ @container goonk-viewport (orientation:portrait){
+  #mobile-app .creature-presentation.recruitment-view{padding-bottom:60px!important}
+ }
+}
+
+/* Keep native commands inside the MUI dialog's focus and painting boundary. */
+@layer ui-composition {
+ #mobile-app .recruitment-view>.ui-recruit-actions{position:absolute!important;inset:auto 0 0!important;display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:4px!important;padding:4px!important;min-height:56px!important;height:56px!important;box-sizing:border-box!important;z-index:10!important;background:var(--ui-surface-container)!important}
+ #mobile-app .recruitment-view>.ui-recruit-actions>button{min-width:0!important;min-height:48px!important;height:48px!important;font:var(--ui-font-label)!important;white-space:normal!important}
+ @container goonk-viewport (orientation:landscape){
+  #mobile-app .creature-presentation.recruitment-view{grid-template-columns:clamp(72px,13cqw,120px) minmax(0,.7fr) minmax(0,1.3fr) var(--control-rail)!important}
+  #mobile-app .creature-presentation.recruitment-view[data-variant-count="1"]{grid-template-columns:minmax(0,.7fr) clamp(72px,13cqw,96px) minmax(0,1.7fr) var(--control-rail)!important}
+  #mobile-app .recruitment-view>.ui-recruit-actions{left:auto!important;width:var(--control-rail)!important}
+  #mobile-app .recruitment-view .creature-facts{min-height:0!important;overflow:auto!important;touch-action:pan-y!important}
+  #mobile-app .recruitment-view .mobile-recruit-amount label{flex-direction:column!important;align-items:stretch!important}
+  #mobile-app .ui-creature-overview.recruitment-view .mobile-recruit-amount .MuiSlider-root{width:calc(100% - 48px)!important;margin-inline:24px!important}
+ }
+}
+@layer ui-composition {
+ @container goonk-viewport (orientation:landscape){
+  #mobile-app .recruitment-view .creature-view-head.ui-rail-header{margin-top:0!important}
+  #mobile-app .recruitment-view .creature-stats{grid-template-columns:minmax(0,1fr)!important}
+  #mobile-app .recruitment-view .creature-stats>div{min-width:0!important}
+  #mobile-app .recruitment-view .creature-stats dt{white-space:normal!important;overflow-wrap:anywhere!important}
+  #mobile-app .ui-creature-overview.recruitment-view .mobile-recruit-amount label .MuiInputBase-root{height:32px!important;min-height:32px!important}
+  #mobile-app .ui-creature-overview.recruitment-view .mobile-recruit-amount label input{height:32px!important;min-height:32px!important;padding:0 4px!important}
+ }
+}
+@layer ui-composition {
+ @container goonk-viewport (orientation:landscape){
+  #mobile-app .creature-presentation.recruitment-view:not([data-variant-count="1"]){grid-template-rows:minmax(0,1.3fr) minmax(0,1fr)!important}
+  #mobile-app .recruitment-view .recruitment-sidebar{grid-template-rows:minmax(max-content,1fr) minmax(max-content,1fr)!important}
+  #mobile-app .recruitment-view .recruit-context{display:flex!important;flex-direction:column!important;justify-content:space-evenly!important;gap:4px!important}
+  #mobile-app .recruitment-view .recruit-transaction{display:flex!important;flex-direction:column!important;justify-content:center!important}
+ }
+}
+@layer ui-composition {
+ @container goonk-viewport (orientation:portrait) and (max-height:640px){
+  #mobile-app .creature-presentation.recruitment-view{grid-template-rows:auto 128px auto minmax(24px,1fr) auto auto!important}
+  #mobile-app .creature-presentation.recruitment-view[data-variant-count="1"]{grid-template-rows:auto 128px minmax(24px,1fr) auto auto!important}
+  #mobile-app .recruitment-view .creature-view-head h2{height:auto!important;min-height:32px!important}
+ }
+}
+@layer ui-composition {
+ @container goonk-viewport (orientation:landscape){
+  #mobile-app .recruitment-view:not([data-variant-count="1"]) .creature-stats{height:100%!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;grid-template-rows:repeat(3,minmax(32px,1fr))!important}
+  #mobile-app .recruitment-view:not([data-variant-count="1"]) .creature-stats dt{font:var(--ui-font-body-small)!important}
+  #mobile-app .recruitment-view:not([data-variant-count="1"]) .creature-stats dd{font:var(--ui-font-body-medium)!important}
+ }
+}
+@layer ui-composition {
+ #mobile-app .recruitment-view>.ui-recruit-actions{height:60px!important;min-height:60px!important;padding:4px 4px 8px!important;border:0!important}
+ @container goonk-viewport (orientation:landscape){
+  #mobile-app .recruitment-view .recruitment-sidebar{position:absolute!important;inset:0 0 0 auto!important;width:var(--control-rail)!important;padding:60px 4px!important;border:0!important;box-sizing:border-box!important}
+  #mobile-app .recruitment-view .creature-view-head{width:100%!important;max-width:none!important;box-sizing:border-box!important}
+ }
+ @container goonk-viewport (orientation:portrait){
+  #mobile-app .creature-presentation.recruitment-view{padding-bottom:64px!important}
+ }
+}
+@layer ui-composition {
+ @container goonk-viewport (orientation:landscape){
+  #mobile-app .recruitment-view .featured-price{flex-direction:row!important;flex-wrap:nowrap!important;align-items:center!important;padding:0 4px!important;min-height:32px!important;gap:4px!important}
+  #mobile-app .recruitment-view .featured-price>span:first-child{width:auto!important;flex:1!important}
+ }
+}

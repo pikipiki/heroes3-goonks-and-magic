@@ -14,7 +14,7 @@ export const heroesControlFinish = {
 export const heroesTypography = {
  fontFamily:'Georgia,"Times New Roman",serif',fontSize:14,
  h1:{fontSize:22,lineHeight:'28px',fontWeight:400},h2:{fontSize:22,lineHeight:'28px',fontWeight:400},h3:{fontSize:16,lineHeight:'24px',fontWeight:500},
- body1:{fontSize:16,lineHeight:'24px'},body2:{fontSize:14,lineHeight:'20px'},button:{fontSize:14,lineHeight:'20px',fontWeight:400,textTransform:'none',letterSpacing:0},caption:{fontSize:12,lineHeight:'16px'},resource:{fontSize:10,lineHeight:'12px'},creatureCard:{fontSize:12,lineHeight:'14px',fontWeight:400},micro:{fontSize:11,lineHeight:'14px'},titleSmall:{fontSize:18,lineHeight:'24px'},statLarge:{fontSize:20,lineHeight:'24px'},icon:{fontSize:24,lineHeight:'24px'},quantity:{fontSize:28,lineHeight:'32px'}
+ body1:{fontSize:16,lineHeight:'24px'},body2:{fontSize:14,lineHeight:'20px'},button:{fontSize:14,lineHeight:'20px',fontWeight:400,textTransform:'none',letterSpacing:0},caption:{fontSize:12,lineHeight:'16px'},resource:{fontSize:10,lineHeight:'12px'},resourceValue:{fontFamily:'Arial,Helvetica,sans-serif',fontSize:10,lineHeight:'12px',fontWeight:400},creatureCard:{fontSize:12,lineHeight:'14px',fontWeight:400},micro:{fontSize:11,lineHeight:'14px'},titleSmall:{fontSize:18,lineHeight:'24px'},statLarge:{fontSize:20,lineHeight:'24px'},icon:{fontSize:24,lineHeight:'24px'},quantity:{fontSize:28,lineHeight:'32px'}
 };
 
 export const heroesSliderStyles={

@@ -53,6 +53,6 @@ export function renderResources(container,values,metadata=[],{assets=globalThis.
   }
   container.dataset.resourceSignature=signature;
  }
- rows.forEach((row,index)=>{const item=container.children[index],label=row.name+' : '+integer.format(row.value),text=row.key==='gold'?goldInteger.format(row.value):compactResource(row.value);item.title=label;item.setAttribute('aria-label',label);if(item.lastElementChild.textContent!==text)item.lastElementChild.textContent=text;});
+ rows.forEach((row,index)=>{const item=container.children[index],label=row.name+' : '+integer.format(row.value),text=row.key==='gold'?goldInteger.format(row.value):Math.abs(row.value)<=99999?integer.format(row.value):compactResource(row.value);item.title=label;item.setAttribute('aria-label',label);if(item.lastElementChild.textContent!==text)item.lastElementChild.textContent=text;});
  return true;
 }

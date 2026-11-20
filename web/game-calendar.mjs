@@ -28,6 +28,7 @@ export function createGameCalendar(root){
   if(recruits){calendar.setAttribute('aria-haspopup','dialog');calendar.setAttribute('aria-expanded',String(expanded));}
   else{calendar.removeAttribute('aria-haspopup');calendar.removeAttribute('aria-expanded');}
   const days=value.untilNextWeek;
+  Object.assign(calendar.dataset,{calendarDay:String(value.weekday),calendarWeek:String(value.week),calendarMonth:String(value.month),recruitDays:String(days)});
   const recruitLabel=english?(days===1?'Recruits in 1 day':`Recruits in ${days} days`):(days===1?'Recrues dans 1 jour':`Recrues dans ${days} jours`);
   const status=recruits?recruitLabel:remaining;
   next.hidden=true;

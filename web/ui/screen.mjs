@@ -12,7 +12,7 @@ import {useHeroNavigation} from './hero-navigation.mjs';
 import {useModalBoundary} from './modal-boundary.mjs';
 const back=/^(?:[←↩↵↶⬅🔙]\s*)?(?:Back|Retour)$/iu;
 const cross=/^[✕×✖]$/u;
-const managed=new WeakMap();
+const managed=new WeakMap(),returnVisibility=new WeakMap();
 const sessionKey=Symbol.for('heroes-goonk.ui-components');
 function find(root,selector){return selector?root.querySelector(selector):null;}
 function sameAction(a,b){const attrs=[...a.attributes].filter(attr=>attr.name.startsWith('data-')&&!attr.name.startsWith('data-ui-'));return attrs.length&&attrs.every(attr=>b.getAttribute(attr.name)===attr.value);}
@@ -50,6 +50,11 @@ export function applyScreenComponents(root){
  // A synthetic header cross delegates to the native exit; retain that source
  // for its handler, but expose only one visible way to close the same panel.
  if(close&&source&&source!==close&&back.test(source.textContent.trim())&&!source.hidden)source.hidden=true;
+ const redundantReturn=find(root,contract.return),closeOnly=!!root.querySelector('[data-ui-close-only]');
+ if(redundantReturn&&redundantReturn!==close){
+  if(closeOnly){if(!returnVisibility.has(redundantReturn))returnVisibility.set(redundantReturn,redundantReturn.hidden);if(!redundantReturn.hidden)redundantReturn.hidden=true;}
+  else if(returnVisibility.has(redundantReturn)){redundantReturn.hidden=returnVisibility.get(redundantReturn);returnVisibility.delete(redundantReturn);}
+ }
  if(close){close.classList.add('ui-header-close-control');if(close.textContent!=='✕')close.textContent='✕';decorateButton(close,{icon:true});close.setAttribute('aria-label',uiText('Close','Fermer'));if(close.dataset.uiHeaderClose==='true'&&source&&source!==close&&close.disabled!==source.disabled)close.disabled=source.disabled;}
  for(const selector of [contract.headerActions,contract.extraActions].filter(Boolean))for(const button of root.querySelectorAll(selector)){if(button!==close){const dock=ensureDock(root,contract),actions=dock.querySelector(':scope>.ui-action-group')||dock;if(!actions.contains(button))actions.append(button);}}
  if(root.matches('.online-lobby')&&close&&source&&source!==close&&!source.hidden)source.hidden=true;

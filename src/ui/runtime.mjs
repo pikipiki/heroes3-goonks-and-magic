@@ -78,8 +78,9 @@ function NativeRange({input}){
  const ref=useCallback(node=>{nativeRef.current=node;if(!node)return;fields.set(node,()=>{const next={value:Number(node.value),min:Number(node.min||0),max:Number(node.max||100),step:node.step==='any'?null:Number(node.step||1),disabled:node.disabled};setValue(old=>Object.keys(next).every(key=>old[key]===next[key])?old:next);});},[]);
  const {defaultValue,type,style,className,...attrs}=input;
  const update=(event,next)=>{setValue(old=>({...old,value:next}));const node=nativeRef.current;if(node){node.value=String(next);node.dispatchEvent(new Event('input',{bubbles:true}));node.dispatchEvent(new Event('change',{bubbles:true}));}};
- return h(Slider,{...value,className:'ui-native-slider '+(className||''),style,
-  'aria-label':input['aria-label']||input.title,slotProps:{input:{...attrs,ref,'data-mui-field':'range'}},onChange:update});
+ const empty=!(value.max>value.min),visual={...value,value:empty?value.min:Math.max(value.min,Math.min(value.max,value.value)),max:empty?value.min+1:value.max,disabled:value.disabled||empty};
+ return h(Slider,{...visual,className:'ui-native-slider '+(className||''),style,
+  'aria-label':input['aria-label']||input.title,slotProps:{input:{...attrs,min:value.min,max:value.max,ref,'data-mui-field':'range','aria-valuemax':value.max}},onChange:update});
 }
 function NativeProgress({input}){
  const [value,setValue]=useState(input.value===undefined?null:Number(input.value));

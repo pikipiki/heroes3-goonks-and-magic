@@ -27,15 +27,13 @@ export function createWeeklyRecruits(body){
    const growth=Number.isInteger(row.growth)?`+${row.growth}`:'—';
    return `<tr><th scope="row"><div class="weekly-creatures">${creaturePortrait(first)}<ul>${forms}${row.summoned?(fr?'<li class="weekly-locked">Portail d’invocation</li>':'<li class="weekly-locked">Summoning portal</li>'):''}</ul></div></th><td>${row.count}</td><td class="weekly-incoming">${growth}</td></tr>`;
   }).join('');
-  const renewal=date && gameDate(state.day+date.untilNextWeek);
-  const caption=renewal?(fr?`Jour 1 · Semaine ${renewal.week} · Mois ${renewal.month}`:`Day 1 · Week ${renewal.week} · Month ${renewal.month}`):'';
   const townControl=towns.length>1?`<label class="weekly-town">${fr?'Ville':'Town'} <select>${towns.map(item=>`<option value="${item.id}" ${item.id===townId?'selected':''}>${escape(item.name)}</option>`).join('')}</select></label>`:`<h3>${escape(town.name)}</h3>`;
   const focused=body.contains(document.activeElement)&&document.activeElement.matches('select');
   const scroll=body.scrollTop;
-  renderMarkup(body,`<section class="weekly-roster">${townControl}<p class="weekly-date">${caption}</p>
-   <table aria-label="${fr?'Recrues par niveau':'Recruits by level'}"><thead><tr><th scope="col">${fr?'Créatures':'Creatures'}</th><th scope="col">${fr?'En stock':'In stock'}</th><th scope="col">${fr?'Semaine suivante':'Next week'}</th></tr></thead><tbody>${rows}</tbody></table>
-   <p class="weekly-note">${fr?'🔒 Forme verrouillée. Stock partagé entre les formes débloquées d’une même ligne.':'🔒 Locked tier. Stock shared across unlocked tiers of the same line.'}</p>
-   <p class="weekly-note">${fr?'Prévision selon les bâtiments actuels et les bonus connus. Les semaines spéciales peuvent la modifier.':'Estimate based on current buildings and known bonuses. Special weeks may alter this.'}</p></section>`);
+  renderMarkup(body,`<section class="weekly-roster ui-context-layout" data-ui-close-only><aside data-ui-rail-context>${townControl}<span hidden data-ui-header-calendar data-days="${date?.untilNextWeek||0}" data-compact-title></span></aside><div data-ui-main-panel>
+   <table aria-label="${fr?'Recrues par niveau':'Recruits by level'}"><thead><tr><th scope="col">${fr?'Créatures':'Creatures'}</th><th scope="col">${fr?'En stock':'In stock'}</th><th scope="col">${fr?'Semaine suivante':'Next week'}</th></tr></thead><tbody>${rows}</tbody></table></div>
+   <div data-ui-rail-notes><p class="weekly-note">${fr?'🔒 Forme verrouillée. Stock partagé entre les formes débloquées d’une même ligne.':'🔒 Locked tier. Stock shared across unlocked tiers of the same line.'}</p>
+   <p class="weekly-note">${fr?'Prévision selon les bâtiments actuels et les bonus connus. Les semaines spéciales peuvent la modifier.':'Estimate based on current buildings and known bonuses. Special weeks may alter this.'}</p></div></section>`);
   const selector=body.querySelector('select');
   selector?.addEventListener('change',event=>{townId=Number(event.target.value);update(state);});
   if(focused)selector?.focus({preventScroll:true});
