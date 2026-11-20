@@ -61,3 +61,14 @@ test('spell gains and losses share the same upright attached counter layout and 
  paintEnemyLosses(ctx,{...state,spellTargeting:true,selectedSpellId:15,battleUnits:units},{x:0,y:0,w:800,h:555,dx:0,dy:0,scale:.4});
  assert.deepEqual(new Map(text),new Map([['(−3)','#ffb4ab'],['(+5)','#b5f07a']]));
 });
+
+
+test('Classic loss labels retain the shared horizontal gutter at the field edge',()=>{
+ const ctx={font:'400 12px Georgia',canvas:{},save(){},restore(){},measureText:text=>({width:text.length*7}),beginPath(){},rect(){},clip(){},fillRect(){},fillText(){}};
+ const edgeEnemy={...enemy,count:100,countBounds:{x:250,y:100,w:30,h:13},attackLosses:{actor:1,min:48,max:48}};
+ const placed=paintEnemyLosses(ctx,{...state,battleUnits:[actor,edgeEnemy]},{x:0,y:0,w:320,h:260,dx:0,dy:0,scale:1});
+ assert.equal(placed.length,1);assert.equal(placed[0].label,'(−48)');
+ assert(placed[0].x>=8&&placed[0].x+placed[0].w<=312,'The label must breathe inside both field edges');
+ assert.equal(placed[0].badge.stackId,edgeEnemy.stackId,'The loss remains attached to its own native count');
+ assert(!overlaps(placed[0],placed[0].badge,0));
+});

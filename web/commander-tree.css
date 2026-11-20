@@ -88,7 +88,7 @@
  #mobile-app .dialog-presentation[data-commander-picker=true]>.ui-action-dock{grid-area:4/1!important;display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important;padding:4px 0!important;min-height:0!important}
  #mobile-app .dialog-presentation[data-commander-picker=true]>.ui-action-dock>button{min-height:48px!important;width:100%!important;font:var(--ui-font-label)!important}
  @container goonk-viewport (orientation:landscape){
-  #mobile-app .dialog-presentation:is([data-kind=commander],[data-kind=commander-level-up])[data-commander-picker=true]{grid-template-columns:clamp(156px,28cqw,220px) minmax(0,1fr) clamp(156px,25cqw,220px)!important;grid-template-rows:56px minmax(48px,1fr) auto!important}
+  #mobile-app .dialog-presentation:is([data-kind=commander],[data-kind=commander-level-up])[data-commander-picker=true]{grid-template-columns:clamp(128px,22cqw,176px) minmax(0,1fr) clamp(176px,28cqw,244px)!important;grid-template-rows:56px minmax(48px,1fr) auto!important}
   #mobile-app .dialog-presentation[data-commander-picker=true]>.ui-screen-header{grid-area:1/3!important}
   #mobile-app .dialog-presentation[data-commander-picker=true]>.dialog-copy{display:contents!important}
   #mobile-app .dialog-presentation[data-commander-picker=true] .commander-summary{grid-area:1/1/-1/2!important;height:100%!important;min-height:0!important;grid-template-columns:minmax(0,1fr)!important;grid-template-rows:24px minmax(0,1fr) 84px!important;gap:8px!important}
@@ -99,5 +99,13 @@
   #mobile-app .dialog-presentation[data-commander-picker=true]>.dialog-copy>p:not(.dialog-choice-description){display:none!important}
   #mobile-app .dialog-presentation[data-commander-picker=true]>.dialog-choices{grid-area:2/3!important;align-self:start!important}
   #mobile-app .dialog-presentation[data-commander-picker=true]>.ui-action-dock{grid-area:3/3!important;grid-template-columns:minmax(0,1fr)!important}
+ }
+}
+
+/* The specialization view focuses on its tree. Keep the native preview in the
+   skill inspector, while tree navigation and confirmation retain their rail. */
+@layer ui-composition {
+ @container goonk-viewport (orientation:landscape){
+  #mobile-app .dialog-presentation[data-tree=true]>.dialog-copy:not([hidden]){display:none!important}
  }
 }

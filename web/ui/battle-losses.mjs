@@ -51,7 +51,7 @@ function theme(ctx){
  const token=(name,fallback)=>css?.getPropertyValue('--ui-'+name).trim()||fallback;
  const font=token('font-body-small',ctx.font).replace(/\/[\d.]+(?:px)?/,'');
  const value={font,height:(parseFloat(font.match(/([\d.]+)px/)?.[1])||12)+6,
-  background:token('surface','#1e140c'),loss:token('error','#ffb4ab'),gain:token('success','#b5f07a')};
+  background:token('surface','#1e140c'),loss:token('error','#ffb4ab'),gain:token('success','#b5f07a'),gutter:parseFloat(token('space-2','8px'))||8};
  if(canvas&&css)styles.set(canvas,value);return value;
 }
 
@@ -84,9 +84,11 @@ export function layoutCounterLosses(entries,bounds,counters,previous=[]){
 export function paintEnemyLosses(ctx,state,layout,{occlusion=[],counters=occlusion.filter(b=>b.kind==='count')}={}){
  const forecasts=enemyLossEstimates(state);if(!forecasts.length)return [];
  const project=layout.project||(({x,y})=>({x:layout.dx+(x-layout.x)*layout.scale,y:layout.dy+(y-layout.y)*layout.scale}));
- const bounds={x:layout.dx+1,y:layout.dy+1,w:layout.w*layout.scale-2,h:layout.h*layout.scale-2};
+ const t=theme(ctx);
+ // Keep the same readable horizontal breathing room as other shared UI text.
+ const bounds={x:layout.dx+t.gutter,y:layout.dy+1,w:Math.max(0,layout.w*layout.scale-2*t.gutter),h:layout.h*layout.scale-2};
  const nativeCounters=counters.length?counters:(state.battleUnits||[]).filter(u=>u.countBounds).map(u=>{const b=u.countBounds,p=project(b);return{stackId:u.stackId,x:p.x,y:p.y,w:b.w*layout.scale,h:b.h*layout.scale};});
- const t=theme(ctx);ctx.save();
+ ctx.save();
  const transform=ctx.getTransform?.();
  if(transform&&(transform.a<0||transform.d<0||Math.abs(transform.b)>1e-6||Math.abs(transform.c)>1e-6))ctx.setTransform(ctx.canvas.clientWidth?ctx.canvas.width/ctx.canvas.clientWidth:Math.hypot(transform.a,transform.b),0,0,ctx.canvas.clientHeight?ctx.canvas.height/ctx.canvas.clientHeight:Math.hypot(transform.c,transform.d),0,0);
  const zoom=Math.min(1,(nativeCounters[0]?.h||13)/13);

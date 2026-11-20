@@ -25,9 +25,9 @@ export function creatureStatsMarkup(unit,{fields=null,compact=false,className=''
  ];
  if(Number.isInteger(unit.experienceRank))rows.push(['experienceRank',uiText('Rank','Rang'),null,unit.experienceRank]);
  if(unit.inCombat){
-  rows.push(['currentHealth',uiText('Current HP','PV actuels'),null,`${unit.currentHealth??unit.health}/${unit.health}`]);
-  if(unit.shooter)rows.push(['remainingShots',uiText('Shots left','Tirs restants'),null,unit.remainingShots??0]);
-  rows.push(['remainingRetaliations',uiText('Retaliations','Ripostes'),null,unit.remainingRetaliations??0]);
+  rows.push(['currentHealth',uiText('Current HP','PV actuels'),uiText('HP now','PV act.'),`${unit.currentHealth??unit.health}/${unit.health}`]);
+  if(unit.shooter)rows.push(['remainingShots',uiText('Shots left','Tirs restants'),uiText('Shots','TIRS'),unit.remainingShots??0]);
+  rows.push(['remainingRetaliations',uiText('Retaliations','Ripostes'),uiText('RET','RIP'),unit.remainingRetaliations??0]);
  }
  return `<dl class="creature-stats ${escapeUI(className)}" data-ui-creature-stats ${compact?'data-compact="true"':''}>${rows.filter(([key])=>!fields||fields.includes(key)).map(([,name,short,value])=>`<div><dt>${short?compactStatLabel(name,short):escapeUI(name)}</dt><dd>${escapeUI(value)}</dd></div>`).join('')}</dl>`;
 }

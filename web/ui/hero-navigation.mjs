@@ -8,7 +8,7 @@ export function useHeroNavigation(nav){
  let record=records.get(nav);
  if(!record){
   const label=document.createElement('label'),select=document.createElement('select');
-  label.className='ui-hero-section-field';select.dataset.uiHeroSection='';label.append(select);nav.prepend(label);
+  label.className='ui-hero-section-field';select.dataset.uiHeroSection='';select.dataset.uiMenuDirection='down';label.append(select);nav.prepend(label);
   record={select,fields:createMaterialSelects(nav),signature:''};records.set(nav,record);
   select.addEventListener('change',()=>{const value=select.value;nav.querySelector(value==='classic'?'[data-hero-classic]':value==='rebalance'?'[data-hero-source-rebalance]':`[data-hero-tab="${value}"]`)?.click();});
  }

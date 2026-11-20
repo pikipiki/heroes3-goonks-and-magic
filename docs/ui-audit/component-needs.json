@@ -1532,7 +1532,7 @@
         "resources",
         "actions"
       ],
-      "sourceSHA256": "f09b4f6fbcf128ffba628541edd3fba47aee8fcbd67f582a137018771580a4d3",
+      "sourceSHA256": "a720b5b080d1bc66505362c990b5f4c1d00c3b35c6b23fe2a499590172612fda",
       "evidence": [
         {
           "line": 26,
@@ -1936,30 +1936,34 @@
         "select",
         "confirm"
       ],
-      "sourceSHA256": "db2c6cca81aec9f25b1098c4edb2086a76ae4544975fdfb44e0b4e36113038e6",
+      "sourceSHA256": "638b9cb84ee5965549ba205576d2d3a4bc638d979c85340ecf2c4d4d197c441a",
       "evidence": [
         {
           "line": 8,
-          "excerpt": "export function createTroopEquipment({root,command}){"
+          "excerpt": "if(typeof document!=='undefined'){const link=document.createElement('link');link.rel='stylesheet';link.href=new URL('./ui/troop-equipment-layout.css',import.meta.url).href;document"
         },
         {
           "line": 9,
-          "excerpt": "const panel=document.createElement('section');panel.className='progression-page troop-equipment-page';panel.hidden=true;panel.setAttribute('role','dialog');panel.setAttribute('aria"
+          "excerpt": "export function createTroopEquipment({root,command}){"
         },
         {
           "line": 10,
+          "excerpt": "const panel=document.createElement('section');panel.className='progression-page troop-equipment-page';panel.hidden=true;panel.setAttribute('role','dialog');panel.setAttribute('aria"
+        },
+        {
+          "line": 11,
           "excerpt": "renderMarkup(panel,'<header><h2 id=\"troop-equipment-title\"></h2></header><div class=\"progression-scroll\"><label class=\"progression-family\"><span data-troop-label></span><select dat"
         },
         {
-          "line": 19,
+          "line": 20,
           "excerpt": "const selector=panel.querySelector('[data-troop-select]'),troopKey=JSON.stringify(data.troops.map(t=>[t.slot,t.name,t.count]));if(selector._key!==troopKey){selector._key=troopKey;s"
         },
         {
-          "line": 20,
+          "line": 21,
           "excerpt": "const current=panel.querySelector('.troop-current'),key=JSON.stringify([slot,t.equipped,getLanguage()]);if(current._key!==key){current._key=key;renderMarkup(current,`<h3>${esc(t.na"
         },
         {
-          "line": 23,
+          "line": 24,
           "excerpt": "for(const item of items){let b=inventory.querySelector(`[data-troop-item=\"${item.id}\"]`);if(!b){b=createUIElement('button');b.className='progression-offer';b.dataset.troopItem=item"
         }
       ],
@@ -3188,7 +3192,7 @@
       "needs": [
         "select"
       ],
-      "sourceSHA256": "00cbd76d376edb84a290314d2b0d02b77323524e95cce056da6595f37e4fb60f",
+      "sourceSHA256": "9e35ea7a6ab4e80ded80d84e864a65c3b2efd2b1eb66ffa2499d13132e240a20",
       "evidence": [
         {
           "line": 6,

@@ -10,7 +10,7 @@
  #mobile-app[data-dialog-presentation]>.mobile-top,
  #mobile-app[data-mode=hero-exchange][data-exchange-view=mobile]>.mobile-top{display:none!important}
  #mobile-app .mobile-tavern.ui-screen-layout{grid-template-rows:auto minmax(0,1fr) auto!important;gap:8px!important;padding:8px!important;overflow:hidden!important}
- #mobile-app .tavern-heroes{overflow:auto!important;touch-action:pan-y!important;align-items:start!important}
+ #mobile-app .tavern-heroes{overflow:auto!important;touch-action:pan-y!important;align-items:stretch!important}
  #mobile-app .tavern-hero{min-height:min-content!important;gap:8px!important;padding:8px!important}
  #mobile-app .tavern-actions{gap:8px!important}
  #mobile-app .tavern-extras{min-width:0!important;max-height:40cqh!important;overflow:auto!important;touch-action:pan-y!important}

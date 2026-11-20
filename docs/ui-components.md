@@ -55,7 +55,7 @@ Utiliser `renderMarkup` pour rafraîchir une fabrique. Lorsqu’une galerie nati
 | Écran et actions | `screenHeaderMarkup`, `actionDockMarkup`, `useScreenComponents`, `useActionDock` ; `{surface: 'plain'}` donne un fond sombre uni sans texture au bandeau de commandes |
 | Navigation et dépendances | `renderMarkup` avec `data-ui-tabs` pour les vrais `Tabs` / `Tab` MUI, et `data-ui-stepper` pour `Stepper` / `StepButton` MUI ; les commandes natives restent déléguées |
 | Menus | `createPopupMenu` : `Menu` MUI, mêmes boutons de commande |
-| Sélecteurs | `createMaterialSelects` et `Select` React partagent `UpwardSelect` : vrais `Select` / `MenuItem` MUI ouverts vers le haut, liste défilante bornée par l’espace disponible ; champ natif conservé comme pont de commande |
+| Sélecteurs | `createMaterialSelects` et `Select` React partagent `UpwardSelect` : vrais `Select` / `MenuItem` MUI ouverts vers le haut par défaut (exception explicite : rubriques Armée/Équipement vers le bas), liste défilante bornée par l’espace disponible ; champ natif conservé comme pont de commande |
 | Gestionnaire impératif existant | `setClickHandler` / `bindPress` ; éviter `.onclick`, que React peut réaffecter |
 | Choix natifs WoG dans un groupe nommé | `radioChoicesMarkup` crée toujours un vrai `RadioGroup` MUI ; `labelledBy` relie sa légende et `iconSrc` ajoute le média associé dans une taille commune du thème ; pont natif conservé |
 | Contexte d’achat | `usePurchaseContext` : ressources préchargées visibles, sans bouton à ouvrir ; le bandeau de modale réserve titre/fermeture puis ressources |

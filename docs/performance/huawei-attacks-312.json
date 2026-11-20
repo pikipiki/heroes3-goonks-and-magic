@@ -1,0 +1,17 @@
+{
+  "scope": "Huawei P30 Pro real combat, read-only profiling; no performance optimization claimed",
+  "engineSha256": "d6578ac4c9dce80526b1fb08351810dad75157d466f93776cff6fcbb7a75890c",
+  "profiledBattle": {
+    "rafFps": 42.45,
+    "p95FrameMs": 65.9,
+    "maxFrameMs": 313.6,
+    "longTasks": 291
+  },
+  "limitations": [
+    "Sampling all workers introduced substantial CPU overhead (approximately two cores for profiler processing). These FPS are not unprofiled game performance.",
+    "Ring-buffer capture lost early CPU profile node tables; reliable C++ function attribution is unavailable.",
+    "Retained rendering timeline points to native MainLoop_runner rather than layout; this is a lead, not a confirmed root cause.",
+    "Native creature pose cadence differs from browser presentation cadence; a lightweight follow-up is required."
+  ],
+  "followUp": "Deferred at owner request to prioritize committing UI fixes and preserve remaining credits."
+}

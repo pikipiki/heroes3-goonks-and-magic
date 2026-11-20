@@ -57,7 +57,7 @@ for(const kind of ['chromium','webkit']){
    const toggle=geometry['[data-commander-tree]'];assert(toggle.width>=48&&toggle.height>=48&&toggle.bottom<=height+1,'Tree action reachable');
    if(width>height){
     const header=geometry['.dialog-presentation>.ui-screen-header'],preview=geometry['.commander-preview'],content=treeOpen?geometry['.dialog-copy']:geometry['.commander-summary'];
-    assert(header.x>width/2,'Commander title is on the right');assert(preview.width>48&&preview.height>=63,'Commander remains visible');assert(preview.y>=content.y&&preview.bottom<=content.bottom+1&&geometry['.commander-summary'].bottom<=content.bottom+1,'Commander and all four facts are not clipped by the action dock '+JSON.stringify(geometry));
+    assert(header.x>width/2,'Commander title is on the right');if(treeOpen){assert.equal(preview.width,0,'The landscape tree omits the commander inset');assert.equal(preview.height,0,'The commander animation remains confined to its inspector');}else{assert(preview.width>48&&preview.height>=63,'Commander remains visible');assert(preview.y>=content.y&&preview.bottom<=content.bottom+1&&geometry['.commander-summary'].bottom<=content.bottom+1,'Commander and all four facts are not clipped by the action dock '+JSON.stringify(geometry));}
     assert(toggle.width>=geometry['.dialog-presentation>.ui-action-dock'].width-18,'Specialization action fills the rail');
     if(treeOpen)assert(geometry['.commander-tree'].y<header.bottom,'Tree starts at top, without empty header space');
    }

@@ -5,9 +5,10 @@ import {plainGameText} from './game-text.mjs';
 import {paintProgressionArtifacts} from './progression-choices.mjs';
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const tr=(a,b)=>getLanguage()==='fr'?b:a;
+if(typeof document!=='undefined'){const link=document.createElement('link');link.rel='stylesheet';link.href=new URL('./ui/troop-equipment-layout.css',import.meta.url).href;document.head.append(link);}
 export function createTroopEquipment({root,command}){
  const panel=document.createElement('section');panel.className='progression-page troop-equipment-page';panel.hidden=true;panel.setAttribute('role','dialog');panel.setAttribute('aria-modal','true');panel.setAttribute('aria-labelledby','troop-equipment-title');root.append(panel);
- renderMarkup(panel,'<header><h2 id="troop-equipment-title"></h2></header><div class="progression-scroll"><label class="progression-family"><span data-troop-label></span><select data-troop-select></select></label><section class="troop-current"></section><h3 data-inventory-title></h3><p class="troop-empty"></p><div class="troop-inventory"></div></div><footer><p class="progression-summary" aria-live="polite"></p><button class="primary" data-troop-confirm></button><button data-troop-back></button></footer>');
+ renderMarkup(panel,'<header><h2 id="troop-equipment-title"></h2></header><div class="progression-scroll"><label class="progression-family"><span data-troop-label></span><select data-troop-select></select></label><section class="troop-current"></section><h3 data-inventory-title></h3><p class="troop-empty"></p><div class="troop-inventory"></div><p class="progression-summary" aria-live="polite"></p></div><footer><button class="primary" data-troop-confirm></button><button data-troop-back></button></footer>');
  let state={},data,open=false,heroId=null,slot=0,picked=null,pending=null,timer=null;
  const troop=()=>data?.troops?.find(t=>t.slot===slot);
  const close=()=>{open=false;clearTimeout(timer);pending=null;panel.hidden=true;root.removeAttribute('data-troop-equipment');};
