@@ -3,7 +3,7 @@ import fs from 'node:fs';import path from 'node:path';import assert from 'node:a
 import {silenceTestAudio} from './silent-audio.mjs';
 const out=process.env.REVIEW_OUTPUT||'/tmp/goonk-campaign-army-layout';fs.mkdirSync(out,{recursive:true});
 for(const [name,engine]of Object.entries({chromium,webkit})){
- const browser=await engine.launch({headless:true});try{
+ const browser=await engine.launch({headless:true,...(name==='chromium'?{args:['--mute-audio']}:{})});try{
  const page=await browser.newPage({viewport:{width:390,height:844},hasTouch:true});await silenceTestAudio(page);
  await page.route('**/web/**',route=>route.fulfill({path:path.resolve('web',new URL(route.request().url()).pathname.split('/web/')[1])}));
  await page.route('**/army-review',route=>route.fulfill({contentType:'text/html',body:`<!doctype html><html class="goonk-mobile"><meta name=viewport content="width=device-width,initial-scale=1"><meta charset=utf-8>${['mobile','h3-theme','mobile-review','mobile-refinement','mobile-followup','mobile-upgrade','mobile-compact'].map(n=>'<link rel=stylesheet href=/web/'+n+'.css>').join('')}<style>#mobile-viewport{position:fixed;inset:0;container:goonk-viewport / size}#mobile-app{position:absolute;inset:0;--control-rail:180px;--safe-bottom:0px}.mobile-play{position:absolute;inset:0}</style><div id=mobile-viewport><div id=mobile-app><main class=mobile-play></main></div></div><script type=module>import{createHeroExchange}from'/web/hero-exchange.mjs';window.calls=[];window.exchange=createHeroExchange({root:document.querySelector('#mobile-app'),command:(...args)=>calls.push(args),refresh:()=>{},portrait:()=>'<canvas class="unit-portrait" width="96" height="96" aria-hidden="true"></canvas>'});window.update=s=>{if(exchange.hold(s))return;document.querySelector('#mobile-app').dataset.mode=s.mode;exchange.update(s);};</script>`}));
@@ -27,7 +27,16 @@ for(const [name,engine]of Object.entries({chromium,webkit})){
    const r=await scroll.boundingBox(),cdp=await page.context().newCDPSession(page),x=r.x+r.width*.45,y=r.y+r.height*.8,end=r.y+r.height*.2;
    await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x,y}]});for(let i=1;i<=8;i++){await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x,y:y+(end-y)*i/8}]});await page.waitForTimeout(20);}await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});await page.waitForTimeout(250);await cdp.detach();assert(await scroll.evaluate(e=>e.scrollTop>10),'Real vertical touch scroll');
   }
-  await page.locator('[data-exchange-slot="0:0"]').scrollIntoViewIfNeeded();await page.locator('[data-exchange-slot="0:0"]').tap();await page.locator('[data-exchange-slot="1:3"]').scrollIntoViewIfNeeded();await page.locator('[data-exchange-slot="1:3"]').tap();
+  await page.locator('[data-exchange-slot="0:0"]').scrollIntoViewIfNeeded();await page.locator('[data-exchange-slot="0:0"]').tap();
+  const details=page.locator('[data-exchange-details]');
+  assert.equal(await details.count(),1,'Creature sheet stays available for offered troops');
+  assert.equal(await details.isEnabled(),true);
+  const detailsBox=await details.boundingBox();assert(detailsBox&&detailsBox.width>=48&&detailsBox.height>=48,'Details control stays finger sized');
+  await page.locator('[data-exchange-slot="0:0"]').tap();
+  assert.deepEqual(await page.evaluate(()=>calls.splice(0)),[[41,700,0]],'Second tap opens the offered creature');
+  await details.tap();
+  assert.deepEqual(await page.evaluate(()=>calls.splice(0)),[[41,700,0]],'Details button opens the same creature');
+  await page.locator('[data-exchange-slot="1:3"]').scrollIntoViewIfNeeded();await page.locator('[data-exchange-slot="1:3"]').tap();
   const quantity=page.locator('[data-exchange-quantity]');await quantity.fill('1');
   assert(await page.evaluate(s=>{const input=document.querySelector('[data-exchange-quantity]');input.focus();for(let i=0;i<40;i++)update({...s,day:i});return input===document.querySelector('[data-exchange-quantity]')&&document.activeElement===input&&input.value==='1';},state),'Stable quantity and focus');
   const confirm=page.locator('[data-exchange-confirm]');await confirm.tap();await confirm.tap({force:true});assert.deepEqual(await page.evaluate(()=>calls.splice(0)),[[94,0,0,3,1,135]],'One transfer');

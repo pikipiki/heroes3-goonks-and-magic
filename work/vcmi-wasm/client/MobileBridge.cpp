@@ -2733,18 +2733,25 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
   return;
  }
  if(action==41){
-  // Tavern candidates are not owned map objects. Only the army of the hero
-  // already visible in the equipment window may be inspected without ownership.
+  // Tavern candidates are not owned map objects. The hero already visible in
+  // equipment, and either army of the open exchange, may be inspected too.
+  // One-shot building rewards are unflaggable, so ownership does not apply there.
   const auto preview=ENGINE->windows().topWindow<CHeroWindow>();
   const auto visibleHero=preview?preview->curHero:nullptr;
   const bool inspectingVisibleHero=visibleHero&&visibleHero->id.getNum()==a;
-  const CArmedInstance * army=inspectingVisibleHero?visibleHero:dynamic_cast<const CArmedInstance*>(p->cb->getObj(ObjectInstanceID(a)));
-  if(!army||(!inspectingVisibleHero&&army->getOwner()!=p->playerID)||b<0||b>=7||!army->hasStackAtSlot(SlotID(b)))return;
+  const CArmedInstance * exchangeArmy=nullptr;
+  if(const auto garrison=ENGINE->windows().topWindow<CGarrisonWindow>()){
+   for(int side=0;side<2&&!exchangeArmy;++side)if(const auto * current=garrison->getMobileArmy(side);current&&current->id.getNum()==a)exchangeArmy=current;
+  }else if(const auto exchange=ENGINE->windows().topWindow<CExchangeWindow>()){
+   for(size_t side=0;side<2&&!exchangeArmy;++side)if(const auto * hero=exchange->getExchangeHero(side);hero&&hero->id.getNum()==a)exchangeArmy=hero;
+  }
+  const CArmedInstance * army=inspectingVisibleHero?visibleHero:exchangeArmy?exchangeArmy:dynamic_cast<const CArmedInstance*>(p->cb->getObj(ObjectInstanceID(a)));
+  if(!army||(!inspectingVisibleHero&&!exchangeArmy&&army->getOwner()!=p->playerID)||b<0||b>=7||!army->hasStackAtSlot(SlotID(b)))return;
   if(auto old=ENGINE->windows().topWindow<CStackWindow>()){
    if(old->isCommanderLevelUp()||old->getMobileStack()==&army->getStack(SlotID(b)))return;
    std::static_pointer_cast<CWindowObject>(old)->close();
   }
-  if(!ENGINE->windows().topWindow<AdventureMapInterface>()&&!townWindow&&!ENGINE->windows().topWindow<CHeroWindow>())return;
+  if(!exchangeArmy&&!ENGINE->windows().topWindow<AdventureMapInterface>()&&!townWindow&&!ENGINE->windows().topWindow<CHeroWindow>())return;
   ENGINE->windows().createAndPushWindow<CStackWindow>(&army->getStack(SlotID(b)),false);lastPublished=0;return;
  }
  if(action==59&&p->makingTurn&&!CPlayerInterface::battleInt){

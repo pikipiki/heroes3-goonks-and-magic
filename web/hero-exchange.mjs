@@ -86,6 +86,7 @@ export function createHeroExchange({root,command,refresh,portrait}){
    swap?(troops?(troopsOnly?(fr?'Les deux troupes vont être échangées.':'Both units will swap places.'):(fr?'Les deux troupes vont changer de héros.':'Both units will swap heroes.')):(fr?'Les deux objets vont changer de héros.':'Both items will swap heroes.')):
    (troops?(troopsOnly?(fr?'Les créatures vont rejoindre cette armée.':'The creatures will join this army.'):(fr?'Les créatures vont rejoindre l’autre héros.':'The creatures will join the other hero.')):(fr?'L’objet va rejoindre l’autre héros.':'The item will join the other hero.'));
   const disabled=!target||!available||!!pending||quantity<1||quantity>countLimit;
+  const detailButton=troops&&!confirmFinish?`<button type="button" data-exchange-details data-exchange-focus="details" ${!item?.name||pending?'disabled':''}>${fr?'Fiche':'Details'}</button>`:'';
   renderMarkup(panel,`<header class="exchange-toolbar">
    <h2>${joining?(fr?'Faire de la place':'Make room'):troopsOnly?(garrison?(fr?'Laisser des gardes':'Leave guards'):(fr?'Répartir les troupes':'Arrange army')):(fr?'Échange entre héros':'Hero exchange')}</h2>
    <button type="button" data-exchange-classic data-exchange-focus="classic" ${pending||confirmFinish?'disabled':''}>${fr?'Classique':'Classic'}</button>
@@ -105,11 +106,13 @@ export function createHeroExchange({root,command,refresh,portrait}){
     <p>${confirmFinish?escape((fr?'Terminer sans ces troupes : ':'Finish without these units: ')+heroes[0].roster.filter(u=>u.name&&u.count>0).map(u=>u.name+' × '+u.count).join(', ')):message||instruction}</p>
     ${!target&&item?.description?`<p class="exchange-description">${escape(plainGameText(item.description))}</p>`:''}
    </div>
-   ${confirmFinish?`<div class="exchange-actions"><button data-exchange-cancel-finish>${fr?'Retour':'Back'}</button><button class="primary" data-exchange-commit-finish>${fr?'Confirmer et terminer':'Confirm and finish'}</button></div>`:item?`<div class="exchange-actions">
+   ${confirmFinish?`<div class="exchange-actions"><button data-exchange-cancel-finish>${fr?'Retour':'Back'}</button><button class="primary" data-exchange-commit-finish>${fr?'Confirmer et terminer':'Confirm and finish'}</button></div>`:(detailButton||item)?`<div class="exchange-actions">
+    ${detailButton}
+    ${item?`
     ${troops&&target&&!swap?`<label class="exchange-quantity"><span>${fr?'Quantité':'Quantity'}</span><input type="number" inputmode="numeric" min="1" max="${countLimit}"
      value="${quantity||''}" aria-label="${fr?'Quantité':'Quantity'}" data-exchange-quantity ${pending?'disabled':''}></label>`:''}
     <button type="button" data-exchange-reset data-exchange-focus="reset" ${pending?'disabled':''}>${fr?'Annuler':'Cancel'}</button>
-    <button type="button" class="primary" data-exchange-confirm data-exchange-focus="confirm" ${disabled?'disabled':''}>${pending?(fr?'Transfert en cours…':'Transferring…'):swap?(fr?'Confirmer l’échange':'Confirm exchange'):(fr?'Confirmer le transfert':'Confirm transfer')}</button>
+    <button type="button" class="primary" data-exchange-confirm data-exchange-focus="confirm" ${disabled?'disabled':''}>${pending?(fr?'Transfert en cours…':'Transferring…'):swap?(fr?'Confirmer l’échange':'Confirm exchange'):(fr?'Confirmer le transfert':'Confirm transfer')}</button>`:''}
    </div>`:''}
   </footer>`);
   panel.querySelector('.exchange-inventories').scrollTop=scroll;
@@ -129,6 +132,11 @@ export function createHeroExchange({root,command,refresh,portrait}){
   const button=event.target.closest('button');
   if(!button||button.disabled||closing)return;
   if(button.hasAttribute('data-exchange-classic')){setView(true);return;}
+  if(button.hasAttribute('data-exchange-details')){
+   const selected=itemAt(source);
+   if(tab==='troops'&&selected?.name)command(41,heroes[source.side].id,selected.slot);
+   return;
+  }
   if(button.hasAttribute('data-exchange-cancel-finish')){confirmFinish=false;render();return;}
   if(button.hasAttribute('data-exchange-close')||button.hasAttribute('data-exchange-commit-finish')){
    if(joining&&!confirmFinish&&heroes[0].roster.some(u=>u.name&&u.count>0)){confirmFinish=true;render();panel.querySelector('[data-exchange-cancel-finish]')?.focus();return;}
@@ -152,6 +160,7 @@ export function createHeroExchange({root,command,refresh,portrait}){
   }else if(button.dataset.exchangeSlot){
    const [side,slot]=button.dataset.exchangeSlot.split(':').map(Number);
    const item=slots(side).find(entry=>entry.slot===slot);
+   if(tab==='troops'&&item?.name&&source?.side===side&&source.slot===slot&&source.id===item.id){command(41,heroes[side].id,slot);return;}
    const selection={side,slot,id:item.id};
    const limit=maximum(itemAt(source),side,item);
    if(limit>0){destination=selection;quantity=limit;}
