@@ -762,6 +762,199 @@
     color: #ffcdd2;
   }
 
+
+  /* MODALE FICHE CREATURE DETAILLEE (DOUBLE CLIC / FICHE) */
+  .creature-modal-card {
+    background: #1b1108;
+    border: 1px solid var(--h3-border-gold-bright);
+    max-width: 440px;
+    width: 92%;
+    max-height: 88vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.95);
+    overflow: hidden;
+  }
+
+  .creature-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 14px;
+    background: #28190c;
+    border-bottom: 1px solid var(--h3-border-gold);
+    flex-shrink: 0;
+  }
+
+  .creature-modal-title-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+  }
+
+  .creature-modal-title {
+    margin: 0;
+    font-size: 15px;
+    color: var(--h3-gold-text);
+    font-weight: 400;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .creature-modal-body {
+    padding: 12px 14px;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    touch-action: pan-y;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .c-modal-stage {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    background: #120b05;
+    border: 1px solid #4a3418;
+    padding: 10px;
+  }
+
+  .c-modal-avatar {
+    width: 64px;
+    height: 64px;
+    border: 1px solid var(--h3-border-gold);
+    background: #0d0703;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 34px;
+    position: relative;
+    box-shadow: 0 0 12px rgba(197, 159, 81, 0.25);
+  }
+
+  .c-modal-quick-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    width: 100%;
+  }
+
+  .c-stat-box {
+    background: #23160a;
+    border: 1px solid #5d421d;
+    padding: 4px 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .c-stat-label {
+    font-size: 9px;
+    color: #a48c68;
+    margin-bottom: 2px;
+    white-space: nowrap;
+  }
+
+  .c-stat-box strong {
+    font-size: 12.5px;
+    color: #fff;
+    font-weight: 500;
+  }
+
+  .c-modal-details {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .c-modal-section {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .c-section-title {
+    margin: 0;
+    font-size: 11px;
+    color: var(--h3-gold-text);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid #3d2912;
+    padding-bottom: 3px;
+    font-weight: 400;
+  }
+
+  .c-abilities-list {
+    margin: 0;
+    padding-left: 18px;
+    color: var(--h3-text-parchment);
+    font-size: 12px;
+    line-height: 1.45;
+  }
+
+  .c-abilities-list li {
+    margin-bottom: 3px;
+  }
+
+  .c-modal-desc-text {
+    margin: 0;
+    font-size: 11.5px;
+    color: #d8c39e;
+    line-height: 1.45;
+    font-style: italic;
+  }
+
+  .creature-modal-footer {
+    padding: 8px 14px;
+    background: #22140a;
+    border-top: 1px solid var(--h3-border-gold);
+    display: flex;
+    justify-content: flex-end;
+    flex-shrink: 0;
+  }
+
+  .creature-modal-footer button {
+    min-height: 36px;
+    padding: 0 16px;
+    font-size: 12.5px;
+    font-weight: 400;
+  }
+
+  .p30-landscape .creature-modal-card,
+  .iphone-landscape .creature-modal-card,
+  .ipad-landscape .creature-modal-card {
+    max-width: 580px;
+    max-height: 94vh;
+  }
+
+  .p30-landscape .creature-modal-body,
+  .iphone-landscape .creature-modal-body,
+  .ipad-landscape .creature-modal-body {
+    flex-direction: row;
+    gap: 12px;
+  }
+
+  .p30-landscape .c-modal-stage,
+  .iphone-landscape .c-modal-stage,
+  .ipad-landscape .c-modal-stage {
+    width: 200px;
+    flex-shrink: 0;
+  }
+
+  .p30-landscape .c-modal-details,
+  .iphone-landscape .c-modal-details,
+  .ipad-landscape .c-modal-details {
+    flex: 1;
+    min-width: 0;
+    overflow-y: auto;
+    max-height: 220px;
+  }
+
   /* Toast Notification */
   .toast {
     position: absolute;
@@ -894,6 +1087,11 @@
               <span id="ui-btn-split">Scinder</span>
             </button>
 
+            <!-- Bouton Fiche / Details -->
+            <button class="action-btn" id="btn-action-details" disabled title="Fiche de la créature (ou double-clic sur la carte)">
+              <span>📜</span>
+              <span id="ui-btn-details">Fiche</span>
+            </button>
             <!-- Bouton Faire partir (Dismiss) -->
             <button class="action-btn danger" id="btn-action-dismiss" disabled>
               <span>🗑️</span>
@@ -908,6 +1106,52 @@
           </div>
 
         </footer>
+
+        <!-- MODALE FICHE / DETAIL DU MONSTRE (MUI & H3) -->
+        <div class="modal-overlay hidden" id="creature-modal">
+          <div class="creature-modal-card">
+            <header class="creature-modal-header">
+              <div class="creature-modal-title-group">
+                <h4 class="creature-modal-title" id="c-modal-name">Créature</h4>
+                <span class="badge-status" id="c-modal-tier">Niveau 7</span>
+              </div>
+              <button class="exchange-close-btn" id="c-modal-close-btn" title="Fermer">✕</button>
+            </header>
+
+            <div class="creature-modal-body">
+              <div class="c-modal-stage">
+                <div class="c-modal-avatar">
+                  <span class="c-modal-emoji" id="c-modal-icon">👼</span>
+                  <span class="creature-count-badge" id="c-modal-count">× 1</span>
+                </div>
+                <div class="c-modal-quick-stats">
+                  <div class="c-stat-box"><span class="c-stat-label" id="c-lbl-atk">⚔️ Attaque</span><strong id="c-modal-atk">0</strong></div>
+                  <div class="c-stat-box"><span class="c-stat-label" id="c-lbl-def">🛡️ Défense</span><strong id="c-modal-def">0</strong></div>
+                  <div class="c-stat-box"><span class="c-stat-label" id="c-lbl-dmg">💥 Dégâts</span><strong id="c-modal-dmg">0</strong></div>
+                  <div class="c-stat-box"><span class="c-stat-label" id="c-lbl-hp">❤️ Santé</span><strong id="c-modal-hp">0</strong></div>
+                  <div class="c-stat-box"><span class="c-stat-label" id="c-lbl-spd">⚡ Vitesse</span><strong id="c-modal-spd">0</strong></div>
+                  <div class="c-stat-box"><span class="c-stat-label" id="c-lbl-type">🏹 Type</span><strong id="c-modal-type">Au sol</strong></div>
+                </div>
+              </div>
+
+              <div class="c-modal-details">
+                <div class="c-modal-section">
+                  <h5 class="c-section-title" id="c-modal-abilities-title">Capacités spéciales</h5>
+                  <ul class="c-abilities-list" id="c-modal-abilities-list"></ul>
+                </div>
+
+                <div class="c-modal-section">
+                  <h5 class="c-section-title" id="c-modal-desc-title">Description</h5>
+                  <p class="c-modal-desc-text" id="c-modal-desc-text"></p>
+                </div>
+              </div>
+            </div>
+
+            <footer class="creature-modal-footer">
+              <button id="c-modal-btn-close" class="primary">Fermer</button>
+            </footer>
+          </div>
+        </div>
 
         <!-- MODALE MATERIAL DESIGN 3: CONFIRMATION DISMISS / FINISH -->
         <div class="modal-overlay hidden" id="confirm-modal">
@@ -945,6 +1189,17 @@
         freeSlot: "+ Libre",
         slotTitle: (idx) => `#${idx + 1}`,
         splitLabel: "Scinder :",
+        btnDetails: "Fiche",
+        abilitiesTitle: "Capacités spéciales",
+        descriptionTitle: "Description",
+        lblAtk: "⚔️ Attaque",
+        lblDef: "🛡️ Défense",
+        lblDmg: "💥 Dégâts",
+        lblHp: "❤️ Santé",
+        lblSpd: "⚡ Vitesse",
+        lblType: "🏹 Type",
+        btnCloseModal: "Fermer",
+        cardDblClickHint: "Double-clic pour voir la fiche",
         btnSplit: "Scinder",
         btnDismiss: "Faire partir",
         btnFinish: "Terminer",
@@ -982,6 +1237,17 @@
         freeSlot: "+ Free",
         slotTitle: (idx) => `#${idx + 1}`,
         splitLabel: "Split:",
+        btnDetails: "Details",
+        abilitiesTitle: "Special abilities",
+        descriptionTitle: "Description",
+        lblAtk: "⚔️ Attack",
+        lblDef: "🛡️ Defense",
+        lblDmg: "💥 Damage",
+        lblHp: "❤️ Health",
+        lblSpd: "⚡ Speed",
+        lblType: "🏹 Type",
+        btnCloseModal: "Close",
+        cardDblClickHint: "Double-click to view details",
         btnSplit: "Split",
         btnDismiss: "Dismiss",
         btnFinish: "Done",
@@ -1026,17 +1292,182 @@
           hp: 250,
           spd: 18,
           shooter: false,
-          tier: 'Niveau 7'
+          tier: { fr: 'Niveau 7 (Amélioré)', en: 'Tier 7 (Upgraded)' },
+          type: { fr: 'Volante', en: 'Flying' },
+          abilities: {
+            fr: ['Volante', 'Résurrection des alliés tombés (1× / combat)', 'Moral +1 pour toutes les troupes de l’armée alliée', 'Aucune riposte ennemie face à leurs assauts', 'Dégâts fixes maximaux garantis (50)'],
+            en: ['Flying', 'Resurrects fallen allies (1× / combat)', '+1 Morale to all allied troops in army', 'No enemy retaliation against strikes', 'Guaranteed maximum flat damage (50)']
+          },
+          description: {
+            fr: 'Créatures célestes suprêmes incarnant la justice et la pureté divine. Leurs épées flamboyantes terrassent les légions obscures et insufflent une nouvelle vie aux guerriers tombés.',
+            en: 'Supreme celestial beings embodying divine justice and pure light. Their blazing blades smite dark legions and breathe life back into fallen comrades.'
+          }
         }
       ],
       heroArmy: [
-        { slot: 0, id: 'pikemen', name: { fr: 'Piquiers', en: 'Pikemen' }, count: 95, icon: '🛡️', atk: 4, def: 5, dmg: '1-3', hp: 10, spd: 4, shooter: false },
-        { slot: 1, id: 'crossbowmen', name: { fr: 'Arbalétriers', en: 'Marksmen' }, count: 64, icon: '🏹', atk: 6, def: 3, dmg: '2-3', hp: 10, spd: 6, shooter: true },
-        { slot: 2, id: 'griffins', name: { fr: 'Griffons royaux', en: 'Royal Griffins' }, count: 32, icon: '🦅', atk: 9, def: 9, dmg: '3-6', hp: 25, spd: 9, shooter: false },
-        { slot: 3, id: 'swordsmen', name: { fr: 'Épéistes', en: 'Crusaders' }, count: 28, icon: '⚔️', atk: 12, def: 12, dmg: '7-10', hp: 35, spd: 6, shooter: false },
-        { slot: 4, id: 'monks', name: { fr: 'Zélotes', en: 'Zealots' }, count: 18, icon: '✨', atk: 12, def: 10, dmg: '10-12', hp: 32, spd: 7, shooter: true },
-        { slot: 5, id: 'cavaliers', name: { fr: 'Champions', en: 'Champions' }, count: 12, icon: '🐎', atk: 16, def: 14, dmg: '20-25', hp: 100, spd: 9, shooter: false },
-        { slot: 6, id: 'angels', name: { fr: 'Anges', en: 'Angels' }, count: 6, icon: '👼', atk: 20, def: 20, dmg: '50', hp: 200, spd: 12, shooter: false }
+        {
+          slot: 0,
+          id: 'pikemen',
+          name: { fr: 'Piquiers', en: 'Pikemen' },
+          count: 95,
+          icon: '🛡️',
+          atk: 4,
+          def: 5,
+          dmg: '1-3',
+          hp: 10,
+          spd: 4,
+          shooter: false,
+          tier: { fr: 'Niveau 1', en: 'Tier 1' },
+          type: { fr: 'Au sol', en: 'Ground' },
+          abilities: {
+            fr: ["Arme d'hast : immunité totale contre le bonus de charge des cavaliers ennemis"],
+            en: ['Polearm: total immunity to enemy cavalier charge damage bonus']
+          },
+          description: {
+            fr: "L'épine dorsale de l'infanterie d'Erathia. Formant des rangs serrés impénétrables, ils brisent l'élan de la cavalerie adverse.",
+            en: 'The steadfast backbone of Erathian infantry. Forming tight defensive formations, they negate enemy cavalry momentum.'
+          }
+        },
+        {
+          slot: 1,
+          id: 'crossbowmen',
+          name: { fr: 'Arbalétriers', en: 'Marksmen' },
+          count: 64,
+          icon: '🏹',
+          atk: 6,
+          def: 3,
+          dmg: '2-3',
+          hp: 10,
+          spd: 6,
+          shooter: true,
+          shots: 24,
+          tier: { fr: 'Niveau 2 (Amélioré)', en: 'Tier 2 (Upgraded)' },
+          type: { fr: 'Tir à distance (24 munitions)', en: 'Ranged (24 shots)' },
+          abilities: {
+            fr: ['Tir à distance avec 24 carreaux', 'Double tir par tour sans pénalité de cadence'],
+            en: ['Ranged attack with 24 bolts', 'Double shot per turn without delay']
+          },
+          description: {
+            fr: "Tireurs d'élite équipés d'arbalètes renforcées capables de décocher deux carreaux mortels par assaut.",
+            en: 'Elite sharpshooters equipped with heavy rapid-load crossbows capable of loosing two lethal bolts each turn.'
+          }
+        },
+        {
+          slot: 2,
+          id: 'griffins',
+          name: { fr: 'Griffons royaux', en: 'Royal Griffins' },
+          count: 32,
+          icon: '🦅',
+          atk: 9,
+          def: 9,
+          dmg: '3-6',
+          hp: 25,
+          spd: 9,
+          shooter: false,
+          tier: { fr: 'Niveau 3 (Amélioré)', en: 'Tier 3 (Upgraded)' },
+          type: { fr: 'Volante', en: 'Flying' },
+          abilities: {
+            fr: ['Volante', 'Ripostes illimitées face à chaque assaut ennemi'],
+            en: ['Flying', 'Unlimited retaliations against every enemy attack']
+          },
+          description: {
+            fr: 'Fiers prédateurs ailés gardant les falaises du royaume. En combat, ils ne reculent jamais et ripostent à toutes les offensives.',
+            en: 'Proud winged predators defending royal roosts. In battle, they never yield and retaliate against every physical blow.'
+          }
+        },
+        {
+          slot: 3,
+          id: 'swordsmen',
+          name: { fr: 'Épéistes', en: 'Crusaders' },
+          count: 28,
+          icon: '⚔️',
+          atk: 12,
+          def: 12,
+          dmg: '7-10',
+          hp: 35,
+          spd: 6,
+          shooter: false,
+          tier: { fr: 'Niveau 4 (Amélioré)', en: 'Tier 4 (Upgraded)' },
+          type: { fr: 'Au sol', en: 'Ground' },
+          abilities: {
+            fr: ['Double frappe au corps à corps lors de chaque offensive'],
+            en: ['Strikes twice in melee on every attack']
+          },
+          description: {
+            fr: "Chevaliers à pied vêtus de cottes de mailles épaisses maniant l'épée bâtarde avec une rigueur militaire exemplaire.",
+            en: 'Armored foot knights wielding broadswords with disciplined battlefield ferocity, delivering two vicious slashes.'
+          }
+        },
+        {
+          slot: 4,
+          id: 'monks',
+          name: { fr: 'Zélotes', en: 'Zealots' },
+          count: 18,
+          icon: '✨',
+          atk: 12,
+          def: 10,
+          dmg: '10-12',
+          hp: 32,
+          spd: 7,
+          shooter: true,
+          shots: 24,
+          tier: { fr: 'Niveau 5 (Amélioré)', en: 'Tier 5 (Upgraded)' },
+          type: { fr: 'Tir à distance (24 tirs)', en: 'Ranged (24 shots)' },
+          abilities: {
+            fr: ['Tir mystique à distance (24 tirs)', 'Aucune pénalité de dégâts en combat rapproché'],
+            en: ['Mystic ranged beams (24 shots)', 'No damage penalty in close melee combat']
+          },
+          description: {
+            fr: "Moines guerriers canalisant la ferveur sacrée sous forme d'éclairs de pure énergie. Au contact, leur foi frappe à pleine puissance.",
+            en: 'Holy combatants channeling divine energy into searing beams. At point-blank range, their righteous wrath strikes with full strength.'
+          }
+        },
+        {
+          slot: 5,
+          id: 'cavaliers',
+          name: { fr: 'Champions', en: 'Champions' },
+          count: 12,
+          icon: '🐎',
+          atk: 16,
+          def: 14,
+          dmg: '20-25',
+          hp: 100,
+          spd: 9,
+          shooter: false,
+          tier: { fr: 'Niveau 6 (Amélioré)', en: 'Tier 6 (Upgraded)' },
+          type: { fr: 'Au sol', en: 'Ground' },
+          abilities: {
+            fr: ['Bonus de joute : inflige +5% de dégâts additionnels par case parcourue avant impact'],
+            en: ['Jousting bonus: deals +5% additional damage per hex travelled before striking']
+          },
+          description: {
+            fr: 'Seigneurs de guerre montés sur destriers caparaçonnés d’acier. Leur lance foudroyante déchire les rangs ennemis les plus tenaces.',
+            en: 'Armored heavy lancers mounted on iron-clad warhorses. Their thunderous charge shatters the thickest enemy formations.'
+          }
+        },
+        {
+          slot: 6,
+          id: 'angels',
+          name: { fr: 'Anges', en: 'Angels' },
+          count: 6,
+          icon: '👼',
+          atk: 20,
+          def: 20,
+          dmg: '50',
+          hp: 200,
+          spd: 12,
+          shooter: false,
+          tier: { fr: 'Niveau 7', en: 'Tier 7' },
+          type: { fr: 'Volante', en: 'Flying' },
+          abilities: {
+            fr: ['Volante', 'Moral +1 pour toutes les troupes alliées', 'Dégâts fixes constants (50)'],
+            en: ['Flying', '+1 Morale to all allied troops in the army', 'Constant flat damage (50)']
+          },
+          description: {
+            fr: 'Gardiens angéliques venus prêter main-forte aux armées du Bien. Leur seule présence galvanise le cœur des combattants.',
+            en: 'Angelic guardians sent to assist righteous armies. Their mere presence elevates the spirits and courage of all allies.'
+          }
+        }
       ]
     };
 
@@ -1045,6 +1476,93 @@
     let selection = null; // { type: 'joining'|'army', index: number }
     let splitActive = false;
     let splitAmount = 1;
+
+
+    // MODALE FICHE / DETAIL CREATURE
+    let activeCreatureInModal = null;
+    let lastTapCheck = { id: null, time: 0 };
+
+    function openCreatureModal(creature) {
+      if (!creature) return;
+      activeCreatureInModal = creature;
+      selection = null;
+      render();
+      const modal = document.getElementById('creature-modal');
+      const lang = I18N[currentLang];
+
+      document.getElementById('c-modal-name').textContent = creature.name[currentLang] || creature.name.fr;
+      const tierText = typeof creature.tier === 'object' ? (creature.tier[currentLang] || creature.tier.fr) : (creature.tier || 'Niveau 1');
+      document.getElementById('c-modal-tier').textContent = tierText;
+      document.getElementById('c-modal-icon').textContent = creature.icon;
+      document.getElementById('c-modal-count').textContent = `× ${creature.count}`;
+
+      // Stats
+      document.getElementById('c-modal-atk').textContent = creature.atk;
+      document.getElementById('c-modal-def').textContent = creature.def;
+      document.getElementById('c-modal-dmg').textContent = creature.dmg;
+      document.getElementById('c-modal-hp').textContent = creature.hp;
+      document.getElementById('c-modal-spd').textContent = creature.spd;
+      
+      const typeText = typeof creature.type === 'object' 
+        ? (creature.type[currentLang] || creature.type.fr) 
+        : (creature.shooter ? (currentLang === 'fr' ? 'Tir à distance' : 'Ranged') : (currentLang === 'fr' ? 'Au sol' : 'Ground'));
+      document.getElementById('c-modal-type').textContent = typeText;
+
+      // Labels i18n
+      document.getElementById('c-lbl-atk').textContent = lang.lblAtk;
+      document.getElementById('c-lbl-def').textContent = lang.lblDef;
+      document.getElementById('c-lbl-dmg').textContent = lang.lblDmg;
+      document.getElementById('c-lbl-hp').textContent = lang.lblHp;
+      document.getElementById('c-lbl-spd').textContent = lang.lblSpd;
+      document.getElementById('c-lbl-type').textContent = lang.lblType;
+      document.getElementById('c-modal-abilities-title').textContent = lang.abilitiesTitle;
+      document.getElementById('c-modal-desc-title').textContent = lang.descriptionTitle;
+      document.getElementById('c-modal-btn-close').textContent = lang.btnCloseModal;
+
+      // Capacités
+      const listEl = document.getElementById('c-modal-abilities-list');
+      listEl.innerHTML = '';
+      const abilities = creature.abilities 
+        ? (creature.abilities[currentLang] || creature.abilities.fr || []) 
+        : [];
+      if (abilities.length === 0) {
+        const li = document.createElement('li');
+        li.textContent = currentLang === 'fr' ? 'Aucune capacité spéciale.' : 'No special abilities.';
+        listEl.appendChild(li);
+      } else {
+        abilities.forEach(ab => {
+          const li = document.createElement('li');
+          li.textContent = ab;
+          listEl.appendChild(li);
+        });
+      }
+
+      // Description
+      const descEl = document.getElementById('c-modal-desc-text');
+      const desc = creature.description 
+        ? (creature.description[currentLang] || creature.description.fr || '') 
+        : '';
+      descEl.textContent = desc || (currentLang === 'fr' ? 'Les attributs ci-dessus décrivent cette créature.' : 'The attributes above describe this creature.');
+
+      modal.classList.remove('hidden');
+    }
+
+    function closeCreatureModal() {
+      const modal = document.getElementById('creature-modal');
+      modal.classList.add('hidden');
+      activeCreatureInModal = null;
+    }
+
+    function checkDoubleTap(targetId, creature) {
+      const now = Date.now();
+      if (lastTapCheck.id === targetId && (now - lastTapCheck.time) < 380) {
+        lastTapCheck = { id: null, time: 0 };
+        openCreatureModal(creature);
+        return true;
+      }
+      lastTapCheck = { id: targetId, time: now };
+      return false;
+    }
 
     // Toast Timer
     let toastTimer = null;
@@ -1098,6 +1616,7 @@
       document.getElementById('ui-hero-heading').textContent = lang.heroHeading;
       document.getElementById('ui-split-label').textContent = lang.splitLabel;
       document.getElementById('ui-btn-split').textContent = lang.btnSplit;
+      document.getElementById('ui-btn-details').textContent = lang.btnDetails;
       document.getElementById('ui-btn-dismiss').textContent = lang.btnDismiss;
       document.getElementById('ui-btn-finish').textContent = lang.btnFinish;
 
@@ -1148,7 +1667,15 @@
             </div>
           `;
 
-          card.addEventListener('click', () => handleSelectJoining(idx));
+          card.setAttribute('title', lang.cardDblClickHint);
+          card.addEventListener('dblclick', (e) => {
+            e.stopPropagation();
+            openCreatureModal(creature);
+          });
+          card.addEventListener('click', () => {
+            if (checkDoubleTap('joining-' + idx, creature)) return;
+            handleSelectJoining(idx);
+          });
           joiningContainer.appendChild(card);
         });
       }
@@ -1194,7 +1721,17 @@
           `;
         }
 
-        slotEl.addEventListener('click', () => handleSelectArmySlot(s));
+        if (slotUnit) {
+          slotEl.setAttribute('title', lang.cardDblClickHint);
+          slotEl.addEventListener('dblclick', (e) => {
+            e.stopPropagation();
+            openCreatureModal(slotUnit);
+          });
+        }
+        slotEl.addEventListener('click', () => {
+          if (slotUnit && checkDoubleTap('army-' + s, slotUnit)) return;
+          handleSelectArmySlot(s);
+        });
         armyGrid.appendChild(slotEl);
       }
 
@@ -1210,10 +1747,13 @@
       const btnDismiss = document.getElementById('btn-action-dismiss');
       const splitPanel = document.getElementById('split-panel');
 
+      const btnDetails = document.getElementById('btn-action-details');
+
       if (!selection) {
         hintEl.textContent = lang.hintDefault;
         btnSplit.disabled = true;
         btnDismiss.disabled = true;
+        btnDetails.disabled = true;
         splitPanel.classList.add('hidden');
         splitActive = false;
         return;
@@ -1236,6 +1776,8 @@
           btnDismiss.disabled = true;
         }
       }
+
+      btnDetails.disabled = !selectedUnit;
 
       // Bouton Split : possible si stack > 1 et appartient à l'armée
       if (selectedUnit && selectedUnit.count > 1 && selection.type === 'army') {
@@ -1548,6 +2090,7 @@
       currentLang = currentLang === 'fr' ? 'en' : 'fr';
       document.getElementById('label-lang').textContent = currentLang.toUpperCase();
       document.getElementById('proto-app-title').textContent = I18N[currentLang].appTitle;
+      if (activeCreatureInModal) openCreatureModal(activeCreatureInModal);
       render();
     });
 
@@ -1558,6 +2101,28 @@
       splitActive = false;
       render();
       showToast(currentLang === 'fr' ? 'Scénario réinitialisé' : 'Scenario reset');
+    });
+
+    // Bouton Fiche / Details dans le dock
+    document.getElementById('btn-action-details').addEventListener('click', () => {
+      if (!selection) return;
+      const unit = selection.type === 'joining' 
+        ? state.joining[selection.index] 
+        : state.heroArmy[selection.index];
+      if (unit) openCreatureModal(unit);
+    });
+
+    // Fermeture de la modale créature
+    document.getElementById('c-modal-close-btn').addEventListener('click', closeCreatureModal);
+    document.getElementById('c-modal-btn-close').addEventListener('click', closeCreatureModal);
+    document.getElementById('creature-modal').addEventListener('click', (e) => {
+      if (e.target.id === 'creature-modal') closeCreatureModal();
+    });
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeCreatureModal();
+        document.getElementById('confirm-modal').classList.add('hidden');
+      }
     });
 
     // Initialisation
