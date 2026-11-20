@@ -54,7 +54,7 @@ class BattleActionsController
 	std::vector<PossiblePlayerBattleAction> getPossibleActionsForStack (const CStack *stack) const; //called when stack gets its turn
 	void reorderPossibleActionsPriority(const CStack * stack, const CStack * targetStack);
 
-	bool actionIsLegal(PossiblePlayerBattleAction action, const BattleHex & hoveredHex);
+	bool actionIsLegal(PossiblePlayerBattleAction action, const BattleHex & hoveredHex, const BattleHexArray * reachable = nullptr);
 
 	void actionSetCursor(PossiblePlayerBattleAction action, const BattleHex & hoveredHex);
 	void actionSetCursorBlocked(PossiblePlayerBattleAction action, const BattleHex & hoveredHex);
@@ -112,8 +112,8 @@ public:
 	bool canPreviewSpellTargets() const;
 	bool canTargetSpellHex(const BattleHex & hex);
 	/// Contextual mobile action, without changing casting mode or drawing random spells during previews.
-	PossiblePlayerBattleAction mobileActionForHex(const BattleHex & hex);
-	std::string mobileActionLabel(const BattleHex & hex);
+	PossiblePlayerBattleAction mobileActionForHex(const BattleHex & hex, const BattleHexArray * reachable = nullptr);
+	std::string mobileActionLabel(const BattleHex & hex, const BattleHexArray * reachable = nullptr);
 	void performMobileAction(const BattleHex & hex);
 
 	/// ends casting spell (eg. when spell has been cast or canceled)

@@ -753,7 +753,7 @@ std::string BattleActionsController::actionGetStatusMessageBlocked(PossiblePlaye
 	}
 }
 
-bool BattleActionsController::actionIsLegal(PossiblePlayerBattleAction action, const BattleHex & targetHex)
+bool BattleActionsController::actionIsLegal(PossiblePlayerBattleAction action, const BattleHex & targetHex, const BattleHexArray * reachable)
 {
 	const CStack * targetStack = getStackForHex(targetHex);
 	bool targetStackOwned = targetStack && targetStack->unitOwner() == owner.curInt->playerID;
@@ -780,7 +780,12 @@ bool BattleActionsController::actionIsLegal(PossiblePlayerBattleAction action, c
 			if (!(targetStack && targetStack->alive())) //we can walk on dead stacks
 			{
 				const CStack * currentStack = owner.stacksController->getActiveStack();
-				return currentStack && owner.getBattle()->toWhichHexMove(currentStack, targetHex).isValid();
+				if(!currentStack)
+					return false;
+				const auto destination = reachable
+					? owner.getBattle()->toWhichHexMove(*reachable, currentStack, targetHex)
+					: owner.getBattle()->toWhichHexMove(currentStack, targetHex);
+				return destination.isValid();
 			}
 			return false;
 
@@ -789,9 +794,11 @@ bool BattleActionsController::actionIsLegal(PossiblePlayerBattleAction action, c
 		case PossiblePlayerBattleAction::ATTACK_AND_RETURN:
 			{
 				const CStack * currentStack = owner.stacksController->getActiveStack();
-				return currentStack &&
-					owner.getBattle()->battleCanAttackUnit(currentStack, targetStack) &&
-					owner.getBattle()->battleCanAttackHex(currentStack, targetHex);
+				if(!currentStack || !owner.getBattle()->battleCanAttackUnit(currentStack, targetStack))
+					return false;
+				return reachable
+					? owner.getBattle()->battleCanAttackHex(*reachable, currentStack, targetHex)
+					: owner.getBattle()->battleCanAttackHex(currentStack, targetHex);
 			}
 		case PossiblePlayerBattleAction::WALK_AND_SPELLCAST:
 			{
@@ -802,7 +809,10 @@ bool BattleActionsController::actionIsLegal(PossiblePlayerBattleAction action, c
 				if (targetStack == currentStack)
 					return false;
 
-				return owner.getBattle()->battleCanAttackHex(currentStack, targetHex) && isCastingPossibleHere(action.spell().toSpell(), nullptr, targetHex);
+				const bool attackReach = reachable
+					? owner.getBattle()->battleCanAttackHex(*reachable, currentStack, targetHex)
+					: owner.getBattle()->battleCanAttackHex(currentStack, targetHex);
+				return attackReach && isCastingPossibleHere(action.spell().toSpell(), nullptr, targetHex);
 			}
 		case PossiblePlayerBattleAction::SHOOT:
 			{
@@ -1279,7 +1289,7 @@ bool BattleActionsController::canTargetSpellHex(const BattleHex & hex)
 	});
 }
 
-PossiblePlayerBattleAction BattleActionsController::mobileActionForHex(const BattleHex & hex)
+PossiblePlayerBattleAction BattleActionsController::mobileActionForHex(const BattleHex & hex, const BattleHexArray * reachable)
 {
 	const auto active = owner.stacksController->getActiveStack();
 	if(!active || heroSpellcastingModeActive() || creatureSpellcastingModeActive())
@@ -1289,14 +1299,14 @@ PossiblePlayerBattleAction BattleActionsController::mobileActionForHex(const Bat
 	const auto actions = getPossibleActionsForStack(active);
 	// Physical attacks stay available even for creatures with a default spell action.
 	for(const auto & action : actions)
-		if((action.get() == PossiblePlayerBattleAction::SHOOT || action.get() == PossiblePlayerBattleAction::ATTACK || action.get() == PossiblePlayerBattleAction::WALK_AND_ATTACK || action.get() == PossiblePlayerBattleAction::ATTACK_AND_RETURN) && !friendly && actionIsLegal(action, hex))
+		if((action.get() == PossiblePlayerBattleAction::SHOOT || action.get() == PossiblePlayerBattleAction::ATTACK || action.get() == PossiblePlayerBattleAction::WALK_AND_ATTACK || action.get() == PossiblePlayerBattleAction::ATTACK_AND_RETURN) && !friendly && actionIsLegal(action, hex, reachable))
 			return action;
 	// Empty reachable ground means movement on touch screens. Area spellcasters
 	// otherwise spend a random spell charge on the very tile the player chose
 	// to walk to. The Magic button already enters explicit spell targeting.
 	if(!target)
 		for(const auto & action : actions)
-			if(action.get() == PossiblePlayerBattleAction::MOVE_STACK && actionIsLegal(action, hex))
+			if(action.get() == PossiblePlayerBattleAction::MOVE_STACK && actionIsLegal(action, hex, reachable))
 				return action;
 	for(const auto & action : actions)
 	{
@@ -1306,15 +1316,15 @@ PossiblePlayerBattleAction BattleActionsController::mobileActionForHex(const Bat
 			if(friendly && target != active && target->alive() && active->canCast()) return action;
 			continue;
 		}
-		if((action.spellcast() || action.get() == PossiblePlayerBattleAction::HEAL || action.get() == PossiblePlayerBattleAction::MOVE_STACK || action.get() == PossiblePlayerBattleAction::CATAPULT) && actionIsLegal(action, hex))
+		if((action.spellcast() || action.get() == PossiblePlayerBattleAction::HEAL || action.get() == PossiblePlayerBattleAction::MOVE_STACK || action.get() == PossiblePlayerBattleAction::CATAPULT) && actionIsLegal(action, hex, reachable))
 			return action;
 	}
 	return PossiblePlayerBattleAction::INVALID;
 }
 
-std::string BattleActionsController::mobileActionLabel(const BattleHex & hex)
+std::string BattleActionsController::mobileActionLabel(const BattleHex & hex, const BattleHexArray * reachable)
 {
-	const auto action = mobileActionForHex(hex);
+	const auto action = mobileActionForHex(hex, reachable);
 	if(action.spellcast()) return "Cast " + action.spell().toSpell()->getNameTranslated();
 	switch(action.get())
 	{
