@@ -66,16 +66,23 @@ self.addEventListener('install', event => {
 });
 
 // A launch may opt in before starting the game. Keep the existing release
-// while another window in this scope could be playing or starting a game.
+// while another visible game window could be playing or starting a game.
+// Hidden restored tabs and other pages on this site must not block it.
+// Some phones omit event.source when the worker does not control the page yet.
 self.addEventListener('message', event => {
   if (event.data?.type !== 'goonk.apply-offline-release' || !event.ports[0]) return;
   event.waitUntil((async () => {
     const windows = await self.clients.matchAll({type: 'window', includeUncontrolled: true});
-    const source = event.source?.url && new URL(event.source.url);
     const game = fileURL('game.html');
-    const otherWindow = windows.some(client => client.id !== event.source?.id && client.url.startsWith(scope.href));
-    const ready = source?.origin === game.origin && source.pathname === game.pathname &&
-      !otherWindow && Date.now() < event.data.deadline;
+    const isGame = client => { try { return new URL(client.url).pathname === game.pathname; } catch { return false; } };
+    const shown = client => client.visibilityState === 'visible' || client.focused;
+    const games = windows.filter(isGame);
+    const source = event.source?.url ? new URL(event.source.url) : null;
+    const sourceIsGame = source?.origin === game.origin && source.pathname === game.pathname;
+    const otherVisibleGame = event.source?.id
+      ? games.some(client => client.id !== event.source.id && shown(client))
+      : games.filter(shown).length > 1;
+    const ready = (sourceIsGame || !event.source) && !otherVisibleGame;
     event.ports[0].postMessage(ready);
     if (ready) await self.skipWaiting();
   })());
