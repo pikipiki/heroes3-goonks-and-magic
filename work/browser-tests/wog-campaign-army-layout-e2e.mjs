@@ -41,7 +41,6 @@ for(const [name,engine]of Object.entries({chromium,webkit})){
   await page.locator('[data-exchange-actions]').tap();await page.locator('[data-exchange-split]').tap();
   const quantity=page.locator('[data-exchange-quantity]');await quantity.fill('1');
   assert(await page.evaluate(s=>{const input=document.querySelector('[data-exchange-quantity]');input.focus();for(let i=0;i<40;i++)update({...s,day:i});return input===document.querySelector('[data-exchange-quantity]')&&document.activeElement===input&&input.value==='1';},state),'Stable quantity and focus');
-  await page.locator('[data-exchange-actions]').tap();
   const confirm=page.locator('[data-exchange-confirm]');await confirm.tap();assert.deepEqual(await page.evaluate(()=>calls.splice(0)),[[94,0,0,3,1,135]],'One transfer');
   const ack=structuredClone(state);ack.heroExchange.heroes[0].army.slots[0].count=2;ack.heroExchange.heroes[1].army.slots[3]=unit(135,1);await page.evaluate(s=>update(s),ack);
   await page.locator('[data-exchange-slot="1:1"]').scrollIntoViewIfNeeded();await page.locator('[data-exchange-slot="1:1"]').tap();await page.locator('[data-exchange-slot="1:0"]').tap();await page.locator('[data-exchange-actions]').tap();await page.locator('[data-exchange-confirm]').tap();assert.deepEqual(await page.evaluate(()=>calls.splice(0)),[[94,3,1,0,15,84]],'Merge within the hero army');

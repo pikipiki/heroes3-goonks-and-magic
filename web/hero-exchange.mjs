@@ -53,11 +53,23 @@ export function createHeroExchange({root,command,refresh,portrait}){
   const focused=panel.contains(active)?active.dataset.exchangeFocus:null;
   const focusedSlot=panel.contains(active)?active.dataset.exchangeSlot:null;
   const itemMarkup=(slot,side)=>{
-   const compatible=maximum(item,side,slot)>0;
+   const blockedSelfSwap=joining&&source?.side===1&&side===1&&!!slot.name;
+   const compatible=!blockedSelfSwap&&maximum(item,side,slot)>0;
    const current=item===slot||target===slot;
    const disabled=!!pending||(item&&source.side!==side&&!compatible)||(!slot.name&&!compatible)||(troops&&!item&&!heroes[side].owned);
    const label=slot.name||(troops?(fr?'Emplacement vide':'Empty slot'):slot.backpack?(fr?'Déposer dans le sac':'Place in backpack'):slotName(slot,fr));
    if(troops){
+    if(joining&&side===0&&!slot.name){
+     return `<button type="button" aria-label="${escape(heroes[side].name)}, ${fr?'Troupe accueillie':'Unit joined'}" class="exchange-slot hero-army-slot exchange-joining-card exchange-joining-done${compatible?' can-receive can-target':''}" data-exchange-slot="${side}:${slot.slot}" aria-pressed="${current}"${pending?' disabled':''}>
+      <div class="exchange-joining-done-body">
+       <span class="exchange-joining-done-icon" aria-hidden="true">✓</span>
+       <div class="exchange-joining-done-text">
+        <strong>${fr?'Troupe accueillie dans votre armée':'Unit placed in your army'}</strong>
+        <small>${fr?'Fermez (✕) pour continuer ou réorganisez vos troupes.':'Close (✕) to continue or rearrange your army.'}</small>
+       </div>
+      </div>
+     </button>`;
+    }
     return armySlotMarkup(slot.slot,slot.name?slot:null,{
      selected:current,
      target:compatible,
@@ -84,7 +96,7 @@ export function createHeroExchange({root,command,refresh,portrait}){
    const isJoiningPool=troops&&joining&&side===0;
    const occupied=troops?hero.roster.filter(slot=>slot.name&&slot.count>0):[];
    const visibleRoster=isJoiningPool?(occupied.length?occupied:[hero.roster[0]].filter(Boolean)):hero.roster;
-   const badge=isJoiningPool?chipMarkup({label:fr?'En attente':'Pending'}):troops&&joining&&side===1?chipMarkup({label:`${occupied.length}/7${occupied.length>=7?(fr?' pleins':' full'):''}`}):troops&&hero.withdrawAllowed===false?chipMarkup({label:fr?'Retrait verrouillé':'Withdrawal locked'}):'';
+   const badge=isJoiningPool?(occupied.length?'':chipMarkup({label:fr?'Accueillie':'Joined'})):troops&&joining&&side===1?chipMarkup({label:`${occupied.length}/7${occupied.length>=7?(fr?' pleins':' full'):''}`}):troops&&hero.withdrawAllowed===false?chipMarkup({label:fr?'Retrait verrouillé':'Withdrawal locked'}):'';
    return `<section class="exchange-inventory${isJoiningPool?' exchange-joining-pool':''}" aria-label="${escape(hero.name)}">
     <header>${hero.portrait?.w?`<canvas class="exchange-face" width="48" height="56" data-exchange-face="${side}" aria-hidden="true"></canvas>`:''}
     <h3>${escape(isJoiningPool?(fr?'Créatures prêtes à rejoindre':'Joining creatures'):hero.name)}</h3>${badge}</header>
@@ -130,11 +142,10 @@ export function createHeroExchange({root,command,refresh,portrait}){
      <button type="button" data-exchange-qty-delta="-1" aria-label="${fr?'Diminuer la quantité':'Decrease quantity'}" ${quantity<=1||pending?'disabled':''}>−</button>
      <input type="number" inputmode="numeric" min="1" max="${splitMax}" value="${quantity||''}" aria-label="${fr?'Quantité':'Quantity'}" data-exchange-quantity ${pending?'disabled':''}>
      <button type="button" data-exchange-qty-delta="1" aria-label="${fr?'Augmenter la quantité':'Increase quantity'}" ${quantity>=splitMax||pending?'disabled':''}>+</button>
-     ${splitMax>2?`<button type="button" class="exchange-quick-half" data-exchange-qty-half aria-label="${fr?'Séparer en deux':'Split in half'}" ${pending?'disabled':''}>½</button>`:''}
     </span></label>`:''}
     <div class="exchange-actions">
      <button type="button" data-exchange-reset data-exchange-focus="reset" ${pending?'disabled':''}>${splitMode?(fr?'Retour':'Back'):(fr?'Annuler':'Cancel')}</button>
-     <button type="button" class="primary" data-exchange-actions data-exchange-focus="actions" ${pending?'disabled':''}>${pending?(fr?'Transfert en cours…':'Transferring…'):(fr?'Actions':'Actions')}</button>
+     ${splitMode?`<button type="button" class="primary" data-exchange-confirm data-exchange-focus="confirm" ${disabled?'disabled':''}>${pending?(fr?'Transfert en cours…':'Transferring…'):(fr?'Confirmer':'Confirm')}</button>`:`<button type="button" class="primary" data-exchange-actions data-exchange-focus="actions" ${pending?'disabled':''}>${pending?(fr?'Transfert en cours…':'Transferring…'):(fr?'Actions':'Actions')}</button>`}
     </div>`:''}
   </footer>`);
   const actionsBtn=panel.querySelector('[data-exchange-actions]');
@@ -257,7 +268,8 @@ export function createHeroExchange({root,command,refresh,portrait}){
    const item=slots(side).find(entry=>entry.slot===slot);
    if(tab==='troops'&&item?.name&&source?.side===side&&source.slot===slot&&source.id===item.id){command(41,heroes[side].id,slot);return;}
    const selection={side,slot,id:item.id};
-   const limit=maximum(itemAt(source),side,item);
+   const blockedSelfSwap=joining&&source?.side===1&&side===1&&!!item.name;
+   const limit=blockedSelfSwap?0:maximum(itemAt(source),side,item);
    if(limit>0){destination=selection;quantity=splitMode?Math.max(1,Math.min(limit,quantity)):limit;}
    else if(item.name){source=selection;destination=null;quantity=1;splitMode=false;}
   }

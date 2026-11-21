@@ -117,7 +117,7 @@
  /* One thin outline for controls and cards; no inner bevel or selected ring. */
  :is(#mobile-app,#game-menu,[data-ui-app],.ui-popup) :is(.MuiButton-root,.MuiIconButton-root,.ui-button,.ui-choice-tile,.ui-action-tile){border:1px solid var(--ui-primary)!important;border-image:none!important;box-shadow:var(--ui-control-shadow)!important;outline:none!important;font-weight:400!important}
  :is(#mobile-app,#game-menu,[data-ui-app],.ui-popup) :is(.MuiButton-root,.MuiIconButton-root,.ui-button,.ui-choice-tile,.ui-action-tile):hover{border-color:#ffe9a8!important;box-shadow:var(--ui-control-shadow-hover)!important}
- :is(#mobile-app,#game-menu,[data-ui-app],.ui-popup) :is(.MuiButton-root,.ui-choice-tile)[aria-pressed=true]{border-color:#ffe9a8!important;outline:none!important;box-shadow:var(--ui-control-shadow)!important}
+ :is(#mobile-app,#game-menu,[data-ui-app],.ui-popup) :is(.MuiButton-root,.ui-choice-tile)[aria-pressed=true]{border-color:#66bb6a!important;background:#163519!important;outline:none!important;box-shadow:0 0 8px rgba(76,175,80,0.45)!important}
  :is(#mobile-app,#game-menu,[data-ui-app]) .town-building-hit.MuiButton-root,
  :is(#mobile-app,#game-menu,[data-ui-app]) .hero-movement-item>button{border:0!important;box-shadow:none!important;background:transparent!important}
  :is(#mobile-app,#game-menu,[data-ui-app]) .army-grid .army-troop{border:1px solid transparent!important;box-shadow:none!important}
@@ -281,3 +281,6 @@
  }
  #mobile-app .dialog-presentation[data-kind=commander]>footer:has(>[data-dialog-confirm][hidden]){grid-template-columns:repeat(2,minmax(0,1fr))!important}
 }
+:is(#mobile-app,#game-menu,[data-ui-app],.ui-popup) :is(.MuiButton-root,.ui-choice-tile,.hero-army-slot):is([aria-pressed=true],.selected),
+:is(#mobile-app,#game-menu,[data-ui-app],.ui-popup) :is(.MuiButton-root,.ui-choice-tile,.hero-army-slot):is([aria-pressed=true],.selected):hover,
+:is(#mobile-app,#game-menu,[data-ui-app],.ui-popup) :is(.MuiButton-root,.ui-choice-tile,.hero-army-slot):is([aria-pressed=true],.selected):focus-visible{border-color:#66bb6a!important;background:#163519!important;outline:2px solid #66bb6a!important;outline-offset:-2px!important;box-shadow:0 0 10px rgba(76,175,80,0.65)!important}

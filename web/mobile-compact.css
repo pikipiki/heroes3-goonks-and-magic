@@ -210,8 +210,8 @@ html.goonk-mobile #mobile-viewport #mobile-app[data-mode=battle] .battle-stat-pi
 .exchange-troop-count{position:absolute;bottom:9px;right:3px;min-width:20px;padding:0 3px;background:#24180e;border:1px solid #d4ad62;color:#fff0ad;font:700 15px/18px Georgia,serif;text-shadow:1px 1px #000}
 #mobile-app .exchange-troop-grid .exchange-slot>span[aria-hidden]{display:grid;place-content:center;min-height:54px;width:100%;color:#c5ab78;background:repeating-linear-gradient(135deg,#271d14 0 5px,#332619 5px 7px)}
 #mobile-app .exchange-troop-grid .exchange-slot:disabled{opacity:.65}
-#mobile-app .exchange-troop-grid .exchange-slot.can-receive{border:2px solid #e6c57d;background:#49371b;box-shadow:inset 0 0 0 1px #786035}
-#mobile-app .exchange-troop-grid .exchange-slot[aria-pressed=true]{border:2px solid #fff0ad;background:#682c1e;outline:1px solid #fff0ad;outline-offset:-4px}
+#mobile-app .exchange-troop-grid .exchange-slot.can-receive{border:1px solid #d7b66e;background:#26180dc2;box-shadow:0 0 6px rgba(215,182,110,0.35)}
+#mobile-app .exchange-troop-grid .exchange-slot[aria-pressed=true]{border:1px solid #66bb6a;background:#163519;box-shadow:0 0 10px rgba(76,175,80,0.65);outline:none}
 #mobile-app .hero-exchange-page{touch-action:pan-y}
 #mobile-app .hero-exchange-page .exchange-quantity input{min-height:44px;width:72px}
 @container goonk-viewport (orientation:landscape){
