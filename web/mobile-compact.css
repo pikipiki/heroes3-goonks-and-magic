@@ -1,4 +1,4 @@
-@layer legacy-upgrade {
+@layer legacy-screen {
 /* Fit each pane to the visible game surface, including browser toolbars. */
 #mobile-app .hero-equipment-page[data-inventory=army] .hero-equipment-grid{box-sizing:border-box;overflow-y:auto;overflow-x:hidden;touch-action:pan-y;min-height:0}
 #mobile-app .hero-army-panel{height:auto;min-height:100%;box-sizing:border-box}

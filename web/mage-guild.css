@@ -1,3 +1,4 @@
+@layer legacy-screen {
 html.goonk-mobile #mobile-app[data-mode=mage-guild]{grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(0,1fr)}
 #mobile-app[data-mode=mage-guild] .mobile-top{grid-column:1}
 #mobile-app[data-mode=mage-guild] .mobile-play{grid-column:1;grid-row:2}
@@ -49,6 +50,7 @@ html.goonk-mobile #mobile-app[data-mode=mage-guild]{grid-template-columns:minmax
 @container goonk-viewport (orientation:portrait) and (max-height:620px){
  .mage-guild-spells{max-height:49dvh}
  #mobile-app .mobile-mage-guild [data-guild-spell]{font-size:var(--ui-type-body2)}
+}
 }
 
 @layer ui-composition {

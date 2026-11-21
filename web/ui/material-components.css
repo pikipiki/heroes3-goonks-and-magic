@@ -93,35 +93,7 @@
 :is(#mobile-app,#game-menu,[data-ui-app]) :is(.ui-button,.ui-icon-button,.ui-tab,.ui-choice-tile){transition:background-color 120ms linear,color 120ms linear,box-shadow 120ms linear;transform:none}
 :is(#mobile-app,#game-menu,[data-ui-app]) .ui-screen-header>div{flex:1;min-width:0}
 :is(#mobile-app,#game-menu,[data-ui-app]):is(#mobile-app,#game-menu,[data-ui-app]) *{overflow-wrap:normal;word-break:normal;hyphens:none}
- .ui-material-menu .ui-popup-list{position:static;box-sizing:border-box;width:auto;height:auto;max-height:none;padding:4px;overflow:auto;background:transparent;border:0;box-shadow:none;touch-action:pan-y}
- .ui-material-menu .ui-popup-list>button{display:block;width:100%;text-align:left}
  #mobile-app .hero-equipment-page .hero-extra-equipment>div{grid-template-columns:repeat(auto-fit,minmax(80px,1fr));gap:8px}
- #mobile-app .mobile-spellbook .spell-schools{grid-template-columns:repeat(auto-fit,minmax(72px,1fr));gap:8px}
- #mobile-app .mobile-spellbook{grid-template:"title" auto "reuse" auto "workspace" minmax(0,1fr) "footer" auto/minmax(0,1fr);gap:8px;padding:8px}
- #mobile-app .mobile-spellbook>.spell-workspace{grid-area:workspace;display:grid;grid-template-rows:auto minmax(0,1fr);min-width:0;min-height:0;gap:8px;overflow:hidden}
- #mobile-app .mobile-spellbook[data-browsing=true]>.spell-workspace{grid-template-rows:auto auto minmax(0,1fr)}
- #mobile-app .mobile-spellbook .spell-workspace>:is(.spell-content,.spell-contexts,.spell-schools,.spell-school-picker){grid-area:auto}
- #mobile-app .mobile-spellbook .spell-school-picker{display:none}
- #mobile-app .mobile-spellbook .spell-top-actions{margin:0;min-height:48px}
- #mobile-app .mobile-spellbook :is(.spell-content,.spell-selection,.spell-list){min-width:0;min-height:0}
- #mobile-app .mobile-spellbook>footer{grid-template-rows:auto;min-height:0}
- @container goonk-viewport (orientation:landscape){
-  #mobile-app .mobile-spellbook{grid-template-columns:minmax(0,1fr) var(--control-rail,244px);grid-template-rows:auto auto minmax(0,1fr) auto;grid-template-areas:"workspace title" "workspace reuse" "workspace ." "workspace footer"}
-  #mobile-app .mobile-spellbook>header{--ui-header-padding:var(--mobile-top-height,48px) 8px 8px;--ui-header-min:48px;align-self:start}
-  #mobile-app .mobile-spellbook .spell-workspace>.spell-schools{display:none}
-  #mobile-app .mobile-spellbook .spell-school-picker{display:block;min-width:0}
-  #mobile-app .mobile-spellbook .spell-content{grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:minmax(0,1fr)}
-  #mobile-app .mobile-spellbook .spell-selection{overflow:auto;touch-action:pan-y}
- }
- #mobile-app .hero-equipment-page .hero-body-layout{display:flex;flex-direction:column;gap:16px}
- #mobile-app .hero-equipment-page .hero-body-stage{grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:repeat(5,minmax(88px,auto));gap:8px;max-width:none}
- #mobile-app .hero-equipment-page .hero-body-stage .hero-artifact-slot{width:100%;height:auto;min-height:88px}
- #mobile-app .hero-equipment-page .hero-artifact-slot small{white-space:normal;overflow:visible;text-overflow:clip;word-break:normal;font:var(--ui-font-label-medium)}
- #mobile-app .hero-equipment-page .hero-body-layout{height:auto;min-height:min-content;flex:none}
- #mobile-app .hero-equipment-page .hero-body-stage{flex:none;height:auto;min-height:280px;grid-template-rows:repeat(3,minmax(88px,auto))}
- #mobile-app .hero-equipment-page .hero-extra-equipment{flex:none;display:block;min-height:min-content}
- #mobile-app .hero-equipment-page .hero-extra-equipment>div{grid-template-columns:repeat(auto-fit,minmax(104px,1fr));grid-template-rows:none;grid-auto-rows:minmax(88px,auto)}
- #mobile-app .hero-equipment-page .hero-extra-equipment .hero-artifact-slot{height:auto;min-height:88px}
  #mobile-app[data-dialog-presentation]>.mobile-play>.scene-tools,#mobile-app[data-mode=dialog]:has(.town-service:not([hidden]))>.mobile-play>.scene-tools{display:none}
  @container goonk-viewport (orientation:landscape){
   #mobile-app[data-mode=creature] .creature-presentation{display:grid;grid-template-columns:minmax(0,1fr) var(--control-rail,244px);grid-template-rows:minmax(0,1fr) auto;gap:8px;padding:8px;min-height:0;overflow:hidden}
@@ -141,4 +113,32 @@
 .ui-native-input-root>.MuiInputBase-input{box-sizing:border-box;min-height:48px;min-width:48px;font:var(--ui-font-body-medium);color:inherit;border-radius:0}
 .ui-native-slider.MuiSlider-root{box-sizing:border-box;min-width:48px;min-height:48px;padding:20px 12px;color:var(--ui-primary);align-self:center}
 .ui-native-slider input[type=range]{margin:0;padding:0;min-height:0;border:0;opacity:0}
+}
+@layer ui-composition {
+ .ui-material-menu .ui-popup-list{position:static;box-sizing:border-box;width:auto;height:auto;max-height:none;padding:4px;overflow:auto;background:transparent;border:0;box-shadow:none;touch-action:pan-y}
+ .ui-material-menu .ui-popup-list>button{display:block;width:100%;text-align:left}
+ #mobile-app .mobile-spellbook .spell-schools{grid-template-columns:repeat(auto-fit,minmax(72px,1fr));gap:8px}
+ #mobile-app .mobile-spellbook{grid-template:"title" auto "reuse" auto "workspace" minmax(0,1fr) "footer" auto/minmax(0,1fr);gap:8px;padding:8px}
+ #mobile-app .mobile-spellbook>.spell-workspace{grid-area:workspace;display:grid;grid-template-rows:auto minmax(0,1fr);min-width:0;min-height:0;gap:8px;overflow:hidden}
+ #mobile-app .mobile-spellbook[data-browsing=true]>.spell-workspace{grid-template-rows:auto auto minmax(0,1fr)}
+ #mobile-app .mobile-spellbook .spell-workspace>:is(.spell-content,.spell-contexts,.spell-schools,.spell-school-picker){grid-area:auto}
+ #mobile-app .mobile-spellbook .spell-school-picker{display:none}
+ #mobile-app .mobile-spellbook .spell-top-actions{margin:0;min-height:48px}
+ #mobile-app .mobile-spellbook :is(.spell-content,.spell-selection,.spell-list){min-width:0;min-height:0}
+ #mobile-app .mobile-spellbook>footer{grid-template-rows:auto;min-height:0}
+ @container goonk-viewport (orientation:landscape){
+  #mobile-app .mobile-spellbook,#mobile-app .mobile-spellbook[data-browsing]{grid-template-columns:minmax(0,1fr) var(--control-rail,244px);grid-template-rows:auto auto minmax(0,1fr) auto;grid-template-areas:"workspace title" "workspace reuse" "workspace ." "workspace footer"}
+  #mobile-app .mobile-spellbook>header{--ui-header-padding:var(--mobile-top-height,48px) 8px 8px;--ui-header-min:48px;align-self:start}
+  #mobile-app .mobile-spellbook .spell-workspace>.spell-schools{display:none}
+  #mobile-app .mobile-spellbook .spell-school-picker{display:block;min-width:0}
+  #mobile-app .mobile-spellbook .spell-content{grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:minmax(0,1fr)}
+  #mobile-app .mobile-spellbook .spell-selection{overflow:auto;touch-action:pan-y}
+ }
+ #mobile-app .hero-equipment-page .hero-body-layout{display:flex;flex-direction:column;gap:16px;height:auto;min-height:min-content;flex:none}
+ #mobile-app .hero-equipment-page .hero-body-stage{flex:none;height:auto;min-height:280px;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:repeat(3,minmax(88px,auto));gap:8px;max-width:none}
+ #mobile-app .hero-equipment-page .hero-body-stage .hero-artifact-slot{width:100%;height:auto;min-height:88px}
+ #mobile-app .hero-equipment-page .hero-artifact-slot small{white-space:normal;overflow:visible;text-overflow:clip;word-break:normal;font:var(--ui-font-label-medium)}
+ #mobile-app .hero-equipment-page .hero-extra-equipment{flex:none;display:block;min-height:min-content}
+ #mobile-app .hero-equipment-page .hero-extra-equipment>div{grid-template-columns:repeat(auto-fit,minmax(104px,1fr));grid-template-rows:none;grid-auto-rows:minmax(88px,auto)}
+ #mobile-app .hero-equipment-page .hero-extra-equipment .hero-artifact-slot{height:auto;min-height:88px}
 }

@@ -1,4 +1,5 @@
 @import url('./recruitment-batch.css');
+@layer legacy-screen {
 /* One complete evolution chain per row; only the family list scrolls. */
 #mobile-app .hall-layout{display:grid;grid-template-rows:minmax(0,1fr) auto;flex:1;min-height:0;overflow:hidden}
 #mobile-app .hall-families{min-width:0;min-height:0;overflow:auto;overscroll-behavior:contain;touch-action:pan-y;padding:8px;display:flex;flex-direction:column;gap:8px}
@@ -155,6 +156,7 @@
 /* Stat text uses its full column; repeated layout must not shrink its own width. */
 #mobile-app .hall-feature .creature-stats>div{min-width:0;grid-template-columns:minmax(0,1fr)}
 #mobile-app .hall-feature .creature-stats dd{justify-self:stretch;min-width:0}
+}
 
 /* One purchase composition owns the footer tracks. Fixed tracks reserve the
    same room for locked and available forms; long names wrap between words. */
@@ -194,6 +196,11 @@
 }
 @layer ui-composition {
  @container goonk-viewport (orientation:landscape){
+  #mobile-app[data-creature-view=fort] .creature-presentation{inset:0;display:grid;grid-template-columns:minmax(0,1fr) var(--control-rail);grid-template-rows:auto minmax(0,1fr)}
+  #mobile-app[data-creature-view=fort] .creature-view-head{grid-column:2;grid-row:1;padding-top:calc(var(--mobile-top-height,48px) + 4px);flex-wrap:wrap}
+  #mobile-app[data-creature-view=fort] .hall-layout{display:contents}
+  #mobile-app[data-creature-view=fort] .hall-families{grid-column:1;grid-row:1/-1;box-sizing:border-box}
+  #mobile-app[data-creature-view=fort] .hall-detail{grid-column:2;grid-row:2;align-content:space-evenly;overflow:auto}
   #mobile-app[data-creature-view=fort] .creature-view-head.ui-rail-title{display:block;align-items:center}
   #mobile-app[data-creature-view=fort] .creature-view-head.ui-rail-title h2{width:100%;max-width:none;white-space:normal}
  }

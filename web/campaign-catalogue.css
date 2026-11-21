@@ -1,4 +1,4 @@
-@layer legacy-base {
+@layer legacy-screen {
 /* A long catalogue scrolls independently from its one exit. */
 #mobile-app[data-mode=campaign] .mobile-play{grid-column:1/-1;touch-action:pan-y}
 #mobile-app[data-mode=campaign] .mobile-nav,#mobile-app[data-mode=campaign] .scene-tools{display:none}
