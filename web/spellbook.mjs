@@ -43,8 +43,9 @@ export function createMobileSpellbook({root,command}){
   const schoolLabels=getLanguage()==='fr'?['Tous','Air','Terre','Feu','Eau']:schools.map(([,name])=>name);
   panel.dataset.spellPalette=String(Math.max(0,spellSchoolIndex(book.school)));
   const scroll=panel.querySelector('.spell-list')?.scrollTop||0;
-  const spells=book.spells||[];if(!spells.some(s=>s.id===selected))selected=(spells.find(s=>s.enabled)||spells[0])?.id;const active=spells.find(s=>s.id===selected);
-  delete panel.dataset.hasReuse;
+  const previous=used.get(hero()),spells=book.spells||[];if(!spells.some(s=>s.id===selected))selected=(spells.find(s=>s.enabled)||spells[0])?.id;const active=spells.find(s=>s.id===selected);
+  const reuseDisabled=book.readOnly||!previous||book.mana<previous.cost||!!reusing;
+  panel.dataset.hasReuse=String(!book.readOnly&&!!previous);
   const target=targets[active?.target];
   const warning=book.mana<active?.cost?'Not enough mana':'Spell unavailable now';
   const power=book.inCombat===true?book.heroSpellPower:undefined;
@@ -56,7 +57,11 @@ export function createMobileSpellbook({root,command}){
     <h2>Spellbook <small>${book.mana??0}${manaLimit} mana</small>${powerText?`<small class="spell-effective-power">${esc(powerText)}</small>`:''}</h2>
     <button data-close-book aria-label="Close spellbook">✕</button>
    </header>
-   ${book.readOnly?`<p class="spell-top-actions spell-inspection-note">${getLanguage()==='fr'?'Grimoire du héros à recruter · consultation uniquement.':'Hero for hire spellbook · read only.'}</p>`:''}
+   ${book.readOnly?`<p class="spell-top-actions spell-inspection-note">${getLanguage()==='fr'?'Grimoire du héros à recruter · consultation uniquement.':'Hero for hire spellbook · read only.'}</p>`:`<div class="spell-top-actions">
+    <button data-reuse ${reuseDisabled?'disabled':''} ${reusing?'aria-busy="true"':''} title="${esc(previous?previous.name:'No spell used yet')}">
+     ${previous?`<img class="last-spell-icon" decoding="sync" src="${spellIconURL(previous.id)}" alt=""><span><small>Reuse last spell</small><strong>${esc(previous.name)}</strong></span><small>${previous.cost} mana</small>`:'Reuse last spell'}
+    </button>
+   </div>`}
    <div class="spell-workspace">
    ${book.inCombat===false?`<nav class="spell-contexts" aria-label="Spell types"><button data-spell-context="0" aria-pressed="${!book.combatSpells}">Adventure spells</button><button data-spell-context="1" aria-pressed="${!!book.combatSpells}">Combat spells</button></nav>`:''}
    <label class="spell-school-picker"><select data-school-select aria-label="${getLanguage()==='fr'?'École de magie':'Magic school'}">${schools.map(([,name],index)=>`<option value="${index}" ${spellSchoolIds[index]===book.school?'selected':''}>${schoolLabels[index]}</option>`).join('')}</select></label>
