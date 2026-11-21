@@ -144,7 +144,7 @@ export function createHeroExchange({root,command,refresh,portrait}){
      <button type="button" data-exchange-qty-delta="1" aria-label="${fr?'Augmenter la quantité':'Increase quantity'}" ${quantity>=splitMax||pending?'disabled':''}>+</button>
     </span></label>`:''}
     <div class="exchange-actions">
-     <button type="button" data-exchange-reset data-exchange-focus="reset" ${pending?'disabled':''}>${splitMode?(fr?'Retour':'Back'):(fr?'Annuler':'Cancel')}</button>
+     <button type="button" data-exchange-reset data-exchange-focus="reset" ${pending?'disabled':''}>${splitMode?(fr?'Sans scinder':'No split'):(fr?'Désélection':'Deselect')}</button>
      ${splitMode?`<button type="button" class="primary" data-exchange-confirm data-exchange-focus="confirm" ${disabled?'disabled':''}>${pending?(fr?'Transfert en cours…':'Transferring…'):(fr?'Confirmer':'Confirm')}</button>`:`<button type="button" class="primary" data-exchange-actions data-exchange-focus="actions" ${pending?'disabled':''}>${pending?(fr?'Transfert en cours…':'Transferring…'):(fr?'Actions':'Actions')}</button>`}
     </div>`:''}
   </footer>`);
