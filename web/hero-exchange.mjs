@@ -49,6 +49,8 @@ export function createHeroExchange({root,command,refresh,portrait}){
   const swap=target?.name&&(troops?troopSwap(item,target):true);
   const scroller=panel.querySelector('.exchange-inventories');
   const scroll=scroller?.scrollTop||0;
+  const sideScrolls=[...panel.querySelectorAll('.exchange-inventories > section')].map(el=>el.scrollTop||0);
+  const gridScrolls=[...panel.querySelectorAll('.exchange-troop-grid')].map(el=>el.scrollTop||0);
   const active=document.activeElement;
   const focused=panel.contains(active)?active.dataset.exchangeFocus:null;
   const focusedSlot=panel.contains(active)?active.dataset.exchangeSlot:null;
@@ -107,8 +109,9 @@ export function createHeroExchange({root,command,refresh,portrait}){
   const available=turn&&heroes.some(hero=>hero.owned);
   const hasDestination=item&&[0,1].some(side=>slots(side).some(slot=>maximum(item,side,slot)>0));
   const keepsOne=troops&&item&&mustKeepOne(heroes[source.side])&&(!destination||destination.side!==source.side);
+  const hasWaiting=joining&&heroes[0].roster.some(u=>u.name&&u.count>0);
   const instruction=!turn?(fr?'Disponible à ton tour':'Available on your turn'):
-   !item?(troops?(heroes.every(hero=>hero.owned)?(fr?'Choisis une troupe à transférer.':'Choose a unit to transfer.'):(fr?'Choisis une de tes troupes à donner à ton allié.':'Choose one of your units to give to your ally.')):(fr?'Choisis un objet à transférer.':'Choose an item to transfer.')):
+   !item?(joining?(hasWaiting?(fr?'Sélectionne une troupe à transférer, ou clique sur « Ne rien transférer » pour continuer sans elle.':'Select a unit to transfer, or tap “Transfer nothing” to continue without it.'):(fr?'Troupe prête ! Ferme (✕) pour continuer l’aventure.':'Unit ready! Close (✕) to continue.')):troops?(heroes.every(hero=>hero.owned)?(fr?'Choisis une troupe à transférer.':'Choose a unit to transfer.'):(fr?'Choisis une de tes troupes à donner à ton allié.':'Choose one of your units to give to your ally.')):(fr?'Choisis un objet à transférer.':'Choose an item to transfer.')):
    troops&&heroes[source.side]?.withdrawAllowed===false&&!target?(fr?'Réorganise cette garnison ; ses troupes ne peuvent pas sortir.':'Rearrange this garrison; its units cannot leave.'):
    !hasDestination?(keepsOne?(fr?'Chaque héros doit garder au moins une créature.':'Each hero must keep at least one creature.'):(troopsOnly?(fr?'Aucun emplacement compatible.':'No compatible slot.'):(fr?'Aucun emplacement compatible chez l’autre héros.':'No compatible slot on the other hero.'))):
    target&&keepsOne&&!swap&&quantity>=countLimit?(fr?'Chaque héros doit garder au moins une créature.':'Each hero must keep at least one creature.'):
@@ -147,7 +150,7 @@ export function createHeroExchange({root,command,refresh,portrait}){
     <div class="exchange-actions">
      <button type="button" data-exchange-reset data-exchange-focus="reset" ${pending?'disabled':''}>${splitMode?(fr?'Sans scinder':'No split'):(fr?'Désélection':'Deselect')}</button>
      ${splitMode||target?`<button type="button" class="primary" data-exchange-confirm data-exchange-focus="confirm" ${disabled?'disabled':''}>${pending?(fr?'Transfert en cours…':'Transferring…'):splitMode?(fr?'Confirmer':'Confirm'):swap?(fr?'Confirmer l’échange':'Confirm exchange'):(fr?'Confirmer le transfert':'Confirm transfer')}</button>`:joining&&source?.side===0?`<button type="button" class="primary" data-exchange-details data-exchange-focus="details" ${pending?'disabled':''}>${fr?'Fiche':'Details'}</button>`:troops?`<button type="button" class="primary" data-exchange-actions data-exchange-focus="actions" ${pending?'disabled':''}>${pending?(fr?'Transfert en cours…':'Transferring…'):(fr?'Actions':'Actions')}</button>`:`<button type="button" class="primary" data-exchange-confirm data-exchange-focus="confirm" disabled>${fr?'Confirmer le transfert':'Confirm transfer'}</button>`}
-    </div>`:''}
+    </div>`:hasWaiting?`<div class="exchange-actions"><button type="button" data-exchange-skip data-exchange-focus="skip" ${pending?'disabled':''}>${fr?'Ne rien transférer':'Transfer nothing'}</button></div>`:''}
   </footer>`);
   const actionsBtn=panel.querySelector('[data-exchange-actions]');
   if(actionsBtn){
@@ -168,6 +171,8 @@ export function createHeroExchange({root,command,refresh,portrait}){
    actionsMenu.list.addEventListener('click',event=>{const b=event.target.closest('button');if(b){event.stopPropagation();handleButton(b);}});
   }
   panel.querySelector('.exchange-inventories').scrollTop=scroll;
+  panel.querySelectorAll('.exchange-inventories > section').forEach((el,i)=>{if(sideScrolls[i])el.scrollTop=sideScrolls[i];});
+  panel.querySelectorAll('.exchange-troop-grid').forEach((el,i)=>{if(gridScrolls[i])el.scrollTop=gridScrolls[i];});
   const previous=focused?panel.querySelector(`[data-exchange-focus="${focused}"]`):focusedSlot?panel.querySelector(`[data-exchange-slot="${focusedSlot}"]`):null;
   if(previous&&!previous.disabled)previous.focus({preventScroll:true});
   if(closing)for(const control of panel.querySelectorAll('button,input'))control.disabled=true;
@@ -226,7 +231,7 @@ export function createHeroExchange({root,command,refresh,portrait}){
     return;
    }
    const confirmed=await requestMaterialConfirmation({
-    container:panel,
+    container:root,
     title:fr?'Renvoyer cette troupe ?':'Dismiss this unit?',
     message:fr?`Toutes les créatures (${selected.name} × ${selected.count}) quitteront définitivement ton armée. Confirmer ?`:`Are you sure you want to dismiss ${selected.name} × ${selected.count}? They will leave your army permanently.`,
     confirmLabel:fr?'Renvoyer':'Dismiss',
@@ -238,6 +243,19 @@ export function createHeroExchange({root,command,refresh,portrait}){
     command(113,hero.id,selected.slot,selected.id,selected.count);
     clearSelection();
     render();
+   }
+   return;
+  }
+  if(button.hasAttribute('data-exchange-skip')){
+   const confirmed=await requestMaterialConfirmation({
+    container:root,
+    title:fr?'Ne rien transférer ?':'Transfer nothing?',
+    message:fr?'Les créatures en attente ne rejoindront pas ton armée. Continuer sans rien transférer ?':'The waiting creatures will not join your army. Continue without transferring?',
+    confirmLabel:fr?'Ne rien transférer':'Transfer nothing',
+    cancelLabel:fr?'Annuler':'Cancel'
+   });
+   if(confirmed&&!closing&&!panel.hidden){
+    closing=true;for(const control of panel.querySelectorAll('button,input'))control.disabled=true;command(93);
    }
    return;
   }
@@ -266,15 +284,21 @@ export function createHeroExchange({root,command,refresh,portrait}){
    const [side,slot]=button.dataset.exchangeSlot.split(':').map(Number);
    const item=slots(side).find(entry=>entry.slot===slot);
    const selection={side,slot,id:item.id};
-   const blockedSelfSwap=joining&&source?.side===1&&side===1&&!!item.name;
-   const limit=blockedSelfSwap?0:maximum(itemAt(source),side,item);
-   if(limit>0){destination=selection;quantity=splitMode?Math.max(1,Math.min(limit,quantity)):limit;}
-   else if(item.name){source=selection;destination=null;quantity=1;splitMode=false;}
+   if(source?.side===side&&source.slot===slot&&source.id===item.id){
+    clearSelection();
+   }else if(destination?.side===side&&destination.slot===slot&&destination.id===item.id){
+    destination=null;quantity=1;
+   }else{
+    const blockedSelfSwap=joining&&source?.side===1&&side===1&&!!item.name;
+    const limit=blockedSelfSwap?0:maximum(itemAt(source),side,item);
+    if(limit>0){destination=selection;quantity=splitMode?Math.max(1,Math.min(limit,quantity)):limit;}
+    else if(item.name){source=selection;destination=null;quantity=1;splitMode=false;}
+   }
   }
   message='';
   render();
  }
- panel.addEventListener('click',event=>{const button=event.target.closest('button');if(button)handleButton(button);});
+ panel.addEventListener('click',event=>{if(event.target.closest('[data-ui-material-prompt]'))return;const button=event.target.closest('button');if(button)handleButton(button);});
 
  return {
   hold(next){

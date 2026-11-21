@@ -57,10 +57,10 @@ function mountGameMenu(){
     dialog.querySelector('nav [data-menu=cheats]').hidden=state.cheatsAllowed===false;
     dialog.querySelector('.game-menu-return').hidden=tab==='home'||tab==='new-game'||tab==='cheats';dialog.dataset.page=tab;dialog.querySelector('nav').hidden=tab!=='home';dialog.querySelector('[data-menu=back]').hidden=true;dialog.querySelector('#game-menu-title').textContent=({home:'Heroes Goonk','hosted-match':hostedTitle,settings:'Settings',cheats:'Cheat codes',storage:'Game storage','storage-help':'Storage help','new-game':'New game'})[tab]||'Heroes Goonk';dialog.querySelector('[data-menu=new-game]').hidden=tab!=='home'||!state.day;
     saveButton.hidden=tab!=='home'||!state.day;saveButton.textContent=getLanguage()==='fr'?'Sauvegarder':'Save';saveButton.disabled=!state.autosaveAllowed||!!state.heroMoving||window.goonkAutosaveStatus?.phase==='saving';saveButton.setAttribute('aria-busy',String(window.goonkAutosaveStatus?.phase==='saving'));
-    if(tab==='home'){renderMarkup(content,'');delete content.dataset.view;delete content.dataset.storage;return;}
-    if(tab==='storage-help'){delete content.dataset.storage;if(content.dataset.view!=='storage-help'){content.dataset.view='storage-help';renderMarkup(content,storageHelp());}return;}
     dialog.querySelector('[data-menu=settings]').setAttribute('aria-pressed',String(tab==='settings'));
     dialog.querySelector('[data-menu=cheats]').setAttribute('aria-pressed',String(tab==='cheats'));dialog.querySelector('[data-menu=storage]').setAttribute('aria-pressed',String(tab==='storage'));
+    if(tab==='home'){renderMarkup(content,'');delete content.dataset.view;delete content.dataset.storage;return;}
+    if(tab==='storage-help'){delete content.dataset.storage;if(content.dataset.view!=='storage-help'){content.dataset.view='storage-help';renderMarkup(content,storageHelp());}return;}
     if(tab==='new-game')return;
     if(tab==='hosted-match'){
       if(content.dataset.view!=='hosted-match'){

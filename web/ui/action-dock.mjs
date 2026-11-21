@@ -30,4 +30,4 @@ export function useActionDock(dock,{overflow=true,limit=3,keepButtons,moreLabel,
  for(const button of record.buttons){const destination=keep.has(button)||button.hidden?dock:record.menu.list;if(button.parentElement!==destination){if(destination===dock)dock.insertBefore(button,record.more);else destination.append(button);}if(destination===record.menu.list)button.setAttribute('role','menuitem');else if(button.getAttribute('role')==='menuitem')button.removeAttribute('role');}
 }
 
-export function restoreActionDock(dock){const record=records.get(dock);if(!record)return;for(const button of record.buttons)if(dock.contains(button))dock.append(button);record.menu?.dispose();record.more?.remove();records.delete(dock);}
+export function restoreActionDock(dock){const record=records.get(dock);if(!record)return;for(const button of record.buttons)if(button.parentElement!==dock)dock.append(button);record.menu?.dispose();record.more?.remove();records.delete(dock);}

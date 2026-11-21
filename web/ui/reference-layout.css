@@ -45,7 +45,9 @@
     keep the original geometry; the upgrade occupies only the banner area. */
  #mobile-app[data-sheet=army] .army-grid .army-troop{padding:2px 3px 3px!important;border:1px solid transparent!important;background:transparent!important;box-shadow:none!important;min-height:48px!important}
  #mobile-app[data-sheet=army] .army-upgrade-cell{padding:2px 3px 3px!important;border:1px solid transparent!important;gap:2px!important}
- #mobile-app[data-sheet=army] .army-grid .army-upgrade-all{width:min(100%,100px)!important;min-height:0!important;padding:3px!important;border-width:2px!important;flex:1!important}
+ #mobile-app[data-sheet=army] .army-grid .army-upgrade-all{width:100%!important;max-width:100%!important;height:100%!important;min-width:0!important;min-height:0!important;padding:2px 3px!important;gap:2px!important;border-width:1px!important;flex:1!important;box-sizing:border-box!important;container-type:size!important}
+ #mobile-app[data-sheet=army] .army-grid .army-upgrade-all img{width:clamp(12px,26cqh,18px)!important;height:clamp(12px,26cqh,18px)!important}
+ #mobile-app[data-sheet=army] .army-grid .army-upgrade-all span{font-size:clamp(9px,16cqh,11px)!important;line-height:1.1!important}
  @container goonk-viewport (orientation:landscape){#mobile-app[data-sheet=army] .army-grid .army-upgrade-all{width:100%!important}}
 }
 @layer screen-layouts {
@@ -112,6 +114,7 @@
   #mobile-app[data-mode=map]>.mobile-nav .troops-nav-icon{width:20px!important;height:20px!important}
  }
  #mobile-app[data-mode=map] .hero-movement-item>button{border:0!important;box-shadow:none!important;background:transparent!important;padding:4px!important;color:inherit!important}
+ #mobile-app[data-mode=map] .hero-movement-summary[data-hero-solo=true] :is(.hero-picker,.hero-movement-item>button):disabled{opacity:1!important;cursor:default!important}
 }
 @layer screen-layouts {
  /* One thin outline for controls and cards; no inner bevel or selected ring. */

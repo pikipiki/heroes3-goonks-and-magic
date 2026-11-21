@@ -162,8 +162,9 @@
 }
 @layer ui-composition {
  #mobile-viewport #mobile-app .hero-equipment-page>.ui-hero-navigation{min-height:64px!important;height:64px!important;max-height:64px!important;box-sizing:border-box!important}
- #mobile-viewport #mobile-app .ui-hero-navigation .material-select-trigger{padding:0!important;box-sizing:border-box!important;min-height:48px!important;height:48px!important}
- #mobile-viewport #mobile-app .ui-hero-navigation .MuiSelect-select{display:flex!important;align-items:center!important;box-sizing:border-box!important;min-height:0!important;height:100%!important;padding:0 28px 0 12px!important;font:var(--ui-font-label)!important}
+ #mobile-viewport #mobile-app .ui-hero-navigation .material-select-trigger{padding:0!important;box-sizing:border-box!important;min-height:48px!important;height:48px!important;min-width:0!important;width:100%!important;max-width:100%!important}
+ #mobile-viewport #mobile-app .ui-hero-navigation .MuiSelect-select{display:block!important;box-sizing:border-box!important;min-width:0!important;width:100%!important;min-height:0!important;height:100%!important;line-height:48px!important;padding:0 32px 0 10px!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important;font:var(--ui-font-label)!important}
+ #mobile-viewport #mobile-app .ui-hero-navigation .MuiSelect-icon{right:6px!important;pointer-events:none!important}
  @container goonk-viewport (orientation:landscape){
   #mobile-viewport #mobile-app .hero-equipment-page{grid-template-rows:108px 32px 56px minmax(0,1fr) 64px!important;gap:4px!important}
   #mobile-viewport #mobile-app .hero-equipment-page>.hero-card-head{grid-area:1/2!important;display:grid!important;grid-template-columns:40px minmax(0,1fr)!important;grid-template-rows:auto!important;height:52px!important;min-height:52px!important;max-height:52px!important;margin-top:56px!important;padding:4px 8px!important;align-items:center!important;box-sizing:border-box!important}

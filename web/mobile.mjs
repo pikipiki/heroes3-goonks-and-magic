@@ -2,7 +2,7 @@ import {buttonContentMarkup} from './ui/primitives.mjs';
 import {paintEnemyLosses,enemyLossDescription} from './ui/battle-losses.mjs';
 import {createUIElement,requestMaterialConfirmation,requestMaterialNotice} from './ui/material-components.mjs';
 import {createLoadingState} from './loading-state.mjs';
-import {useNavigation,placeMithrilAction,useKingdomChrome,renderMarkup,setClickHandler,createBattleLastSpell} from './ui/material-components.mjs';
+import {useNavigation,placeMithrilAction,useKingdomChrome,renderMarkup,setClickHandler} from './ui/material-components.mjs';
 import{townActionIcon,townWarMachineIcon,warmTownActionIcons}from'./town-action-icons.mjs';
 import {canInspectBattle,inspectionUnits,battleInspectionMarkup} from './battle-inspection.mjs';
 import {mapTwoClicks} from './map-click-preferences.mjs';
@@ -83,7 +83,6 @@ function mount(){
  const townZoom=createUIElement('button');townZoom.className='town-zoom-control';townZoom.dataset.ui='town-view';townZoom.textContent='＋ Zoom in';root.querySelector('.mobile-play').append(townZoom);
  root.addEventListener('click',event=>{if(newTownBuilding&&Number(event.target.closest('[data-town-building]')?.dataset.townBuilding)===newTownBuilding.id)clearNewBuilding();},{capture:true});
  const battleResult=createBattleResult({root,command:(...args)=>command(...args)});
- const battleLastSpell=createBattleLastSpell(root);
  const dialogPresentation=createDialogPresentation({root,command:(...args)=>command(...args),pointer:(...args)=>pointer(...args),refresh:()=>update(state,true)});
  enableFullscreenOnPlay();
  const updateCalendar=createGameCalendar(root);
@@ -232,9 +231,14 @@ function mount(){
   else if(m==='battle'){
    const action=contextualBattleAction(state,selectedPoint);
    const magicCancel=state.spellTargeting===true;
+   const cancelSpellAction=canCancelSpell(state);
    const magicDisabled=!!spellRecovery.pending||(!magicCancel&&(!cap.magic||(!state.heroHasSpellbook||state.heroCanCast===false)));
-   items=[btn(translate(action.label),'battle-action',true,!cap.move||!!spellRecovery.pending||!action.enabled),
-    btn(fr?'Magie':'Magic','battle-magic',false,magicDisabled),btn(fr?'◎ Cibles':'◎ Targets','targets',false,!cap.move||!!spellRecovery.pending),
+   const lastSpell=spellbook.lastSpell(state);
+   const lastSpellDisabled=!!spellRecovery.pending||magicCancel||!cap.magic||!state.heroHasSpellbook||state.heroCanCast===false||!lastSpell||(Number.isFinite(state.heroMana)&&state.heroMana<lastSpell.cost);
+   items=[btn(cancelSpellAction?(fr?'Annuler le sort':'Cancel spell'):translate(action.label),'battle-action',true,cancelSpellAction?!!spellRecovery.pending:(!cap.move||!!spellRecovery.pending||!action.enabled)),
+    btn(fr?'Magie':'Magic','battle-magic',false,magicDisabled),
+    btn(lastSpell?`↻ ${lastSpell.name}`:(fr?'↻ Dernier sort':'↻ Last spell'),'battle-reuse-spell',false,lastSpellDisabled),
+    btn(fr?'◎ Cibles':'◎ Targets','targets',false,!cap.move||!!spellRecovery.pending),
     btn(state.canWait===false?(fr?'Déjà attendu':'Already waited'):(fr?'◷ Attendre':'◷ Wait'),'wait',false,state.canWait===false||!(cap.combatReady||cap.targeting)||!!spellRecovery.pending),
     btn(fr?'⛨ Défendre':'⛨ Defend','defend',false,!(cap.combatReady||cap.targeting)||!!spellRecovery.pending),btn(fr?'ⓘ Inspecter':'ⓘ Inspect','battle-inspect',false,!canInspectBattle(state))].map(html=>html.replace('<button ','<button translate="no" '));
   }
@@ -323,7 +327,6 @@ function mount(){
   if(change&&state.mode==='creature'&&sheetKind==='army')detailReturn='army';
   if(change){battleTargetPicker=false;delete root.dataset.targetPicker;if(!['lobby','load'].includes(state.mode))requestedMapName=null;mode=state.mode;if(mode==='battle'){if(!battleSession){resetVerticalBattle();portraitVertical=defaultBattleView()==='vertical';window.goonkBattleSpriteBounds=[];window.goonkBattlePlanes=null;command(15);battleCamera=null;battleView='whole';}battleSession=true;}if(mode==='town')townWhole=true;selectedPoint=null;zoom=1;focus=null;if(sheetKind)closeSheet();}
   if(state.mode==='battle'&&(change||changedActor||changedPhase)){selectedPoint=null;battleMove=false;const actor=battleGuidance(state).actor;if(actor){focus=state.focus||actor;battleCamera={...focus};}}
-  battleLastSpell.update(state,{inBattle:battleSession});
   battleResult.update(state);dialogPresentation.update(state);
   tavern.update(state);townServices.update(state);caveBuilder.update(state);
   root.querySelector('.recruit-close').hidden=state.mode!=='recruit';
@@ -508,7 +511,7 @@ function mount(){
  window.addEventListener('goonk-battle-loss-preference',()=>{if(state.mode==='battle')renderBattlePanel();});
  window.addEventListener('storage',event=>{if(event.key==='heroes-goonk.battle-loss-estimates'&&state.mode==='battle')renderBattlePanel();});
  function paintBattlePreviews(){const map=body.querySelector('.battle-target-map');if(map&&sheetKind==='battle-targets'){const w=map.clientWidth,h=map.clientHeight;if(w>0&&h>0){if(map.width!==Math.round(w*2))map.width=Math.round(w*2);if(map.height!==Math.round(h*2))map.height=Math.round(h*2);const mc=map.getContext('2d'),l=fitNativeBattle(w,h,null,'whole');mc.setTransform(2,0,0,2,0,0);mc.clearRect(0,0,w,h);mc.drawImage(original,0,0,original.width,original.height*555/600,l.dx,l.dy,l.w*l.scale,l.h*l.scale);const ids=[...body.querySelectorAll('[data-battle-target]')].map(b=>b.dataset.battleTarget);for(const u of state.battleUnits||[])if(ids.includes(u.x+','+u.y)){const x=l.dx+(u.x-l.x)*l.scale,y=l.dy+(u.y-l.y)*l.scale;mc.strokeStyle=u.enemy?'#ff6954':'#71eaff';mc.lineWidth=2;mc.beginPath();mc.ellipse(x,y,18*l.scale,8*l.scale,0,0,Math.PI*2);mc.stroke();}}}const active=(state.battleUnits||[]).find(u=>selectedPoint&&Math.hypot(u.x-selectedPoint.x,u.y-selectedPoint.y)<16)||(state.battleUnits||[]).find(u=>u.stackId===state.activeStack)||(state.battleUnits||[]).find(u=>u.id===state.activeUnit?.id)||(state.battleUnits||[]).find(u=>!u.enemy),detail=root.querySelector('#battle-creature-detail'),dc=detail.getContext('2d');dc.clearRect(0,0,128,128);if(active)drawUnit(dc,active,window.goonkBattleAtlas,window.goonkBattleAtlasIds,64,64,124);const atlas=window.goonkBattleAtlas,ids=window.goonkBattleAtlasIds;for(const canvas of root.querySelectorAll('[data-unit-preview]')){const [x,y]=canvas.dataset.unitPreview.split(',').map(Number),unit=(state.battleUnits||[]).find(u=>u.x===x&&u.y===y),c=canvas.getContext('2d');c.clearRect(0,0,90,90);if(unit)drawUnit(c,unit,atlas,ids,45,45,88);}if(selectedPoint){const unit=(state.battleUnits||[]).find(u=>Math.hypot(u.x-selectedPoint.x,u.y-selectedPoint.y)<16),canvas=root.querySelector('#battle-detail'),c=canvas.getContext('2d');c.clearRect(0,0,264,264);if(unit)drawUnit(c,unit,atlas,ids,132,132,250);}}
- root.addEventListener('click',event=>{const button=event.target.closest('button');if(!button||button.disabled)return;if(button.dataset.heroIndex!==undefined){if(state.mode==='map'&&state.turn){selectedPoint=null;focus=null;resetGestures();command(4,Number(button.dataset.heroIndex));}return;}if(button.dataset.heroScroll!==undefined){const list=nav.querySelector('.hero-movement-list');list?.scrollBy({left:Number(button.dataset.heroScroll)*list.clientWidth*.8,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});return;}if(button.dataset.campaign!==undefined){command(52,Number(button.dataset.campaign));return;}if(button.dataset.action){command(Number(button.dataset.action));return;}if(button.dataset.battleTarget){if(battleTargetPicker)closeBattleTargets();if(sheetKind==='battle-targets')closeSheet();const [x,y]=button.dataset.battleTarget.split(',').map(Number);if(state.tacticsMode){selectedPoint=null;focus={x,y};pointer({x,y},1);return;}selectBattlePoint({x,y});return;}if(button.dataset.battleStep){const [x,y]=button.dataset.battleStep.split(',').map(Number),base=selectedPoint||state.focus||{x:300,y:300};selectedPoint=battleHex({x:base.x+x,y:base.y+y});focus=selectedPoint;pointer(selectedPoint,0);renderBattlePanel();controls();return;}if(button.dataset.recruitLevel!==undefined){openRecruit(Number(button.dataset.recruitLevel));return;}const ui=button.dataset.ui;if(ui==='target-picker-back'){closeBattleTargets();return;}if(ui==='restart-launch'&&launch.pending?.failed){button.disabled=true;location.assign(restartLaunchURL(location.href,launch.pending.action));return;}
+ root.addEventListener('click',event=>{const button=event.target.closest('button');if(!button||button.disabled)return;if(button.dataset.heroIndex!==undefined){if(state.mode==='map'&&state.turn&&(state.heroes?.length??0)>1){selectedPoint=null;focus=null;resetGestures();command(4,Number(button.dataset.heroIndex));}return;}if(button.dataset.heroScroll!==undefined){const list=nav.querySelector('.hero-movement-list');list?.scrollBy({left:Number(button.dataset.heroScroll)*list.clientWidth*.8,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});return;}if(button.dataset.campaign!==undefined){command(52,Number(button.dataset.campaign));return;}if(button.dataset.action){command(Number(button.dataset.action));return;}if(button.dataset.battleTarget){if(battleTargetPicker)closeBattleTargets();if(sheetKind==='battle-targets')closeSheet();const [x,y]=button.dataset.battleTarget.split(',').map(Number);if(state.tacticsMode){selectedPoint=null;focus={x,y};pointer({x,y},1);return;}selectBattlePoint({x,y});return;}if(button.dataset.battleStep){const [x,y]=button.dataset.battleStep.split(',').map(Number),base=selectedPoint||state.focus||{x:300,y:300};selectedPoint=battleHex({x:base.x+x,y:base.y+y});focus=selectedPoint;pointer(selectedPoint,0);renderBattlePanel();controls();return;}if(button.dataset.recruitLevel!==undefined){openRecruit(Number(button.dataset.recruitLevel));return;}const ui=button.dataset.ui;if(ui==='target-picker-back'){closeBattleTargets();return;}if(ui==='restart-launch'&&launch.pending?.failed){button.disabled=true;location.assign(restartLaunchURL(location.href,launch.pending.action));return;}
 
   if(ui==='battle-inspect'){if(canInspectBattle(state))showBattleInspection();return;}
   if(button.dataset.inspectStack!==undefined){const id=Number(button.dataset.inspectStack);if(canInspectBattle(state)&&inspectionUnits(state).some(u=>u.stackId===id))command(114,id);return;}
@@ -518,6 +521,11 @@ function mount(){
    if(!battleCapabilities(effectiveBattle()).magic)return;
    if(!state.heroHasSpellbook||state.heroCanCast===false){notify(getLanguage()==='fr'?'Ton héros ne peut pas lancer de sort maintenant.':'Your hero cannot cast a spell right now.');return;}
    command(14);
+   return;
+  }
+  if(ui==='battle-reuse-spell'){
+   if(canCancelSpell(state)||!battleCapabilities(effectiveBattle()).magic||!state.heroHasSpellbook||state.heroCanCast===false)return;
+   if(spellbook.reuseLast(state))command(14);
    return;
   }
   if(ui==='cast-creature-ability'||ui==='cast-hero-spell'){if(!battleCapabilities(effectiveBattle()).magic)return;closeSheet();command(14,ui==='cast-creature-ability'?1:0);return;}
@@ -586,11 +594,14 @@ function mount(){
   }
 
   if(ui==='move'&&state.mode==='map'&&state.turn&&state.hasPath){pendingMapMove=null;selectedPoint=null;command(2);return;}
-  if(ui==='battle-action'&&!spellRecovery.pending&&battleCapabilities(effectiveBattle()).move){
-   const action=contextualBattleAction(state,selectedPoint);
-   if(!action.enabled)return;
-   director.confirm(state,selectedPoint);selectedPoint=null;controls();
-   command(14,state.spellTargeting?3:4,action.hex);
+  if(ui==='battle-action'){
+   if(canCancelSpell(state)){cancelSpell();return;}
+   if(!spellRecovery.pending&&battleCapabilities(effectiveBattle()).move){
+    const action=contextualBattleAction(state,selectedPoint);
+    if(!action.enabled)return;
+    director.confirm(state,selectedPoint);selectedPoint=null;controls();
+    command(14,state.spellTargeting?3:4,action.hex);
+   }
    return;
   }
   if(ui==='target'&&selectedPoint&&!spellRecovery.pending&&battleCapabilities(effectiveBattle()).move){
