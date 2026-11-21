@@ -18,9 +18,9 @@
  #mobile-app .ui-action-dock>.ui-overflow-trigger::before{content:'◆';margin-right:8px;color:var(--ui-primary);font-size:12px}
  #mobile-viewport #mobile-app[data-mode=town]>.mobile-nav.ui-navigation.ui-action-dock{grid-template-rows:none;grid-auto-rows:48px;min-height:0;height:max-content;max-height:none;align-self:end;align-items:center}
  #mobile-viewport #mobile-app[data-mode=town]>.mobile-nav.ui-navigation.ui-action-dock>button:not([hidden]){display:flex;flex-direction:row;align-items:center;justify-content:center;align-self:center;gap:4px;height:48px;min-height:48px;max-height:48px;padding:4px 8px;box-sizing:border-box}
- #mobile-app .market-grid button{display:grid;grid-template-columns:auto minmax(0,max-content);grid-template-rows:auto auto;justify-content:center;justify-items:start;align-content:center;align-items:center;gap:4px 8px;padding:8px;min-width:0}
- #mobile-app .market-grid button>img{grid-area:1/1/3/2;width:24px;height:24px;object-fit:contain;margin:0}
- #mobile-app .market-grid button>.market-resource-name{grid-area:1/2;align-self:end;text-align:left;min-width:0}
+ #mobile-app .market-grid button{display:grid;grid-template-columns:20px minmax(0,1fr);grid-template-rows:auto auto;justify-content:center;justify-items:start;align-content:center;align-items:center;gap:2px 3px;padding:4px 2px;min-width:0}
+ #mobile-app .market-grid button>img{grid-area:1/1/3/2;width:20px;height:20px;object-fit:contain;margin:0}
+ #mobile-app .market-grid button>.market-resource-name{grid-area:1/2;align-self:end;text-align:left;min-width:0;max-width:100%;font:var(--ui-font-resource);overflow:visible;text-overflow:clip;white-space:nowrap}
  #mobile-app .market-grid button>small{grid-area:2/2;align-self:start;text-align:left;margin:0;font:var(--ui-font-resource)}
  #mobile-app .market-grid[data-side=receive] button{grid-template-rows:auto}
  #mobile-app .market-grid[data-side=receive] button>img{grid-area:1/1}

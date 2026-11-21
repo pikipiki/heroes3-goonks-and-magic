@@ -1,4 +1,4 @@
-@layer legacy-base {
+@layer ui-composition {
 /* Intelligence is a comparison table plus one readable player profile, never
    eight narrow columns of names. These rules replace the legacy compact grid. */
 html.goonk-mobile #mobile-viewport #mobile-app .town-service[data-kind=thieves-guild]{display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:auto 48px minmax(0,1fr) auto;gap:8px;padding:8px;border-width:4px;min-height:0;overflow:hidden}

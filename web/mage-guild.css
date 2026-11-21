@@ -54,6 +54,8 @@ html.goonk-mobile #mobile-app[data-mode=mage-guild]{grid-template-columns:minmax
 }
 
 @layer ui-composition {
+ #mobile-app .mobile-mage-guild [data-guild-spell]{background:linear-gradient(90deg,#b0997c,#e4d4bc 13%,#e4d4bc 86%,#b9a082);color:#3a271b;text-shadow:none}
+ #mobile-app .mobile-mage-guild [data-guild-spell][aria-pressed=true]{border:2px solid #ffe18a;outline:2px solid #805031;outline-offset:-3px;background:linear-gradient(90deg,#c5ac8a,#f2e3ca 13%,#f2e3ca 86%,#c9b08e);color:#2b1a0e}
  #mobile-app[data-mode=mage-guild],#mobile-app[data-mode=mage-guild] .mobile-play{touch-action:pan-y}
  #mobile-app .mobile-mage-guild.ui-screen-layout{grid-template-rows:auto 48px minmax(0,1fr) auto}
  #mobile-app .mobile-mage-guild>.mage-guild-level-field{grid-column:1;grid-row:2;width:100%;max-width:none}
