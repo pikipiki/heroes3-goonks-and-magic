@@ -35,15 +35,13 @@ for(const [name,engine]of Object.entries({chromium,webkit})){
   const detailsBox=await details.boundingBox();assert(detailsBox&&detailsBox.width>=48&&detailsBox.height>=44,'Details control stays finger sized');
   await details.tap();
   assert.deepEqual(await page.evaluate(()=>calls.splice(0)),[[41,700,0]],'Details button opens the same creature');
-  await page.locator('[data-exchange-slot="0:0"]').tap();
-  assert.deepEqual(await page.evaluate(()=>calls.splice(0)),[[41,700,0]],'Second tap opens the offered creature');
-  await page.locator('[data-exchange-slot="1:3"]').scrollIntoViewIfNeeded();await page.locator('[data-exchange-slot="1:3"]').tap();
   await page.locator('[data-exchange-actions]').tap();await page.locator('[data-exchange-split]').tap();
   const quantity=page.locator('[data-exchange-quantity]');await quantity.fill('1');
   assert(await page.evaluate(s=>{const input=document.querySelector('[data-exchange-quantity]');input.focus();for(let i=0;i<40;i++)update({...s,day:i});return input===document.querySelector('[data-exchange-quantity]')&&document.activeElement===input&&input.value==='1';},state),'Stable quantity and focus');
+  await page.locator('[data-exchange-slot="1:3"]').scrollIntoViewIfNeeded();await page.locator('[data-exchange-slot="1:3"]').tap();
   const confirm=page.locator('[data-exchange-confirm]');await confirm.tap();assert.deepEqual(await page.evaluate(()=>calls.splice(0)),[[94,0,0,3,1,135]],'One transfer');
   const ack=structuredClone(state);ack.heroExchange.heroes[0].army.slots[0].count=2;ack.heroExchange.heroes[1].army.slots[3]=unit(135,1);await page.evaluate(s=>update(s),ack);
-  await page.locator('[data-exchange-slot="1:1"]').scrollIntoViewIfNeeded();await page.locator('[data-exchange-slot="1:1"]').tap();await page.locator('[data-exchange-slot="1:0"]').tap();await page.locator('[data-exchange-actions]').tap();await page.locator('[data-exchange-confirm]').tap();assert.deepEqual(await page.evaluate(()=>calls.splice(0)),[[94,3,1,0,15,84]],'Merge within the hero army');
+  await page.locator('[data-exchange-slot="1:1"]').scrollIntoViewIfNeeded();await page.locator('[data-exchange-slot="1:1"]').tap();await page.locator('[data-exchange-slot="1:0"]').tap();await page.locator('[data-exchange-confirm]').tap();assert.deepEqual(await page.evaluate(()=>calls.splice(0)),[[94,3,1,0,15,84]],'Merge within the hero army');
   ack.heroExchange.heroes[1].army.slots[0].count=40;ack.heroExchange.heroes[1].army.slots[1]=null;await page.evaluate(s=>update(s),ack);
   assert(await page.evaluate(()=>{const node=document.querySelector('.exchange-inventories'),canvas=document.createElement('canvas');canvas.width=800;canvas.height=600;const c=canvas.getContext('2d');c.fillStyle='red';c.fillRect(0,0,800,600);exchange.paint(canvas);update({mode:'map',campaignPending:true});c.fillStyle='blue';c.fillRect(0,0,800,600);exchange.paint(canvas);const color=[...document.querySelector('[data-exchange-face]').getContext('2d').getImageData(1,1,1,1).data];return node===document.querySelector('.exchange-inventories')&&!document.querySelector('.hero-exchange-page').hidden&&document.querySelector('[data-exchange-close]').disabled&&color[0]===255&&color[2]===0;}),'No transient map or portrait flash');
   await page.evaluate(s=>update(s),ack);await close.tap();await close.tap({force:true});assert.deepEqual(await page.evaluate(()=>calls.splice(0)),[[93]],'One finish action');

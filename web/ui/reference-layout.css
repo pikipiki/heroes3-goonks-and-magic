@@ -284,3 +284,4 @@
 :is(#mobile-app,#game-menu,[data-ui-app],.ui-popup) :is(.MuiButton-root,.ui-choice-tile,.hero-army-slot):is([aria-pressed=true],.selected),
 :is(#mobile-app,#game-menu,[data-ui-app],.ui-popup) :is(.MuiButton-root,.ui-choice-tile,.hero-army-slot):is([aria-pressed=true],.selected):hover,
 :is(#mobile-app,#game-menu,[data-ui-app],.ui-popup) :is(.MuiButton-root,.ui-choice-tile,.hero-army-slot):is([aria-pressed=true],.selected):focus-visible{border-color:#66bb6a!important;background:#163519!important;outline:2px solid #66bb6a!important;outline-offset:-2px!important;box-shadow:0 0 10px rgba(76,175,80,0.65)!important}
+.MuiDialogActions-root{gap:12px!important;padding:12px 16px!important}

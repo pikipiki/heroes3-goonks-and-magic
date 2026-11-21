@@ -150,7 +150,8 @@
 @container goonk-viewport (orientation:landscape) {
  #mobile-app .hero-exchange-page[data-joining=true] {grid-template-rows:auto auto minmax(0,1fr)!important}
  #mobile-app .hero-exchange-page[data-joining=true]>.exchange-inventories {grid-column:1!important;grid-row:1/4!important;display:grid!important;grid-template-columns:minmax(150px,34%) minmax(0,1fr)!important;grid-template-rows:minmax(0,1fr)!important;height:100%!important;min-height:0!important;overflow:hidden!important}
- #mobile-app .hero-exchange-page[data-joining=true] .exchange-joining-pool {min-height:0;overflow-y:auto;overscroll-behavior:contain;touch-action:pan-y}
+ #mobile-app .hero-exchange-page[data-joining=true] .exchange-joining-pool {height:100%!important;min-height:0!important;overflow-y:auto!important;overscroll-behavior:contain;touch-action:pan-y;-webkit-overflow-scrolling:touch}
+ #mobile-app .hero-exchange-page[data-joining=true] .exchange-joining-pool>header {position:sticky;top:0;z-index:2}
  #mobile-app .hero-exchange-page[data-joining=true] .exchange-inventory:nth-child(2) {height:100%!important;min-height:0!important;overflow-y:auto!important;overscroll-behavior:contain;touch-action:pan-y;-webkit-overflow-scrolling:touch}
  #mobile-app .hero-exchange-page[data-joining=true] .exchange-inventory:nth-child(2)>header {position:sticky;top:0;z-index:2}
  #mobile-app .hero-exchange-page[data-joining=true]>.exchange-joining-help {grid-column:2!important;grid-row:2!important;font-size:11px;line-height:1.2;padding:3px 8px;overflow:visible;min-height:0}
