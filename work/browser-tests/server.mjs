@@ -44,7 +44,7 @@ function getEngineBuild(){
  const build={runtimeNames,engine};engineBuildCache={signature,build};return build;
 }
 
-const mime={'.js':'text/javascript','.mjs':'text/javascript','.html':'text/html','.wasm':'application/wasm','.png':'image/png','.json':'application/json','.css':'text/css','.svg':'image/svg+xml'};
+const mime={'.js':'text/javascript','.mjs':'text/javascript','.html':'text/html','.wasm':'application/wasm','.png':'image/png','.webp':'image/webp','.json':'application/json','.css':'text/css','.svg':'image/svg+xml'};
 http.createServer((req,res)=>{
  res.setHeader('Cross-Origin-Opener-Policy','same-origin');res.setHeader('Cross-Origin-Embedder-Policy','require-corp');
  res.setHeader('Cache-Control','no-cache');const url=new URL(req.url,'http://localhost');

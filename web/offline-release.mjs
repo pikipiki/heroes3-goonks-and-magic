@@ -1,5 +1,5 @@
 const updateCheckMs = 8000;
-const installationMs = 30000;
+const installationMs = 120000;
 const activationRequestMs = 8000;
 const activationMs = 8000;
 
@@ -13,6 +13,7 @@ async function withTimeout(promise, ms) {
 }
 
 async function findPendingRelease(registration) {
+  if (registration.waiting) return registration.waiting;
   const updating = registration.update().catch(() => {});
   if (registration.installing) await updating;
   else if (registration.waiting) await Promise.race([updating, new Promise(resolve => setTimeout(resolve, 1500))]);

@@ -2659,7 +2659,7 @@ extern "C" void EMSCRIPTEN_KEEPALIVE vcmiMobileCommand(int action,int a,int b,in
  {
   if(const auto window=ENGINE->windows().topWindow<CGarrisonWindow>();mobileCampaignExchange(*p,window.get())||mobileGarrisonExchange(*p,window.get())||mobileCampaignRewardExchange(*p,window.get())||mobileJoiningExchange(*p,window.get()))
   {
-   if(action==93){shortcut(EShortcut::GLOBAL_ACCEPT);lastPublished=0;return;}
+   if(action==93){window->close();lastPublished=0;return;}
    if(action!=94||!p->makingTurn||a<0||a>3||b<0||b>=7||c<0||c>=7)return;
    const int side=a%2;const auto * from=window->getMobileArmy(side);const auto * to=window->getMobileArmy(a<2?1-side:side);const SlotID source(b),destination(c);
    if(from==to&&source==destination)return;

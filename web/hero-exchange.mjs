@@ -262,7 +262,9 @@ export function createHeroExchange({root,command,refresh,portrait}){
   if(button.hasAttribute('data-exchange-cancel-finish')){confirmFinish=false;render();return;}
   if(button.hasAttribute('data-exchange-close')||button.hasAttribute('data-exchange-commit-finish')){
    if(joining&&!confirmFinish&&heroes[0].roster.some(u=>u.name&&u.count>0)){confirmFinish=true;render();panel.querySelector('[data-exchange-cancel-finish]')?.focus();return;}
-   closing=true;for(const control of panel.querySelectorAll('button,input'))control.disabled=true;command(93);return;
+   closing=true;for(const control of panel.querySelectorAll('button,input'))control.disabled=true;
+   clearTimeout(panel._closeTimer);panel._closeTimer=setTimeout(()=>{if(closing){closing=false;render();}},4000);
+   command(93);return;
   }
   if(button.hasAttribute('data-exchange-confirm')){
    const item=itemAt(source),target=itemAt(destination);
@@ -310,6 +312,7 @@ export function createHeroExchange({root,command,refresh,portrait}){
   update(state){
    if(state.mode!=='hero-exchange'||state.heroExchange?.heroes?.length!==2){
     if(pending)clearTimeout(pending.timer);
+    clearTimeout(panel._closeTimer);
     if(actionsMenu){actionsMenu.dispose();actionsMenu=null;}
     joining=false;confirmFinish=false;heroes=[];clearSelection();pending=null;message='';lastJoiningName='';signature='';classic=false;classicOnly=false;troopsOnly=false;held=false;closing=false;tab='equipment';
     panel.hidden=true;
