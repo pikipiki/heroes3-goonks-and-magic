@@ -385,6 +385,54 @@
       ]
     },
     {
+      "path": "Maps/001-Goonks.vmap",
+      "size": 28740,
+      "hash": "4a6cf63f0521320731faaec642ed26135183942fca296d0c042cdfab3a80fd7c",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 28740,
+          "hash": "4a6cf63f0521320731faaec642ed26135183942fca296d0c042cdfab3a80fd7c"
+        }
+      ]
+    },
+    {
+      "path": "Maps/002-Goonks-Online.vmap",
+      "size": 28382,
+      "hash": "f01fac50c5f110dcea4c4152c4c4aafce35409237faa389789e81868a602d080",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 28382,
+          "hash": "f01fac50c5f110dcea4c4152c4c4aafce35409237faa389789e81868a602d080"
+        }
+      ]
+    },
+    {
+      "path": "Maps/003-Goonks-WoG.vmap",
+      "size": 30595,
+      "hash": "7d4505207d2b0c3203b11a6592ab7d8587377e415a33fa0130bb6113193c345b",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 30595,
+          "hash": "7d4505207d2b0c3203b11a6592ab7d8587377e415a33fa0130bb6113193c345b"
+        }
+      ]
+    },
+    {
+      "path": "Maps/004-Goonks-WoG-Online.vmap",
+      "size": 30325,
+      "hash": "f693ffbdc2981c17fe0244cdcc984cd27225661af6b20da86ecfac2d458f60a4",
+      "chunks": [
+        {
+          "offset": 0,
+          "size": 30325,
+          "hash": "f693ffbdc2981c17fe0244cdcc984cd27225661af6b20da86ecfac2d458f60a4"
+        }
+      ]
+    },
+    {
       "path": "Maps/Invasion of Endogar.h3m",
       "size": 110090,
       "hash": "7a4fa4249bbd58f65500f5602d9eac18fa37060e3499fd261cfa1208a0cc2574",

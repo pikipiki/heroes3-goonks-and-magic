@@ -413,7 +413,7 @@ void BattleStacksController::updateBattleAnimations(uint32_t msPassed)
 	if (currentAnimations.empty())
 		owner.executeStagedAnimations();
 
-	if (hadAnimations && currentAnimations.empty())
+	if ((hadAnimations || (!owner.openingPlaying() && owner.hasAnimations())) && currentAnimations.empty())
 		owner.onAnimationsFinished();
 
 	initializeBattleAnimations();

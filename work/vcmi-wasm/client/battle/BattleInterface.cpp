@@ -812,10 +812,11 @@ void BattleInterface::requestAutofightingAIToTakeAction()
 			// FIXME: unsafe
 			// Run task in separate thread to avoid UI lock while AI is making turn (which might take some time)
 			// HOWEVER this thread won't atttempt to lock game state, potentially leading to races
-			std::thread aiThread([localBattleID = battleID, localCurInt = curInt, activeStack]()
+			std::thread aiThread([localBattleID = battleID, localAI = curInt->autofightingAI, activeStack]()
 			{
 				setThreadName("autofightingAI");
-				localCurInt->autofightingAI->activeStack(localBattleID, activeStack);
+				if (localAI)
+					localAI->activeStack(localBattleID, activeStack);
 			});
 			aiThread.detach();
 		}
