@@ -2,142 +2,142 @@
    the game's existing responsive art boxes still own animation geometry. */
 @layer screen-layouts {
  @container goonk-viewport (orientation:portrait){
-  #mobile-app>.mobile-top:not(.ui-compact-chrome){min-height:48px!important;padding:4px!important;gap:4px!important}
-  #mobile-app[data-creature-view=fort] .creature-presentation{gap:4px!important;padding:4px!important;grid-template-rows:56px minmax(0,1fr)!important}
-  #mobile-app[data-creature-view=fort] .creature-view-head{--ui-header-min:48px;--ui-header-padding:4px 8px;min-height:48px!important;padding:4px 8px!important}
-  #mobile-app[data-creature-view=fort] .creature-view-head h2{font:var(--ui-font-title-compact)!important}
-  #mobile-app[data-creature-view=fort] .hall-layout{display:grid!important;grid-template-columns:minmax(0,1fr)!important;grid-template-rows:minmax(0,1fr) 168px!important;gap:4px!important}
+  #mobile-app>.mobile-top:not(.ui-compact-chrome){min-height:48px;padding:4px;gap:4px}
+  #mobile-app[data-creature-view=fort] .creature-presentation{gap:4px;padding:4px;grid-template-rows:56px minmax(0,1fr)}
+  #mobile-app[data-creature-view=fort] .creature-view-head{--ui-header-min:48px;--ui-header-padding:4px 8px;min-height:48px;padding:4px 8px}
+  #mobile-app[data-creature-view=fort] .creature-view-head h2{font:var(--ui-font-title-compact)}
+  #mobile-app[data-creature-view=fort] .hall-layout{display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr) 168px;gap:4px}
  }
- #mobile-app[data-creature-view=fort] .hall-detail{display:grid!important;grid-template-columns:minmax(0,1fr)!important;grid-template-rows:56px 48px 48px!important;gap:4px!important;padding:4px!important;min-height:0!important;overflow:hidden!important}
- #mobile-app .hall-detail>.hall-purchase-context{display:contents!important}
- #mobile-app .hall-purchase-context>.hall-feature{grid-area:1/1!important;height:56px!important;min-height:0!important;overflow:hidden!important;padding:0!important}
- #mobile-app .hall-purchase-context>.hall-quantity{grid-area:2/1!important;height:48px!important;min-height:48px!important}
- #mobile-app .hall-detail>.hall-actions.ui-action-dock{grid-area:3/1!important;height:48px!important;min-height:48px!important;max-height:48px!important;padding:0!important;gap:8px!important;align-items:stretch!important}
- #mobile-app .hall-detail>.hall-actions>button{height:48px!important;min-height:48px!important;padding:4px!important}
- #mobile-app .hall-detail :is(.hall-stock,.hall-total){display:none!important}
- #mobile-app .hall-feature>div{display:grid!important;grid-template-rows:24px 32px!important;gap:0!important}
- #mobile-app .hall-feature .creature-stats{margin:0!important}
- #mobile-app .hall-feature-title h3{font:var(--ui-font-title-compact)!important}
+ #mobile-app[data-creature-view=fort] .hall-detail{display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:56px 48px 48px;gap:4px;padding:4px;min-height:0;overflow:hidden}
+ #mobile-app .hall-detail>.hall-purchase-context{display:contents}
+ #mobile-app .hall-purchase-context>.hall-feature{grid-area:1/1;height:56px;min-height:0;overflow:hidden;padding:0}
+ #mobile-app .hall-purchase-context>.hall-quantity{grid-area:2/1;height:48px;min-height:48px}
+ #mobile-app .hall-detail>.hall-actions.ui-action-dock{grid-area:3/1;height:48px;min-height:48px;max-height:48px;padding:0;gap:8px;align-items:stretch}
+ #mobile-app .hall-detail>.hall-actions>button{height:48px;min-height:48px;padding:4px}
+ #mobile-app .hall-detail :is(.hall-stock,.hall-total){display:none}
+ #mobile-app .hall-feature>div{display:grid;grid-template-rows:24px 32px;gap:0}
+ #mobile-app .hall-feature .creature-stats{margin:0}
+ #mobile-app .hall-feature-title h3{font:var(--ui-font-title-compact)}
  @container goonk-viewport (orientation:landscape){
-  #mobile-app[data-creature-view=fort] .hall-detail{grid-template-rows:minmax(56px,1fr) 48px 48px!important;min-height:0!important}
+  #mobile-app[data-creature-view=fort] .hall-detail{grid-template-rows:minmax(56px,1fr) 48px 48px;min-height:0}
  }
 }
 @layer screen-layouts {
  @container goonk-viewport (orientation:portrait){
-  #mobile-app>.mobile-top:has(>.mobile-resources:not([hidden])){display:grid!important;grid-template-columns:48px minmax(0,1fr) 68px!important;grid-template-rows:48px!important;gap:4px!important;padding:4px!important;height:56px!important;min-height:56px!important}
-  #mobile-app>.mobile-top:has(>.mobile-resources:not([hidden]))>:is(.mobile-title,.mobile-brand,.hero-mobile-switch,.recruit-close){display:none!important}
-  #mobile-app>.mobile-top:has(>.mobile-resources:not([hidden]))>#game-menu-toggle{grid-area:1/1!important;width:48px!important;height:48px!important;padding:0!important}
-  #mobile-app>.mobile-top>.mobile-resources:not([hidden]){grid-area:1/2!important;display:grid!important;grid-template-columns:repeat(9,minmax(0,1fr))!important;width:100%!important;min-width:0!important;gap:0!important;padding:0 4px 0 0!important;box-sizing:border-box!important}
-  #mobile-app>.mobile-top .mobile-resource{min-width:0!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:0!important;padding:0!important}
-  #mobile-app>.mobile-top .mobile-resource[data-resource=gold]{grid-column:span 2!important}
-  #mobile-app>.mobile-top .mobile-resource img{width:20px!important;height:20px!important;object-fit:contain!important}
-  #mobile-app>.mobile-top .resource-quantity{font:var(--ui-font-resource)!important;white-space:nowrap!important}
-  #mobile-app>.mobile-top>.mobile-calendar:not([hidden]){grid-area:1/3!important;display:flex!important;flex-direction:column!important;gap:0!important;min-width:0!important;min-height:0!important;height:48px!important;padding:0!important}
-  #mobile-app>.mobile-top .calendar-recruit-cue{display:grid!important;grid-template-columns:minmax(0,1fr) 8px!important;grid-template-rows:14px 14px!important;min-width:0!important;min-height:28px!important;height:32px!important;width:100%!important;padding:0 4px!important;gap:0!important;border:1px solid var(--ui-outline)!important;box-shadow:none!important;font:var(--ui-font-resource)!important}
-  #mobile-app>.mobile-top .calendar-recruit-cue>[data-recruit-label]{grid-area:1/1!important}
-  #mobile-app>.mobile-top .calendar-recruit-cue>[data-recruit-days]{grid-area:2/1!important;font:var(--ui-font-resource)!important}
-  #mobile-app>.mobile-top .mobile-calendar>span:first-child{font:var(--ui-font-resource)!important;line-height:12px!important}
-  #mobile-app>.mobile-top .mobile-calendar>:is(.calendar-compact,.calendar-next-week,.calendar-location){display:none!important}
+  #mobile-app>.mobile-top:has(>.mobile-resources:not([hidden])){display:grid;grid-template-columns:48px minmax(0,1fr) 68px;grid-template-rows:48px;gap:4px;padding:4px;height:56px;min-height:56px}
+  #mobile-app>.mobile-top:has(>.mobile-resources:not([hidden]))>:is(.mobile-title,.mobile-brand,.hero-mobile-switch,.recruit-close){display:none}
+  #mobile-app>.mobile-top:has(>.mobile-resources:not([hidden]))>#game-menu-toggle{grid-area:1/1;width:48px;height:48px;padding:0}
+  #mobile-app>.mobile-top>.mobile-resources:not([hidden]){grid-area:1/2;display:grid;grid-template-columns:repeat(9,minmax(0,1fr));width:100%;min-width:0;gap:0;padding:0 4px 0 0;box-sizing:border-box}
+  #mobile-app>.mobile-top .mobile-resource{min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;padding:0}
+  #mobile-app>.mobile-top .mobile-resource[data-resource=gold]{grid-column:span 2}
+  #mobile-app>.mobile-top .mobile-resource img{width:20px;height:20px;object-fit:contain}
+  #mobile-app>.mobile-top .resource-quantity{font:var(--ui-font-resource);white-space:nowrap}
+  #mobile-app>.mobile-top>.mobile-calendar:not([hidden]){grid-area:1/3;display:flex;flex-direction:column;gap:0;min-width:0;min-height:0;height:48px;padding:0}
+  #mobile-app>.mobile-top .calendar-recruit-cue{display:grid;grid-template-columns:minmax(0,1fr) 8px;grid-template-rows:14px 14px;min-width:0;min-height:28px;height:32px;width:100%;padding:0 4px;gap:0;border:1px solid var(--ui-outline);box-shadow:none;font:var(--ui-font-resource)}
+  #mobile-app>.mobile-top .calendar-recruit-cue>[data-recruit-label]{grid-area:1/1}
+  #mobile-app>.mobile-top .calendar-recruit-cue>[data-recruit-days]{grid-area:2/1;font:var(--ui-font-resource)}
+  #mobile-app>.mobile-top .mobile-calendar>span:first-child{font:var(--ui-font-resource);line-height:12px}
+  #mobile-app>.mobile-top .mobile-calendar>:is(.calendar-compact,.calendar-next-week,.calendar-location){display:none}
  }
 }
 @layer screen-layouts {
  /* A troop card is an art slot, not an action button. Its banner and caption
     keep the original geometry; the upgrade occupies only the banner area. */
- #mobile-app[data-sheet=army] .army-grid .army-troop{padding:2px 3px 3px!important;border:1px solid transparent!important;background:transparent!important;box-shadow:none!important;min-height:48px!important}
- #mobile-app[data-sheet=army] .army-upgrade-cell{padding:2px 3px 3px!important;border:1px solid transparent!important;gap:2px!important}
- #mobile-app[data-sheet=army] .army-grid .army-upgrade-all{width:100%!important;max-width:100%!important;height:100%!important;min-width:0!important;min-height:0!important;padding:2px 3px!important;gap:2px!important;border-width:1px!important;flex:1!important;box-sizing:border-box!important;container-type:size!important}
- #mobile-app[data-sheet=army] .army-grid .army-upgrade-all img{width:clamp(12px,26cqh,18px)!important;height:clamp(12px,26cqh,18px)!important}
- #mobile-app[data-sheet=army] .army-grid .army-upgrade-all span{font-size:clamp(9px,16cqh,11px)!important;line-height:1.1!important}
- @container goonk-viewport (orientation:landscape){#mobile-app[data-sheet=army] .army-grid .army-upgrade-all{width:100%!important}}
+ #mobile-app[data-sheet=army] .army-grid .army-troop{padding:2px 3px 3px;border:1px solid transparent;background:transparent;box-shadow:none;min-height:48px}
+ #mobile-app[data-sheet=army] .army-upgrade-cell{padding:2px 3px 3px;border:1px solid transparent;gap:2px}
+ #mobile-app[data-sheet=army] .army-grid .army-upgrade-all{width:100%;max-width:100%;height:100%;min-width:0;min-height:0;padding:2px 3px;gap:2px;border-width:1px;flex:1;box-sizing:border-box;container-type:size}
+ #mobile-app[data-sheet=army] .army-grid .army-upgrade-all img{width:clamp(12px,26cqh,18px);height:clamp(12px,26cqh,18px)}
+ #mobile-app[data-sheet=army] .army-grid .army-upgrade-all span{font-size:clamp(9px,16cqh,11px);line-height:1.1}
+ @container goonk-viewport (orientation:landscape){#mobile-app[data-sheet=army] .army-grid .army-upgrade-all{width:100%}}
 }
 @layer screen-layouts {
- #mobile-app[data-sheet=army] .army-rosters{overflow:auto!important;touch-action:pan-y!important;align-content:start!important;grid-auto-rows:minmax(220px,auto)!important}
- #mobile-app[data-sheet=army] .army-grid .army-troop{height:90px!important;min-height:90px!important;justify-content:flex-start!important}
- #mobile-app[data-sheet=army] .army-grid .army-slot-art{box-sizing:border-box!important;flex:1!important;min-height:0!important;width:min(100%,100px)!important;max-height:none!important}
- #mobile-app[data-sheet=army] .army-grid .army-upgrade-all{max-height:none!important;min-height:0!important;align-self:stretch!important}
+ #mobile-app[data-sheet=army] .army-rosters{overflow:auto;touch-action:pan-y;align-content:start;grid-auto-rows:minmax(220px,auto)}
+ #mobile-app[data-sheet=army] .army-grid .army-troop{height:90px;min-height:90px;justify-content:flex-start}
+ #mobile-app[data-sheet=army] .army-grid .army-slot-art{box-sizing:border-box;flex:1;min-height:0;width:min(100%,100px);max-height:none}
+ #mobile-app[data-sheet=army] .army-grid .army-upgrade-all{max-height:none;min-height:0;align-self:stretch}
 }
 @layer screen-layouts {
- #mobile-app[data-sheet=army] .army-grid{flex:none!important;height:auto!important;min-height:0!important;max-height:none!important;grid-template-rows:none!important;grid-auto-rows:90px!important}
- #mobile-app[data-sheet=army] .army-upgrade-cell>.army-slot-name{display:block!important;flex:0 0 14px!important;height:14px!important;line-height:14px!important}
+ #mobile-app[data-sheet=army] .army-grid{flex:none;height:auto;min-height:0;max-height:none;grid-template-rows:none;grid-auto-rows:90px}
+ #mobile-app[data-sheet=army] .army-upgrade-cell>.army-slot-name{display:block;flex:0 0 14px;height:14px;line-height:14px}
 }
 @layer screen-layouts {
  @container goonk-viewport (orientation:portrait){
-  #mobile-app[data-creature-view=fort] .creature-view-head{display:flex!important;justify-content:space-between!important}
-  #mobile-app[data-creature-view=fort] .creature-view-head h2{flex:1!important;width:auto!important;max-width:none!important}
-  #mobile-app[data-creature-view=fort] .creature-view-head>.ui-icon-button{margin-left:auto!important}
+  #mobile-app[data-creature-view=fort] .creature-view-head{display:flex;justify-content:space-between}
+  #mobile-app[data-creature-view=fort] .creature-view-head h2{flex:1;width:auto;max-width:none}
+  #mobile-app[data-creature-view=fort] .creature-view-head>.ui-icon-button{margin-left:auto}
  }
 }
 @layer screen-layouts {
  #mobile-app[data-battle-result]>.mobile-top.mobile-top,
  #mobile-app[data-dialog-presentation]>.mobile-top.mobile-top,
- #mobile-app[data-mode=hero-exchange][data-exchange-view=mobile]>.mobile-top.mobile-top{display:none!important}
+ #mobile-app[data-mode=hero-exchange][data-exchange-view=mobile]>.mobile-top.mobile-top{display:none}
  @container goonk-viewport (orientation:portrait){
-  #mobile-app>.mobile-top>.mobile-calendar:not([hidden]){flex-wrap:nowrap!important;border:0!important;box-shadow:none!important;background:transparent!important;align-items:stretch!important}
-  #mobile-app>.mobile-top .mobile-calendar>span:first-child{width:100%!important;height:12px!important;min-height:12px!important;flex:0 0 12px!important;text-align:center!important}
+  #mobile-app>.mobile-top>.mobile-calendar:not([hidden]){flex-wrap:nowrap;border:0;box-shadow:none;background:transparent;align-items:stretch}
+  #mobile-app>.mobile-top .mobile-calendar>span:first-child{width:100%;height:12px;min-height:12px;flex:0 0 12px;text-align:center}
  }
  @container goonk-viewport (orientation:landscape){
-  #mobile-app[data-creature-view=fort] .hall-detail{height:100%!important;box-sizing:border-box!important;grid-template-rows:minmax(0,1fr) 48px 48px!important}
-  #mobile-app[data-creature-view=fort] .hall-purchase-context>.hall-feature{height:auto!important;max-height:100%!important;overflow:auto!important;touch-action:pan-y!important}
+  #mobile-app[data-creature-view=fort] .hall-detail{height:100%;box-sizing:border-box;grid-template-rows:minmax(0,1fr) 48px 48px}
+  #mobile-app[data-creature-view=fort] .hall-purchase-context>.hall-feature{height:auto;max-height:100%;overflow:auto;touch-action:pan-y}
  }
 }
 @layer screen-layouts {
  @container goonk-viewport (orientation:portrait){
-  #mobile-app[data-creature-view=fort] .creature-presentation{padding:0!important}
+  #mobile-app[data-creature-view=fort] .creature-presentation{padding:0}
  }
 }
 @layer screen-layouts {
  @container goonk-viewport (orientation:portrait){
-  #mobile-app[data-creature-view=fort] .hall-layout{grid-template-rows:minmax(0,1fr) 156px!important}
-  #mobile-app[data-creature-view=fort] .hall-detail{grid-template-rows:48px 48px 48px!important;padding:2px!important}
-  #mobile-app[data-creature-view=fort] .hall-purchase-context>.hall-feature{height:48px!important}
-  #mobile-app[data-creature-view=fort] .hall-feature>div{grid-template-rows:20px 28px!important}
-  #mobile-app[data-creature-view=fort] .hall-feature-title h3{font:var(--ui-font-label)!important}
-  #mobile-app[data-creature-view=fort] .hall-feature .creature-stats dd{font:var(--ui-font-body-small)!important}
+  #mobile-app[data-creature-view=fort] .hall-layout{grid-template-rows:minmax(0,1fr) 156px}
+  #mobile-app[data-creature-view=fort] .hall-detail{grid-template-rows:48px 48px 48px;padding:2px}
+  #mobile-app[data-creature-view=fort] .hall-purchase-context>.hall-feature{height:48px}
+  #mobile-app[data-creature-view=fort] .hall-feature>div{grid-template-rows:20px 28px}
+  #mobile-app[data-creature-view=fort] .hall-feature-title h3{font:var(--ui-font-label)}
+  #mobile-app[data-creature-view=fort] .hall-feature .creature-stats dd{font:var(--ui-font-body-small)}
  }
 }
 @layer screen-layouts {
- @container goonk-viewport (orientation:portrait){#mobile-app[data-creature-view=fort] .hall-layout{grid-template-rows:minmax(0,1fr) 158px!important}}
+ @container goonk-viewport (orientation:portrait){#mobile-app[data-creature-view=fort] .hall-layout{grid-template-rows:minmax(0,1fr) 158px}}
 }
 @layer screen-layouts {
  /* Invisible scene hit targets retain the native building bounds. MUI owns
     interaction/focus; the actual picture and subtitle belong to the scene. */
- #mobile-app .town-building-hit.MuiButton-root{padding:0!important;border:0!important;border-image:none!important;background:transparent!important;box-shadow:none!important}
+ #mobile-app .town-building-hit.MuiButton-root{padding:0;border:0;border-image:none;background:transparent;box-shadow:none}
 }
 @layer screen-layouts {
  @container goonk-viewport (orientation:portrait){
-  #mobile-app>.mobile-top:has(>.mobile-resources:not([hidden])){box-sizing:border-box!important}
-  #mobile-app[data-mode=map]>.mobile-nav:not(.ui-map-compact){display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;grid-template-rows:48px 48px!important;grid-auto-rows:48px!important;gap:4px!important;padding:4px!important;align-items:stretch!important}
-  #mobile-app[data-mode=map]>.mobile-nav>.hero-movement-summary{grid-column:1/-1!important;grid-row:1!important;min-height:48px!important;height:48px!important;max-height:48px!important;gap:4px!important}
-  #mobile-app[data-mode=map]>.mobile-nav .hero-movement-list{min-height:48px!important;height:48px!important;max-height:48px!important}
-  #mobile-app[data-mode=map]>.mobile-nav .hero-movement-item{min-height:48px!important;height:48px!important;max-height:48px!important;padding:0 4px!important}
-  #mobile-app[data-mode=map]>.mobile-nav>button{min-width:48px!important;height:48px!important;min-height:48px!important;padding:4px!important;border-width:2px!important;font:var(--ui-font-body-small)!important;gap:4px!important;align-self:stretch!important}
-  #mobile-app[data-mode=map]>.mobile-nav .troops-nav-icon{width:20px!important;height:20px!important}
+  #mobile-app>.mobile-top:has(>.mobile-resources:not([hidden])){box-sizing:border-box}
+  #mobile-app[data-mode=map]>.mobile-nav:not(.ui-map-compact){display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:48px 48px;grid-auto-rows:48px;gap:4px;padding:4px;align-items:stretch}
+  #mobile-app[data-mode=map]>.mobile-nav>.hero-movement-summary{grid-column:1/-1;grid-row:1;min-height:48px;height:48px;max-height:48px;gap:4px}
+  #mobile-app[data-mode=map]>.mobile-nav .hero-movement-list{min-height:48px;height:48px;max-height:48px}
+  #mobile-app[data-mode=map]>.mobile-nav .hero-movement-item{min-height:48px;height:48px;max-height:48px;padding:0 4px}
+  #mobile-app[data-mode=map]>.mobile-nav>button{min-width:48px;height:48px;min-height:48px;padding:4px;border-width:2px;font:var(--ui-font-body-small);gap:4px;align-self:stretch}
+  #mobile-app[data-mode=map]>.mobile-nav .troops-nav-icon{width:20px;height:20px}
  }
- #mobile-app[data-mode=map] .hero-movement-item>button{border:0!important;box-shadow:none!important;background:transparent!important;padding:4px!important;color:inherit!important}
- #mobile-app[data-mode=map] .hero-movement-summary[data-hero-solo=true] :is(.hero-picker,.hero-movement-item>button):disabled{opacity:1!important;cursor:default!important}
+ #mobile-app[data-mode=map] .hero-movement-item>button{border:0;box-shadow:none;background:transparent;padding:4px;color:inherit}
+ #mobile-app[data-mode=map] .hero-movement-summary[data-hero-solo=true] :is(.hero-picker,.hero-movement-item>button):disabled{opacity:1;cursor:default}
 }
 @layer screen-layouts {
  /* One thin outline for controls and cards; no inner bevel or selected ring. */
- :is(#mobile-app,#game-menu,[data-ui-app],.ui-popup) :is(.MuiButton-root,.MuiIconButton-root,.ui-button,.ui-choice-tile,.ui-action-tile){border:1px solid var(--ui-primary)!important;border-image:none!important;box-shadow:var(--ui-control-shadow)!important;outline:none!important;font-weight:400!important}
- :is(#mobile-app,#game-menu,[data-ui-app],.ui-popup) :is(.MuiButton-root,.MuiIconButton-root,.ui-button,.ui-choice-tile,.ui-action-tile):hover{border-color:#ffe9a8!important;box-shadow:var(--ui-control-shadow-hover)!important}
- :is(#mobile-app,#game-menu,[data-ui-app],.ui-popup) :is(.MuiButton-root,.ui-choice-tile)[aria-pressed=true]{border-color:#66bb6a!important;background:#163519!important;outline:none!important;box-shadow:0 0 8px rgba(76,175,80,0.45)!important}
+ :is(#mobile-app,#game-menu,[data-ui-app],.ui-popup) :is(.MuiButton-root,.MuiIconButton-root,.ui-button,.ui-choice-tile,.ui-action-tile){border:1px solid var(--ui-primary);border-image:none;box-shadow:var(--ui-control-shadow);outline:none;font-weight:400}
+ :is(#mobile-app,#game-menu,[data-ui-app],.ui-popup) :is(.MuiButton-root,.MuiIconButton-root,.ui-button,.ui-choice-tile,.ui-action-tile):hover{border-color:#ffe9a8;box-shadow:var(--ui-control-shadow-hover)}
+ :is(#mobile-app,#game-menu,[data-ui-app],.ui-popup) :is(.MuiButton-root,.ui-choice-tile)[aria-pressed=true]{border-color:#66bb6a;background:#163519;outline:none;box-shadow:0 0 8px rgba(76,175,80,0.45)}
  :is(#mobile-app,#game-menu,[data-ui-app]) .town-building-hit.MuiButton-root,
- :is(#mobile-app,#game-menu,[data-ui-app]) .hero-movement-item>button{border:0!important;box-shadow:none!important;background:transparent!important}
- :is(#mobile-app,#game-menu,[data-ui-app]) .army-grid .army-troop{border:1px solid transparent!important;box-shadow:none!important}
+ :is(#mobile-app,#game-menu,[data-ui-app]) .hero-movement-item>button{border:0;box-shadow:none;background:transparent}
+ :is(#mobile-app,#game-menu,[data-ui-app]) .army-grid .army-troop{border:1px solid transparent;box-shadow:none}
  :is(#mobile-app,#game-menu,[data-ui-app],.ui-popup) .MuiButtonBase-root,
- :is(#mobile-app,#game-menu,[data-ui-app],.ui-popup) .MuiButtonBase-root *{font-weight:400!important}
- :is(#mobile-app,#game-menu,[data-ui-app],.ui-popup) :is(.MuiButton-root,.MuiIconButton-root,.ui-button):focus-visible{outline:1px solid #fff0b1!important;outline-offset:2px!important}
+ :is(#mobile-app,#game-menu,[data-ui-app],.ui-popup) .MuiButtonBase-root *{font-weight:400}
+ :is(#mobile-app,#game-menu,[data-ui-app],.ui-popup) :is(.MuiButton-root,.MuiIconButton-root,.ui-button):focus-visible{outline:1px solid #fff0b1;outline-offset:2px}
 }
 @layer screen-layouts {
- #mobile-app .army-grid .army-upgrade-all{border-width:1px!important}
- #mobile-app .hero-movement-item.is-active[data-movement-band]{border:1px solid var(--ui-primary)!important;box-shadow:none!important}
- #mobile-app .army-slot-art{border:1px solid var(--ui-primary)!important;background:#21180f!important;clip-path:none!important;box-shadow:none!important}
- #mobile-app .army-slot-art::before{display:none!important}
+ #mobile-app .army-grid .army-upgrade-all{border-width:1px}
+ #mobile-app .hero-movement-item.is-active[data-movement-band]{border:1px solid var(--ui-primary);box-shadow:none}
+ #mobile-app .army-slot-art{border:1px solid var(--ui-primary);background:#21180f;clip-path:none;box-shadow:none}
+ #mobile-app .army-slot-art::before{display:none}
  @container goonk-viewport (orientation:landscape){
   #mobile-app[data-mode=map]>.mobile-nav .hero-movement-summary,
   #mobile-app[data-mode=map]>.mobile-nav .hero-movement-list,
-  #mobile-app[data-mode=map]>.mobile-nav .hero-movement-item{box-sizing:border-box!important;min-height:50px!important;height:50px!important;max-height:50px!important;padding:0!important}
-  #mobile-app[data-mode=map]>.mobile-nav .hero-movement-item>button{height:48px!important;min-height:48px!important;max-height:48px!important;box-sizing:border-box!important}
+  #mobile-app[data-mode=map]>.mobile-nav .hero-movement-item{box-sizing:border-box;min-height:50px;height:50px;max-height:50px;padding:0}
+  #mobile-app[data-mode=map]>.mobile-nav .hero-movement-item>button{height:48px;min-height:48px;max-height:48px;box-sizing:border-box}
  }
 }
 
@@ -145,146 +145,146 @@
 @layer screen-layouts {
  #mobile-app .hero-stat-label-short{display:none}
  @container goonk-viewport (orientation:landscape) and (max-height:420px){
-  #mobile-app[data-mode=hero]>.mobile-top{height:56px!important;min-height:56px!important;padding:4px 8px!important;box-sizing:border-box!important}
-  #mobile-app .hero-equipment-page{grid-template-rows:104px 38px 56px minmax(0,1fr) 64px!important;row-gap:4px!important}
-  #mobile-app .hero-equipment-page>.hero-card-head{box-sizing:border-box!important;min-height:0!important;height:100%!important;padding:56px 8px 0!important;gap:8px!important;flex-wrap:nowrap!important}
-  #mobile-app .hero-card-head>.hero-face{display:none!important}
-  #mobile-app .hero-card-head>div{min-width:0!important;flex:1!important}
-  #mobile-app .hero-card-head h2{font:var(--ui-font-title-compact)!important;margin:0!important}
-  #mobile-app .hero-card-head p{display:none!important}
-  #mobile-app .hero-card-head .hero-vitals{font:var(--ui-font-body-small)!important;gap:4px!important;flex-wrap:nowrap!important}
-  #mobile-app .hero-card-head>button{flex:0 0 48px!important;width:48px!important;height:48px!important;min-height:48px!important;padding:0!important}
-  #mobile-app .hero-primary dt{font:var(--ui-font-body-small)!important;white-space:nowrap!important}
-  #mobile-app .hero-primary .hero-stat-label-full{display:none!important}
-  #mobile-app .hero-primary .hero-stat-label-short{display:inline!important;text-decoration:none!important}
-  #mobile-app .hero-equipment-page>.hero-bag-tabs.ui-compact-navigation{box-sizing:border-box!important;min-height:0!important;height:56px!important;padding:4px 8px!important;gap:8px!important;align-items:stretch!important}
-  #mobile-app .hero-bag-tabs.ui-compact-navigation>button{height:48px!important;min-height:48px!important;padding:4px!important}
-  #mobile-app .hero-equipment-page[data-inventory=army]>.hero-artifact-detail{display:none!important}
-  #mobile-app .hero-equipment-page>.hero-army-dock-tools.ui-action-dock{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;align-items:stretch!important;gap:8px!important;padding:8px!important;box-sizing:border-box!important;height:64px!important;min-height:64px!important}
-  #mobile-app .hero-army-dock-tools>.hero-army-split-toggle{width:auto!important;min-width:0!important;flex:none!important;display:flex!important;flex-direction:column!important;justify-content:center!important;gap:0!important;height:48px!important;font:var(--ui-font-body-small)!important}
-  #mobile-app .hero-army-split-toggle>.MuiCheckbox-root{width:24px!important;height:24px!important;min-height:24px!important;min-width:24px!important;padding:0!important}
-  #mobile-app .hero-army-split-toggle>.MuiTypography-root{font:var(--ui-font-body-small)!important}
+  #mobile-app[data-mode=hero]>.mobile-top{height:56px;min-height:56px;padding:4px 8px;box-sizing:border-box}
+  #mobile-app .hero-equipment-page{grid-template-rows:104px 38px 56px minmax(0,1fr) 64px;row-gap:4px}
+  #mobile-app .hero-equipment-page>.hero-card-head{box-sizing:border-box;min-height:0;height:100%;padding:56px 8px 0;gap:8px;flex-wrap:nowrap}
+  #mobile-app .hero-card-head>.hero-face{display:none}
+  #mobile-app .hero-card-head>div{min-width:0;flex:1}
+  #mobile-app .hero-card-head h2{font:var(--ui-font-title-compact);margin:0}
+  #mobile-app .hero-card-head p{display:none}
+  #mobile-app .hero-card-head .hero-vitals{font:var(--ui-font-body-small);gap:4px;flex-wrap:nowrap}
+  #mobile-app .hero-card-head>button{flex:0 0 48px;width:48px;height:48px;min-height:48px;padding:0}
+  #mobile-app .hero-primary dt{font:var(--ui-font-body-small);white-space:nowrap}
+  #mobile-app .hero-primary .hero-stat-label-full{display:none}
+  #mobile-app .hero-primary .hero-stat-label-short{display:inline;text-decoration:none}
+  #mobile-app .hero-equipment-page>.hero-bag-tabs.ui-compact-navigation{box-sizing:border-box;min-height:0;height:56px;padding:4px 8px;gap:8px;align-items:stretch}
+  #mobile-app .hero-bag-tabs.ui-compact-navigation>button{height:48px;min-height:48px;padding:4px}
+  #mobile-app .hero-equipment-page[data-inventory=army]>.hero-artifact-detail{display:none}
+  #mobile-app .hero-equipment-page>.hero-army-dock-tools.ui-action-dock{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));align-items:stretch;gap:8px;padding:8px;box-sizing:border-box;height:64px;min-height:64px}
+  #mobile-app .hero-army-dock-tools>.hero-army-split-toggle{width:auto;min-width:0;flex:none;display:flex;flex-direction:column;justify-content:center;gap:0;height:48px;font:var(--ui-font-body-small)}
+  #mobile-app .hero-army-split-toggle>.MuiCheckbox-root{width:24px;height:24px;min-height:24px;min-width:24px;padding:0}
+  #mobile-app .hero-army-split-toggle>.MuiTypography-root{font:var(--ui-font-body-small)}
   /* Reserve a local editor below the scrollable troop workspace so split
      controls never cover cards or displace the fixed command rail. */
-  #mobile-app .hero-army-dock-tools>.hero-army-split-amount:not([hidden]){position:absolute!important;left:8px!important;right:calc(var(--control-rail,244px) + 8px)!important;bottom:8px!important;display:grid!important;grid-template-columns:48px minmax(0,1fr) 48px!important;gap:8px!important;height:48px!important;padding:4px!important;background:var(--ui-surface-container)!important;z-index:2!important}
-  #mobile-app .hero-army-split-amount :is(button,input){width:100%!important;min-width:0!important;height:48px!important;min-height:48px!important;box-sizing:border-box!important}
-  #mobile-app .hero-equipment-page:has(.hero-army-split-amount:not([hidden]))>.hero-equipment-grid{height:calc(100% - 64px)!important;max-height:calc(100% - 64px)!important;padding-bottom:8px!important}
-  #mobile-app .hero-army-dock-tools>button{width:100%!important;min-width:0!important;height:48px!important;min-height:48px!important;padding:4px!important;font:var(--ui-font-body-small)!important;align-self:stretch!important}
+  #mobile-app .hero-army-dock-tools>.hero-army-split-amount:not([hidden]){position:absolute;left:8px;right:calc(var(--control-rail,244px) + 8px);bottom:8px;display:grid;grid-template-columns:48px minmax(0,1fr) 48px;gap:8px;height:48px;padding:4px;background:var(--ui-surface-container);z-index:2}
+  #mobile-app .hero-army-split-amount :is(button,input){width:100%;min-width:0;height:48px;min-height:48px;box-sizing:border-box}
+  #mobile-app .hero-equipment-page:has(.hero-army-split-amount:not([hidden]))>.hero-equipment-grid{height:calc(100% - 64px);max-height:calc(100% - 64px);padding-bottom:8px}
+  #mobile-app .hero-army-dock-tools>button{width:100%;min-width:0;height:48px;min-height:48px;padding:4px;font:var(--ui-font-body-small);align-self:stretch}
  }
 }
 
 @layer screen-layouts {
  @container goonk-viewport (orientation:portrait){
-  #mobile-app .hero-equipment-page>.hero-army-dock-tools.ui-action-dock:has(.hero-army-split-amount:not([hidden])){display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;align-items:stretch!important}
-  #mobile-app .hero-army-dock-tools:has(.hero-army-split-amount:not([hidden]))>.hero-army-split-toggle{grid-column:1/-1!important;justify-self:stretch!important}
-  #mobile-app .hero-army-dock-tools>.hero-army-split-amount:not([hidden]){grid-column:1/-1!important;display:grid!important;grid-template-columns:48px minmax(0,1fr) 48px!important;gap:8px!important;min-width:0!important}
-  #mobile-app .hero-army-split-amount :is(button,input){width:100%!important;min-width:0!important;height:48px!important;min-height:48px!important;box-sizing:border-box!important}
+  #mobile-app .hero-equipment-page>.hero-army-dock-tools.ui-action-dock:has(.hero-army-split-amount:not([hidden])){display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:stretch}
+  #mobile-app .hero-army-dock-tools:has(.hero-army-split-amount:not([hidden]))>.hero-army-split-toggle{grid-column:1/-1;justify-self:stretch}
+  #mobile-app .hero-army-dock-tools>.hero-army-split-amount:not([hidden]){grid-column:1/-1;display:grid;grid-template-columns:48px minmax(0,1fr) 48px;gap:8px;min-width:0}
+  #mobile-app .hero-army-split-amount :is(button,input){width:100%;min-width:0;height:48px;min-height:48px;box-sizing:border-box}
  }
 }
 
 @layer screen-layouts {
  @container goonk-viewport (orientation:portrait){
-  #mobile-app .hero-equipment-page>.hero-army-dock-tools.ui-action-dock{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:8px!important;align-items:stretch!important;padding:8px!important;box-sizing:border-box!important}
-  #mobile-app .hero-army-dock-tools>.hero-army-split-toggle{min-width:0!important;flex:none!important;width:auto!important;height:48px!important;display:flex!important;flex-direction:column!important;justify-content:center!important;gap:0!important;font:var(--ui-font-body-small)!important}
-  #mobile-app .hero-army-split-toggle>.MuiCheckbox-root{width:24px!important;min-width:24px!important;height:24px!important;min-height:24px!important;padding:0!important}
-  #mobile-app .hero-army-split-toggle>.MuiTypography-root{font:var(--ui-font-body-small)!important}
-  #mobile-app .hero-army-dock-tools>button{min-width:0!important;width:100%!important;height:48px!important;min-height:48px!important;padding:4px!important;font:var(--ui-font-body-small)!important}
-  #mobile-app .hero-equipment-page>.hero-bag-tabs.ui-compact-navigation{align-items:stretch!important;padding:8px!important;gap:8px!important;box-sizing:border-box!important;height:72px!important;min-height:72px!important}
-  #mobile-app .hero-bag-tabs.ui-compact-navigation>button{height:56px!important;min-height:56px!important;max-height:56px!important;box-sizing:border-box!important;align-self:stretch!important;margin:0!important;padding:4px!important}
+  #mobile-app .hero-equipment-page>.hero-army-dock-tools.ui-action-dock{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;align-items:stretch;padding:8px;box-sizing:border-box}
+  #mobile-app .hero-army-dock-tools>.hero-army-split-toggle{min-width:0;flex:none;width:auto;height:48px;display:flex;flex-direction:column;justify-content:center;gap:0;font:var(--ui-font-body-small)}
+  #mobile-app .hero-army-split-toggle>.MuiCheckbox-root{width:24px;min-width:24px;height:24px;min-height:24px;padding:0}
+  #mobile-app .hero-army-split-toggle>.MuiTypography-root{font:var(--ui-font-body-small)}
+  #mobile-app .hero-army-dock-tools>button{min-width:0;width:100%;height:48px;min-height:48px;padding:4px;font:var(--ui-font-body-small)}
+  #mobile-app .hero-equipment-page>.hero-bag-tabs.ui-compact-navigation{align-items:stretch;padding:8px;gap:8px;box-sizing:border-box;height:72px;min-height:72px}
+  #mobile-app .hero-bag-tabs.ui-compact-navigation>button{height:56px;min-height:56px;max-height:56px;box-sizing:border-box;align-self:stretch;margin:0;padding:4px}
  }
 }
 
 @layer screen-layouts {
- #mobile-app[data-mode=hero] button.mobile-calendar:disabled{opacity:1!important;color:var(--ui-on-surface)!important}
+ #mobile-app[data-mode=hero] button.mobile-calendar:disabled{opacity:1;color:var(--ui-on-surface)}
  @container goonk-viewport (orientation:portrait){
-  #mobile-app .hero-bag-tabs>button{height:56px!important;min-height:56px!important;max-height:56px!important;box-sizing:border-box!important;align-self:stretch!important}
+  #mobile-app .hero-bag-tabs>button{height:56px;min-height:56px;max-height:56px;box-sizing:border-box;align-self:stretch}
  }
 }
 @layer screen-layouts {
  @container goonk-viewport (orientation:portrait){
-  #mobile-app>.mobile-top>.mobile-calendar:not([hidden]){gap:4px!important}
+  #mobile-app>.mobile-top>.mobile-calendar:not([hidden]){gap:4px}
  }
 }
 
 @layer screen-layouts {
  @container goonk-viewport (orientation:portrait){
-  #mobile-app .dialog-presentation[data-kind=commander]:not([data-tree=true]){grid-template-rows:65px minmax(214px,1fr) minmax(0,1fr) 80px!important;gap:8px!important}
-  #mobile-app .dialog-presentation[data-kind=commander]:not([data-tree=true])>.dialog-copy{box-sizing:border-box!important;display:grid!important;grid-template-rows:150px minmax(0,1fr)!important;gap:8px!important;padding:8px!important;overflow:hidden!important;min-height:0!important}
-  #mobile-app .dialog-presentation[data-kind=commander] .commander-summary{height:150px!important;min-height:150px!important;gap:8px!important;align-content:start!important}
-  #mobile-app .dialog-presentation[data-kind=commander] .commander-summary>.commander-preview{height:150px!important;object-fit:contain!important}
-  #mobile-app .dialog-presentation[data-kind=commander] .dialog-choice-description{min-height:0!important;overflow:auto!important;touch-action:pan-y!important;margin:0!important;padding:8px 0 0!important;font:var(--ui-font-body-small)!important}
-  #mobile-app .dialog-presentation[data-kind=commander]>.dialog-choices{box-sizing:border-box!important;min-height:0!important;grid-auto-rows:minmax(88px,1fr)!important;align-content:start!important;gap:8px!important;padding:8px!important}
-  #mobile-app .dialog-presentation[data-kind=commander] .dialog-choice{padding:4px!important;gap:4px!important;font:var(--ui-font-body-small)!important}
-  #mobile-app .dialog-presentation[data-kind=commander] .dialog-choice canvas{width:48px!important;height:48px!important}
-  #mobile-app .dialog-presentation[data-kind=commander] .dialog-choice strong{font:var(--ui-font-body-small)!important;word-break:normal!important;overflow-wrap:normal!important}
-  #mobile-app .dialog-presentation[data-kind=commander]>footer.ui-action-dock{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:8px!important;align-items:stretch!important;padding:8px!important}
-  #mobile-app .dialog-presentation[data-kind=commander]>footer>button{box-sizing:border-box!important;min-width:0!important;width:100%!important;max-width:none!important;height:64px!important;min-height:64px!important;padding:4px!important;font:var(--ui-font-body-small)!important;word-break:normal!important;overflow-wrap:normal!important}
-  #mobile-app .dialog-presentation[data-kind=commander]>footer>[data-dialog-confirm]{order:0!important}
-  #mobile-app .dialog-presentation[data-kind=commander]>footer>[data-commander-tree]{order:1!important}
-  #mobile-app .dialog-presentation[data-kind=commander]>footer>[data-dialog-classic]{order:2!important}
+  #mobile-app .dialog-presentation[data-kind=commander]:not([data-tree=true]){grid-template-rows:65px minmax(214px,1fr) minmax(0,1fr) 80px;gap:8px}
+  #mobile-app .dialog-presentation[data-kind=commander]:not([data-tree=true])>.dialog-copy{box-sizing:border-box;display:grid;grid-template-rows:150px minmax(0,1fr);gap:8px;padding:8px;overflow:hidden;min-height:0}
+  #mobile-app .dialog-presentation[data-kind=commander] .commander-summary{height:150px;min-height:150px;gap:8px;align-content:start}
+  #mobile-app .dialog-presentation[data-kind=commander] .commander-summary>.commander-preview{height:150px;object-fit:contain}
+  #mobile-app .dialog-presentation[data-kind=commander] .dialog-choice-description{min-height:0;overflow:auto;touch-action:pan-y;margin:0;padding:8px 0 0;font:var(--ui-font-body-small)}
+  #mobile-app .dialog-presentation[data-kind=commander]>.dialog-choices{box-sizing:border-box;min-height:0;grid-auto-rows:minmax(88px,1fr);align-content:start;gap:8px;padding:8px}
+  #mobile-app .dialog-presentation[data-kind=commander] .dialog-choice{padding:4px;gap:4px;font:var(--ui-font-body-small)}
+  #mobile-app .dialog-presentation[data-kind=commander] .dialog-choice canvas{width:48px;height:48px}
+  #mobile-app .dialog-presentation[data-kind=commander] .dialog-choice strong{font:var(--ui-font-body-small);word-break:normal;overflow-wrap:normal}
+  #mobile-app .dialog-presentation[data-kind=commander]>footer.ui-action-dock{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;align-items:stretch;padding:8px}
+  #mobile-app .dialog-presentation[data-kind=commander]>footer>button{box-sizing:border-box;min-width:0;width:100%;max-width:none;height:64px;min-height:64px;padding:4px;font:var(--ui-font-body-small);word-break:normal;overflow-wrap:normal}
+  #mobile-app .dialog-presentation[data-kind=commander]>footer>[data-dialog-confirm]{order:0}
+  #mobile-app .dialog-presentation[data-kind=commander]>footer>[data-commander-tree]{order:1}
+  #mobile-app .dialog-presentation[data-kind=commander]>footer>[data-dialog-classic]{order:2}
  }
 }
 @layer screen-layouts {
- #mobile-app .dialog-presentation[data-kind=commander] :is(.dialog-copy,.dialog-choices){border:1px solid var(--ui-primary)!important;border-image:none!important;box-shadow:none!important}
- #mobile-app .dialog-presentation[data-kind=commander] .dialog-choice[aria-pressed=true]{background:var(--ui-primary-container)!important;border-color:#ffe9a8!important}
+ #mobile-app .dialog-presentation[data-kind=commander] :is(.dialog-copy,.dialog-choices){border:1px solid var(--ui-primary);border-image:none;box-shadow:none}
+ #mobile-app .dialog-presentation[data-kind=commander] .dialog-choice[aria-pressed=true]{background:var(--ui-primary-container);border-color:#ffe9a8}
  @container goonk-viewport (orientation:portrait){
-  #mobile-app .dialog-presentation[data-kind=commander]:not([data-tree=true]){grid-template-rows:65px minmax(214px,1fr) 144px 80px!important}
-  #mobile-app .dialog-presentation[data-kind=commander]>.dialog-choices{grid-auto-rows:minmax(0,1fr)!important;grid-template-rows:repeat(2,minmax(0,1fr))!important}
-  #mobile-app .dialog-presentation[data-kind=commander] .dialog-choice canvas{width:24px!important;height:24px!important}
+  #mobile-app .dialog-presentation[data-kind=commander]:not([data-tree=true]){grid-template-rows:65px minmax(214px,1fr) 144px 80px}
+  #mobile-app .dialog-presentation[data-kind=commander]>.dialog-choices{grid-auto-rows:minmax(0,1fr);grid-template-rows:repeat(2,minmax(0,1fr))}
+  #mobile-app .dialog-presentation[data-kind=commander] .dialog-choice canvas{width:24px;height:24px}
  }
  @container goonk-viewport (orientation:landscape){
-  #mobile-app .dialog-presentation[data-kind=commander]>footer.ui-action-dock{display:flex!important;flex-direction:column!important;flex-wrap:nowrap!important;align-items:stretch!important}
-  #mobile-app .dialog-presentation[data-kind=commander]>footer>button{flex:0 0 48px!important;width:100%!important;max-width:none!important;min-height:48px!important;height:48px!important;min-width:0!important;padding:4px!important;font:var(--ui-font-body-small)!important}
-  #mobile-app .dialog-presentation[data-kind=commander]>footer>[data-dialog-confirm]{order:0!important}
-  #mobile-app .dialog-presentation[data-kind=commander]>footer>[data-commander-tree]{order:1!important}
-  #mobile-app .dialog-presentation[data-kind=commander]>footer>[data-dialog-classic]{order:2!important}
+  #mobile-app .dialog-presentation[data-kind=commander]>footer.ui-action-dock{display:flex;flex-direction:column;flex-wrap:nowrap;align-items:stretch}
+  #mobile-app .dialog-presentation[data-kind=commander]>footer>button{flex:0 0 48px;width:100%;max-width:none;min-height:48px;height:48px;min-width:0;padding:4px;font:var(--ui-font-body-small)}
+  #mobile-app .dialog-presentation[data-kind=commander]>footer>[data-dialog-confirm]{order:0}
+  #mobile-app .dialog-presentation[data-kind=commander]>footer>[data-commander-tree]{order:1}
+  #mobile-app .dialog-presentation[data-kind=commander]>footer>[data-dialog-classic]{order:2}
  }
 }
 @layer screen-layouts {
  @container goonk-viewport (orientation:portrait){
-  #mobile-app .dialog-presentation[data-kind=commander] .dialog-choice{gap:0!important;justify-content:center!important}
-  #mobile-app .dialog-presentation[data-kind=commander] .dialog-choice canvas{width:32px!important;height:32px!important;flex:0 0 32px!important}
-  #mobile-app .dialog-presentation[data-kind=commander] .dialog-choice strong{display:block!important;min-width:0!important;width:100%!important;line-height:16px!important;text-align:center!important}
+  #mobile-app .dialog-presentation[data-kind=commander] .dialog-choice{gap:0;justify-content:center}
+  #mobile-app .dialog-presentation[data-kind=commander] .dialog-choice canvas{width:32px;height:32px;flex:0 0 32px}
+  #mobile-app .dialog-presentation[data-kind=commander] .dialog-choice strong{display:block;min-width:0;width:100%;line-height:16px;text-align:center}
  }
 }
 @layer screen-layouts {
  @container goonk-viewport (orientation:landscape){
-  #mobile-app .dialog-presentation[data-kind=commander]:not([data-tree=true]){grid-template-columns:minmax(0,1fr) clamp(288px,44cqw,300px)!important;grid-template-rows:48px minmax(122px,1fr) 64px!important;gap:8px!important}
-  #mobile-app .dialog-presentation[data-kind=commander]:not([data-tree=true])>header{grid-area:1/2!important;padding:0!important;min-height:48px!important;gap:8px!important}
-  #mobile-app .dialog-presentation[data-kind=commander]:not([data-tree=true])>header button{height:48px!important;min-height:48px!important;width:48px!important;padding:0!important}
-  #mobile-app .dialog-presentation[data-kind=commander]:not([data-tree=true])>.dialog-copy{grid-area:1/1/4/2!important;display:grid!important;grid-template-columns:minmax(96px,.8fr) minmax(0,1fr)!important;grid-template-rows:minmax(0,1fr)!important;gap:8px!important;padding:8px!important;box-sizing:border-box!important;overflow:hidden!important;min-height:0!important}
-  #mobile-app .dialog-presentation[data-kind=commander]:not([data-tree=true]) .commander-summary{display:grid!important;grid-template-columns:minmax(0,1fr)!important;grid-template-rows:32px minmax(0,1fr) 56px!important;gap:8px!important;height:100%!important;min-height:0!important}
-  #mobile-app .dialog-presentation[data-kind=commander]:not([data-tree=true]) .commander-summary>h3{grid-area:1/1!important;font:var(--ui-font-body-small)!important;margin:0!important;overflow-wrap:normal!important}
-  #mobile-app .dialog-presentation[data-kind=commander]:not([data-tree=true]) .commander-preview{grid-area:2/1!important;height:100%!important;width:100%!important;min-height:0!important;object-fit:contain!important;margin:0!important}
-  #mobile-app .dialog-presentation[data-kind=commander]:not([data-tree=true]) .commander-facts{grid-area:3/1!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;grid-template-rows:repeat(2,24px)!important;gap:4px!important;margin:0!important}
-  #mobile-app .dialog-presentation[data-kind=commander]:not([data-tree=true]) .commander-facts>div{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:4px!important;padding:0 4px!important}
-  #mobile-app .dialog-presentation[data-kind=commander]:not([data-tree=true]) .commander-facts :is(dt,dd){font:var(--ui-font-body-small)!important;margin:0!important;white-space:nowrap!important}
-  #mobile-app .dialog-presentation[data-kind=commander]:not([data-tree=true]) .dialog-choice-description{grid-area:1/2!important;min-height:0!important;overflow:auto!important;touch-action:pan-y!important;margin:0!important;padding:0!important;border:0!important;font:var(--ui-font-body-small)!important}
-  #mobile-app .dialog-presentation[data-kind=commander]:not([data-tree=true])>.dialog-choices{grid-area:2/2!important;box-sizing:border-box!important;min-height:0!important;display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;grid-template-rows:repeat(2,minmax(0,1fr))!important;grid-auto-rows:minmax(0,1fr)!important;gap:8px!important;padding:8px!important;align-content:stretch!important}
-  #mobile-app .dialog-presentation[data-kind=commander]:not([data-tree=true]) .dialog-choice{padding:0!important;gap:0!important;min-height:48px!important;justify-content:center!important;font:var(--ui-font-body-small)!important}
-  #mobile-app .dialog-presentation[data-kind=commander]:not([data-tree=true]) .dialog-choice canvas{width:32px!important;height:32px!important;flex:0 0 32px!important}
-  #mobile-app .dialog-presentation[data-kind=commander]:not([data-tree=true]) .dialog-choice strong{font:var(--ui-font-body-small)!important;min-width:0!important;line-height:16px!important;word-break:normal!important;overflow-wrap:normal!important}
-  #mobile-app .dialog-presentation[data-kind=commander]:not([data-tree=true])>footer.ui-action-dock{grid-area:3/2!important;display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:8px!important;padding:8px!important;box-sizing:border-box!important}
+  #mobile-app .dialog-presentation[data-kind=commander]:not([data-tree=true]){grid-template-columns:minmax(0,1fr) clamp(288px,44cqw,300px);grid-template-rows:48px minmax(122px,1fr) 64px;gap:8px}
+  #mobile-app .dialog-presentation[data-kind=commander]:not([data-tree=true])>header{grid-area:1/2;padding:0;min-height:48px;gap:8px}
+  #mobile-app .dialog-presentation[data-kind=commander]:not([data-tree=true])>header button{height:48px;min-height:48px;width:48px;padding:0}
+  #mobile-app .dialog-presentation[data-kind=commander]:not([data-tree=true])>.dialog-copy{grid-area:1/1/4/2;display:grid;grid-template-columns:minmax(96px,.8fr) minmax(0,1fr);grid-template-rows:minmax(0,1fr);gap:8px;padding:8px;box-sizing:border-box;overflow:hidden;min-height:0}
+  #mobile-app .dialog-presentation[data-kind=commander]:not([data-tree=true]) .commander-summary{display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:32px minmax(0,1fr) 56px;gap:8px;height:100%;min-height:0}
+  #mobile-app .dialog-presentation[data-kind=commander]:not([data-tree=true]) .commander-summary>h3{grid-area:1/1;font:var(--ui-font-body-small);margin:0;overflow-wrap:normal}
+  #mobile-app .dialog-presentation[data-kind=commander]:not([data-tree=true]) .commander-preview{grid-area:2/1;height:100%;width:100%;min-height:0;object-fit:contain;margin:0}
+  #mobile-app .dialog-presentation[data-kind=commander]:not([data-tree=true]) .commander-facts{grid-area:3/1;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(2,24px);gap:4px;margin:0}
+  #mobile-app .dialog-presentation[data-kind=commander]:not([data-tree=true]) .commander-facts>div{display:flex;align-items:center;justify-content:space-between;gap:4px;padding:0 4px}
+  #mobile-app .dialog-presentation[data-kind=commander]:not([data-tree=true]) .commander-facts :is(dt,dd){font:var(--ui-font-body-small);margin:0;white-space:nowrap}
+  #mobile-app .dialog-presentation[data-kind=commander]:not([data-tree=true]) .dialog-choice-description{grid-area:1/2;min-height:0;overflow:auto;touch-action:pan-y;margin:0;padding:0;border:0;font:var(--ui-font-body-small)}
+  #mobile-app .dialog-presentation[data-kind=commander]:not([data-tree=true])>.dialog-choices{grid-area:2/2;box-sizing:border-box;min-height:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));grid-auto-rows:minmax(0,1fr);gap:8px;padding:8px;align-content:stretch}
+  #mobile-app .dialog-presentation[data-kind=commander]:not([data-tree=true]) .dialog-choice{padding:0;gap:0;min-height:48px;justify-content:center;font:var(--ui-font-body-small)}
+  #mobile-app .dialog-presentation[data-kind=commander]:not([data-tree=true]) .dialog-choice canvas{width:32px;height:32px;flex:0 0 32px}
+  #mobile-app .dialog-presentation[data-kind=commander]:not([data-tree=true]) .dialog-choice strong{font:var(--ui-font-body-small);min-width:0;line-height:16px;word-break:normal;overflow-wrap:normal}
+  #mobile-app .dialog-presentation[data-kind=commander]:not([data-tree=true])>footer.ui-action-dock{grid-area:3/2;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding:8px;box-sizing:border-box}
  }
 }
 /* Shared modal composition owns landscape title/close placement, including
    alternate content such as a commander tree. Native handlers stay attached. */
 @layer screen-layouts {
  @container goonk-viewport (orientation:landscape){
-  #mobile-app .ui-modal-layout{grid-template-columns:minmax(0,1fr) var(--ui-modal-rail,var(--control-rail,244px))!important}
-  #mobile-app .ui-modal-layout>.ui-screen-header{grid-column:2!important;grid-row:1!important;min-width:0!important}
-  #mobile-app .ui-modal-layout>.ui-modal-content{grid-column:1!important;grid-row:1/-1!important;min-height:0!important;min-width:0!important;overflow:auto!important;touch-action:pan-y!important}
-  #mobile-app .ui-modal-layout>footer.ui-action-dock{grid-column:2!important}
-  #mobile-app .dialog-presentation[data-kind=commander][data-tree=true]{--ui-modal-rail:168px;grid-template-rows:56px minmax(0,1fr) auto!important}
-  #mobile-app .dialog-presentation[data-kind=commander][data-tree=true]>.ui-screen-header{display:flex!important;flex-wrap:nowrap!important;align-items:center!important;gap:8px!important;padding:4px!important;height:56px!important;min-height:56px!important}
-  #mobile-app .dialog-presentation[data-kind=commander][data-tree=true]>.ui-screen-header h2{font:var(--ui-font-title-compact)!important;white-space:nowrap!important;flex:1!important;min-width:0!important;margin:0!important}
-  #mobile-app .dialog-presentation[data-kind=commander][data-tree=true]>.ui-screen-header button{flex:0 0 48px!important;width:48px!important;height:48px!important;min-height:48px!important;padding:0!important}
-  #mobile-app .dialog-presentation[data-kind=commander][data-tree=true]>footer.ui-action-dock{grid-row:3!important;gap:8px!important;padding:8px!important}
-  #mobile-app .dialog-presentation[data-kind=commander][data-tree=true]>footer>[data-commander-tree]{height:64px!important;min-height:64px!important;flex-basis:64px!important}
+  #mobile-app .ui-modal-layout{grid-template-columns:minmax(0,1fr) var(--ui-modal-rail,var(--control-rail,244px))}
+  #mobile-app .ui-modal-layout>.ui-screen-header{grid-column:2;grid-row:1;min-width:0}
+  #mobile-app .ui-modal-layout>.ui-modal-content{grid-column:1;grid-row:1/-1;min-height:0;min-width:0;overflow:auto;touch-action:pan-y}
+  #mobile-app .ui-modal-layout>footer.ui-action-dock{grid-column:2}
+  #mobile-app .dialog-presentation[data-kind=commander][data-tree=true]{--ui-modal-rail:168px;grid-template-rows:56px minmax(0,1fr) auto}
+  #mobile-app .dialog-presentation[data-kind=commander][data-tree=true]>.ui-screen-header{display:flex;flex-wrap:nowrap;align-items:center;gap:8px;padding:4px;height:56px;min-height:56px}
+  #mobile-app .dialog-presentation[data-kind=commander][data-tree=true]>.ui-screen-header h2{font:var(--ui-font-title-compact);white-space:nowrap;flex:1;min-width:0;margin:0}
+  #mobile-app .dialog-presentation[data-kind=commander][data-tree=true]>.ui-screen-header button{flex:0 0 48px;width:48px;height:48px;min-height:48px;padding:0}
+  #mobile-app .dialog-presentation[data-kind=commander][data-tree=true]>footer.ui-action-dock{grid-row:3;gap:8px;padding:8px}
+  #mobile-app .dialog-presentation[data-kind=commander][data-tree=true]>footer>[data-commander-tree]{height:64px;min-height:64px;flex-basis:64px}
  }
- #mobile-app .dialog-presentation[data-kind=commander]>footer:has(>[data-dialog-confirm][hidden]){grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ #mobile-app .dialog-presentation[data-kind=commander]>footer:has(>[data-dialog-confirm][hidden]){grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 :is(#mobile-app,#game-menu,[data-ui-app],.ui-popup) :is(.MuiButton-root,.ui-choice-tile,.hero-army-slot):is([aria-pressed=true],.selected),
 :is(#mobile-app,#game-menu,[data-ui-app],.ui-popup) :is(.MuiButton-root,.ui-choice-tile,.hero-army-slot):is([aria-pressed=true],.selected):hover,
-:is(#mobile-app,#game-menu,[data-ui-app],.ui-popup) :is(.MuiButton-root,.ui-choice-tile,.hero-army-slot):is([aria-pressed=true],.selected):focus-visible{border-color:#66bb6a!important;background:#163519!important;outline:2px solid #66bb6a!important;outline-offset:-2px!important;box-shadow:0 0 10px rgba(76,175,80,0.65)!important}
-.MuiDialogActions-root{gap:12px!important;padding:12px 16px!important}
+:is(#mobile-app,#game-menu,[data-ui-app],.ui-popup) :is(.MuiButton-root,.ui-choice-tile,.hero-army-slot):is([aria-pressed=true],.selected):focus-visible{border-color:#66bb6a;background:#163519;outline:2px solid #66bb6a;outline-offset:-2px;box-shadow:0 0 10px rgba(76,175,80,0.65)}
+.MuiDialogActions-root{gap:12px;padding:12px 16px}

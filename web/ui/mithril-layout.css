@@ -1,20 +1,20 @@
 /* Mithril composes the shared MUI surfaces and controls. Only its content
    spacing is local: long prices and site descriptions share one scroll area. */
 @layer ui-composition {
- #mobile-app .mithril-content{display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:var(--ui-space-4)!important;padding:var(--ui-space-4)!important;min-width:0!important;min-height:0!important;overflow-y:auto!important;overscroll-behavior:contain!important;touch-action:pan-y!important;scrollbar-gutter:stable!important;box-sizing:border-box!important}
- #mobile-app .mithril-content :is(p,h3,ol){margin:0!important;word-break:normal!important;overflow-wrap:normal!important;hyphens:none!important}
- #mobile-app .mithril-content p{font:var(--ui-font-body-medium)!important}
- #mobile-app .mithril-content h3{font:var(--ui-font-title-compact)!important}
- #mobile-app .mithril-information{display:grid!important;gap:var(--ui-space-3)!important;min-width:0!important}
- #mobile-app .mithril-information>[data-mithril-prices]{justify-self:start!important;max-width:100%!important}
- #mobile-app #mithril-price-list:not([hidden]){display:grid!important;gap:var(--ui-space-3)!important;padding:var(--ui-space-4)!important;border:1px solid var(--ui-outline)!important;background:var(--ui-surface-container)!important;min-width:0!important;box-sizing:border-box!important}
- #mobile-app #mithril-price-list[hidden]{display:none!important}
- #mobile-app #mithril-price-list ol{display:grid!important;gap:var(--ui-space-3)!important;padding:0 0 0 var(--ui-space-6)!important;font:var(--ui-font-body-medium)!important}
- #mobile-app #mithril-price-list li{padding-left:var(--ui-space-1)!important}
- #mobile-app .mithril-offers{display:grid!important;gap:var(--ui-space-4)!important;align-content:start!important;min-width:0!important}
- #mobile-app .mithril-offers article{display:grid!important;gap:var(--ui-space-3)!important;padding:var(--ui-space-4)!important;min-width:0!important;border:1px solid var(--ui-outline)!important;box-sizing:border-box!important}
- #mobile-app .mithril-offers article>button{justify-self:start!important;max-width:100%!important;min-height:var(--ui-touch)!important}
- #mobile-app .mithril-offers label{display:grid!important;gap:var(--ui-space-2)!important;margin:0!important;min-width:0!important;font:var(--ui-font-label)!important}
- #mobile-app .mithril-offers small{font:var(--ui-font-body-small)!important;color:var(--ui-on-surface-variant)!important}
- #mobile-app .mithril-offers .material-select-host{display:block!important;min-width:0!important;width:100%!important}
+ #mobile-app .mithril-content{display:flex;flex-direction:column;align-items:stretch;gap:var(--ui-space-4);padding:var(--ui-space-4);min-width:0;min-height:0;overflow-y:auto;overscroll-behavior:contain;touch-action:pan-y;scrollbar-gutter:stable;box-sizing:border-box}
+ #mobile-app .mithril-content :is(p,h3,ol){margin:0;word-break:normal;overflow-wrap:normal;hyphens:none}
+ #mobile-app .mithril-content p{font:var(--ui-font-body-medium)}
+ #mobile-app .mithril-content h3{font:var(--ui-font-title-compact)}
+ #mobile-app .mithril-information{display:grid;gap:var(--ui-space-3);min-width:0}
+ #mobile-app .mithril-information>[data-mithril-prices]{justify-self:start;max-width:100%}
+ #mobile-app #mithril-price-list:not([hidden]){display:grid;gap:var(--ui-space-3);padding:var(--ui-space-4);border:1px solid var(--ui-outline);background:var(--ui-surface-container);min-width:0;box-sizing:border-box}
+ #mobile-app #mithril-price-list[hidden]{display:none}
+ #mobile-app #mithril-price-list ol{display:grid;gap:var(--ui-space-3);padding:0 0 0 var(--ui-space-6);font:var(--ui-font-body-medium)}
+ #mobile-app #mithril-price-list li{padding-left:var(--ui-space-1)}
+ #mobile-app .mithril-offers{display:grid;gap:var(--ui-space-4);align-content:start;min-width:0}
+ #mobile-app .mithril-offers article{display:grid;gap:var(--ui-space-3);padding:var(--ui-space-4);min-width:0;border:1px solid var(--ui-outline);box-sizing:border-box}
+ #mobile-app .mithril-offers article>button{justify-self:start;max-width:100%;min-height:var(--ui-touch)}
+ #mobile-app .mithril-offers label{display:grid;gap:var(--ui-space-2);margin:0;min-width:0;font:var(--ui-font-label)}
+ #mobile-app .mithril-offers small{font:var(--ui-font-body-small);color:var(--ui-on-surface-variant)}
+ #mobile-app .mithril-offers .material-select-host{display:block;min-width:0;width:100%}
 }

@@ -8,12 +8,15 @@ export function muiOnlyViolations(files,read){return files.filter(file=>/^(?:src
 // Native adapters may keep canvas/host/data nodes, but visible action controls
 // must be produced by the MUI adapter rather than a new native button factory.
 export function nativeActionViolations(files,read){return files.filter(file=>/^web\/.*\.mjs$/.test(file)&&!file.startsWith('web/ui/')).filter(file=>/document\.createElement\(\s*['"]button['"]\s*\)/u.test(read(file)));}
+export function importantViolations(files,read){return files.filter(file=>/^(?:web|src)\/.*\.css$/.test(file)||file==='src/ui/theme.mjs').filter(file=>/!\s*important\b/iu.test(read(file)));}
 export function violations(files,read){return files.filter(file=>{if(!isUiModule(file))return false;const source=read(file);return requiresUiLibrary(file,source)&&!importsUiLibrary(source);});}
 if(process.argv[1]===fileURLToPath(import.meta.url)){
  const staged=process.argv.includes('--staged'),args=staged?['diff','--cached','--name-only','--diff-filter=ACMR','-z']:['diff','HEAD','--name-only','--diff-filter=ACMR','-z'];
  const files=execFileSync('git',args,{encoding:'utf8'}).split('\0').filter(Boolean);
  const read=file=>staged?execFileSync('git',['show',':'+file],{encoding:'utf8',maxBuffer:32*1024*1024}):fs.readFileSync(file,'utf8');
  const broken=[...violations(files,read),...muiOnlyViolations(files,read),...nativeActionViolations(files,read)];
+ const importantBroken=importantViolations(files,read);
  if(broken.length){console.error('UI : réutilise web/ui/components.mjs avant de créer ou modifier un écran. Consulte docs/ui-components.md.\n'+broken.map(file=>' - '+file).join('\n'));process.exitCode=1;}
- else if(files.some(file=>/^web\//.test(file)))console.log('UI : imports de la bibliothèque commune vérifiés. La validation visuelle et les tests mobiles restent nécessaires.');
+ if(importantBroken.length){console.error('CSS : !important est interdit. Gère la priorité via les @layer et la spécificité :\n'+importantBroken.map(file=>' - '+file).join('\n'));process.exitCode=1;}
+ if(!broken.length&&!importantBroken.length&&files.some(file=>/^web\//.test(file)))console.log('UI : imports de la bibliothèque commune vérifiés. La validation visuelle et les tests mobiles restent nécessaires.');
 }

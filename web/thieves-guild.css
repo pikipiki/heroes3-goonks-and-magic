@@ -1,22 +1,23 @@
+@layer legacy-base {
 /* Intelligence is a comparison table plus one readable player profile, never
    eight narrow columns of names. These rules replace the legacy compact grid. */
-html.goonk-mobile #mobile-viewport #mobile-app .town-service[data-kind=thieves-guild]{display:grid!important;grid-template-columns:minmax(0,1fr)!important;grid-template-rows:auto 48px minmax(0,1fr) auto!important;gap:8px!important;padding:8px!important;border-width:4px;min-height:0;overflow:hidden}
-#mobile-viewport #mobile-app .town-service[data-kind=thieves-guild]>.ui-screen-header{--ui-header-padding:8px;grid-area:1/1!important;display:flex!important;flex-direction:row!important;align-items:center!important;justify-content:space-between;gap:8px!important;padding:8px!important;min-height:64px}
+html.goonk-mobile #mobile-viewport #mobile-app .town-service[data-kind=thieves-guild]{display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:auto 48px minmax(0,1fr) auto;gap:8px;padding:8px;border-width:4px;min-height:0;overflow:hidden}
+#mobile-viewport #mobile-app .town-service[data-kind=thieves-guild]>.ui-screen-header{--ui-header-padding:8px;grid-area:1/1;display:flex;flex-direction:row;align-items:center;justify-content:space-between;gap:8px;padding:8px;min-height:64px}
 #mobile-viewport #mobile-app .town-service[data-kind=thieves-guild]>.ui-screen-header h2{flex:1;min-width:0}
-#mobile-viewport #mobile-app .town-service[data-kind=thieves-guild]>.ui-action-dock{grid-area:4/1!important;display:grid!important;grid-template-columns:minmax(0,1fr)!important;gap:4px!important;padding:8px!important}
-#mobile-viewport #mobile-app .town-service[data-kind=thieves-guild] .guild-help{font:var(--ui-font-label)!important;margin:0;text-align:center;white-space:normal}
+#mobile-viewport #mobile-app .town-service[data-kind=thieves-guild]>.ui-action-dock{grid-area:4/1;display:grid;grid-template-columns:minmax(0,1fr);gap:4px;padding:8px}
+#mobile-viewport #mobile-app .town-service[data-kind=thieves-guild] .guild-help{font:var(--ui-font-label);margin:0;text-align:center;white-space:normal}
 #mobile-viewport #mobile-app .guild-workspace{grid-area:3/1;display:grid;grid-template-rows:minmax(0,1fr);gap:8px;min-width:0;min-height:0;overflow:hidden}
 #mobile-viewport #mobile-app .guild-view-tabs{grid-area:2/1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;min-width:0;min-height:0}
-#mobile-viewport #mobile-app .guild-view-tabs>button{min-width:0!important;min-height:48px!important;padding:8px 4px!important;font:var(--ui-font-label)!important;white-space:nowrap}
-#mobile-viewport #mobile-app .guild-workspace>[hidden]{display:none!important}
-#mobile-viewport #mobile-app .guild-workspace>.guild-rankings{grid-area:1/1!important;min-height:0;min-width:0;overflow:auto;overscroll-behavior:contain;touch-action:pan-y}
+#mobile-viewport #mobile-app .guild-view-tabs>button{min-width:0;min-height:48px;padding:8px 4px;font:var(--ui-font-label);white-space:nowrap}
+#mobile-viewport #mobile-app .guild-workspace>[hidden]{display:none}
+#mobile-viewport #mobile-app .guild-workspace>.guild-rankings{grid-area:1/1;min-height:0;min-width:0;overflow:auto;overscroll-behavior:contain;touch-action:pan-y}
 #mobile-viewport #mobile-app .guild-workspace>.guild-rankings table{width:100%;height:100%;margin:0;table-layout:fixed;border-collapse:collapse;font:var(--ui-font-body);color:var(--ui-on-surface)}
-#mobile-viewport #mobile-app .guild-workspace>.guild-rankings :is(th,td){min-width:0!important;padding:0 2px!important;border-bottom:1px solid #705733;vertical-align:middle;position:static;overflow:visible;text-align:center}
-#mobile-viewport #mobile-app .guild-workspace>.guild-rankings th:first-child{width:96px!important;text-align:left;font:var(--ui-font-label);background:#362316}
+#mobile-viewport #mobile-app .guild-workspace>.guild-rankings :is(th,td){min-width:0;padding:0 2px;border-bottom:1px solid #705733;vertical-align:middle;position:static;overflow:visible;text-align:center}
+#mobile-viewport #mobile-app .guild-workspace>.guild-rankings th:first-child{width:96px;text-align:left;font:var(--ui-font-label);background:#362316}
 #mobile-viewport #mobile-app .guild-workspace>.guild-rankings thead th{height:32px;font:var(--ui-font-label)}
-#mobile-viewport #mobile-app .guild-workspace>.guild-rankings .kingdom-flag{display:block!important;width:16px!important;height:12px!important;margin:0 auto 4px!important}
+#mobile-viewport #mobile-app .guild-workspace>.guild-rankings .kingdom-flag{display:block;width:16px;height:12px;margin:0 auto 4px}
 #mobile-viewport #mobile-app .guild-workspace>.guild-rankings abbr{text-decoration:none;white-space:nowrap}
-#mobile-viewport #mobile-app .guild-workspace>.guild-rankings .guild-rank{display:inline;padding:0!important;border:0!important;background:none!important;font:var(--ui-font-body)}
+#mobile-viewport #mobile-app .guild-workspace>.guild-rankings .guild-rank{display:inline;padding:0;border:0;background:none;font:var(--ui-font-body)}
 #mobile-viewport #mobile-app .guild-details{grid-area:1/1;display:grid;grid-template-rows:56px minmax(0,1fr);gap:8px;min-height:0;min-width:0;overflow:hidden}
 #mobile-viewport #mobile-app .guild-player-field{min-width:0;display:grid;position:relative}
 #mobile-viewport #mobile-app .guild-field-label{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
@@ -34,25 +35,25 @@ html.goonk-mobile #mobile-viewport #mobile-app .town-service[data-kind=thieves-g
 #mobile-viewport #mobile-app .guild-profile>.ui-stat-grid dd{margin:0;font:var(--ui-font-body);text-align:center}
 #mobile-viewport #mobile-app .guild-profile>.ui-stat-grid canvas{display:block;width:16px;height:16px}
 @container goonk-viewport (orientation:landscape){
- html.goonk-mobile #mobile-viewport #mobile-app .town-service[data-kind=thieves-guild]{grid-template-columns:minmax(0,1fr) var(--control-rail,240px)!important;grid-template-rows:auto 48px minmax(0,1fr) auto!important;row-gap:4px!important}
- #mobile-viewport #mobile-app .town-service[data-kind=thieves-guild]>.ui-screen-header{--ui-header-padding:var(--mobile-top-height,48px) 8px 0;--ui-header-min:48px;grid-area:1/2!important;padding:var(--mobile-top-height,48px) 8px 0!important;min-height:48px}
- #mobile-viewport #mobile-app .town-service[data-kind=thieves-guild]>.ui-action-dock{grid-area:4/2!important;padding:0!important}
+ html.goonk-mobile #mobile-viewport #mobile-app .town-service[data-kind=thieves-guild]{grid-template-columns:minmax(0,1fr) var(--control-rail,240px);grid-template-rows:auto 48px minmax(0,1fr) auto;row-gap:4px}
+ #mobile-viewport #mobile-app .town-service[data-kind=thieves-guild]>.ui-screen-header{--ui-header-padding:var(--mobile-top-height,48px) 8px 0;--ui-header-min:48px;grid-area:1/2;padding:var(--mobile-top-height,48px) 8px 0;min-height:48px}
+ #mobile-viewport #mobile-app .town-service[data-kind=thieves-guild]>.ui-action-dock{grid-area:4/2;padding:0}
  #mobile-viewport #mobile-app .guild-workspace{grid-area:1/1/5/2}
  #mobile-viewport #mobile-app .guild-view-tabs{grid-area:2/2}
  #mobile-viewport #mobile-app .guild-help{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
- #mobile-viewport #mobile-app .guild-workspace>.guild-rankings th:first-child{width:132px!important}
+ #mobile-viewport #mobile-app .guild-workspace>.guild-rankings th:first-child{width:132px}
  #mobile-viewport #mobile-app .guild-profile-identity{flex-direction:row;text-align:left}
  #mobile-viewport #mobile-app .guild-profile-card{padding:4px}
  #mobile-viewport #mobile-app .guild-profile-identity>:is(canvas,.unit-portrait){width:32px;height:32px;flex-basis:32px}
 }
 
-#mobile-viewport #mobile-app .town-service[data-kind=thieves-guild]>.ui-screen-header h2{font:var(--ui-font-title)!important}
-@container goonk-viewport (orientation:landscape){#mobile-viewport #mobile-app .town-service[data-kind=thieves-guild]>.ui-screen-header h2{font:var(--ui-font-body)!important}}
+#mobile-viewport #mobile-app .town-service[data-kind=thieves-guild]>.ui-screen-header h2{font:var(--ui-font-title)}
+@container goonk-viewport (orientation:landscape){#mobile-viewport #mobile-app .town-service[data-kind=thieves-guild]>.ui-screen-header h2{font:var(--ui-font-body)}}
 
-@container goonk-viewport (orientation:portrait) and (max-height:650px){#mobile-viewport #mobile-app .town-service[data-kind=thieves-guild]{gap:4px!important;padding:4px!important}#mobile-viewport #mobile-app .town-service[data-kind=thieves-guild]>.ui-action-dock .guild-help{display:none}}
+@container goonk-viewport (orientation:portrait) and (max-height:650px){#mobile-viewport #mobile-app .town-service[data-kind=thieves-guild]{gap:4px;padding:4px}#mobile-viewport #mobile-app .town-service[data-kind=thieves-guild]>.ui-action-dock .guild-help{display:none}}
 /* Reserve room for whole translated row labels rather than compressing them
    into extra lines. Eight 20px numeric columns still fit a 320px viewport. */
-#mobile-viewport #mobile-app .guild-workspace>.guild-rankings th:first-child{width:132px!important}
+#mobile-viewport #mobile-app .guild-workspace>.guild-rankings th:first-child{width:132px}
 
 /* Contextual controls stay with the chart; the shared rail owns the title. */
 #mobile-viewport #mobile-app .guild-view-tabs.MuiTabs-root{display:block;min-height:48px}
@@ -62,8 +63,10 @@ html.goonk-mobile #mobile-viewport #mobile-app .town-service[data-kind=thieves-g
 #mobile-viewport #mobile-app .guild-radar :is(.guild-radar-explanation,.guild-radar-status,.guild-radar-legend){font:var(--ui-font-label);margin:8px 0;color:var(--ui-on-surface)}
 #mobile-viewport #mobile-app .guild-radar-legend{white-space:normal}
 #mobile-viewport #mobile-app .guild-radar-chart{height:300px;width:100%;min-width:0}
-#mobile-viewport #mobile-app .guild-radar-chart[hidden]{display:none!important}
+#mobile-viewport #mobile-app .guild-radar-chart[hidden]{display:none}
 #mobile-viewport #mobile-app .guild-radar-summary{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
 
 #mobile-viewport #mobile-app .guild-radar-legend [data-guild-series="0"]{color:#f8d575}
 #mobile-viewport #mobile-app .guild-radar-legend [data-guild-series="1"]{color:#82d7ef}
+
+}

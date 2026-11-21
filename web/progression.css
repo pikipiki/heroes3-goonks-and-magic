@@ -1,5 +1,6 @@
+@layer legacy-base {
 #mobile-app .progression-page{position:absolute;inset:0;z-index:35;box-sizing:border-box;display:grid;grid-template-rows:auto minmax(0,1fr) auto;gap:8px;padding:10px;border:8px solid #bb9956;border-image:url('./h3-theme/recruit-frame.png') 12 stretch;background:#25170f url('./h3-theme/stone.png');color:#ffe6af;overflow:hidden}
-#mobile-app .progression-page[hidden]{display:none!important}
+#mobile-app .progression-page[hidden]{display:none}
 #mobile-app .progression-page>header{padding:8px 10px;border:2px ridge #c5a15a;background:linear-gradient(#762719,#36160d);min-width:0}
 #mobile-app .progression-page h2{margin:0;font-size:clamp(18px,3vw,27px);line-height:1.15}
 #mobile-app .progression-scroll{overflow:auto;min-width:0;min-height:0;overscroll-behavior:contain;touch-action:pan-y;padding:2px 4px 10px;scrollbar-gutter:stable}
@@ -9,8 +10,8 @@
 #mobile-app .progression-family{display:grid;gap:5px;margin-bottom:10px;font-size:var(--ui-type-body2)}
 #mobile-app .progression-family select{min-height:44px;width:100%;max-width:100%;font-size:var(--ui-type-body1);background:#291a10;color:#ffe9b5;border:2px ridge #b99a56;padding:6px}
 #mobile-app .progression-offers,#mobile-app .troop-inventory{display:grid;grid-template-columns:minmax(0,1fr);gap:8px;align-content:start}
-#mobile-app .progression-offer{display:grid;grid-template-columns:minmax(0,1fr);gap:6px;align-items:center;min-width:0;min-height:74px;padding:10px!important;border:3px ridge #aa8647;background:linear-gradient(#48301e,#21150d);color:#ffedc0;font-size:var(--ui-type-body2);line-height:1.4;text-align:left;white-space:pre-line;overflow-wrap:anywhere}
-#mobile-app .progression-offer[hidden]{display:none!important}
+#mobile-app .progression-offer{display:grid;grid-template-columns:minmax(0,1fr);gap:6px;align-items:center;min-width:0;min-height:74px;padding:10px;border:3px ridge #aa8647;background:linear-gradient(#48301e,#21150d);color:#ffedc0;font-size:var(--ui-type-body2);line-height:1.4;text-align:left;white-space:pre-line;overflow-wrap:anywhere}
+#mobile-app .progression-offer[hidden]{display:none}
 #mobile-app .progression-offer:has(canvas){grid-template-columns:48px minmax(0,1fr)}
 #mobile-app .progression-offer canvas{width:48px;height:48px;grid-row:span 2;image-rendering:pixelated}
 #mobile-app .progression-offer[aria-pressed=true]{border-color:#ffe28c;background:linear-gradient(#7b321d,#36180f);outline:1px solid #ffe28c;outline-offset:-6px}
@@ -25,7 +26,7 @@
 #mobile-app .troop-current canvas{width:48px;height:48px;float:left;margin-right:8px;image-rendering:pixelated}
 #mobile-app .troop-current [data-troop-remove]{width:100%;margin-top:6px}
 #mobile-app .troop-inventory .progression-offer span{font-size:var(--ui-type-caption)}
-#mobile-app:is([data-troop-equipment],[data-progression-choice])>.mobile-top,#mobile-app:is([data-troop-equipment],[data-progression-choice])>.mobile-nav{visibility:hidden!important;pointer-events:none!important}
+#mobile-app:is([data-troop-equipment],[data-progression-choice])>.mobile-top,#mobile-app:is([data-troop-equipment],[data-progression-choice])>.mobile-nav{visibility:hidden;pointer-events:none}
 @container goonk-viewport (orientation:landscape){
  #mobile-app .progression-page{grid-template-columns:minmax(0,1fr) var(--control-rail,180px);grid-template-rows:auto minmax(0,1fr)}
  #mobile-app .progression-page>header{grid-column:1;grid-row:1}
@@ -34,7 +35,7 @@
  #mobile-app .progression-page footer p{max-height:50%;margin-bottom:auto}
 }
 @media(min-width:900px){#mobile-app .progression-offers,#mobile-app .troop-inventory{grid-template-columns:repeat(2,minmax(0,1fr))}}
-#mobile-app[data-troop-deployment]>.mobile-top,#mobile-app[data-troop-deployment]>.mobile-nav{visibility:hidden!important;pointer-events:none!important}
+#mobile-app[data-troop-deployment]>.mobile-top,#mobile-app[data-troop-deployment]>.mobile-nav{visibility:hidden;pointer-events:none}
 #mobile-app .deployment-quantity{display:flex;align-items:center;gap:12px;justify-content:space-between}
 #mobile-app .deployment-quantity input{box-sizing:border-box;min-height:44px;width:100px;font-size:var(--ui-type-titleSmall);background:#291a10;color:#ffe9b5;border:2px ridge #b99a56;padding:6px}
 #mobile-app .deployment-quantity-tools{display:grid;grid-template-columns:44px minmax(40px,1fr) 44px 52px;align-items:center;gap:6px;margin:6px 0}
@@ -54,7 +55,7 @@
  #mobile-app .troop-deployment-page>footer{grid-column:2;grid-row:2;min-height:0}
  #mobile-app .troop-deployment-page h2{font-size:var(--ui-type-statLarge)}
 }
-#mobile-app[data-troop-actions]>.mobile-top,#mobile-app[data-troop-actions]>.mobile-nav{visibility:hidden!important;pointer-events:none!important}
+#mobile-app[data-troop-actions]>.mobile-top,#mobile-app[data-troop-actions]>.mobile-nav{visibility:hidden;pointer-events:none}
 #mobile-app .troop-actions-page{z-index:40}
 #mobile-app .troop-action-unit{display:flex;align-items:center;gap:12px;padding:12px;border:2px ridge #b99a56;background:#21160dcc}
 #mobile-app .troop-action-unit>:is(img,canvas,span){width:64px;height:72px;object-fit:contain;flex-shrink:0}
@@ -72,3 +73,5 @@
 }
 #mobile-app .troop-actions-page button{border:2px ridge #b99a56;border-radius:0;background:linear-gradient(#5a3b20,#2b1c10);color:#ffe6af;font-family:Georgia,serif}
 #mobile-app .troop-actions-page button.primary{background:linear-gradient(#8c3020,#48170e);color:#fff0ba;border-color:#efd08a}
+
+}

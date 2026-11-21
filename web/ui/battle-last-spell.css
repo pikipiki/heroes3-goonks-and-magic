@@ -1,8 +1,8 @@
 /* A non-interactive battle status, independent of controls and canvas geometry. */
 @layer ui-composition {
- #mobile-app .ui-battle-last-spell{display:none!important;pointer-events:none!important}
- #mobile-app[data-mode=battle] .ui-battle-last-spell:not([hidden]){display:flex!important;justify-content:center!important;position:absolute!important;top:4px!important;left:48px!important;right:48px!important;z-index:3!important;min-width:0!important}
- #mobile-app[data-mode=battle][data-battle-layout=dual] .ui-battle-last-spell:not([hidden]){top:28px!important}
- #mobile-app .ui-battle-last-spell-label{margin:0!important;padding:4px 8px!important;max-width:100%!important;box-sizing:border-box!important;background:var(--ui-surface)!important;border:1px solid var(--ui-outline)!important;border-radius:0!important;color:var(--ui-on-surface)!important;font:var(--ui-font-body-small)!important;text-align:center!important;white-space:normal!important;word-break:normal!important;overflow-wrap:normal!important;hyphens:none!important;box-shadow:0 2px 4px #0005!important}
- #mobile-app .ui-battle-last-spell-label>span:first-child{color:var(--ui-on-surface-variant)!important}
+ #mobile-app .ui-battle-last-spell{display:none;pointer-events:none}
+ #mobile-app[data-mode=battle] .ui-battle-last-spell:not([hidden]){display:flex;justify-content:center;position:absolute;top:4px;left:48px;right:48px;z-index:3;min-width:0}
+ #mobile-app[data-mode=battle][data-battle-layout=dual] .ui-battle-last-spell:not([hidden]){top:28px}
+ #mobile-app .ui-battle-last-spell-label{margin:0;padding:4px 8px;max-width:100%;box-sizing:border-box;background:var(--ui-surface);border:1px solid var(--ui-outline);border-radius:0;color:var(--ui-on-surface);font:var(--ui-font-body-small);text-align:center;white-space:normal;word-break:normal;overflow-wrap:normal;hyphens:none;box-shadow:0 2px 4px #0005}
+ #mobile-app .ui-battle-last-spell-label>span:first-child{color:var(--ui-on-surface-variant)}
 }

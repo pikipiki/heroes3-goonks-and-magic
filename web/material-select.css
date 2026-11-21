@@ -1,3 +1,6 @@
+@layer legacy-screen {
 /* MUI owns Select/Menu metrics and states through src/ui/theme.mjs. */
-select.material-select-source{display:none!important}
+select.material-select-source{display:none}
 .material-select-host{display:block;width:100%;min-width:0}
+
+}

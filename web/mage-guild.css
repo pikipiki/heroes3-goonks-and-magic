@@ -52,27 +52,27 @@ html.goonk-mobile #mobile-app[data-mode=mage-guild]{grid-template-columns:minmax
 }
 
 @layer ui-composition {
- #mobile-app[data-mode=mage-guild],#mobile-app[data-mode=mage-guild] .mobile-play{touch-action:pan-y!important}
- #mobile-app .mobile-mage-guild.ui-screen-layout{grid-template-rows:auto 48px minmax(0,1fr) auto!important}
+ #mobile-app[data-mode=mage-guild],#mobile-app[data-mode=mage-guild] .mobile-play{touch-action:pan-y}
+ #mobile-app .mobile-mage-guild.ui-screen-layout{grid-template-rows:auto 48px minmax(0,1fr) auto}
  #mobile-app .mobile-mage-guild>.mage-guild-level-field{grid-column:1;grid-row:2;width:100%;max-width:none}
- #mobile-app .mobile-mage-guild>.mage-guild-library.ui-screen-content{grid-column:1;grid-row:3;display:grid!important;grid-template-rows:minmax(0,1fr)!important;min-height:0}
- #mobile-app .mobile-mage-guild .mage-guild-shelf{grid-area:1/1!important;grid-template-rows:minmax(0,1fr)!important;min-height:0}
+ #mobile-app .mobile-mage-guild>.mage-guild-library.ui-screen-content{grid-column:1;grid-row:3;display:grid;grid-template-rows:minmax(0,1fr);min-height:0}
+ #mobile-app .mobile-mage-guild .mage-guild-shelf{grid-area:1/1;grid-template-rows:minmax(0,1fr);min-height:0}
  #mobile-app .mobile-mage-guild>.ui-action-dock{grid-column:1;grid-row:4}
  #mobile-app .mobile-mage-guild .mage-guild-title-art{width:28px;height:24px;object-fit:contain;flex:none}
  @container goonk-viewport (orientation:landscape) {
-  #mobile-app .mobile-mage-guild.ui-screen-layout{grid-template-rows:auto 48px minmax(0,1fr) auto!important}
+  #mobile-app .mobile-mage-guild.ui-screen-layout{grid-template-rows:auto 48px minmax(0,1fr) auto}
   #mobile-app .mobile-mage-guild>.mage-guild-level-field{grid-column:2;grid-row:2}
-  #mobile-app .mobile-mage-guild>.mage-guild-library.ui-screen-content{grid-area:1/1/-1/2!important;display:grid!important;grid-template-rows:minmax(0,1fr)!important}
+  #mobile-app .mobile-mage-guild>.mage-guild-library.ui-screen-content{grid-area:1/1/-1/2;display:grid;grid-template-rows:minmax(0,1fr)}
   #mobile-app .mobile-mage-guild>.ui-action-dock{grid-column:2;grid-row:4}
  }
 }
 
 @layer ui-composition {
- #mobile-app[data-mage-guild-view=classic] .mobile-mage-guild.ui-screen-layout{inset:0!important;height:100%;box-sizing:border-box!important;grid-template-rows:auto minmax(0,1fr) auto!important}
+ #mobile-app[data-mage-guild-view=classic] .mobile-mage-guild.ui-screen-layout{inset:0;height:100%;box-sizing:border-box;grid-template-rows:auto minmax(0,1fr) auto}
  #mobile-app .mobile-mage-guild>.mage-guild-native-viewport.ui-screen-content{grid-column:1;grid-row:2;position:relative;min-width:0;min-height:0;overflow:hidden;touch-action:none}
- #mobile-app[data-mage-guild-view=classic] .mage-guild-native-viewport>#mobile-scene{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;visibility:visible;touch-action:none}
+ #mobile-app[data-mage-guild-view=classic] .mage-guild-native-viewport>#mobile-scene{position:absolute;inset:0;width:100%;height:100%;visibility:visible;touch-action:none}
  @container goonk-viewport (orientation:landscape){
-  #mobile-app .mobile-mage-guild>.mage-guild-native-viewport.ui-screen-content{grid-area:1/1/-1/2!important}
-  #mobile-app[data-mage-guild-view=classic] .mobile-mage-guild>.ui-action-dock{grid-row:3!important}
+  #mobile-app .mobile-mage-guild>.mage-guild-native-viewport.ui-screen-content{grid-area:1/1/-1/2}
+  #mobile-app[data-mage-guild-view=classic] .mobile-mage-guild>.ui-action-dock{grid-row:3}
  }
 }

@@ -1,9 +1,10 @@
+@layer legacy-screen {
 .hero-equipment-page{position:absolute;inset:0;display:grid;grid-template-rows:78px 50px 48px minmax(0,1fr) minmax(78px,auto);background:#291d13 url('./h3-theme/stone.png');color:#ffebbb;overflow:hidden;z-index:4}
 .hero-equipment-page[hidden]{display:none}
 #mobile-app[data-mode=hero]{grid-template-rows:auto minmax(0,1fr);grid-template-columns:minmax(0,1fr)}
 #mobile-app[data-mode=hero] .mobile-play{grid-column:1;grid-row:2}
 #mobile-app[data-mode=hero][data-hero-view=mobile] .mobile-play{touch-action:auto}
-#mobile-app[data-mode=hero] #mobile-scene,#mobile-app[data-mode=hero] .scene-tools,#mobile-app[data-mode=hero] .scene-hint,#mobile-app[data-mode=hero] .mobile-nav,#mobile-app[data-mode=hero] .mobile-resources,#mobile-app[data-mode=hero] .mobile-calendar{display:none!important}
+#mobile-app[data-mode=hero] #mobile-scene,#mobile-app[data-mode=hero] .scene-tools,#mobile-app[data-mode=hero] .scene-hint,#mobile-app[data-mode=hero] .mobile-nav,#mobile-app[data-mode=hero] .mobile-resources,#mobile-app[data-mode=hero] .mobile-calendar{display:none}
 .hero-card-head{display:flex;align-items:center;gap:10px;padding:6px 10px;border-bottom:1px solid #9a7e46;min-width:0}
 .hero-card-head .hero-face{width:52px;height:60px;flex:0 0 52px;border:2px ridge #d7b66e}
 .hero-card-head>div{flex:1;min-width:0}.hero-card-head h2{font-size:var(--ui-type-statLarge);line-height:1.1;margin:0;color:#ffe5a2;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
@@ -18,12 +19,12 @@
 .hero-vitals .hero-icon{width:14px;height:14px}
 
 /* Tabs: fixed touch axis, horizontal scroll only, no dragging/lifting */
-.hero-bag-tabs{display:flex;flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;gap:5px;padding:4px 8px 6px;border-bottom:2px solid #5d421d;touch-action:pan-x!important;user-select:none!important;-webkit-user-select:none!important;-webkit-user-drag:none!important;-webkit-touch-callout:none!important;overscroll-behavior-y:contain;overscroll-behavior-x:auto}
+.hero-bag-tabs{display:flex;flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;gap:5px;padding:4px 8px 6px;border-bottom:2px solid #5d421d;touch-action:pan-x;user-select:none;-webkit-user-select:none;-webkit-user-drag:none;-webkit-touch-callout:none;overscroll-behavior-y:contain;overscroll-behavior-x:auto}
 .hero-bag-tabs::-webkit-scrollbar{display:none}
 #mobile-app .hero-bag-tabs [data-hero-source-rebalance]{flex:0 0 auto;min-height:44px;background:#382705;border-color:#c29415;color:#fff3cd}
-.hero-bag-tabs *{user-select:none!important;-webkit-user-select:none!important;-webkit-touch-callout:none!important;-webkit-user-drag:none!important;pointer-events:none}
-#mobile-app .hero-bag-tabs button{pointer-events:auto;flex:1 0 auto;font-size:clamp(11px,3.2vw,13px);line-height:1.1;padding:6px 9px;min-width:0;white-space:nowrap;touch-action:pan-x!important;user-select:none!important;-webkit-user-select:none!important;-webkit-user-drag:none!important;-webkit-touch-callout:none!important;-webkit-tap-highlight-color:transparent;border-radius:4px;border:2px solid transparent;border-image:none!important;font-weight:700;margin-bottom:2px;transition:all .15s ease}
-#mobile-app .hero-bag-tabs [data-hero-commander]{flex:0 0 44px;min-width:44px;display:grid;place-items:center;padding:0;border-image:none!important;background:#311b2e!important;border:2px solid #9c27b0!important}
+.hero-bag-tabs *{user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;-webkit-user-drag:none;pointer-events:none}
+#mobile-app .hero-bag-tabs button{pointer-events:auto;flex:1 0 auto;font-size:clamp(11px,3.2vw,13px);line-height:1.1;padding:6px 9px;min-width:0;white-space:nowrap;touch-action:pan-x;user-select:none;-webkit-user-select:none;-webkit-user-drag:none;-webkit-touch-callout:none;-webkit-tap-highlight-color:transparent;border-radius:4px;border:2px solid transparent;border-image:none;font-weight:700;margin-bottom:2px;transition:all .15s ease}
+#mobile-app .hero-bag-tabs [data-hero-commander]{flex:0 0 44px;min-width:44px;display:grid;place-items:center;padding:0;border-image:none;background:#311b2e;border:2px solid #9c27b0}
 .hero-bag-tabs [data-hero-commander] .hero-icon{width:36px;height:36px}
 .henchman-sheet{grid-column:1/-1;min-width:0;display:grid;gap:12px}
 .henchman-sheet p{white-space:normal;line-height:1.4}
@@ -33,20 +34,20 @@
 .henchman-candidates canvas,.henchman-candidates img{max-width:64px;max-height:64px}
 
 /* Distinct Vibrant Category Tab Colors */
-#mobile-app .hero-bag-tabs [data-hero-tab="army"]{border-image:none!important;background:#142c17!important;border:2px solid #388e3c!important;color:#c8e6c9!important}
-#mobile-app .hero-bag-tabs [data-hero-tab="army"][aria-pressed=true]{border-image:none!important;background:linear-gradient(180deg,#2e7d32 0%,#18451c 100%)!important;border:2px solid #81c784!important;box-shadow:inset 0 0 0 1px #81c784,0 0 10px rgba(76,175,80,0.65)!important;color:#ffffff!important}
+#mobile-app .hero-bag-tabs [data-hero-tab="army"]{border-image:none;background:#142c17;border:2px solid #388e3c;color:#c8e6c9}
+#mobile-app .hero-bag-tabs [data-hero-tab="army"][aria-pressed=true]{border-image:none;background:linear-gradient(180deg,#2e7d32 0%,#18451c 100%);border:2px solid #81c784;box-shadow:inset 0 0 0 1px #81c784,0 0 10px rgba(76,175,80,0.65);color:#ffffff}
 
-#mobile-app .hero-bag-tabs [data-hero-tab="worn"]{border-image:none!important;background:#382705!important;border:2px solid #c29415!important;color:#fff3cd!important}
-#mobile-app .hero-bag-tabs [data-hero-tab="worn"][aria-pressed=true]{border-image:none!important;background:linear-gradient(180deg,#876208 0%,#4a3404 100%)!important;border:2px solid #ffd54f!important;box-shadow:inset 0 0 0 1px #ffd54f,0 0 10px rgba(255,193,7,0.65)!important;color:#ffffff!important}
+#mobile-app .hero-bag-tabs [data-hero-tab="worn"]{border-image:none;background:#382705;border:2px solid #c29415;color:#fff3cd}
+#mobile-app .hero-bag-tabs [data-hero-tab="worn"][aria-pressed=true]{border-image:none;background:linear-gradient(180deg,#876208 0%,#4a3404 100%);border:2px solid #ffd54f;box-shadow:inset 0 0 0 1px #ffd54f,0 0 10px rgba(255,193,7,0.65);color:#ffffff}
 
-#mobile-app .hero-bag-tabs [data-hero-tab="backpack"]{border-image:none!important;background:#361c0d!important;border:2px solid #b85728!important;color:#ffe0b2!important}
-#mobile-app .hero-bag-tabs [data-hero-tab="backpack"][aria-pressed=true]{border-image:none!important;background:linear-gradient(180deg,#8a401c 0%,#461d09 100%)!important;border:2px solid #ff8a65!important;box-shadow:inset 0 0 0 1px #ff8a65,0 0 10px rgba(255,112,67,0.65)!important;color:#ffffff!important}
+#mobile-app .hero-bag-tabs [data-hero-tab="backpack"]{border-image:none;background:#361c0d;border:2px solid #b85728;color:#ffe0b2}
+#mobile-app .hero-bag-tabs [data-hero-tab="backpack"][aria-pressed=true]{border-image:none;background:linear-gradient(180deg,#8a401c 0%,#461d09 100%);border:2px solid #ff8a65;box-shadow:inset 0 0 0 1px #ff8a65,0 0 10px rgba(255,112,67,0.65);color:#ffffff}
 
-#mobile-app .hero-bag-tabs [data-hero-tab="skills"]{border-image:none!important;background:#0e233d!important;border:2px solid #1e88e5!important;color:#bbdefb!important}
-#mobile-app .hero-bag-tabs [data-hero-tab="skills"][aria-pressed=true]{border-image:none!important;background:linear-gradient(180deg,#1964ab 0%,#0c3258 100%)!important;border:2px solid #64b5f6!important;box-shadow:inset 0 0 0 1px #64b5f6,0 0 10px rgba(33,150,243,0.65)!important;color:#ffffff!important}
+#mobile-app .hero-bag-tabs [data-hero-tab="skills"]{border-image:none;background:#0e233d;border:2px solid #1e88e5;color:#bbdefb}
+#mobile-app .hero-bag-tabs [data-hero-tab="skills"][aria-pressed=true]{border-image:none;background:linear-gradient(180deg,#1964ab 0%,#0c3258 100%);border:2px solid #64b5f6;box-shadow:inset 0 0 0 1px #64b5f6,0 0 10px rgba(33,150,243,0.65);color:#ffffff}
 
-#mobile-app .hero-bag-tabs [data-hero-classic]{border-image:none!important;background:#241e18!important;border:2px solid #7a6245!important;color:#e8d7b5!important}
-#mobile-app .hero-bag-tabs [data-hero-classic]:active{border-image:none!important;background:#383027!important;border:2px solid #a88863!important;color:#ffffff!important}
+#mobile-app .hero-bag-tabs [data-hero-classic]{border-image:none;background:#241e18;border:2px solid #7a6245;color:#e8d7b5}
+#mobile-app .hero-bag-tabs [data-hero-classic]:active{border-image:none;background:#383027;border:2px solid #a88863;color:#ffffff}
 
 .hero-equipment-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-rows:120px;gap:6px;overflow:auto;overscroll-behavior:contain;touch-action:pan-y;min-height:0;padding:8px;align-content:start}
 #mobile-app .hero-artifact-slot{display:flex;flex-direction:column;align-items:center;gap:4px;padding:5px;min-width:0;overflow:hidden;white-space:normal}
@@ -64,19 +65,19 @@
 .hero-army-split-toggle{display:inline-flex;align-items:center;gap:8px;font-size:var(--ui-type-body1);font-weight:700;color:#ffe49a;cursor:pointer;user-select:none}
 .hero-army-split-toggle input[type="checkbox"]{width:24px;height:24px;min-width:24px;min-height:24px;accent-color:#ffd54f;cursor:pointer;border-radius:4px}
 .hero-army-split-amount{display:inline-flex;align-items:center;gap:4px}
-.hero-army-split-amount button{width:38px!important;height:38px!important;min-height:38px!important;min-width:38px!important;padding:0!important;border-image:none!important;background:#3c2615;border:1.5px solid #92723f;color:#fff;font-weight:bold;font-size:var(--ui-type-statLarge);border-radius:5px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.hero-army-split-amount button{width:38px;height:38px;min-height:38px;min-width:38px;padding:0;border-image:none;background:#3c2615;border:1.5px solid #92723f;color:#fff;font-weight:bold;font-size:var(--ui-type-statLarge);border-radius:5px;cursor:pointer;display:flex;align-items:center;justify-content:center}
 .hero-army-split-amount button:active{background:#5a3920}
 .hero-army-split-amount input[type="number"]{width:56px;height:38px;text-align:center;background:#181008;border:1.5px solid #92723f;color:#fff0ba;font-size:var(--ui-type-body1);font-weight:800;padding:0;border-radius:5px}
-#mobile-app .hero-army-details-btn{margin-left:auto;min-height:42px!important;padding:6px 16px!important;font-size:var(--ui-type-body2)!important;font-weight:700!important;border-image:none!important;background:linear-gradient(180deg,#3f5a7a 0%,#1c2b3c 100%)!important;border:1.5px solid #7ea7d8!important;color:#ffffff!important;border-radius:5px;cursor:pointer;box-shadow:0 2px 6px rgba(0,0,0,0.5);display:inline-flex;align-items:center;gap:6px}
-#mobile-app .hero-army-details-btn:active{background:linear-gradient(180deg,#557ba6 0%,#243950 100%)!important}
-#mobile-app .hero-army-details-btn:disabled{opacity:.4;background:#1c1611!important;border-color:#4a3726!important;color:#7a6855!important;cursor:not-allowed;box-shadow:none}
+#mobile-app .hero-army-details-btn{margin-left:auto;min-height:42px;padding:6px 16px;font-size:var(--ui-type-body2);font-weight:700;border-image:none;background:linear-gradient(180deg,#3f5a7a 0%,#1c2b3c 100%);border:1.5px solid #7ea7d8;color:#ffffff;border-radius:5px;cursor:pointer;box-shadow:0 2px 6px rgba(0,0,0,0.5);display:inline-flex;align-items:center;gap:6px}
+#mobile-app .hero-army-details-btn:active{background:linear-gradient(180deg,#557ba6 0%,#243950 100%)}
+#mobile-app .hero-army-details-btn:disabled{opacity:.4;background:#1c1611;border-color:#4a3726;color:#7a6855;cursor:not-allowed;box-shadow:none}
 
 #mobile-app .hero-mobile-switch{display:none}
 #mobile-app[data-mode=hero][data-hero-view=classic] .hero-mobile-switch{display:block;flex-shrink:0;min-height:48px}
 #mobile-app[data-mode=hero][data-hero-view=classic]{grid-template-rows:auto minmax(0,1fr) auto}
-#mobile-app[data-mode=hero][data-hero-view=classic] #mobile-scene{display:block!important}
-#mobile-app[data-mode=hero][data-hero-view=classic] .scene-tools{display:flex!important}
-#mobile-app[data-mode=hero][data-hero-view=classic] .mobile-nav{display:grid!important;grid-column:1/-1;grid-row:3;grid-template-columns:repeat(3,minmax(0,1fr))}
+#mobile-app[data-mode=hero][data-hero-view=classic] #mobile-scene{display:block}
+#mobile-app[data-mode=hero][data-hero-view=classic] .scene-tools{display:flex}
+#mobile-app[data-mode=hero][data-hero-view=classic] .mobile-nav{display:grid;grid-column:1/-1;grid-row:3;grid-template-columns:repeat(3,minmax(0,1fr))}
 
 /* Paper doll */
 .hero-equipment-page[data-inventory=worn] .hero-equipment-grid{display:block;padding:6px}
@@ -130,20 +131,20 @@
 }
 #mobile-app .hero-army-slot:not(:disabled):hover{border-color:#d7b66e;background:#26180dc2}
 #mobile-app .hero-army-slot.selected{
- border-color:#66bb6a!important;
- box-shadow:inset 0 0 0 1px #66bb6a,0 0 10px rgba(76,175,80,0.65)!important;
- background:#163519!important;
+ border-color:#66bb6a;
+ box-shadow:inset 0 0 0 1px #66bb6a,0 0 10px rgba(76,175,80,0.65);
+ background:#163519;
  animation:creature-active-pulse 1.8s infinite ease-in-out;
 }
-#mobile-app .hero-army-slot.selected:focus-visible{outline:2px solid #66bb6a!important;outline-offset:1px}
+#mobile-app .hero-army-slot.selected:focus-visible{outline:2px solid #66bb6a;outline-offset:1px}
 @keyframes creature-active-pulse{
  0%,100%{box-shadow:0 0 8px rgba(76,175,80,0.55)}
  50%{box-shadow:0 0 14px rgba(102,187,106,0.85)}
 }
 
 #mobile-app .hero-army-slot.can-target{
- border-color:#d7b66e!important;
- box-shadow:0 0 6px rgba(215,182,110,0.35)!important;
+ border-color:#d7b66e;
+ box-shadow:0 0 6px rgba(215,182,110,0.35);
 }
 .hero-army-slot-num{
  position:absolute;
@@ -314,7 +315,7 @@
  }
  .hero-equipment-grid{
   grid-column:1;
-  grid-row:1/-1!important; /* Full 100% height from top to bottom! */
+  grid-row:1/-1; /* Full 100% height from top to bottom! */
   border-right:2px ridge #92723f;
   border-bottom:0;
   padding:6px 8px;
@@ -353,7 +354,7 @@
   align-content:start;
   border-right:0;
   border-bottom:1px solid #7d6132;
-  touch-action:none!important;
+  touch-action:none;
  }
  #mobile-app .hero-bag-tabs button{
   min-height:34px;
@@ -379,7 +380,7 @@
  
  /* Supprime le bandeau d'aide d'armée en paysage pour maximiser la hauteur */
  #mobile-app .hero-army-head{
-  display:none!important;
+  display:none;
  }
 
  .hero-equipment-page[data-inventory=worn] .hero-equipment-grid{container:hero-inventory / size;padding:4px}
@@ -482,7 +483,9 @@
 }
 
 /* Each army card reserves the same stat region, anchored below its full name. */
-#mobile-app .hero-army-slot-content{flex:1 1 auto!important;height:auto!important;align-self:stretch!important}
-#mobile-app .hero-army-slot-info{flex:1 1 auto!important;align-self:stretch!important}
-#mobile-app .hero-army-slot-title{flex:none!important}
-#mobile-app .hero-army-slot .creature-stats{flex:0 0 76px!important;height:76px!important;min-height:76px!important;grid-template-rows:repeat(2,minmax(0,1fr))!important;margin-top:auto!important;padding:4px!important;box-sizing:border-box!important}
+#mobile-app .hero-army-slot-content{flex:1 1 auto;height:auto;align-self:stretch}
+#mobile-app .hero-army-slot-info{flex:1 1 auto;align-self:stretch}
+#mobile-app .hero-army-slot-title{flex:none}
+#mobile-app .hero-army-slot .creature-stats{flex:0 0 76px;height:76px;min-height:76px;grid-template-rows:repeat(2,minmax(0,1fr));margin-top:auto;padding:4px;box-sizing:border-box}
+
+}

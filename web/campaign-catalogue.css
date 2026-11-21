@@ -1,3 +1,4 @@
+@layer legacy-base {
 /* A long catalogue scrolls independently from its one exit. */
 #mobile-app[data-mode=campaign] .mobile-play{grid-column:1/-1;touch-action:pan-y}
 #mobile-app[data-mode=campaign] .mobile-nav,#mobile-app[data-mode=campaign] .scene-tools{display:none}
@@ -5,12 +6,14 @@
 #mobile-app[data-mode=campaign] .campaign-catalogue-controls{grid-column:1;grid-row:1;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:6px 12px;min-width:0}
 #mobile-app[data-mode=campaign] .campaign-catalogue-controls h1{font-size:clamp(22px,4vw,32px);margin:0;grid-column:1;grid-row:1}
 #mobile-app[data-mode=campaign] .campaign-catalogue-controls p{font-size:var(--ui-type-body1);margin:0;grid-column:1;grid-row:2}
-#mobile-app[data-mode=campaign] .campaign-catalogue-controls button{min-height:48px!important;min-width:48px;grid-column:2;grid-row:1/3}
+#mobile-app[data-mode=campaign] .campaign-catalogue-controls button{min-height:48px;min-width:48px;grid-column:2;grid-row:1/3}
 #mobile-app[data-mode=campaign] .campaign-list{grid-column:1;grid-row:2;display:grid;align-content:start;gap:10px;min-height:0;min-width:0;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;touch-action:pan-y;padding:4px;box-sizing:border-box}
-#mobile-app[data-mode=campaign] .campaign-list button{width:100%;min-height:52px!important;text-align:left;overflow-wrap:anywhere;margin:0}
+#mobile-app[data-mode=campaign] .campaign-list button{width:100%;min-height:52px;text-align:left;overflow-wrap:anywhere;margin:0}
 @container goonk-viewport (orientation:landscape){
  #mobile-app[data-mode=campaign] .mobile-menu[data-kind=campaign]{grid-template-columns:minmax(0,1fr) var(--control-rail,160px);grid-template-rows:minmax(0,1fr);padding:8px}
  #mobile-app[data-mode=campaign] .campaign-catalogue-controls{grid-column:2;grid-row:1;display:flex;flex-direction:column;align-items:stretch;justify-content:space-between;min-height:0;overflow-y:auto;padding:4px;box-sizing:border-box}
  #mobile-app[data-mode=campaign] .campaign-catalogue-controls h1{font-size:clamp(20px,3vw,28px)}
  #mobile-app[data-mode=campaign] .campaign-list{grid-column:1;grid-row:1}
+}
+
 }

@@ -1,9 +1,10 @@
+@layer legacy-base {
 html.goonk-mobile #mobile-app[data-mobile-online] {
   grid-template-columns:minmax(0,1fr);
   grid-template-rows:auto minmax(0,1fr);
 }
 #mobile-app[data-mobile-online] .mobile-play {grid-column:1/-1;grid-row:2;min-height:0}
-#mobile-app[data-mobile-online] :is(.mobile-nav,#mobile-scene,.scene-tools,.scene-hint) {display:none!important}
+#mobile-app[data-mobile-online] :is(.mobile-nav,#mobile-scene,.scene-tools,.scene-hint) {display:none}
 .online-lobby {
   box-sizing:border-box;position:absolute;inset:0;display:grid;
   grid-template-rows:auto minmax(0,1fr) auto;
@@ -60,4 +61,6 @@ html.goonk-mobile #mobile-app[data-mobile-online] {
 }
 @container goonk-viewport (orientation:landscape){
  #mobile-app .online-lobby-body{grid-column:1;grid-row:1/-1}
+}
+
 }

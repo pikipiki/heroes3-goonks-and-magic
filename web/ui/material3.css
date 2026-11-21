@@ -1,83 +1,83 @@
 /* An explicit important layer owns component metrics. Legacy page selectors
    may arrange content, but cannot silently shrink a shared control. */
 @layer heroes-material {
- :is(#mobile-app,#game-menu,[data-ui-app]) :is(.ui-button,.ui-icon-button,.ui-tab,.ui-choice-tile,.material-select-trigger,.ui-disclosure){box-sizing:border-box!important;min-width:var(--ui-touch)!important;min-height:var(--ui-touch)!important;border-radius:0!important;transition:background-color 120ms linear,color 120ms linear,box-shadow 120ms linear!important;transform:none!important}
- :is(#mobile-app,#game-menu,[data-ui-app]) .ui-button{gap:var(--ui-space-1)!important;font:var(--ui-font-label)!important;padding:var(--ui-space-2) var(--ui-space-3)!important;white-space:normal!important;overflow-wrap:normal!important;word-break:normal!important}
- :is(#mobile-app,#game-menu,[data-ui-app]) .ui-icon-button{padding:0!important;width:var(--ui-touch)!important;height:var(--ui-touch)!important;flex:0 0 var(--ui-touch)!important;font:400 24px/1 system-ui!important}
- :is(#mobile-app,#game-menu,[data-ui-app]) .ui-tab{font:var(--ui-font-label)!important;padding:var(--ui-space-2)!important}
- :is(#mobile-app,#game-menu,[data-ui-app]) .ui-action-tile{min-height:var(--ui-tile-size,var(--ui-touch))!important;font:var(--ui-font-label-medium)!important;padding:0!important;overflow-wrap:normal!important}
- :is(#mobile-app,#game-menu,[data-ui-app]) .ui-action-tile img{width:16px!important;height:16px!important}
- :is(#mobile-app,#game-menu,[data-ui-app]) .ui-screen-header{box-sizing:border-box!important;gap:var(--ui-space-2)!important;padding:var(--ui-header-padding,var(--ui-space-2) var(--ui-space-4))!important;min-width:0!important;min-height:var(--ui-header-min,var(--ui-appbar))!important}
- :is(#mobile-app,#game-menu,[data-ui-app]) .ui-screen-header :is(h1,h2){font:var(--ui-font-title)!important;letter-spacing:0!important;min-width:0!important;margin:0!important;white-space:normal!important;overflow-wrap:normal!important;word-break:normal!important}
- :is(#mobile-app,#game-menu,[data-ui-app]) .ui-action-dock{gap:var(--ui-space-2)!important;padding:var(--ui-space-2)!important}
- :is(#mobile-app,#game-menu,[data-ui-app]) :is(.hero-bag-tabs,.lobby-panel-body){gap:var(--ui-space-2)!important;padding:var(--ui-space-2)!important}
- :is(#mobile-app,#game-menu,[data-ui-app]) :is(.ui-text-field,.material-select-trigger){box-sizing:border-box!important;min-height:var(--ui-field)!important;padding:var(--ui-space-2) var(--ui-space-4)!important;border-radius:0!important;font:var(--ui-font-body)!important;transition:border-color 120ms linear,background-color 120ms linear!important}
- :is(#mobile-app,#game-menu,[data-ui-app]) .ui-text-field{width:100%!important;min-width:0!important}
- :is(#mobile-app,#game-menu,[data-ui-app]) .ui-compact-input{min-height:var(--ui-touch)!important;min-width:var(--ui-touch)!important;box-sizing:border-box!important;font:var(--ui-font-body)!important;transition:border-color 120ms linear!important}
- :is(#mobile-app,#game-menu,[data-ui-app]) .ui-check-field{min-height:var(--ui-touch)!important;min-width:var(--ui-touch)!important;display:inline-flex!important;align-items:center!important;gap:var(--ui-space-2)!important;touch-action:manipulation!important}
- :is(#mobile-app,#game-menu,[data-ui-app]) .ui-check-input{flex:0 0 24px!important;width:24px!important;height:24px!important;min-width:24px!important;min-height:24px!important;transition:background-color 120ms linear,border-color 120ms linear!important}
- :is(#mobile-app,#game-menu,[data-ui-app]) .ui-slider{min-height:var(--ui-touch)!important;min-width:var(--ui-touch)!important;touch-action:pan-y!important;transition:none!important}
- :is(#mobile-app,#game-menu,[data-ui-app]) .ui-disclosure{padding:var(--ui-space-2) var(--ui-space-3)!important;font:var(--ui-font-label)!important;cursor:pointer!important}
- :is(#mobile-app,#game-menu,[data-ui-app]) :is(.ui-text-field,.ui-compact-input):focus-visible{outline:3px solid var(--ui-focus)!important;outline-offset:2px!important}
- :is(#mobile-app,#game-menu,[data-ui-app]) :is(.ui-text-field,.ui-compact-input)[aria-invalid=true]{border-color:var(--ui-error)!important}
+ :is(#mobile-app,#game-menu,[data-ui-app]) :is(.ui-button,.ui-icon-button,.ui-tab,.ui-choice-tile,.material-select-trigger,.ui-disclosure){box-sizing:border-box;min-width:var(--ui-touch);min-height:var(--ui-touch);border-radius:0;transition:background-color 120ms linear,color 120ms linear,box-shadow 120ms linear;transform:none}
+ :is(#mobile-app,#game-menu,[data-ui-app]) .ui-button{gap:var(--ui-space-1);font:var(--ui-font-label);padding:var(--ui-space-2) var(--ui-space-3);white-space:normal;overflow-wrap:normal;word-break:normal}
+ :is(#mobile-app,#game-menu,[data-ui-app]) .ui-icon-button{padding:0;width:var(--ui-touch);height:var(--ui-touch);flex:0 0 var(--ui-touch);font:400 24px/1 system-ui}
+ :is(#mobile-app,#game-menu,[data-ui-app]) .ui-tab{font:var(--ui-font-label);padding:var(--ui-space-2)}
+ :is(#mobile-app,#game-menu,[data-ui-app]) .ui-action-tile{min-height:var(--ui-tile-size,var(--ui-touch));font:var(--ui-font-label-medium);padding:0;overflow-wrap:normal}
+ :is(#mobile-app,#game-menu,[data-ui-app]) .ui-action-tile img{width:16px;height:16px}
+ :is(#mobile-app,#game-menu,[data-ui-app]) .ui-screen-header{box-sizing:border-box;gap:var(--ui-space-2);padding:var(--ui-header-padding,var(--ui-space-2) var(--ui-space-4));min-width:0;min-height:var(--ui-header-min,var(--ui-appbar))}
+ :is(#mobile-app,#game-menu,[data-ui-app]) .ui-screen-header :is(h1,h2){font:var(--ui-font-title);letter-spacing:0;min-width:0;margin:0;white-space:normal;overflow-wrap:normal;word-break:normal}
+ :is(#mobile-app,#game-menu,[data-ui-app]) .ui-action-dock{gap:var(--ui-space-2);padding:var(--ui-space-2)}
+ :is(#mobile-app,#game-menu,[data-ui-app]) :is(.hero-bag-tabs,.lobby-panel-body){gap:var(--ui-space-2);padding:var(--ui-space-2)}
+ :is(#mobile-app,#game-menu,[data-ui-app]) :is(.ui-text-field,.material-select-trigger){box-sizing:border-box;min-height:var(--ui-field);padding:var(--ui-space-2) var(--ui-space-4);border-radius:0;font:var(--ui-font-body);transition:border-color 120ms linear,background-color 120ms linear}
+ :is(#mobile-app,#game-menu,[data-ui-app]) .ui-text-field{width:100%;min-width:0}
+ :is(#mobile-app,#game-menu,[data-ui-app]) .ui-compact-input{min-height:var(--ui-touch);min-width:var(--ui-touch);box-sizing:border-box;font:var(--ui-font-body);transition:border-color 120ms linear}
+ :is(#mobile-app,#game-menu,[data-ui-app]) .ui-check-field{min-height:var(--ui-touch);min-width:var(--ui-touch);display:inline-flex;align-items:center;gap:var(--ui-space-2);touch-action:manipulation}
+ :is(#mobile-app,#game-menu,[data-ui-app]) .ui-check-input{flex:0 0 24px;width:24px;height:24px;min-width:24px;min-height:24px;transition:background-color 120ms linear,border-color 120ms linear}
+ :is(#mobile-app,#game-menu,[data-ui-app]) .ui-slider{min-height:var(--ui-touch);min-width:var(--ui-touch);touch-action:pan-y;transition:none}
+ :is(#mobile-app,#game-menu,[data-ui-app]) .ui-disclosure{padding:var(--ui-space-2) var(--ui-space-3);font:var(--ui-font-label);cursor:pointer}
+ :is(#mobile-app,#game-menu,[data-ui-app]) :is(.ui-text-field,.ui-compact-input):focus-visible{outline:3px solid var(--ui-focus);outline-offset:2px}
+ :is(#mobile-app,#game-menu,[data-ui-app]) :is(.ui-text-field,.ui-compact-input)[aria-invalid=true]{border-color:var(--ui-error)}
  @container goonk-viewport (orientation:landscape){
-  #mobile-app .ui-screen-header :is(h1,h2){font:var(--ui-font-title-compact)!important}
-  #mobile-app .ui-action-dock .ui-button{padding-inline:var(--ui-space-1)!important}
+  #mobile-app .ui-screen-header :is(h1,h2){font:var(--ui-font-title-compact)}
+  #mobile-app .ui-action-dock .ui-button{padding-inline:var(--ui-space-1)}
  }
- @media(orientation:landscape) and (max-height:600px){#game-menu .ui-screen-header :is(h1,h2){font:var(--ui-font-title-compact)!important}}
- #mobile-app :is(#game-menu-toggle,.mobile-calendar,.scene-tools>button,.hero-movement-item>button,.hero-scroll){min-height:var(--ui-touch)!important;min-width:var(--ui-touch)!important;box-sizing:border-box!important;border-radius:0!important;transition:background-color 120ms linear,color 120ms linear!important}
- #mobile-app :is(.town-view,[data-ui=town-view]){min-height:48px!important;min-width:48px!important}
- #mobile-app[data-mode=town]>.mobile-nav.ui-action-dock{display:grid!important;grid-template-columns:minmax(0,1fr) 80px 64px!important;grid-auto-rows:96px!important;gap:8px!important;padding:8px!important}
- #mobile-app[data-mode=town]>.mobile-nav.ui-action-dock>button{grid-column:auto!important;min-width:0!important;margin:0!important;gap:4px!important;padding:4px!important}
- #mobile-app[data-mode=town]>.mobile-nav .town-action-icon{width:24px!important;height:24px!important}
- #mobile-app[data-mode=town]>.mobile-nav .town-action{display:flex!important;flex-direction:column!important}
- @container goonk-viewport (orientation:landscape){#mobile-app[data-mode=town]>.mobile-nav.ui-action-dock{grid-template-columns:minmax(0,1fr)!important;grid-auto-rows:48px!important;align-content:end!important}#mobile-app[data-mode=town]>.mobile-nav .town-action{flex-direction:row!important}}
- #mobile-app .hero-movement-summary{gap:var(--ui-space-2)!important}
- #mobile-app .hero-movement-item{min-height:var(--ui-touch)!important}
- #mobile-app .mobile-top:has(>.mobile-calendar:not([hidden])){grid-template-rows:minmax(var(--ui-touch),auto) auto!important}
- .campaign-media-thumbnail.ui-button{min-width:48px!important;min-height:48px!important;padding:8px!important;border-radius:0!important}
- @media(prefers-reduced-motion:reduce){:is(#mobile-app,#game-menu,[data-ui-app]) *{transition:none!important;animation:none!important}}
+ @media(orientation:landscape) and (max-height:600px){#game-menu .ui-screen-header :is(h1,h2){font:var(--ui-font-title-compact)}}
+ #mobile-app :is(#game-menu-toggle,.mobile-calendar,.scene-tools>button,.hero-movement-item>button,.hero-scroll){min-height:var(--ui-touch);min-width:var(--ui-touch);box-sizing:border-box;border-radius:0;transition:background-color 120ms linear,color 120ms linear}
+ #mobile-app :is(.town-view,[data-ui=town-view]){min-height:48px;min-width:48px}
+ #mobile-app[data-mode=town]>.mobile-nav.ui-action-dock{display:grid;grid-template-columns:minmax(0,1fr) 80px 64px;grid-auto-rows:96px;gap:8px;padding:8px}
+ #mobile-app[data-mode=town]>.mobile-nav.ui-action-dock>button{grid-column:auto;min-width:0;margin:0;gap:4px;padding:4px}
+ #mobile-app[data-mode=town]>.mobile-nav .town-action-icon{width:24px;height:24px}
+ #mobile-app[data-mode=town]>.mobile-nav .town-action{display:flex;flex-direction:column}
+ @container goonk-viewport (orientation:landscape){#mobile-app[data-mode=town]>.mobile-nav.ui-action-dock{grid-template-columns:minmax(0,1fr);grid-auto-rows:48px;align-content:end}#mobile-app[data-mode=town]>.mobile-nav .town-action{flex-direction:row}}
+ #mobile-app .hero-movement-summary{gap:var(--ui-space-2)}
+ #mobile-app .hero-movement-item{min-height:var(--ui-touch)}
+ #mobile-app .mobile-top:has(>.mobile-calendar:not([hidden])){grid-template-rows:minmax(var(--ui-touch),auto) auto}
+ .campaign-media-thumbnail.ui-button{min-width:48px;min-height:48px;padding:8px;border-radius:0}
+ @media(prefers-reduced-motion:reduce){:is(#mobile-app,#game-menu,[data-ui-app]) *{transition:none;animation:none}}
 }
 
 #mobile-app[data-sheet=army] .army-grid{--ui-tile-size:68px}
 @container goonk-viewport (orientation:landscape){#mobile-app[data-sheet=army] .army-grid{--ui-tile-size:64px}}
 @layer heroes-material {
- #mobile-app>.mobile-top.ui-compact-chrome{display:grid!important;grid-template-columns:48px minmax(0,1fr)!important;grid-template-rows:48px!important;gap:8px!important;padding:8px!important;width:auto!important;height:64px!important;min-height:64px!important;overflow:visible!important}
- #mobile-app>.mobile-top.ui-compact-chrome>:is(.mobile-title,.mobile-brand,.hero-mobile-switch,.recruit-close){display:none!important}
- #mobile-app .ui-kingdom-trigger:not([hidden]){display:flex!important;align-items:center!important;justify-content:center!important;grid-area:1/2!important;min-height:48px!important;min-width:48px!important}
- #mobile-app .ui-kingdom-trigger[hidden]{display:none!important}
- #mobile-app .ui-kingdom-popup .ui-popup-list{padding:8px!important}
- #mobile-app .ui-kingdom-popup .mobile-resources{display:grid!important;grid-template-columns:repeat(9,minmax(0,1fr))!important;width:100%!important;gap:0!important;height:40px!important}
- #mobile-app .ui-kingdom-popup .mobile-calendar:not([hidden]){display:flex!important;width:100%!important;height:auto!important;min-height:48px!important;margin-top:8px!important;justify-content:space-between!important;gap:8px!important}
+ #mobile-app>.mobile-top.ui-compact-chrome{display:grid;grid-template-columns:48px minmax(0,1fr);grid-template-rows:48px;gap:8px;padding:8px;width:auto;height:64px;min-height:64px;overflow:visible}
+ #mobile-app>.mobile-top.ui-compact-chrome>:is(.mobile-title,.mobile-brand,.hero-mobile-switch,.recruit-close){display:none}
+ #mobile-app .ui-kingdom-trigger:not([hidden]){display:flex;align-items:center;justify-content:center;grid-area:1/2;min-height:48px;min-width:48px}
+ #mobile-app .ui-kingdom-trigger[hidden]{display:none}
+ #mobile-app .ui-kingdom-popup .ui-popup-list{padding:8px}
+ #mobile-app .ui-kingdom-popup .mobile-resources{display:grid;grid-template-columns:repeat(9,minmax(0,1fr));width:100%;gap:0;height:40px}
+ #mobile-app .ui-kingdom-popup .mobile-calendar:not([hidden]){display:flex;width:100%;height:auto;min-height:48px;margin-top:8px;justify-content:space-between;gap:8px}
 }
 @layer mui {
  @container goonk-viewport (orientation:portrait){
-  #mobile-app>.mobile-top .calendar-recruit-cue{display:grid!important;grid-template-columns:auto 12px!important;grid-template-rows:16px 16px!important;gap:0 4px!important;min-width:64px!important;text-align:center!important}
-  #mobile-app>.mobile-top .calendar-recruit-cue>[data-recruit-label]{grid-area:1/1!important}
-  #mobile-app>.mobile-top .calendar-recruit-cue>[data-recruit-days]{grid-area:2/1!important}
-  #mobile-app>.mobile-top .calendar-recruit-cue>.calendar-chevron{grid-area:1/2/3/3!important;align-self:center!important}
+  #mobile-app>.mobile-top .calendar-recruit-cue{display:grid;grid-template-columns:auto 12px;grid-template-rows:16px 16px;gap:0 4px;min-width:64px;text-align:center}
+  #mobile-app>.mobile-top .calendar-recruit-cue>[data-recruit-label]{grid-area:1/1}
+  #mobile-app>.mobile-top .calendar-recruit-cue>[data-recruit-days]{grid-area:2/1}
+  #mobile-app>.mobile-top .calendar-recruit-cue>.calendar-chevron{grid-area:1/2/3/3;align-self:center}
  }
 }
 @layer mui {
- #mobile-app>.mobile-nav.ui-map-compact{display:grid!important;grid-template-columns:minmax(0,1fr) 48px 64px!important;grid-template-rows:auto 48px!important;grid-auto-rows:auto!important;gap:8px!important;padding:8px!important;overflow:visible!important}
- #mobile-app>.mobile-nav.ui-map-compact>.hero-movement-summary{grid-area:1/1/2/4!important;min-height:50px!important;max-height:none!important;padding:0!important}
- #mobile-app>.mobile-nav.ui-map-compact>button:not([hidden]){grid-row:2!important;grid-column:auto!important;width:100%!important;min-width:0!important;min-height:48px!important;height:48px!important;margin:0!important;white-space:normal!important}
+ #mobile-app>.mobile-nav.ui-map-compact{display:grid;grid-template-columns:minmax(0,1fr) 48px 64px;grid-template-rows:auto 48px;grid-auto-rows:auto;gap:8px;padding:8px;overflow:visible}
+ #mobile-app>.mobile-nav.ui-map-compact>.hero-movement-summary{grid-area:1/1/2/4;min-height:50px;max-height:none;padding:0}
+ #mobile-app>.mobile-nav.ui-map-compact>button:not([hidden]){grid-row:2;grid-column:auto;width:100%;min-width:0;min-height:48px;height:48px;margin:0;white-space:normal}
 }
 @layer mui {
  @container goonk-viewport (orientation:portrait){
-  #mobile-app>.mobile-top:has(>.mobile-resources:not([hidden])){grid-template-columns:48px minmax(0,1fr) 96px!important}
-  #mobile-app>.mobile-top>.mobile-resources:not([hidden]){grid-area:2/1/3/4!important}
-  #mobile-app>.mobile-top:has(>.mobile-resources:not([hidden]))>.mobile-calendar:not([hidden]){grid-area:1/3!important;display:flex!important;flex-direction:column!important;align-items:flex-end!important;justify-content:center!important;gap:0!important;padding:0!important}
-  #mobile-app>.mobile-top .calendar-recruit-cue{order:1!important;height:32px!important;padding:0 4px!important;border:0!important;box-shadow:inset 0 0 0 1px var(--ui-outline)!important;box-sizing:border-box!important}
-  #mobile-app>.mobile-top .mobile-calendar>span:first-child{order:2!important;font:var(--ui-font-body-small)!important;height:16px!important;line-height:16px!important}
-  #mobile-app:is([data-mode=map],[data-mode=town])>.mobile-top>.mobile-title{grid-area:1/2!important;display:flex!important;align-items:center!important;white-space:normal!important;overflow:auto!important;text-overflow:clip!important;font:var(--ui-font-title-compact)!important;max-height:48px!important;min-width:0!important}
+  #mobile-app>.mobile-top:has(>.mobile-resources:not([hidden])){grid-template-columns:48px minmax(0,1fr) 96px}
+  #mobile-app>.mobile-top>.mobile-resources:not([hidden]){grid-area:2/1/3/4}
+  #mobile-app>.mobile-top:has(>.mobile-resources:not([hidden]))>.mobile-calendar:not([hidden]){grid-area:1/3;display:flex;flex-direction:column;align-items:flex-end;justify-content:center;gap:0;padding:0}
+  #mobile-app>.mobile-top .calendar-recruit-cue{order:1;height:32px;padding:0 4px;border:0;box-shadow:inset 0 0 0 1px var(--ui-outline);box-sizing:border-box}
+  #mobile-app>.mobile-top .mobile-calendar>span:first-child{order:2;font:var(--ui-font-body-small);height:16px;line-height:16px}
+  #mobile-app:is([data-mode=map],[data-mode=town])>.mobile-top>.mobile-title{grid-area:1/2;display:flex;align-items:center;white-space:normal;overflow:auto;text-overflow:clip;font:var(--ui-font-title-compact);max-height:48px;min-width:0}
  }
 }
 
 /* Card headings use the shared compact title role, never a content-specific size. */
 @layer heroes-material {
- :is(#mobile-app,[data-ui-app]) .ui-card-title{font:var(--ui-font-title-compact)!important;word-break:normal!important;overflow-wrap:normal!important}
+ :is(#mobile-app,[data-ui-app]) .ui-card-title{font:var(--ui-font-title-compact);word-break:normal;overflow-wrap:normal}
 }
 @layer ui-composition {
- #mobile-app .ui-choice-tile[aria-pressed=true]{position:relative!important;background:var(--ui-surface-high)!important;border-color:var(--ui-primary)!important;outline:2px solid var(--ui-primary)!important;outline-offset:-3px!important}
+ #mobile-app .ui-choice-tile[aria-pressed=true]{position:relative;background:var(--ui-surface-high);border-color:var(--ui-primary);outline:2px solid var(--ui-primary);outline-offset:-3px}
 }

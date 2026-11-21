@@ -1,6 +1,7 @@
+@layer legacy-base {
 #game-menu .map-movement-settings{margin-bottom:22px;padding-bottom:18px;border-bottom:1px solid #b59750}
 #game-menu .map-movement-settings label{display:flex;gap:10px;align-items:center;min-height:48px;margin:12px 0;color:#fff0c2;font-size:var(--ui-type-body1)}
-#game-menu .map-speed-label{flex-direction:column;align-items:stretch!important}
+#game-menu .map-speed-label{flex-direction:column;align-items:stretch}
 #game-menu .map-movement-settings select{width:100%;min-height:52px;padding:8px;color:#fff0c2;background:#2c1e13;border:2px solid #b59750;font:16px Georgia,serif;touch-action:manipulation}
 #game-menu .map-movement-settings input:is([type=checkbox],[type=radio]){width:24px;height:24px;flex:0 0 24px;accent-color:#d9b66b}
 #game-menu .map-movement-settings p{font-size:var(--ui-type-body2);margin:8px 0}
@@ -16,3 +17,5 @@
 
 #game-menu[data-page=settings] input[type=radio]{display:block;flex-shrink:0;width:24px;height:24px;min-width:24px;max-width:24px;min-height:24px;max-height:24px;aspect-ratio:1;padding:0;border:2px solid #b89c5d;border-image:none;border-radius:50%;clip-path:none;background:#24190e}
 #game-menu[data-page=settings] input[type=radio]:checked{border-color:#ffe3a0;background:radial-gradient(circle at center,#ffe3a0 0 5px,#24190e 5.5px)}
+
+}

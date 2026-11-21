@@ -159,42 +159,42 @@
 /* One purchase composition owns the footer tracks. Fixed tracks reserve the
    same room for locked and available forms; long names wrap between words. */
 @layer ui-composition {
- #mobile-app[data-creature-view=fort] .hall-detail{display:grid!important;grid-template-columns:minmax(0,1fr)!important;grid-template-rows:minmax(64px,1fr) 48px 48px!important;grid-auto-rows:0!important;gap:4px!important;padding:4px 8px!important;box-sizing:border-box!important;align-content:stretch!important;overflow:hidden!important}
- #mobile-app[data-creature-view=fort] .hall-detail>.hall-purchase-context{display:contents!important}
- #mobile-app[data-creature-view=fort] .hall-purchase-context>.hall-feature{grid-area:1/1!important;height:auto!important;min-height:0!important;max-height:100%!important;padding:0!important;border:0!important;overflow:auto!important;touch-action:pan-y!important}
- #mobile-app[data-creature-view=fort] .hall-purchase-context>.hall-quantity{grid-area:2/1!important;display:grid!important;grid-template-columns:48px minmax(48px,1fr) 48px 56px!important;height:48px!important;min-height:48px!important;gap:4px!important;overflow:visible!important}
- #mobile-app[data-creature-view=fort] .hall-detail>.hall-actions.ui-action-dock{grid-area:3/1!important;display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;min-height:48px!important;height:48px!important;max-height:48px!important;padding:0!important;gap:8px!important;position:static!important;margin:0!important;align-items:stretch!important}
- #mobile-app[data-creature-view=fort] .hall-actions>button{flex:1 1 0!important;min-width:0!important;width:auto!important;height:48px!important;min-height:48px!important;max-height:48px!important;padding:4px!important}
- #mobile-app[data-creature-view=fort] .hall-feature>div{display:grid!important;grid-template-rows:minmax(24px,auto) 32px!important;gap:4px!important;height:auto!important;min-height:0!important}
- #mobile-app[data-creature-view=fort] .hall-feature-title{display:flex!important;align-items:center!important;justify-content:space-between!important;flex-wrap:wrap!important;gap:4px 8px!important;min-height:24px!important}
- #mobile-app[data-creature-view=fort] .hall-feature-title h3{display:block!important;flex:1 1 110px!important;font:var(--ui-font-label)!important;height:auto!important;margin:0!important;white-space:normal!important;overflow:visible!important;word-break:normal!important;overflow-wrap:normal!important}
- #mobile-app[data-creature-view=fort] .hall-unit-price{flex:0 1 auto!important;display:flex!important;flex-wrap:wrap!important;gap:4px!important;justify-content:flex-end!important;font:var(--ui-font-resource)!important}
- #mobile-app[data-creature-view=fort] .hall-feature .creature-stats{height:32px!important;min-height:32px!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:4px!important;margin:0!important}
- #mobile-app[data-creature-view=fort] .hall-feature .creature-stats>div{display:grid!important;grid-template-columns:minmax(0,1fr)!important;grid-template-rows:14px 18px!important;gap:0!important;padding:0!important;min-width:0!important;min-height:0!important}
- #mobile-app[data-creature-view=fort] .hall-feature .creature-stats dt{font:var(--ui-font-resource)!important;line-height:14px!important;white-space:nowrap!important;overflow:visible!important}
- #mobile-app[data-creature-view=fort] .hall-feature .creature-stats dd{font:var(--ui-font-body-small)!important;line-height:18px!important;margin:0!important;white-space:nowrap!important;overflow:visible!important}
- #mobile-app[data-creature-view=fort] .hall-form{border:1px solid var(--ui-outline)!important;box-shadow:var(--ui-shadow-control)!important;grid-template-rows:minmax(0,1fr) minmax(16px,auto) minmax(20px,auto)!important;gap:4px!important;padding:4px!important}
- #mobile-app[data-creature-view=fort] .hall-form-name{font:var(--ui-font-resource)!important;word-break:normal!important;overflow-wrap:normal!important;hyphens:none!important}
- #mobile-app[data-creature-view=fort] .hall-quick-info{font:var(--ui-font-resource)!important;min-height:20px!important;gap:4px!important;flex-wrap:wrap!important}
- #mobile-app[data-creature-view=fort] .hall-form-price{font:var(--ui-font-resource)!important;gap:4px!important}
- #mobile-app[data-creature-view=fort] .hall-form-price .creature-price{gap:4px!important;align-items:center!important}
+ #mobile-app[data-creature-view=fort] .hall-detail{display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(64px,1fr) 48px 48px;grid-auto-rows:0;gap:4px;padding:4px 8px;box-sizing:border-box;align-content:stretch;overflow:hidden}
+ #mobile-app[data-creature-view=fort] .hall-detail>.hall-purchase-context{display:contents}
+ #mobile-app[data-creature-view=fort] .hall-purchase-context>.hall-feature{grid-area:1/1;height:auto;min-height:0;max-height:100%;padding:0;border:0;overflow:auto;touch-action:pan-y}
+ #mobile-app[data-creature-view=fort] .hall-purchase-context>.hall-quantity{grid-area:2/1;display:grid;grid-template-columns:48px minmax(48px,1fr) 48px 56px;height:48px;min-height:48px;gap:4px;overflow:visible}
+ #mobile-app[data-creature-view=fort] .hall-detail>.hall-actions.ui-action-dock{grid-area:3/1;display:flex;flex-direction:row;flex-wrap:nowrap;min-height:48px;height:48px;max-height:48px;padding:0;gap:8px;position:static;margin:0;align-items:stretch}
+ #mobile-app[data-creature-view=fort] .hall-actions>button{flex:1 1 0;min-width:0;width:auto;height:48px;min-height:48px;max-height:48px;padding:4px}
+ #mobile-app[data-creature-view=fort] .hall-feature>div{display:grid;grid-template-rows:minmax(24px,auto) 32px;gap:4px;height:auto;min-height:0}
+ #mobile-app[data-creature-view=fort] .hall-feature-title{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:4px 8px;min-height:24px}
+ #mobile-app[data-creature-view=fort] .hall-feature-title h3{display:block;flex:1 1 110px;font:var(--ui-font-label);height:auto;margin:0;white-space:normal;overflow:visible;word-break:normal;overflow-wrap:normal}
+ #mobile-app[data-creature-view=fort] .hall-unit-price{flex:0 1 auto;display:flex;flex-wrap:wrap;gap:4px;justify-content:flex-end;font:var(--ui-font-resource)}
+ #mobile-app[data-creature-view=fort] .hall-feature .creature-stats{height:32px;min-height:32px;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px;margin:0}
+ #mobile-app[data-creature-view=fort] .hall-feature .creature-stats>div{display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:14px 18px;gap:0;padding:0;min-width:0;min-height:0}
+ #mobile-app[data-creature-view=fort] .hall-feature .creature-stats dt{font:var(--ui-font-resource);line-height:14px;white-space:nowrap;overflow:visible}
+ #mobile-app[data-creature-view=fort] .hall-feature .creature-stats dd{font:var(--ui-font-body-small);line-height:18px;margin:0;white-space:nowrap;overflow:visible}
+ #mobile-app[data-creature-view=fort] .hall-form{border:1px solid var(--ui-outline);box-shadow:var(--ui-shadow-control);grid-template-rows:minmax(0,1fr) minmax(16px,auto) minmax(20px,auto);gap:4px;padding:4px}
+ #mobile-app[data-creature-view=fort] .hall-form-name{font:var(--ui-font-resource);word-break:normal;overflow-wrap:normal;hyphens:none}
+ #mobile-app[data-creature-view=fort] .hall-quick-info{font:var(--ui-font-resource);min-height:20px;gap:4px;flex-wrap:wrap}
+ #mobile-app[data-creature-view=fort] .hall-form-price{font:var(--ui-font-resource);gap:4px}
+ #mobile-app[data-creature-view=fort] .hall-form-price .creature-price{gap:4px;align-items:center}
  @container goonk-viewport (orientation:portrait){
-  #mobile-app[data-creature-view=fort] .hall-layout{grid-template-rows:minmax(0,1fr) 176px!important}
+  #mobile-app[data-creature-view=fort] .hall-layout{grid-template-rows:minmax(0,1fr) 176px}
  }
 }
 @layer ui-composition {
  @container goonk-viewport (orientation:landscape){
-  #mobile-app[data-creature-view=fort] .creature-view-head h2{display:block!important;visibility:visible!important;font:var(--ui-font-title-compact)!important;min-width:0!important;width:auto!important;height:auto!important;line-height:24px!important;margin:0!important}
+  #mobile-app[data-creature-view=fort] .creature-view-head h2{display:block;visibility:visible;font:var(--ui-font-title-compact);min-width:0;width:auto;height:auto;line-height:24px;margin:0}
  }
 }
 @layer ui-composition {
  @container goonk-viewport (orientation:landscape){
-  #mobile-app[data-creature-view=fort] .creature-view-head.ui-rail-title{height:32px!important;min-height:32px!important;max-height:32px!important;box-sizing:border-box!important;padding:4px 8px!important;overflow:visible!important}
+  #mobile-app[data-creature-view=fort] .creature-view-head.ui-rail-title{height:32px;min-height:32px;max-height:32px;box-sizing:border-box;padding:4px 8px;overflow:visible}
  }
 }
 @layer ui-composition {
  @container goonk-viewport (orientation:landscape){
-  #mobile-app[data-creature-view=fort] .creature-view-head.ui-rail-title{display:block!important;align-items:center!important}
-  #mobile-app[data-creature-view=fort] .creature-view-head.ui-rail-title h2{width:100%!important;max-width:none!important;white-space:normal!important}
+  #mobile-app[data-creature-view=fort] .creature-view-head.ui-rail-title{display:block;align-items:center}
+  #mobile-app[data-creature-view=fort] .creature-view-head.ui-rail-title h2{width:100%;max-width:none;white-space:normal}
  }
 }

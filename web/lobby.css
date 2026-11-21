@@ -1,4 +1,5 @@
 @import url('./lobby-choices.css');
+@layer legacy-base {
 /* Heroes III materials with a predictable mobile form and a persistent action bar. */
 #mobile-app:is([data-mode=lobby],[data-mode=load]){grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(0,1fr)}
 #mobile-app:is([data-mode=lobby],[data-mode=load]) .mobile-play{grid-column:1/-1;grid-row:2}
@@ -17,21 +18,21 @@
 #mobile-app .lobby-panel label{display:flex;flex-direction:column;gap:8px;width:100%;max-width:none;margin:0;color:#f5e6bf;font-size:var(--ui-type-body2);line-height:1.35;min-width:0}
 #mobile-app .lobby-panel select{box-sizing:border-box;min-width:0;width:100%;max-width:100%;height:52px;min-height:48px;padding:8px 12px;font:16px/1.3 Georgia,serif;border:2px inset #b99a60;border-radius:2px;background:#140f0a;color:#ffedbc;box-shadow:inset 0 2px 4px #0008}
 #mobile-app .lobby-panel select:focus-visible{outline:3px solid #ffe19a;outline-offset:3px}
-#mobile-app .lobby-panel .lobby-help{max-width:none;margin:0;font-size:var(--ui-type-body2)!important;line-height:1.45;color:#d9c69d}
+#mobile-app .lobby-panel .lobby-help{max-width:none;margin:0;font-size:var(--ui-type-body2);line-height:1.45;color:#d9c69d}
 #mobile-app .lobby-extra-options{display:flex;flex-direction:column;gap:16px;min-width:0}
 #mobile-app .lobby-panel .lobby-checkbox{display:flex;flex-direction:row;align-items:center;gap:12px;min-height:48px;padding:4px 0;box-sizing:border-box}
 #mobile-app .lobby-checkbox input{width:24px;height:24px;margin:0;flex:0 0 24px;accent-color:#d8b866}
-#mobile-app .lobby-panel button{width:100%;min-height:52px!important;margin:0;font-size:var(--ui-type-body1);padding:10px 12px}
+#mobile-app .lobby-panel button{width:100%;min-height:52px;margin:0;font-size:var(--ui-type-body1);padding:10px 12px}
 #mobile-app .custom-player-towns{display:flex;flex-direction:column;gap:16px;min-width:0}
 #mobile-app .lobby-player-label{display:flex;align-items:center;gap:8px}
 :is(#mobile-app,#game-menu) .lobby-player-colour{display:block;width:14px;height:14px;border:1px solid #ead198;flex:0 0 14px;background:#bba574}
 :is(#mobile-app,#game-menu) [data-player-colour="0"]{background:#c44132}:is(#mobile-app,#game-menu) [data-player-colour="1"]{background:#4d79ce}:is(#mobile-app,#game-menu) [data-player-colour="2"]{background:#bba574}:is(#mobile-app,#game-menu) [data-player-colour="3"]{background:#57a564}:is(#mobile-app,#game-menu) [data-player-colour="4"]{background:#d38933}:is(#mobile-app,#game-menu) [data-player-colour="5"]{background:#a067b9}:is(#mobile-app,#game-menu) [data-player-colour="6"]{background:#4faaaa}:is(#mobile-app,#game-menu) [data-player-colour="7"]{background:#d899b3}
-#mobile-app .lobby-players[hidden]{display:none!important}
+#mobile-app .lobby-players[hidden]{display:none}
 #mobile-app .lobby-players>h2{display:flex;justify-content:space-between;align-items:center;gap:8px}
 #mobile-app .lobby-footer{display:flex;flex-direction:column;gap:8px;padding:8px 16px max(8px,env(safe-area-inset-bottom));border-top:3px ridge #c4a460;background:#24180e url('./h3-theme/stone.png');box-shadow:0 -4px 12px #0006;min-width:0;z-index:1}
 #mobile-app .lobby-footer .lobby-status{font-size:var(--ui-type-caption);line-height:1.3;margin:0;max-width:none;color:#e0ca97}
 #mobile-app .lobby-footer>div{display:grid;grid-template-columns:minmax(72px,.6fr) minmax(0,1.4fr);gap:8px}
-#mobile-app .lobby-footer button{width:100%;min-width:0;min-height:56px!important;margin:0;padding:8px;font-size:var(--ui-type-body1)}
+#mobile-app .lobby-footer button{width:100%;min-width:0;min-height:56px;margin:0;padding:8px;font-size:var(--ui-type-body1)}
 #mobile-app .lobby-footer .primary{border:3px ridge #f0cf81;font-weight:700;background:linear-gradient(#932e20,#4c170e);color:#fff0ba}
 #mobile-app .lobby-footer .primary:disabled{opacity:.65;filter:saturate(.35)}
 @container goonk-viewport (orientation:landscape) and (min-width:560px){
@@ -48,3 +49,5 @@
 @container goonk-viewport (orientation:landscape) and (max-height:500px){#mobile-app .lobby-intro{display:none}}
 #mobile-app .lobby-footer .lobby-status{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 @container goonk-viewport (orientation:landscape) and (min-width:560px){#mobile-app .lobby-footer .lobby-status{flex:1}}
+
+}

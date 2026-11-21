@@ -1,8 +1,9 @@
+@layer legacy-base {
 html.goonk-mobile #mobile-app[data-mode=online-login] {
   grid-template-columns:minmax(0,1fr);
   grid-template-rows:minmax(0,1fr);
 }
-#mobile-app[data-mode=online-login] :is(.mobile-top,.mobile-nav,#mobile-scene,.scene-tools,.scene-hint) {display:none!important}
+#mobile-app[data-mode=online-login] :is(.mobile-top,.mobile-nav,#mobile-scene,.scene-tools,.scene-hint) {display:none}
 #mobile-app[data-mode=online-login] .mobile-play {grid-area:1/1}
 .online-login {
   position:absolute;inset:0;display:grid;place-items:center;padding:12px;
@@ -35,4 +36,6 @@ html.goonk-mobile #mobile-app[data-mode=online-login] {
   #mobile-app[data-mode=online-lobby] .mobile-nav button {
     flex:0 0 auto;width:100%;
   }
+}
+
 }

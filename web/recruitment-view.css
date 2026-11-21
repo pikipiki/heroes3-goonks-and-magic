@@ -1,23 +1,24 @@
+@layer legacy-screen {
 /* Shared recruitment window: castle families and map dwellings use the same
    native recruitment data and commands. Only the long description scrolls. */
 html.goonk-mobile #mobile-app[data-mode=recruit]>.mobile-play{touch-action:pan-y}
-html.goonk-mobile #mobile-app[data-mode=recruit]>.mobile-nav{grid-template-columns:repeat(3,minmax(0,1fr))!important;padding:4px 8px calc(4px + var(--safe-bottom));gap:6px}
-html.goonk-mobile #mobile-app[data-mode=recruit]>.mobile-nav>button{min-height:44px!important;height:44px;font-size:var(--ui-type-body2)!important;padding:4px!important}
-html.goonk-mobile #mobile-app[data-mode=recruit] .creature-presentation.recruitment-view{display:grid!important;grid-template-columns:minmax(0,1fr)!important;grid-template-rows:auto clamp(128px,25cqh,196px) auto minmax(0,1fr) auto!important;gap:6px;padding:4px 8px;box-sizing:border-box;overflow:hidden;touch-action:pan-y}
-html.goonk-mobile #mobile-app .recruitment-view .creature-details{display:contents!important}
-html.goonk-mobile #mobile-app .recruitment-view .recruitment-sidebar{display:contents!important}
-html.goonk-mobile #mobile-app .recruitment-view .creature-view-head{grid-column:1!important;grid-row:1!important;display:block!important;padding:2px 0 5px!important;min-height:0!important;border-bottom:1px solid #ad8c48}
+html.goonk-mobile #mobile-app[data-mode=recruit]>.mobile-nav{grid-template-columns:repeat(3,minmax(0,1fr));padding:4px 8px calc(4px + var(--safe-bottom));gap:6px}
+html.goonk-mobile #mobile-app[data-mode=recruit]>.mobile-nav>button{min-height:44px;height:44px;font-size:var(--ui-type-body2);padding:4px}
+html.goonk-mobile #mobile-app[data-mode=recruit] .creature-presentation.recruitment-view{display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:auto clamp(128px,25cqh,196px) auto minmax(0,1fr) auto;gap:6px;padding:4px 8px;box-sizing:border-box;overflow:hidden;touch-action:pan-y}
+html.goonk-mobile #mobile-app .recruitment-view .creature-details{display:contents}
+html.goonk-mobile #mobile-app .recruitment-view .recruitment-sidebar{display:contents}
+html.goonk-mobile #mobile-app .recruitment-view .creature-view-head{grid-column:1;grid-row:1;display:block;padding:2px 0 5px;min-height:0;border-bottom:1px solid #ad8c48}
 html.goonk-mobile #mobile-app .recruitment-view .creature-view-head h2{margin:0;font-size:var(--ui-type-titleSmall);line-height:22px;overflow-wrap:anywhere;color:#ffe3a0}
 html.goonk-mobile #mobile-app .recruitment-view .recruit-visual{grid-column:1;grid-row:2;display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:6px;min-width:0;min-height:0}
 html.goonk-mobile #mobile-app .recruitment-view[data-variant-count="1"] .recruit-visual{grid-template-columns:minmax(0,1fr)}
-html.goonk-mobile #mobile-app .recruitment-view .creature-stage{grid-column:1!important;grid-row:1!important;position:relative!important;padding:0!important;min-width:0;min-height:0;align-self:stretch}
-html.goonk-mobile #mobile-app .recruitment-view .creature-stage canvas{display:block;box-sizing:border-box;width:100%!important;height:100%!important;max-height:100%;aspect-ratio:auto;object-fit:contain;border:3px ridge #d0ad58}
-html.goonk-mobile #mobile-app .recruitment-view .recruit-variants{grid-column:2!important;grid-row:1!important;display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(var(--variant-rows,2),minmax(0,1fr));gap:4px;padding:0!important;min-width:0;min-height:0;overflow:visible!important;touch-action:manipulation}
-html.goonk-mobile #mobile-app .recruitment-view .recruit-variants[hidden]{display:none!important}
+html.goonk-mobile #mobile-app .recruitment-view .creature-stage{grid-column:1;grid-row:1;position:relative;padding:0;min-width:0;min-height:0;align-self:stretch}
+html.goonk-mobile #mobile-app .recruitment-view .creature-stage canvas{display:block;box-sizing:border-box;width:100%;height:100%;max-height:100%;aspect-ratio:auto;object-fit:contain;border:3px ridge #d0ad58}
+html.goonk-mobile #mobile-app .recruitment-view .recruit-variants{grid-column:2;grid-row:1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(var(--variant-rows,2),minmax(0,1fr));gap:4px;padding:0;min-width:0;min-height:0;overflow:visible;touch-action:manipulation}
+html.goonk-mobile #mobile-app .recruitment-view .recruit-variants[hidden]{display:none}
 html.goonk-mobile #mobile-app .recruitment-view[data-variant-count="2"] .recruit-variants{grid-template-columns:minmax(0,1fr);grid-template-rows:repeat(2,minmax(0,1fr))}
-html.goonk-mobile #mobile-app .recruitment-view .recruit-variants button{display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(18px,1fr) auto auto;justify-items:center;align-items:center;gap:1px;min-width:0!important;width:100%;max-width:none!important;min-height:44px!important;height:100%;padding:3px!important;box-sizing:border-box;white-space:normal;border:2px ridge #b2914e;background:#302014;overflow:visible}
+html.goonk-mobile #mobile-app .recruitment-view .recruit-variants button{display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(18px,1fr) auto auto;justify-items:center;align-items:center;gap:1px;min-width:0;width:100%;max-width:none;min-height:44px;height:100%;padding:3px;box-sizing:border-box;white-space:normal;border:2px ridge #b2914e;background:#302014;overflow:visible}
 html.goonk-mobile #mobile-app .recruitment-view .recruit-variants .unit-portrait{width:100%;height:100%;max-height:none;min-height:0;object-fit:contain}
-html.goonk-mobile #mobile-app .recruitment-view .recruit-variants .unit-portrait{width:24px!important;height:24px!important;flex:0 0 24px!important}
+html.goonk-mobile #mobile-app .recruitment-view .recruit-variants .unit-portrait{width:24px;height:24px;flex:0 0 24px}
  #mobile-app .recruitment-view .variant-name{display:block;min-width:0;max-width:100%;font-size:var(--ui-type-micro);line-height:1.1;text-align:center;overflow-wrap:anywhere;white-space:normal}
 html.goonk-mobile #mobile-app .recruitment-view .variant-rank{font-size:var(--ui-type-resource);line-height:11px;color:#efd48c}
 html.goonk-mobile #mobile-app .recruitment-view .creature-facts{grid-column:1;grid-row:3;min-width:0;min-height:0}
@@ -44,32 +45,32 @@ html.goonk-mobile #mobile-app .recruitment-view .featured-price{display:flex;fle
 html.goonk-mobile #mobile-app .recruitment-view .featured-price>span:first-child{width:100%;font-size:var(--ui-type-resource);line-height:12px;color:#dbc38c;text-align:center}
 html.goonk-mobile #mobile-app .recruitment-view .creature-price{display:inline-flex;gap:2px;white-space:nowrap}
 html.goonk-mobile #mobile-app .recruitment-view .creature-price img{width:16px;height:16px}
-html.goonk-mobile #mobile-app .recruitment-view .recruit-controls{display:block!important;min-width:0;min-height:0;max-height:none!important;padding:0!important;border:0;overflow:visible!important}
-html.goonk-mobile #mobile-app .recruitment-view .mobile-recruit-amount{position:static!important;inset:auto;display:grid;grid-template-columns:48px minmax(0,1fr);gap:2px 5px;align-items:center;width:100%;margin:0!important;padding:3px!important;box-sizing:border-box;background:#24190ee8;border:1px solid #a58a4c}
+html.goonk-mobile #mobile-app .recruitment-view .recruit-controls{display:block;min-width:0;min-height:0;max-height:none;padding:0;border:0;overflow:visible}
+html.goonk-mobile #mobile-app .recruitment-view .mobile-recruit-amount{position:static;inset:auto;display:grid;grid-template-columns:48px minmax(0,1fr);gap:2px 5px;align-items:center;width:100%;margin:0;padding:3px;box-sizing:border-box;background:#24190ee8;border:1px solid #a58a4c}
 html.goonk-mobile #mobile-app .recruitment-view .mobile-recruit-amount label{display:flex;flex-direction:column;align-items:start;gap:1px;font-size:var(--ui-type-micro);line-height:13px}
 html.goonk-mobile #mobile-app .recruitment-view input[type=number]{box-sizing:border-box;min-height:44px;height:44px;width:46px;font-size:var(--ui-type-body1);text-align:center;padding:2px}
 html.goonk-mobile #mobile-app .recruitment-view input[type=range]{width:100%;min-width:0;min-height:44px}
 html.goonk-mobile #mobile-app .recruitment-view .recruit-summary{grid-column:1/-1;font-size:var(--ui-type-micro);line-height:14px;margin:0;overflow-wrap:anywhere}
 @container goonk-viewport (orientation:landscape){
  #mobile-app[data-mode=recruit]{--control-rail:clamp(230px,34cqw,310px)}
- html.goonk-mobile #mobile-app[data-mode=recruit]>.mobile-top{display:grid!important;grid-column:2!important;grid-row:1!important;grid-template-columns:44px minmax(0,1fr)!important;grid-template-rows:44px auto!important;gap:2px!important;padding:3px!important;min-width:0;box-sizing:border-box;overflow:visible!important}
- html.goonk-mobile #mobile-app[data-mode=recruit]>.mobile-top>:is(.mobile-title,.battle-view,.recruit-close,.hero-mobile-switch){display:none!important}
- html.goonk-mobile #mobile-app[data-mode=recruit]>.mobile-top>#game-menu-toggle{grid-column:1;grid-row:1;min-width:44px!important;min-height:44px!important}
- html.goonk-mobile #mobile-app[data-mode=recruit]>.mobile-top>.mobile-resources{display:flex!important;grid-column:2!important;grid-row:1!important;gap:1px;max-width:none!important;overflow:visible!important}
+ html.goonk-mobile #mobile-app[data-mode=recruit]>.mobile-top{display:grid;grid-column:2;grid-row:1;grid-template-columns:44px minmax(0,1fr);grid-template-rows:44px auto;gap:2px;padding:3px;min-width:0;box-sizing:border-box;overflow:visible}
+ html.goonk-mobile #mobile-app[data-mode=recruit]>.mobile-top>:is(.mobile-title,.battle-view,.recruit-close,.hero-mobile-switch){display:none}
+ html.goonk-mobile #mobile-app[data-mode=recruit]>.mobile-top>#game-menu-toggle{grid-column:1;grid-row:1;min-width:44px;min-height:44px}
+ html.goonk-mobile #mobile-app[data-mode=recruit]>.mobile-top>.mobile-resources{display:flex;grid-column:2;grid-row:1;gap:1px;max-width:none;overflow:visible}
  html.goonk-mobile #mobile-app[data-mode=recruit] .mobile-resources .mobile-resource{display:grid;flex:1 1 0;min-width:0}
  html.goonk-mobile #mobile-app[data-mode=recruit] .mobile-resources .mobile-resource[data-resource=gold]{flex:1.8 1 0}
  html.goonk-mobile #mobile-app[data-mode=recruit] .mobile-resources img{width:16px;height:16px}
- html.goonk-mobile #mobile-app[data-mode=recruit] .mobile-resources .resource-quantity{font-size:var(--ui-type-resource)!important;line-height:11px!important}
- html.goonk-mobile #mobile-app[data-mode=recruit]>.mobile-top>.mobile-calendar{display:flex!important;grid-column:1/-1!important;grid-row:2!important;justify-content:space-between;align-items:center;min-height:20px!important;height:20px;padding:0!important;font-size:var(--ui-type-resource)!important;line-height:14px;flex-wrap:nowrap;box-sizing:border-box}
- html.goonk-mobile #mobile-app[data-mode=recruit] .mobile-calendar>span:first-child{font-size:var(--ui-type-resource)!important;line-height:14px;white-space:nowrap!important}
- html.goonk-mobile #mobile-app[data-mode=recruit] .calendar-recruit-cue{display:inline-flex!important;gap:3px;padding:0 4px;font-size:var(--ui-type-resource);line-height:15px}
+ html.goonk-mobile #mobile-app[data-mode=recruit] .mobile-resources .resource-quantity{font-size:var(--ui-type-resource);line-height:11px}
+ html.goonk-mobile #mobile-app[data-mode=recruit]>.mobile-top>.mobile-calendar{display:flex;grid-column:1/-1;grid-row:2;justify-content:space-between;align-items:center;min-height:20px;height:20px;padding:0;font-size:var(--ui-type-resource);line-height:14px;flex-wrap:nowrap;box-sizing:border-box}
+ html.goonk-mobile #mobile-app[data-mode=recruit] .mobile-calendar>span:first-child{font-size:var(--ui-type-resource);line-height:14px;white-space:nowrap}
+ html.goonk-mobile #mobile-app[data-mode=recruit] .calendar-recruit-cue{display:inline-flex;gap:3px;padding:0 4px;font-size:var(--ui-type-resource);line-height:15px}
  html.goonk-mobile #mobile-app[data-mode=recruit] .mobile-calendar>.calendar-compact{display:none}
- html.goonk-mobile #mobile-app[data-mode=recruit]>.mobile-nav{grid-column:2!important;grid-row:3!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;padding:4px 6px!important}
- html.goonk-mobile #mobile-app[data-mode=recruit] .creature-presentation.recruitment-view{grid-template-columns:clamp(72px,13cqw,120px) minmax(0,1fr) minmax(0,1fr) var(--control-rail)!important;grid-template-rows:minmax(0,1fr) auto!important;padding:4px;gap:5px}
- html.goonk-mobile #mobile-app .recruitment-view[data-variant-count="1"]{grid-template-columns:0 minmax(0,1fr) minmax(0,1fr) var(--control-rail)!important}
+ html.goonk-mobile #mobile-app[data-mode=recruit]>.mobile-nav{grid-column:2;grid-row:3;grid-template-columns:repeat(3,minmax(0,1fr));padding:4px 6px}
+ html.goonk-mobile #mobile-app[data-mode=recruit] .creature-presentation.recruitment-view{grid-template-columns:clamp(72px,13cqw,120px) minmax(0,1fr) minmax(0,1fr) var(--control-rail);grid-template-rows:minmax(0,1fr) auto;padding:4px;gap:5px}
+ html.goonk-mobile #mobile-app .recruitment-view[data-variant-count="1"]{grid-template-columns:0 minmax(0,1fr) minmax(0,1fr) var(--control-rail)}
  html.goonk-mobile #mobile-app .recruitment-view .recruit-visual{display:contents}
- html.goonk-mobile #mobile-app .recruitment-view .creature-stage{grid-column:2!important;grid-row:1!important}
- html.goonk-mobile #mobile-app .recruitment-view .recruit-variants{grid-column:1!important;grid-row:1/-1!important;grid-template-columns:minmax(0,1fr);grid-template-rows:repeat(var(--variant-count,4),minmax(0,1fr))!important}
+ html.goonk-mobile #mobile-app .recruitment-view .creature-stage{grid-column:2;grid-row:1}
+ html.goonk-mobile #mobile-app .recruitment-view .recruit-variants{grid-column:1;grid-row:1/-1;grid-template-columns:minmax(0,1fr);grid-template-rows:repeat(var(--variant-count,4),minmax(0,1fr))}
  html.goonk-mobile #mobile-app .recruitment-view .creature-facts{grid-column:2;grid-row:2}
  html.goonk-mobile #mobile-app .recruitment-view .creature-stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:3px}
  html.goonk-mobile #mobile-app .recruitment-view .creature-stats>div{padding:1px 3px}
@@ -77,20 +78,20 @@ html.goonk-mobile #mobile-app .recruitment-view .recruit-summary{grid-column:1/-
  html.goonk-mobile #mobile-app .recruitment-view .creature-stats dd{font-size:var(--ui-type-body2);line-height:17px}
  html.goonk-mobile #mobile-app .recruitment-view .creature-stats>div:last-child{grid-column:1/-1}
  html.goonk-mobile #mobile-app .recruitment-view .recruit-description{grid-column:3;grid-row:1/-1;padding:6px;font-size:var(--ui-type-caption);line-height:17px}
- html.goonk-mobile #mobile-app .recruitment-view .recruitment-sidebar{grid-column:4;grid-row:1/-1;display:flex!important;flex-direction:column;gap:4px;padding:calc(var(--mobile-top-height,72px) + 2px) 3px 55px!important;min-width:0;min-height:0;overflow-y:auto;box-sizing:border-box;background:#281a10}
- html.goonk-mobile #mobile-app .recruitment-view .creature-view-head{flex:none!important;padding:0 0 3px!important;grid-column:auto!important;grid-row:auto!important}
+ html.goonk-mobile #mobile-app .recruitment-view .recruitment-sidebar{grid-column:4;grid-row:1/-1;display:flex;flex-direction:column;gap:4px;padding:calc(var(--mobile-top-height,72px) + 2px) 3px 55px;min-width:0;min-height:0;overflow-y:auto;box-sizing:border-box;background:#281a10}
+ html.goonk-mobile #mobile-app .recruitment-view .creature-view-head{flex:none;padding:0 0 3px;grid-column:auto;grid-row:auto}
  html.goonk-mobile #mobile-app .recruitment-view .creature-view-head h2{font-size:var(--ui-type-body2);line-height:16px}
- html.goonk-mobile #mobile-app .recruitment-view .recruit-transaction{display:grid;grid-template-columns:minmax(0,1fr);gap:4px;flex:1 0 auto!important;align-content:end}
+ html.goonk-mobile #mobile-app .recruitment-view .recruit-transaction{display:grid;grid-template-columns:minmax(0,1fr);gap:4px;flex:1 0 auto;align-content:end}
  html.goonk-mobile #mobile-app .recruitment-view .recruit-economy{grid-template-columns:minmax(0,.8fr) minmax(0,1.6fr)}
  html.goonk-mobile #mobile-app .recruitment-view .mobile-recruit-amount{grid-template-columns:minmax(96px,1fr) minmax(0,1fr)}
  html.goonk-mobile #mobile-app .recruitment-view .mobile-recruit-amount label{flex-direction:row;align-items:center;font-size:var(--ui-type-caption)}
 }
 /* A solitary creature needs facts beside its portrait, not an empty chooser. */
 @container goonk-viewport (orientation:portrait){
- html.goonk-mobile #mobile-app .creature-presentation.recruitment-view[data-variant-count="1"]{grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr)!important;grid-template-rows:auto clamp(128px,25cqh,196px) minmax(0,1fr) auto!important}
+ html.goonk-mobile #mobile-app .creature-presentation.recruitment-view[data-variant-count="1"]{grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);grid-template-rows:auto clamp(128px,25cqh,196px) minmax(0,1fr) auto}
  html.goonk-mobile #mobile-app .recruitment-view[data-variant-count="1"] .recruit-visual{display:contents}
- html.goonk-mobile #mobile-app .recruitment-view[data-variant-count="1"] .creature-view-head{grid-column:1/-1!important}
- html.goonk-mobile #mobile-app .recruitment-view[data-variant-count="1"] .creature-stage{grid-column:1!important;grid-row:2!important}
+ html.goonk-mobile #mobile-app .recruitment-view[data-variant-count="1"] .creature-view-head{grid-column:1/-1}
+ html.goonk-mobile #mobile-app .recruitment-view[data-variant-count="1"] .creature-stage{grid-column:1;grid-row:2}
  html.goonk-mobile #mobile-app .recruitment-view[data-variant-count="1"] .creature-facts{grid-column:2;grid-row:2}
  html.goonk-mobile #mobile-app .recruitment-view[data-variant-count="1"] .creature-stats{height:100%;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(3,minmax(0,1fr))}
  html.goonk-mobile #mobile-app .recruitment-view[data-variant-count="1"] .creature-stats>div{display:flex;flex-direction:column;justify-content:center}
@@ -99,25 +100,25 @@ html.goonk-mobile #mobile-app .recruitment-view .recruit-summary{grid-column:1/-
  html.goonk-mobile #mobile-app .recruitment-view[data-variant-count="1"] .recruit-transaction{grid-column:1/-1;grid-row:4}
 }
 @container goonk-viewport (orientation:landscape){
- html.goonk-mobile #mobile-app .creature-presentation.recruitment-view[data-variant-count="1"]{grid-template-columns:repeat(3,minmax(0,1fr)) var(--control-rail)!important;grid-template-rows:minmax(0,1fr)!important}
- html.goonk-mobile #mobile-app .recruitment-view[data-variant-count="1"] .creature-stage{grid-column:1!important;grid-row:1!important}
+ html.goonk-mobile #mobile-app .creature-presentation.recruitment-view[data-variant-count="1"]{grid-template-columns:repeat(3,minmax(0,1fr)) var(--control-rail);grid-template-rows:minmax(0,1fr)}
+ html.goonk-mobile #mobile-app .recruitment-view[data-variant-count="1"] .creature-stage{grid-column:1;grid-row:1}
  html.goonk-mobile #mobile-app .recruitment-view[data-variant-count="1"] .creature-facts{grid-column:2;grid-row:1}
  html.goonk-mobile #mobile-app .recruitment-view[data-variant-count="1"] .creature-stats{height:100%;grid-template-columns:minmax(0,1fr);grid-template-rows:repeat(5,minmax(0,1fr))}
  html.goonk-mobile #mobile-app .recruitment-view[data-variant-count="1"] .creature-stats>div{display:flex;align-items:center;justify-content:space-between;gap:4px;padding:4px}
  html.goonk-mobile #mobile-app .recruitment-view[data-variant-count="1"] .creature-stats dd{font-size:var(--ui-type-titleSmall)}
 }
-html.goonk-mobile #mobile-app .recruitment-view .recruit-variants{align-self:stretch!important;height:100%;box-sizing:border-box}
+html.goonk-mobile #mobile-app .recruitment-view .recruit-variants{align-self:stretch;height:100%;box-sizing:border-box}
 @container goonk-viewport (orientation:landscape){
- html.goonk-mobile #mobile-app[data-mode=recruit]>.mobile-top{width:100%!important;position:relative!important;inset:auto!important}
- html.goonk-mobile #mobile-viewport #mobile-app[data-mode=recruit]>.mobile-top>.mobile-resources{display:flex!important}
- html.goonk-mobile #mobile-viewport #mobile-app[data-mode=recruit]>.mobile-top>.mobile-calendar:not([hidden]){display:flex!important}
+ html.goonk-mobile #mobile-app[data-mode=recruit]>.mobile-top{width:100%;position:relative;inset:auto}
+ html.goonk-mobile #mobile-viewport #mobile-app[data-mode=recruit]>.mobile-top>.mobile-resources{display:flex}
+ html.goonk-mobile #mobile-viewport #mobile-app[data-mode=recruit]>.mobile-top>.mobile-calendar:not([hidden]){display:flex}
 }
 /* Older native-window rules positioned these nodes before the transaction
    wrapper existed; their grid coordinates must not create implicit tracks. */
-html.goonk-mobile #mobile-app[data-mode=recruit] .recruitment-view .recruit-transaction>*{grid-column:auto!important;grid-row:auto!important}
-html.goonk-mobile #mobile-app[data-mode=recruit] .recruitment-view .recruit-controls{display:block!important}
-html.goonk-mobile #mobile-app[data-mode=recruit] .recruitment-view .mobile-recruit-amount{grid-column:auto!important;grid-row:auto!important;align-self:auto!important}
-html.goonk-mobile #mobile-app[data-mode=recruit] :is(#town-overview,.town-view,.scene-tools,#mobile-scene){display:none!important}
+html.goonk-mobile #mobile-app[data-mode=recruit] .recruitment-view .recruit-transaction>*{grid-column:auto;grid-row:auto}
+html.goonk-mobile #mobile-app[data-mode=recruit] .recruitment-view .recruit-controls{display:block}
+html.goonk-mobile #mobile-app[data-mode=recruit] .recruitment-view .mobile-recruit-amount{grid-column:auto;grid-row:auto;align-self:auto}
+html.goonk-mobile #mobile-app[data-mode=recruit] :is(#town-overview,.town-view,.scene-tools,#mobile-scene){display:none}
 
 /* An odd evolution fills the final row; portrait never leaves an empty cell. */
 @container goonk-viewport (orientation:portrait){
@@ -141,9 +142,9 @@ html.goonk-mobile #mobile-app .recruitment-view .recruit-summary{display:flex;al
 html.goonk-mobile #mobile-app .recruitment-view .recruit-summary .creature-price{align-items:center;gap:3px}
 html.goonk-mobile #mobile-app .recruitment-view .recruit-summary img{width:16px;height:16px;object-fit:contain}
 html.goonk-mobile #mobile-app .recruitment-view .recruit-unavailable{flex-basis:100%;font-size:var(--ui-type-micro);line-height:14px}
-html.goonk-mobile #mobile-app .recruitment-view input{margin:0!important}
+html.goonk-mobile #mobile-app .recruitment-view input{margin:0}
 @container goonk-viewport (orientation:landscape){
- html.goonk-mobile #mobile-app .recruitment-view .recruitment-sidebar{padding-bottom:64px!important}
+ html.goonk-mobile #mobile-app .recruitment-view .recruitment-sidebar{padding-bottom:64px}
  html.goonk-mobile #mobile-app .recruitment-view .featured-price>span:first-child{width:100%;line-height:10px}
  html.goonk-mobile #mobile-app .recruitment-view .featured-price{gap:2px 4px;font-size:var(--ui-type-micro);line-height:14px}
  html.goonk-mobile #mobile-app .recruitment-view .featured-price img{width:14px;height:14px}
@@ -153,10 +154,10 @@ html.goonk-mobile #mobile-app .recruitment-view input{margin:0!important}
  html.goonk-mobile #mobile-app .recruitment-view :is(.featured-price,.recruit-stock){padding:2px}
 }
 
-html.goonk-mobile #mobile-app .recruitment-view .recruit-summary[hidden]{display:none!important}
+html.goonk-mobile #mobile-app .recruitment-view .recruit-summary[hidden]{display:none}
 html.goonk-mobile #mobile-app .recruitment-view .featured-price .creature-price{align-items:center}
 @container goonk-viewport (orientation:landscape){
- html.goonk-mobile #mobile-app .creature-presentation.recruitment-view[data-variant-count="1"]{grid-template-columns:minmax(0,1fr) clamp(92px,14cqw,130px) minmax(0,1.4fr) var(--control-rail)!important}
+ html.goonk-mobile #mobile-app .creature-presentation.recruitment-view[data-variant-count="1"]{grid-template-columns:minmax(0,1fr) clamp(92px,14cqw,130px) minmax(0,1.4fr) var(--control-rail)}
  html.goonk-mobile #mobile-app .recruitment-view[data-variant-count="1"] .creature-stats dt{min-width:0}
 }
 @container goonk-viewport (orientation:landscape){
@@ -165,9 +166,9 @@ html.goonk-mobile #mobile-app .recruitment-view .featured-price .creature-price{
  html.goonk-mobile #mobile-app .recruitment-view[data-variant-count="1"] .creature-stats dd{font-size:var(--ui-type-body2);line-height:17px;flex:0 0 auto;margin:0 0 0 auto}
 }
 @container goonk-viewport (orientation:landscape){
- html.goonk-mobile #mobile-app[data-mode=recruit]>.mobile-top>.mobile-calendar{height:16px;min-height:16px!important}
+ html.goonk-mobile #mobile-app[data-mode=recruit]>.mobile-top>.mobile-calendar{height:16px;min-height:16px}
  html.goonk-mobile #mobile-app .recruitment-view .recruitment-sidebar{gap:2px}
- html.goonk-mobile #mobile-app .recruitment-view .creature-view-head{padding-bottom:0!important}
+ html.goonk-mobile #mobile-app .recruitment-view .creature-view-head{padding-bottom:0}
  html.goonk-mobile #mobile-app .recruitment-view .mobile-recruit-amount label{margin:0;padding:0}
 }
 html.goonk-mobile #mobile-app .recruitment-view .recruit-unavailable{flex-basis:auto}
@@ -177,127 +178,145 @@ html.goonk-mobile #mobile-app .recruitment-view .recruit-unavailable{flex-basis:
 
 /* Material layout: typography stays legible; only descriptive/context panels
    scroll when the browser leaves too little height. Never shrink text to fit. */
+}
 @layer heroes-material {
- #mobile-app .recruitment-view .recruit-context{display:contents!important}
- #mobile-app .recruitment-view .recruit-variants{grid-template-rows:repeat(var(--variant-rows,2),minmax(max-content,1fr))!important;overflow:auto!important;overscroll-behavior:contain!important;touch-action:pan-y!important;gap:8px!important}
- #mobile-app .recruitment-view .recruit-variants button{display:flex!important;flex-direction:column!important;justify-content:center!important;align-self:stretch!important;height:100%!important;min-height:96px!important;box-sizing:border-box;gap:4px!important;padding:4px!important}
- #mobile-app .recruitment-view .recruit-variants .unit-portrait{width:24px!important;height:24px!important;flex:0 0 24px!important}
- #mobile-app .recruitment-view .variant-name{font:var(--ui-font-label-medium)!important;overflow:visible!important}
- #mobile-app .recruitment-view .variant-rank{font:var(--ui-font-body-small)!important}
+ #mobile-app .recruitment-view .recruit-context{display:contents}
+ #mobile-app .recruitment-view .recruit-variants{grid-template-rows:repeat(var(--variant-rows,2),minmax(max-content,1fr));overflow:auto;overscroll-behavior:contain;touch-action:pan-y;gap:8px}
+ #mobile-app .recruitment-view .recruit-variants button{display:flex;flex-direction:column;justify-content:center;align-self:stretch;height:100%;min-height:96px;box-sizing:border-box;gap:4px;padding:4px}
+ #mobile-app .recruitment-view .recruit-variants .unit-portrait{width:24px;height:24px;flex:0 0 24px}
+ #mobile-app .recruitment-view .variant-name{font:var(--ui-font-label-medium);overflow:visible}
+ #mobile-app .recruitment-view .variant-rank{font:var(--ui-font-body-small)}
  #mobile-app .recruitment-view .creature-view-head{--ui-header-padding:8px;--ui-header-min:64px}
- #mobile-app .recruitment-view .creature-view-head h2{height:56px!important;min-height:56px!important;font:var(--ui-font-title)!important;overflow:auto!important;touch-action:pan-y!important}
- #mobile-app .recruitment-view .recruit-description{font:var(--ui-font-body-medium)!important;padding:12px!important}
- #mobile-app .recruitment-view .creature-stats dt{font:var(--ui-font-label-medium)!important}
- #mobile-app .recruitment-view .creature-stats dd{font:var(--ui-font-title-compact)!important}
- #mobile-app .recruitment-view :is(.featured-price,.recruit-stock,.recruit-summary){font:var(--ui-font-body-small)!important}
- #mobile-app .recruitment-view .recruit-stock span,#mobile-app .recruitment-view .featured-price>span:first-child{font:var(--ui-font-body-small)!important}
- #mobile-app .recruitment-view .mobile-recruit-amount{gap:4px 8px!important;padding:4px!important}
- #mobile-app .recruitment-view .mobile-recruit-amount label{font:var(--ui-font-body-small)!important}
- #mobile-app .hall-feature-title h3{font:var(--ui-font-title-compact)!important;white-space:normal!important;overflow:visible!important;text-overflow:clip!important}
- #mobile-app .hall-feature .creature-stats dd{font:var(--ui-font-body-medium)!important;white-space:nowrap!important}
+ #mobile-app .recruitment-view .creature-view-head h2{height:56px;min-height:56px;font:var(--ui-font-title);overflow:auto;touch-action:pan-y}
+ #mobile-app .recruitment-view .recruit-description{font:var(--ui-font-body-medium);padding:12px}
+ #mobile-app .recruitment-view .creature-stats dt{font:var(--ui-font-label-medium)}
+ #mobile-app .recruitment-view .creature-stats dd{font:var(--ui-font-title-compact)}
+ #mobile-app .recruitment-view :is(.featured-price,.recruit-stock,.recruit-summary){font:var(--ui-font-body-small)}
+ #mobile-app .recruitment-view .recruit-stock span,#mobile-app .recruitment-view .featured-price>span:first-child{font:var(--ui-font-body-small)}
+ #mobile-app .recruitment-view .mobile-recruit-amount{gap:4px 8px;padding:4px}
+ #mobile-app .recruitment-view .mobile-recruit-amount label{font:var(--ui-font-body-small)}
+ #mobile-app .hall-feature-title h3{font:var(--ui-font-title-compact);white-space:normal;overflow:visible;text-overflow:clip}
+ #mobile-app .hall-feature .creature-stats dd{font:var(--ui-font-body-medium);white-space:nowrap}
  @container goonk-viewport (orientation:portrait){
-  #mobile-app .recruitment-view .recruit-economy{grid-area:1/1!important}
-  #mobile-app .recruitment-view .recruit-controls{grid-area:1/2!important}
-  #mobile-app .recruitment-view .recruit-context>.recruit-economy{grid-area:5/1!important;align-self:stretch!important;width:35%!important;z-index:1}
-  #mobile-app .recruitment-view .recruit-transaction{grid-template-columns:35% minmax(0,1fr)!important}
+  #mobile-app .recruitment-view .recruit-economy{grid-area:1/1}
+  #mobile-app .recruitment-view .recruit-controls{grid-area:1/2}
+  #mobile-app .recruitment-view .recruit-context>.recruit-economy{grid-area:5/1;align-self:stretch;width:35%;z-index:1}
+  #mobile-app .recruitment-view .recruit-transaction{grid-template-columns:35% minmax(0,1fr)}
  }
  @container goonk-viewport (orientation:landscape){
-  #mobile-app .recruitment-view .recruitment-sidebar{display:grid!important;grid-template-rows:minmax(0,1fr) auto!important;gap:8px!important;padding:var(--mobile-top-height,96px) 8px 64px!important;overflow:hidden!important}
-  #mobile-app .recruitment-view .recruit-context{display:block!important;min-height:0!important;overflow:auto!important;overscroll-behavior:contain!important;touch-action:pan-y!important}
-  #mobile-app .recruitment-view .recruitment-sidebar>*{grid-area:auto!important}
-  #mobile-app .recruitment-view .recruit-transaction{display:block!important;min-height:0!important;flex:none!important;margin:0!important}
-  #mobile-app .recruitment-view .recruit-controls{position:static!important;margin:0!important;transform:none!important}
-  #mobile-app .recruitment-view .creature-view-head{--ui-header-min:0px;--ui-header-padding:0;padding:0!important;min-height:0!important}
-  #mobile-app .recruitment-view .creature-view-head h2{font:var(--ui-font-title-compact)!important;min-height:0!important;height:auto!important;padding:0!important;overflow:visible!important}
-  #mobile-app .recruitment-view .recruit-variants{grid-template-rows:repeat(var(--variant-count,4),minmax(max-content,1fr))!important}
+  #mobile-app .recruitment-view .recruitment-sidebar{display:grid;grid-template-rows:minmax(0,1fr) auto;gap:8px;padding:var(--mobile-top-height,96px) 8px 64px;overflow:hidden}
+  #mobile-app .recruitment-view .recruit-context{display:block;min-height:0;overflow:auto;overscroll-behavior:contain;touch-action:pan-y}
+  #mobile-app .recruitment-view .recruitment-sidebar>*{grid-area:auto}
+  #mobile-app .recruitment-view .recruit-transaction{display:block;min-height:0;flex:none;margin:0}
+  #mobile-app .recruitment-view .recruit-controls{position:static;margin:0;transform:none}
+  #mobile-app .recruitment-view .creature-view-head{--ui-header-min:0px;--ui-header-padding:0;padding:0;min-height:0}
+  #mobile-app .recruitment-view .creature-view-head h2{font:var(--ui-font-title-compact);min-height:0;height:auto;padding:0;overflow:visible}
+  #mobile-app .recruitment-view .recruit-variants{grid-template-rows:repeat(var(--variant-count,4),minmax(max-content,1fr))}
  }
 }
 
 /* Shared purchase composition: stock and unit price live inside the quantity frame in portrait. */
 @layer ui-composition {
  @container goonk-viewport (orientation:portrait){
-  #mobile-app .creature-presentation.recruitment-view{--recruit-transaction-row:5;grid-template-rows:auto clamp(128px,25cqh,196px) auto minmax(64px,1fr) auto!important}
-  #mobile-app .creature-presentation.recruitment-view[data-variant-count="1"]{--recruit-transaction-row:4;grid-template-rows:auto clamp(128px,25cqh,196px) minmax(64px,1fr) auto!important}
-  #mobile-app .recruitment-view .recruit-transaction{grid-column:1/-1!important;grid-row:var(--recruit-transaction-row)!important;display:block!important;width:100%!important;min-width:0!important;box-sizing:border-box!important}
-  #mobile-app .recruitment-view .recruit-controls{width:100%!important;min-width:0!important;box-sizing:border-box!important}
-  #mobile-app .recruitment-view .mobile-recruit-amount{display:grid!important;grid-template-columns:56px minmax(0,1fr)!important;align-items:center!important;gap:4px 8px!important;padding:4px 8px!important;width:100%!important;min-width:0!important;box-sizing:border-box!important}
-  #mobile-app .recruitment-view .mobile-recruit-amount .recruit-economy{grid-column:1/-1!important;width:100%!important;display:grid!important;grid-template-columns:minmax(72px,.7fr) minmax(0,1.8fr)!important;gap:6px!important;padding-bottom:3px!important;border-bottom:1px solid rgba(165,138,76,.45)!important;box-sizing:border-box!important}
-  #mobile-app .recruitment-view .mobile-recruit-amount .recruit-economy :is(.recruit-stock,.featured-price){border:0!important;background:transparent!important;box-shadow:none!important;padding:1px 4px!important;min-width:0!important}
-  #mobile-app .recruitment-view .recruit-stock{flex-direction:row!important;gap:6px!important}
-  #mobile-app .recruitment-view .featured-price{gap:4px 6px!important}
-  #mobile-app .recruitment-view .featured-price>span:first-child{width:auto!important}
-  #mobile-app .recruitment-view .mobile-recruit-amount label{min-width:0!important;width:100%!important;max-width:none!important}
-  #mobile-app .recruitment-view .mobile-recruit-amount .MuiInputBase-root{min-width:0!important;max-width:100%!important;width:100%!important;box-sizing:border-box!important}
-  #mobile-app .recruitment-view .mobile-recruit-amount .MuiSlider-root{width:calc(100% - 24px)!important;min-width:0!important;margin-inline:12px!important;box-sizing:border-box!important}
-  #mobile-app .recruitment-view .recruit-summary{grid-column:1/-1!important;margin:0!important}
+  #mobile-app .creature-presentation.recruitment-view{--recruit-transaction-row:5;grid-template-rows:auto clamp(128px,22cqh,180px) auto minmax(40px,1fr) auto}
+  #mobile-app .creature-presentation.recruitment-view[data-variant-count="1"]{--recruit-transaction-row:4;grid-template-rows:auto clamp(128px,22cqh,180px) minmax(40px,1fr) auto}
+  #mobile-app .recruitment-view .recruit-transaction{grid-column:1/-1;grid-row:var(--recruit-transaction-row);display:block;width:100%;min-width:0;box-sizing:border-box}
+  #mobile-app .recruitment-view .recruit-controls{width:100%;min-width:0;box-sizing:border-box}
+  #mobile-app .recruitment-view .mobile-recruit-amount{display:grid;grid-template-columns:56px minmax(0,1fr);align-items:center;gap:2px 8px;padding:3px 8px;width:100%;min-width:0;box-sizing:border-box}
+  #mobile-app .recruitment-view .mobile-recruit-amount .MuiInputBase-root,
+  #mobile-app .recruitment-view .mobile-recruit-amount input[type=number]{min-height:36px;height:36px}
+  #mobile-app .recruitment-view .mobile-recruit-amount input[type=range]{min-height:36px}
+  #mobile-app .recruitment-view .mobile-recruit-amount .MuiSlider-root{padding:6px 0}
+  #mobile-app .recruitment-view .mobile-recruit-amount .recruit-economy{grid-column:1/-1;width:100%;display:grid;grid-template-columns:minmax(72px,.7fr) minmax(0,1.8fr);gap:6px;padding-bottom:3px;border-bottom:1px solid rgba(165,138,76,.45);box-sizing:border-box}
+  #mobile-app .recruitment-view .mobile-recruit-amount .recruit-economy :is(.recruit-stock,.featured-price){border:0;background:transparent;box-shadow:none;padding:1px 4px;min-width:0}
+  #mobile-app .recruitment-view .recruit-stock{flex-direction:row;gap:6px}
+  #mobile-app .recruitment-view .featured-price{gap:4px 6px}
+  #mobile-app .recruitment-view .featured-price>span:first-child{width:auto}
+  #mobile-app .recruitment-view .mobile-recruit-amount label{min-width:0;width:100%;max-width:none}
+  #mobile-app .recruitment-view .mobile-recruit-amount .MuiInputBase-root{min-width:0;max-width:100%;width:100%;box-sizing:border-box}
+  #mobile-app .recruitment-view .mobile-recruit-amount .MuiSlider-root{width:calc(100% - 24px);min-width:0;margin-inline:12px;box-sizing:border-box}
+  #mobile-app .recruitment-view .recruit-summary{grid-column:1/-1;margin:0}
  }
 }
 
 @layer ui-composition {
  @container goonk-viewport (orientation:portrait){
-  #mobile-app .creature-presentation.recruitment-view{padding-bottom:60px!important}
+  #mobile-app .creature-presentation.recruitment-view{padding-bottom:60px}
  }
 }
 
 /* Keep native commands inside the MUI dialog's focus and painting boundary. */
 @layer ui-composition {
- #mobile-app .recruitment-view>.ui-recruit-actions{position:absolute!important;inset:auto 0 0!important;display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:4px!important;padding:4px!important;min-height:56px!important;height:56px!important;box-sizing:border-box!important;z-index:10!important;background:var(--ui-surface-container)!important}
- #mobile-app .recruitment-view>.ui-recruit-actions>button{min-width:0!important;min-height:48px!important;height:48px!important;font:var(--ui-font-label)!important;white-space:normal!important}
+ #mobile-app .recruitment-view>.ui-recruit-actions{position:absolute;inset:auto 0 0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;padding:4px;min-height:56px;height:56px;box-sizing:border-box;z-index:10;background:var(--ui-surface-container)}
+ #mobile-app .recruitment-view>.ui-recruit-actions>button{min-width:0;min-height:48px;height:48px;font:var(--ui-font-label);white-space:normal}
  @container goonk-viewport (orientation:landscape){
-  #mobile-app .creature-presentation.recruitment-view{grid-template-columns:clamp(72px,13cqw,120px) minmax(0,.7fr) minmax(0,1.3fr) var(--control-rail)!important}
-  #mobile-app .creature-presentation.recruitment-view[data-variant-count="1"]{grid-template-columns:minmax(0,.7fr) clamp(72px,13cqw,96px) minmax(0,1.7fr) var(--control-rail)!important}
-  #mobile-app .recruitment-view>.ui-recruit-actions{left:auto!important;width:var(--control-rail)!important}
-  #mobile-app .recruitment-view .creature-facts{min-height:0!important;overflow:auto!important;touch-action:pan-y!important}
-  #mobile-app .recruitment-view .mobile-recruit-amount .recruit-economy{grid-column:1/-1!important;width:100%!important}
-  #mobile-app .recruitment-view .mobile-recruit-amount label{flex-direction:column!important;align-items:stretch!important}
-  #mobile-app .ui-creature-overview.recruitment-view .mobile-recruit-amount .MuiSlider-root{width:calc(100% - 48px)!important;margin-inline:24px!important}
+  #mobile-app .creature-presentation.recruitment-view{grid-template-columns:clamp(72px,13cqw,120px) minmax(0,.7fr) minmax(0,1.3fr) var(--control-rail)}
+  #mobile-app .creature-presentation.recruitment-view[data-variant-count="1"]{grid-template-columns:minmax(0,.7fr) clamp(72px,13cqw,96px) minmax(0,1.7fr) var(--control-rail)}
+  #mobile-app .recruitment-view>.ui-recruit-actions{left:auto;width:var(--control-rail)}
+  #mobile-app .recruitment-view .creature-facts{min-height:0;overflow:auto;touch-action:pan-y}
+  #mobile-app .recruitment-view .recruitment-sidebar{padding-top:max(72px,calc(var(--mobile-top-height,72px) + 4px));padding-bottom:60px;gap:2px}
+  #mobile-app .recruitment-view .mobile-recruit-amount{grid-template-columns:72px minmax(0,1fr);gap:1px 6px;padding:2px 6px}
+  #mobile-app .recruitment-view .mobile-recruit-amount .recruit-economy{grid-column:1/-1;width:100%;padding-bottom:2px;border-bottom:1px solid rgba(165,138,76,.45)}
+  #mobile-app .recruitment-view .mobile-recruit-amount .recruit-economy :is(.recruit-stock,.featured-price){border:0;background:transparent;box-shadow:none;padding:1px 2px}
+  #mobile-app .recruitment-view .mobile-recruit-amount .recruit-stock{flex-direction:row;gap:4px}
+  #mobile-app .recruitment-view .mobile-recruit-amount .featured-price{gap:2px 4px}
+  #mobile-app .recruitment-view .mobile-recruit-amount .featured-price>span:first-child{width:auto}
+  #mobile-app .recruitment-view .mobile-recruit-amount label{flex-direction:column;align-items:stretch;gap:0;line-height:1.1}
+  #mobile-app .ui-creature-overview.recruitment-view .mobile-recruit-amount .MuiSlider-root{width:calc(100% - 32px);margin-inline:16px;padding:2px 0}
  }
 }
 @layer ui-composition {
  @container goonk-viewport (orientation:landscape){
-  #mobile-app .recruitment-view .creature-view-head.ui-rail-header{margin-top:0!important}
-  #mobile-app .recruitment-view .creature-stats{grid-template-columns:minmax(0,1fr)!important}
-  #mobile-app .recruitment-view .creature-stats>div{min-width:0!important}
-  #mobile-app .recruitment-view .creature-stats dt{white-space:normal!important;overflow-wrap:anywhere!important}
-  #mobile-app .ui-creature-overview.recruitment-view .mobile-recruit-amount label .MuiInputBase-root{height:32px!important;min-height:32px!important}
-  #mobile-app .ui-creature-overview.recruitment-view .mobile-recruit-amount label input{height:32px!important;min-height:32px!important;padding:0 4px!important}
+  #mobile-app .recruitment-view .creature-view-head.ui-rail-header{margin-top:0}
+  #mobile-app .recruitment-view .creature-stats{grid-template-columns:minmax(0,1fr)}
+  #mobile-app .recruitment-view .creature-stats>div{min-width:0}
+  #mobile-app .recruitment-view .creature-stats dt{white-space:normal;overflow-wrap:anywhere}
+  #mobile-app .ui-creature-overview.recruitment-view .mobile-recruit-amount label .MuiInputBase-root{height:32px;min-height:32px}
+  #mobile-app .ui-creature-overview.recruitment-view .mobile-recruit-amount label input{height:32px;min-height:32px;padding:0 4px}
  }
 }
 @layer ui-composition {
  @container goonk-viewport (orientation:landscape){
-  #mobile-app .creature-presentation.recruitment-view:not([data-variant-count="1"]){grid-template-rows:minmax(0,1.3fr) minmax(0,1fr)!important}
-  #mobile-app .recruitment-view .recruitment-sidebar{grid-template-rows:minmax(max-content,1fr) minmax(max-content,1fr)!important}
-  #mobile-app .recruitment-view .recruit-context{display:flex!important;flex-direction:column!important;justify-content:space-evenly!important;gap:4px!important}
-  #mobile-app .recruitment-view .recruit-transaction{display:flex!important;flex-direction:column!important;justify-content:center!important}
+  #mobile-app .creature-presentation.recruitment-view:not([data-variant-count="1"]){grid-template-rows:minmax(0,1.3fr) minmax(0,1fr)}
+  #mobile-app .recruitment-view .recruitment-sidebar{grid-template-rows:minmax(max-content,1fr) minmax(max-content,1fr)}
+  #mobile-app .recruitment-view .recruit-context{display:flex;flex-direction:column;justify-content:space-evenly;gap:4px}
+  #mobile-app .recruitment-view .recruit-transaction{display:flex;flex-direction:column;justify-content:center}
  }
 }
 @layer ui-composition {
  @container goonk-viewport (orientation:portrait) and (max-height:640px){
-  #mobile-app .creature-presentation.recruitment-view{grid-template-rows:auto 128px auto minmax(24px,1fr) auto auto!important}
-  #mobile-app .creature-presentation.recruitment-view[data-variant-count="1"]{grid-template-rows:auto 128px minmax(24px,1fr) auto auto!important}
-  #mobile-app .recruitment-view .creature-view-head h2{height:auto!important;min-height:32px!important}
+  #mobile-app .creature-presentation.recruitment-view{grid-template-rows:auto 128px auto minmax(24px,1fr) auto;gap:4px}
+  #mobile-app .creature-presentation.recruitment-view[data-variant-count="1"]{grid-template-rows:auto 128px minmax(24px,1fr) auto;gap:4px}
+  #mobile-app .recruitment-view .creature-view-head h2{height:auto;min-height:0}
+  #mobile-app .recruitment-view .mobile-recruit-amount{gap:2px 6px;padding:2px 6px}
+  #mobile-app .recruitment-view .mobile-recruit-amount .MuiInputBase-root,
+  #mobile-app .recruitment-view .mobile-recruit-amount input[type=number]{min-height:32px;height:32px}
+  #mobile-app .recruitment-view .mobile-recruit-amount input[type=range]{min-height:32px}
+  #mobile-app .recruitment-view .mobile-recruit-amount .MuiSlider-root{padding:4px 0}
  }
 }
 @layer ui-composition {
  @container goonk-viewport (orientation:landscape){
-  #mobile-app .recruitment-view:not([data-variant-count="1"]) .creature-stats{height:100%!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;grid-template-rows:repeat(3,minmax(32px,1fr))!important}
-  #mobile-app .recruitment-view:not([data-variant-count="1"]) .creature-stats dt{font:var(--ui-font-body-small)!important}
-  #mobile-app .recruitment-view:not([data-variant-count="1"]) .creature-stats dd{font:var(--ui-font-body-medium)!important}
+  #mobile-app .recruitment-view:not([data-variant-count="1"]) .creature-stats{height:100%;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(3,minmax(32px,1fr))}
+  #mobile-app .recruitment-view:not([data-variant-count="1"]) .creature-stats dt{font:var(--ui-font-body-small)}
+  #mobile-app .recruitment-view:not([data-variant-count="1"]) .creature-stats dd{font:var(--ui-font-body-medium)}
  }
 }
 @layer ui-composition {
- #mobile-app .recruitment-view>.ui-recruit-actions{height:60px!important;min-height:60px!important;padding:4px 4px 8px!important;border:0!important}
+ #mobile-app .recruitment-view>.ui-recruit-actions{height:60px;min-height:60px;padding:4px 4px 8px;border:0}
  @container goonk-viewport (orientation:landscape){
-  #mobile-app .recruitment-view .recruitment-sidebar{position:absolute!important;inset:0 0 0 auto!important;width:var(--control-rail)!important;padding:60px 4px!important;border:0!important;box-sizing:border-box!important}
-  #mobile-app .recruitment-view .creature-view-head{width:100%!important;max-width:none!important;box-sizing:border-box!important}
+  #mobile-app .recruitment-view .recruitment-sidebar{position:absolute;inset:0 0 0 auto;width:var(--control-rail);padding:66px 4px 58px;border:0;box-sizing:border-box}
+  #mobile-app .ui-creature-overview.recruitment-view .mobile-recruit-amount label .MuiInputBase-root,
+  #mobile-app .ui-creature-overview.recruitment-view .mobile-recruit-amount label input{height:28px;min-height:28px}
+  #mobile-app .recruitment-view .creature-view-head{width:100%;max-width:none;box-sizing:border-box}
  }
  @container goonk-viewport (orientation:portrait){
-  #mobile-app .creature-presentation.recruitment-view{padding-bottom:64px!important}
+  #mobile-app .creature-presentation.recruitment-view{padding-bottom:64px}
  }
 }
 @layer ui-composition {
  @container goonk-viewport (orientation:landscape){
-  #mobile-app .recruitment-view .featured-price{flex-direction:row!important;flex-wrap:nowrap!important;align-items:center!important;padding:0 4px!important;min-height:32px!important;gap:4px!important}
-  #mobile-app .recruitment-view .featured-price>span:first-child{width:auto!important;flex:1!important}
+  #mobile-app .recruitment-view .featured-price{flex-direction:row;flex-wrap:nowrap;align-items:center;padding:0 4px;min-height:32px;gap:4px}
+  #mobile-app .recruitment-view .featured-price>span:first-child{width:auto;flex:1}
  }
 }

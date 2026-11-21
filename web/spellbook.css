@@ -1,4 +1,5 @@
-#mobile-app[data-mode=spellbook] :is(.scene-tools,#mobile-scene,.scene-hint,.mobile-nav){display:none!important}
+@layer legacy-screen {
+#mobile-app[data-mode=spellbook] :is(.scene-tools,#mobile-scene,.scene-hint,.mobile-nav){display:none}
 html.goonk-mobile #mobile-app[data-mode=spellbook]{grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(0,1fr)}
 #mobile-app[data-mode=spellbook] :is(.mobile-top,.mobile-play){grid-column:1}
 #mobile-app[data-mode=spellbook] .mobile-play{grid-row:2}
@@ -14,7 +15,7 @@ html.goonk-mobile #mobile-app[data-mode=spellbook]{grid-template-columns:minmax(
  grid-template-areas:"title" "reuse" "contexts" "schools" "book" "footer";
  grid-template-rows:repeat(4,44px) minmax(0,1fr) auto
 }
-#mobile-app .mobile-spellbook[hidden]{display:none!important}
+#mobile-app .mobile-spellbook[hidden]{display:none}
 .mobile-spellbook>header{grid-area:title;display:flex;align-items:center;justify-content:space-between;gap:5px;min-width:0}
 .mobile-spellbook h2{display:flex;align-items:baseline;flex-wrap:wrap;gap:0 9px;margin:0;font-size:var(--ui-type-statLarge);line-height:1.12}
 .mobile-spellbook h2 small{color:#c4d9fb;font-size:var(--ui-type-body2);white-space:nowrap}
@@ -127,3 +128,5 @@ html.goonk-mobile #mobile-app[data-mode=spellbook]{grid-template-columns:minmax(
 #mobile-app .mobile-spellbook[data-scrolling=true] .spell-list{overflow-y:auto;touch-action:pan-y;overscroll-behavior:contain}
 
 #mobile-app .mobile-spellbook[data-scrolling=true] .spell-content{height:auto;box-sizing:border-box;overflow:hidden}
+
+}

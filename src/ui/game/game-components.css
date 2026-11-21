@@ -1,3 +1,4 @@
+@layer components {
 .gx-form-grid,
 .gx-two-panes,
 .gx-creature-details {
@@ -7,9 +8,9 @@
   align-items: start;
 }
 .gx-card {
-  border-color: #d2ae64 !important;
-  background: #24170e !important;
-  color: #fff0c2 !important;
+  border-color: #d2ae64;
+  background: #24170e;
+  color: #fff0c2;
 }
 .gx-card [aria-pressed=true] {
   background: #791e12;
@@ -221,4 +222,6 @@
 }
 .gx-roster-forms > .MuiButton-root:focus-visible {
   outline-offset: -3px;
+}
+
 }

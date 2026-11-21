@@ -825,7 +825,7 @@
       "tracked": false
     },
     "sourceBindings": {
-      "src/ui/theme.mjs": "eb68cf90b5d7c2912a0d4dea9c291e0985de4ed15a92a4a86f850184b58b1714",
+      "src/ui/theme.mjs": "7423aa43fcff2851cda05e3102a0b2fde63a279225d4ddcf3c8340826c9c7e7e",
       "scripts/build-ui.mjs": "4aec9e826e99f4b17f2eba3195832bea3c2ac614ace6676ed8a7be947c2f0f5e"
     },
     "stability": {
@@ -892,7 +892,7 @@
         "tracked": false
       },
       "sourceBindings": {
-        "src/ui/theme.mjs": "7e7e3f1c200600aa513b6132de7cc046e722f411da6a3fc2dd35e364735dbec2",
+        "src/ui/theme.mjs": "7423aa43fcff2851cda05e3102a0b2fde63a279225d4ddcf3c8340826c9c7e7e",
         "scripts/build-ui.mjs": "4aec9e826e99f4b17f2eba3195832bea3c2ac614ace6676ed8a7be947c2f0f5e"
       },
       "stability": {
@@ -958,14 +958,14 @@
     "upstreamCommit": "d3733a98",
     "engineUnchanged": true,
     "sourceBindings": {
-      "src/ui/runtime.mjs": "400ca12a3588ce4b4a3cad4e0c74e5a95511f2b1fc343f1248347fb194523ac3",
-      "src/ui/theme.mjs": "eb68cf90b5d7c2912a0d4dea9c291e0985de4ed15a92a4a86f850184b58b1714",
+      "src/ui/runtime.mjs": "a2db8f9a05c0c1c4551ded460967a0aec0984eb89c1a2e7130e6553e7c8f1a23",
+      "src/ui/theme.mjs": "7423aa43fcff2851cda05e3102a0b2fde63a279225d4ddcf3c8340826c9c7e7e",
       "web/town-building-menu.mjs": "5db60146b1bdf66e38ba9f7cdad55661556f498e478aad11e141801a2ac5e2c8",
       "web/ui/action-dock.mjs": "5115af7e961947ff63116c0dd3532b5c3ccd3b097a65aee0c83136c59b776232",
-      "web/ui/construction-layout.css": "a15269fb085a6fea3367232047c2146b3866f7f07d07d11904ad47fb29e8aba0",
+      "web/ui/construction-layout.css": "f5ea45b183908f4133e893c9cdbb58e0423ec88b1f3dba16efc9a4bc066b5f95",
       "web/ui/controls.mjs": "aed7550f7f9260e6bea00440d3464594c62fa72f9fc264691342ac4d4a22eb76",
-      "web/ui/material-components.css": "2e99f38550ab9c001d5a1417a978aa8e5a132975e450565f4b7ef24f54d568dd",
-      "web/ui/surfaces.css": "85209d269f81cf00e7ebba9416ae9a5321c48f81cdcdaded4ed1240ee670b875",
+      "web/ui/material-components.css": "a3e8c906f365f968b1ef84aece12e52e1cfab199d01ea06922a1865b4d4e22ec",
+      "web/ui/surfaces.css": "1580244d0d6c1992f037e0a496375db70c9be237d5ff0fb98c7436fd97ca302a",
       "work/browser-tests/construction-catalogue.mjs": "3581fdd88e0cf7d8e902d4772d6c14f9b1699c7e886b38777b5d91ee78b16967",
       "work/browser-tests/construction-flow-e2e.mjs": "e24839d3b293b09454f056f85b5926045871dc05c280fb2fc6e934107d210b16"
     },

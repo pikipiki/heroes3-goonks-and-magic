@@ -1,7 +1,7 @@
 import React,{createElement as h,useState,useRef,useCallback,useLayoutEffect} from 'react';
 import {createRoot} from 'react-dom/client';
 import {flushSync} from 'react-dom';
-import {ThemeProvider} from '@mui/material/styles';
+import {StyledEngineProvider,ThemeProvider} from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import InputBase from '@mui/material/InputBase';
@@ -51,7 +51,8 @@ const roots=new Map(),snapshots=new WeakMap(),owners=new WeakMap();let cleanup;
 function remember(root){snapshots.set(root,[root,...root.querySelectorAll('*')].map(parent=>({parent,children:[...parent.childNodes].filter(child=>{const owner=owners.get(child);if(owner&&owner!==root)return false;owners.set(child,root);return true;})})));}
 function restore(root){for(const {parent,children}of snapshots.get(root)||[])for(const child of children)parent.append(child);}
 function watch(){if(cleanup)return;cleanup=new MutationObserver(records=>{for(const change of records)if(change.type==='attributes'&&change.target.matches('button[data-mui-component]'))change.target.classList.toggle('Mui-disabled',change.target.disabled);for(const root of roots.keys())if(!root.isConnected)disposeMaterialRoot(root);});cleanup.observe(document.body,{childList:true,subtree:true,attributes:true,attributeFilter:['disabled']});}
-function render(root,element){watch();let react=roots.get(root);if(!react){react=createRoot(root);roots.set(root,react);}flushSync(()=>react.render(h(ThemeProvider,{theme:heroesTheme},element)));remember(root);}
+const Themed=({children})=>h(StyledEngineProvider,{enableCssLayer:true},h(ThemeProvider,{theme:heroesTheme},children));
+function render(root,element){watch();let react=roots.get(root);if(!react){react=createRoot(root);roots.set(root,react);}flushSync(()=>react.render(h(Themed,null,element)));remember(root);}
 function propsFor(node){const props={};for(const attr of node.attributes){if(attr.name==='style'){const style={};for(const key of node.style)style[key.startsWith('--')?key:key.replace(/-([a-z])/g,(_,c)=>c.toUpperCase())]=node.style.getPropertyValue(key);props.style=style;}else{const key=({class:'className',for:'htmlFor',tabindex:'tabIndex',readonly:'readOnly',maxlength:'maxLength',colspan:'colSpan',rowspan:'rowSpan',autofocus:'autoFocus'})[attr.name]||attr.name;if(['disabled','hidden','multiple','required','checked','selected','open'].includes(key))props[key]=true;else props[key]=attr.value;}}
  if(node.tagName==='INPUT'){if('value'in props){props.defaultValue=props.value;delete props.value;}if('checked'in props){props.defaultChecked=props.checked;delete props.checked;}}
  return props;}
@@ -222,7 +223,7 @@ export function createMaterialDialogBoundary(nativeRoot,initialOptions={}){
  });
  const renderDialog=()=>{
   if(!react)return;
-  flushSync(()=>react.render(h(ThemeProvider,{theme:heroesTheme},h(Dialog,{
+  flushSync(()=>react.render(h(Themed,null,h(Dialog,{
    open,container:container(),
    maxWidth:false,disableScrollLock:true,closeAfterTransition:false,
    'aria-labelledby':options.ariaLabelledby||nativeRoot.getAttribute('aria-labelledby')||undefined,
@@ -257,7 +258,7 @@ function requestMaterialPrompt({title,message,confirmLabel,cancelLabel,closeLabe
  return new Promise(resolve=>{
   const close=answer=>{if(settled)return;settled=true;value=answer;open=false;update();};
   const finish=()=>queueMicrotask(()=>{react.unmount();host.remove();resolve(confirmation?value:undefined);});
-  const update=()=>flushSync(()=>react.render(h(ThemeProvider,{theme:heroesTheme},h(Dialog,{
+  const update=()=>flushSync(()=>react.render(h(Themed,null,h(Dialog,{
    open,container,maxWidth:'sm',fullWidth:true,disableScrollLock:true,closeAfterTransition:false,onClose:(event,reason)=>{if(reason==='escapeKeyDown')close(false);},onTransitionExited:finish,
    slotProps:{root:{style:{position:'absolute',inset:0,pointerEvents:open?'auto':'none'}},backdrop:{style:{position:'absolute',pointerEvents:open?'auto':'none'}}},
   },h(DialogTitle,null,title),h(DialogContent,null,h(DialogContentText,{sx:{whiteSpace:'pre-line'}},message)),h(DialogActions,null,
@@ -277,7 +278,7 @@ export function createMaterialElement(tag='div'){
  host.addEventListener=(type,handler,options)=>{listeners.push([type,handler,options]);listen(type,handler,options);};
  const react=createRoot(host);
  const component=tag==='button'?Button:tag==='a'?Link:Box;
- flushSync(()=>react.render(h(ThemeProvider,{theme:heroesTheme},h(component,{...(component===Box?{component:tag}:{}),...(tag==='button'?{type:'button',variant:'outlined','data-mui-component':'Button'}:{})}))));
+ flushSync(()=>react.render(h(Themed,null,h(component,{...(component===Box?{component:tag}:{}),...(tag==='button'?{type:'button',variant:'outlined','data-mui-component':'Button'}:{})}))));
  const node=host.firstElementChild;
  for(const [type,handler,options]of listeners)node.addEventListener(type,handler,options);
  if(tag==='button'){Object.defineProperty(node,'className',{configurable:true,get:()=>node.getAttribute('class')||'',set:value=>{
@@ -285,7 +286,7 @@ export function createMaterialElement(tag='div'){
   const props=propsFor(node);props.className=custom.join(' ');props.variant='outlined';
   // Store adapter classes as actual MUI props. Ripple/focus renders then keep
   // the overflow trigger marker instead of overwriting imperative DOM classes.
-  flushSync(()=>react.render(h(ThemeProvider,{theme:heroesTheme},h(Button,props))));
+  flushSync(()=>react.render(h(Themed,null,h(Button,props))));
  }});}
  isolated.set(node,{host,react,connected:false});
  if(!isolatedObserver){isolatedObserver=new MutationObserver(()=>{for(const [node,record]of isolated){if(node.isConnected)record.connected=true;else if(record.connected){record.host.append(node);record.react.unmount();isolated.delete(node);}}});isolatedObserver.observe(document.body,{childList:true,subtree:true});}

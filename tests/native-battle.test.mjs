@@ -9,15 +9,15 @@ test('Mobile landscape battle controls move menu, stats and actions to the right
  const h3css=fs.readFileSync('web/h3-theme.css','utf8');
  const js=fs.readFileSync('web/mobile.mjs','utf8');
  assert.match(css,/html\.goonk-mobile #mobile-app\[data-mode=battle\]/);
- assert.match(css,/grid-column:\s*1\s*!important;\s*grid-row:\s*1\s*\/\s*-1\s*!important/);
- assert.match(css,/\.battle-panel\{\s*grid-column:\s*2\s*!important;\s*grid-row:\s*2\s*!important/);
+ assert.match(css,/grid-column:\s*1;\s*grid-row:\s*1\s*\/\s*-1/);
+ assert.match(css,/\.battle-panel\{\s*grid-column:\s*2;\s*grid-row:\s*2/);
  assert.match(css,/\.battle-panel-card/);
  assert.match(css,/\.battle-stat-pill/);
  assert.match(css,/data-ui=battle-confirm-move/);
  assert.match(css,/data-ui=battle-confirm-spell/);
  assert.match(css,/@container goonk-viewport \(orientation:landscape\)\s+and\s+\(min-width:768px\)/);
  assert.match(css,/@container goonk-viewport \(orientation:portrait\)\s+and\s+\(min-width:768px\)/);
- assert.doesNotMatch(h3css,/#mobile-app\[data-mode=battle\]\[data-battle-view=native\]\s*\.battle-panel\{\s*display:\s*none\s*!important\s*\}/);
+ assert.doesNotMatch(h3css,/#mobile-app\[data-mode=battle\]\[data-battle-view=native\]\s*\.battle-panel\{\s*display:\s*none\s*\}/);
  assert.match(js,/<\/main><section class="battle-panel"/);
  assert.match(js,/const isCreatureTargeting=state\.creatureSpellTargeting===true;/);
  assert.match(js,/function renderBattlePanel\(\)\{\s*const fr=getLanguage\(\)==='fr';/);
@@ -30,5 +30,5 @@ test('Mobile landscape battle controls move menu, stats and actions to the right
  assert(pt&&pt.x>=0&&pt.y>=0);
  const dualCss=fs.readFileSync('web/battle-dual-view.css','utf8');
  assert.doesNotMatch(dualCss,/#mobile-scene\{display:none/);
- assert.match(css,/html\.goonk-mobile #mobile-app\[data-mode=battle\] #mobile-scene\{\s*display:block!important/);
+ assert.match(css,/html\.goonk-mobile #mobile-app\[data-mode=battle\] #mobile-scene\{\s*display:block/);
 });

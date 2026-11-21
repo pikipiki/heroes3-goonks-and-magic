@@ -1,24 +1,24 @@
 /* Contextual item descriptions share one scrolling region; only global native
    commands belong to the dock, so long item names cannot overlap the header. */
 @layer ui-composition {
- #mobile-app .troop-equipment-page>.progression-scroll{display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:var(--ui-space-3)!important;padding:var(--ui-space-2)!important;overflow-x:hidden!important;overflow-y:auto!important;touch-action:pan-y!important;min-height:0!important;box-sizing:border-box!important}
- #mobile-app .troop-equipment-page>.progression-scroll>*{flex:none!important;min-width:0!important;margin:0!important}
- #mobile-app .troop-equipment-page :is(h3,p,strong,span,button){word-break:normal!important;overflow-wrap:normal!important;hyphens:none!important}
- #mobile-app .troop-equipment-page .troop-current{display:grid!important;grid-template-columns:48px minmax(0,1fr)!important;align-content:start!important;gap:var(--ui-space-2)!important;padding:var(--ui-space-3)!important;border:1px solid var(--ui-outline)!important;overflow:visible!important;box-sizing:border-box!important}
- #mobile-app .troop-equipment-page .troop-current>:is(h3,.troop-effective,button){grid-column:1/-1!important;margin:0!important}
- #mobile-app .troop-equipment-page .troop-current h3{font:var(--ui-font-title-compact)!important}
- #mobile-app .troop-equipment-page .troop-current :is(p,strong){font:var(--ui-font-body-medium)!important;margin:0!important}
- #mobile-app .troop-equipment-page .troop-current>canvas{grid-column:1!important;grid-row:span 2!important;float:none!important;margin:0!important;width:48px!important;height:48px!important}
- #mobile-app .troop-equipment-page .troop-current>:is(strong,p:not(.troop-effective)){grid-column:2!important}
- #mobile-app .troop-equipment-page .troop-current:not(:has(canvas))>p{grid-column:1/-1!important}
- #mobile-app .troop-equipment-page [data-inventory-title]{font:var(--ui-font-title-compact)!important}
- #mobile-app .troop-equipment-page .progression-summary{font:var(--ui-font-body-medium)!important;white-space:pre-line!important;color:var(--ui-on-surface-variant)!important}
- #mobile-app .troop-equipment-page .progression-offer{align-content:start!important;align-items:start!important;gap:var(--ui-space-2)!important;padding:var(--ui-space-3)!important}
- #mobile-app .troop-equipment-page .progression-offer>strong{font:var(--ui-font-label)!important;font-weight:400!important}
- #mobile-app .troop-equipment-page .progression-offer>span{font:var(--ui-font-body-medium)!important}
- #mobile-app .troop-equipment-page>.ui-action-dock{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;align-content:end!important;gap:var(--ui-space-2)!important;padding:var(--ui-space-2)!important;min-height:0!important;box-sizing:border-box!important}
- #mobile-app .troop-equipment-page>.ui-action-dock>button{width:100%!important;min-height:var(--ui-touch)!important}
+ #mobile-app .troop-equipment-page>.progression-scroll{display:flex;flex-direction:column;align-items:stretch;gap:var(--ui-space-3);padding:var(--ui-space-2);overflow-x:hidden;overflow-y:auto;touch-action:pan-y;min-height:0;box-sizing:border-box}
+ #mobile-app .troop-equipment-page>.progression-scroll>*{flex:none;min-width:0;margin:0}
+ #mobile-app .troop-equipment-page :is(h3,p,strong,span,button){word-break:normal;overflow-wrap:normal;hyphens:none}
+ #mobile-app .troop-equipment-page .troop-current{display:grid;grid-template-columns:48px minmax(0,1fr);align-content:start;gap:var(--ui-space-2);padding:var(--ui-space-3);border:1px solid var(--ui-outline);overflow:visible;box-sizing:border-box}
+ #mobile-app .troop-equipment-page .troop-current>:is(h3,.troop-effective,button){grid-column:1/-1;margin:0}
+ #mobile-app .troop-equipment-page .troop-current h3{font:var(--ui-font-title-compact)}
+ #mobile-app .troop-equipment-page .troop-current :is(p,strong){font:var(--ui-font-body-medium);margin:0}
+ #mobile-app .troop-equipment-page .troop-current>canvas{grid-column:1;grid-row:span 2;float:none;margin:0;width:48px;height:48px}
+ #mobile-app .troop-equipment-page .troop-current>:is(strong,p:not(.troop-effective)){grid-column:2}
+ #mobile-app .troop-equipment-page .troop-current:not(:has(canvas))>p{grid-column:1/-1}
+ #mobile-app .troop-equipment-page [data-inventory-title]{font:var(--ui-font-title-compact)}
+ #mobile-app .troop-equipment-page .progression-summary{font:var(--ui-font-body-medium);white-space:pre-line;color:var(--ui-on-surface-variant)}
+ #mobile-app .troop-equipment-page .progression-offer{align-content:start;align-items:start;gap:var(--ui-space-2);padding:var(--ui-space-3)}
+ #mobile-app .troop-equipment-page .progression-offer>strong{font:var(--ui-font-label);font-weight:400}
+ #mobile-app .troop-equipment-page .progression-offer>span{font:var(--ui-font-body-medium)}
+ #mobile-app .troop-equipment-page>.ui-action-dock{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-content:end;gap:var(--ui-space-2);padding:var(--ui-space-2);min-height:0;box-sizing:border-box}
+ #mobile-app .troop-equipment-page>.ui-action-dock>button{width:100%;min-height:var(--ui-touch)}
  @container goonk-viewport (orientation:landscape){
-  #mobile-app .troop-equipment-page>.ui-action-dock{grid-template-columns:minmax(0,1fr)!important;align-self:end!important}
+  #mobile-app .troop-equipment-page>.ui-action-dock{grid-template-columns:minmax(0,1fr);align-self:end}
  }
 }

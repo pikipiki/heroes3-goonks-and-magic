@@ -1,3 +1,4 @@
+@layer legacy-screen {
 #mobile-app[data-mode=map] [data-ui=hero-exchange].primary {
  border:1px solid #e57b69;
  border-image:none;
@@ -9,10 +10,10 @@
  grid-template-rows:auto minmax(0,1fr) auto;
 }
 #mobile-app[data-mode=hero-exchange] .mobile-play {grid-area:2/1}
-#mobile-app[data-mode=hero-exchange] :is(.mobile-resources,.mobile-calendar,.scene-hint) {display:none!important}
+#mobile-app[data-mode=hero-exchange] :is(.mobile-resources,.mobile-calendar,.scene-hint) {display:none}
 #mobile-app[data-mode=hero-exchange][data-exchange-view=mobile] {grid-template-rows:minmax(0,1fr)}
 #mobile-app[data-mode=hero-exchange][data-exchange-view=mobile] .mobile-play {grid-row:1}
-#mobile-app[data-mode=hero-exchange][data-exchange-view=mobile] :is(.mobile-top,#mobile-scene,.scene-tools) {display:none!important}
+#mobile-app[data-mode=hero-exchange][data-exchange-view=mobile] :is(.mobile-top,#mobile-scene,.scene-tools) {display:none}
 #mobile-app[data-mode=hero-exchange][data-exchange-view=classic] .mobile-nav {
  display:grid;
  grid-area:3/1;
@@ -39,6 +40,7 @@
 .exchange-toolbar {background:linear-gradient(#681f1680,#21170d60)}
 .exchange-toolbar h2 {margin:0;color:var(--gold);font-size:clamp(16px,4.5vw,23px);line-height:1.1}
 .exchange-tabs {grid-template-columns:repeat(2,minmax(0,1fr))}
+.exchange-tabs[hidden] {display:none}
 #mobile-app .hero-exchange-page button {min-height:44px;min-width:44px;padding:4px 7px;font-size:var(--ui-type-body2);font-weight:400;border-radius:0}
 #mobile-app .hero-exchange-page [data-exchange-close] {font-size:var(--ui-type-h2)}
 #mobile-app .exchange-tabs button[aria-pressed=true] {
@@ -94,9 +96,9 @@
 #mobile-app .exchange-slot.can-receive {border-color:#d7b66e;box-shadow:0 0 6px rgba(215,182,110,0.35)}
 #mobile-app .hero-exchange-page .exchange-slot.hero-army-slot.selected,
 #mobile-app .hero-exchange-page .exchange-slot[aria-pressed=true] {
- border:1px solid #66bb6a!important;
- background:#163519!important;
- box-shadow:0 0 10px rgba(76,175,80,0.65)!important;
+ border:1px solid #66bb6a;
+ background:#163519;
+ box-shadow:0 0 10px rgba(76,175,80,0.65);
 }
 #mobile-app .hero-exchange-page .exchange-detail {
  display:flex;
@@ -110,37 +112,37 @@
 .exchange-summary p {margin:2px 0}
 .exchange-route {color:var(--gold);font-weight:400}
 .exchange-description {max-height:none;overflow:visible;color:var(--muted)}
-#mobile-app .hero-exchange-page .exchange-actions {display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;align-items:stretch;gap:6px!important;min-width:0;width:100%}
-#mobile-app .hero-exchange-page .exchange-actions>button {width:100%;min-width:0!important;min-height:44px!important;padding:4px 8px!important;font-size:13px!important;font-weight:400;border-radius:0}
+#mobile-app .hero-exchange-page .exchange-actions {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:stretch;gap:6px;min-width:0;width:100%}
+#mobile-app .hero-exchange-page .exchange-actions>button {width:100%;min-width:0;min-height:44px;padding:4px 8px;font-size:13px;font-weight:400;border-radius:0}
 #mobile-app .hero-exchange-page .exchange-actions [data-exchange-actions],
 #mobile-app .hero-exchange-page .exchange-actions [data-exchange-confirm] {border:1px solid #ffe18a;background:linear-gradient(180deg,#79271c,#41160f);color:#fff0ad}
 .exchange-quantity {display:flex;flex-direction:column;align-items:stretch;gap:4px;font-size:var(--ui-type-micro);color:var(--muted);width:100%}
 #mobile-app .hero-exchange-page .exchange-quantity input {
  box-sizing:border-box;
- width:100%!important;
- min-width:0!important;
- min-height:40px!important;
+ width:100%;
+ min-width:0;
+ min-height:40px;
  background:#1c150c;
  color:var(--ink);
  border:1px solid var(--line);
  font:16px Georgia,serif;
  padding:2px 3px;
 }
-#mobile-app .hero-exchange-page .exchange-stepper {display:grid!important;grid-template-columns:44px minmax(0,1fr) 44px;gap:4px;width:100%;align-items:center}
+#mobile-app .hero-exchange-page .exchange-stepper {display:grid;grid-template-columns:44px minmax(0,1fr) 44px;gap:4px;width:100%;align-items:center}
 @container goonk-viewport (orientation:landscape) {
- #mobile-app .hero-exchange-page {grid-template-columns:minmax(0,1fr) minmax(200px,32%)!important;grid-template-rows:auto auto minmax(0,1fr)!important}
- #mobile-app .hero-exchange-page .exchange-toolbar {grid-column:2!important;grid-row:1!important;grid-template-columns:minmax(0,1fr) auto!important;align-items:center}
- #mobile-app .hero-exchange-page .exchange-toolbar h2 {grid-column:1!important;font-size:var(--ui-type-body1,16px)}
- #mobile-app .hero-exchange-page .exchange-tabs {grid-column:1!important;grid-row:1!important;z-index:2}
- #mobile-app .hero-exchange-page .exchange-inventories {grid-column:1!important;grid-row:2/4!important;min-height:0;overflow-y:auto;overscroll-behavior:contain;touch-action:pan-y}
- #mobile-app .hero-exchange-page[data-troops-only=true] .exchange-inventories {grid-row:1/4!important}
- #mobile-app .hero-exchange-page[data-army-view=true] .hero-army-slots {grid-template-columns:repeat(2,minmax(0,1fr))!important}
- #mobile-app .hero-exchange-page .exchange-detail {grid-column:2!important;grid-row:2/4!important;display:flex!important;flex-direction:column!important;justify-content:flex-start!important;gap:6px;border-top:0;border-inline-start:1px solid var(--line);min-height:0;overflow-y:auto;overscroll-behavior:contain;touch-action:pan-y}
+ #mobile-app .hero-exchange-page {grid-template-columns:minmax(0,1fr) minmax(200px,32%);grid-template-rows:auto auto minmax(0,1fr)}
+ #mobile-app .hero-exchange-page .exchange-toolbar {grid-column:2;grid-row:1;grid-template-columns:minmax(0,1fr) auto;align-items:center}
+ #mobile-app .hero-exchange-page .exchange-toolbar h2 {grid-column:1;font-size:var(--ui-type-body1,16px)}
+ #mobile-app .hero-exchange-page .exchange-tabs {grid-column:1;grid-row:1;z-index:2}
+ #mobile-app .hero-exchange-page .exchange-inventories {grid-column:1;grid-row:2/4;min-height:0;overflow-y:auto;overscroll-behavior:contain;touch-action:pan-y}
+ #mobile-app .hero-exchange-page[data-troops-only=true] .exchange-inventories {grid-row:1/4}
+ #mobile-app .hero-exchange-page[data-army-view=true] .hero-army-slots {grid-template-columns:repeat(2,minmax(0,1fr))}
+ #mobile-app .hero-exchange-page .exchange-detail {grid-column:2;grid-row:2/4;display:flex;flex-direction:column;justify-content:flex-start;gap:6px;border-top:0;border-inline-start:1px solid var(--line);min-height:0;overflow-y:auto;overscroll-behavior:contain;touch-action:pan-y}
  .exchange-summary {flex:1 1 auto;min-height:0;overflow-y:auto}
  #mobile-app .hero-exchange-page .exchange-actions {margin-top:auto;flex:none}
 }
 #mobile-app .hero-exchange-page[data-joining=true] {grid-template-rows:auto auto minmax(0,1fr) auto}
-#mobile-app .hero-exchange-page[data-joining=true] .exchange-inventories {display:flex!important;flex-direction:column!important;overflow-y:auto!important;overscroll-behavior:contain;touch-action:pan-y;gap:8px}
+#mobile-app .hero-exchange-page[data-joining=true] .exchange-inventories {display:flex;flex-direction:column;overflow-y:auto;overscroll-behavior:contain;touch-action:pan-y;gap:8px}
 #mobile-app .hero-exchange-page[data-joining=true] .exchange-joining-pool {flex:none}
 #mobile-app .hero-exchange-page[data-joining=true] .exchange-joining-pool>header {flex-wrap:wrap;gap:4px;padding:4px 6px}
 #mobile-app .hero-exchange-page[data-joining=true] .exchange-joining-pool>header>.MuiChip-root {max-width:100%}
@@ -148,14 +150,14 @@
 #mobile-app .hero-exchange-page[data-joining=true] .exchange-inventory:nth-child(2)>header {position:static}
 #mobile-app .exchange-joining-help {margin:0;padding:3px 8px;font-size:11px;line-height:1.25;color:#ffe6af}
 @container goonk-viewport (orientation:landscape) {
- #mobile-app .hero-exchange-page[data-joining=true] {grid-template-rows:auto auto minmax(0,1fr)!important}
- #mobile-app .hero-exchange-page[data-joining=true]>.exchange-inventories {grid-column:1!important;grid-row:1/4!important;display:grid!important;grid-template-columns:minmax(150px,34%) minmax(0,1fr)!important;grid-template-rows:minmax(0,1fr)!important;height:100%!important;min-height:0!important;overflow:hidden!important}
- #mobile-app .hero-exchange-page[data-joining=true] .exchange-joining-pool {height:100%!important;min-height:0!important;overflow-y:auto!important;overscroll-behavior:contain;touch-action:pan-y;-webkit-overflow-scrolling:touch}
+ #mobile-app .hero-exchange-page[data-joining=true] {grid-template-rows:auto auto minmax(0,1fr)}
+ #mobile-app .hero-exchange-page[data-joining=true]>.exchange-inventories {grid-column:1;grid-row:1/4;display:grid;grid-template-columns:minmax(150px,34%) minmax(0,1fr);grid-template-rows:minmax(0,1fr);height:100%;min-height:0;overflow:hidden}
+ #mobile-app .hero-exchange-page[data-joining=true] .exchange-joining-pool {height:100%;min-height:0;overflow-y:auto;overscroll-behavior:contain;touch-action:pan-y;-webkit-overflow-scrolling:touch}
  #mobile-app .hero-exchange-page[data-joining=true] .exchange-joining-pool>header {position:sticky;top:0;z-index:2}
- #mobile-app .hero-exchange-page[data-joining=true] .exchange-inventory:nth-child(2) {height:100%!important;min-height:0!important;overflow-y:auto!important;overscroll-behavior:contain;touch-action:pan-y;-webkit-overflow-scrolling:touch}
+ #mobile-app .hero-exchange-page[data-joining=true] .exchange-inventory:nth-child(2) {height:100%;min-height:0;overflow-y:auto;overscroll-behavior:contain;touch-action:pan-y;-webkit-overflow-scrolling:touch}
  #mobile-app .hero-exchange-page[data-joining=true] .exchange-inventory:nth-child(2)>header {position:sticky;top:0;z-index:2}
- #mobile-app .hero-exchange-page[data-joining=true]>.exchange-joining-help {grid-column:2!important;grid-row:2!important;font-size:11px;line-height:1.2;padding:3px 8px;overflow:visible;min-height:0}
- #mobile-app .hero-exchange-page[data-joining=true]>.exchange-detail {grid-column:2!important;grid-row:3!important;overflow-y:auto;min-height:0}
+ #mobile-app .hero-exchange-page[data-joining=true]>.exchange-joining-help {grid-column:2;grid-row:2;font-size:11px;line-height:1.2;padding:3px 8px;overflow:visible;min-height:0}
+ #mobile-app .hero-exchange-page[data-joining=true]>.exchange-detail {grid-column:2;grid-row:3;overflow-y:auto;min-height:0}
 }
 .exchange-joining-done-body {display:flex;align-items:center;gap:8px;text-align:start;width:100%;padding:4px 2px}
 .exchange-joining-done-icon {display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;flex:none;border:1px solid #66bb6a;background:#163519;color:#a5d6a7;font-size:16px}
@@ -172,42 +174,42 @@
  padding-top:6px;
 }
 #mobile-app .hero-exchange-page[data-army-view=true] .exchange-slot.exchange-joining-card {
- min-height:0!important;
- padding:8px 10px 8px 26px!important;
- flex-direction:row!important;
- align-items:center!important;
+ min-height:0;
+ padding:8px 10px 8px 26px;
+ flex-direction:row;
+ align-items:center;
 }
 #mobile-app .hero-exchange-page[data-army-view=true] .exchange-slot.exchange-joining-card .hero-army-slot-content {
- flex-direction:row!important;
- align-items:center!important;
- gap:10px!important;
+ flex-direction:row;
+ align-items:center;
+ gap:10px;
 }
 #mobile-app .hero-exchange-page[data-army-view=true] .exchange-slot.exchange-joining-card .hero-army-slot-art {
- width:56px!important;
- height:56px!important;
- flex:0 0 56px!important;
+ width:56px;
+ height:56px;
+ flex:0 0 56px;
 }
 #mobile-app .hero-exchange-page[data-army-view=true] .exchange-slot.exchange-joining-card .hero-army-slot-info {
- align-items:flex-start!important;
- flex:1 1 auto!important;
+ align-items:flex-start;
+ flex:1 1 auto;
 }
 #mobile-app .hero-exchange-page[data-army-view=true] .exchange-slot.exchange-joining-card .hero-army-slot-title {
- justify-content:flex-start!important;
+ justify-content:flex-start;
 }
 #mobile-app .hero-exchange-page[data-army-view=true] .exchange-slot.exchange-joining-card .creature-stats {
- flex:none!important;
- height:auto!important;
- min-height:0!important;
- grid-template-columns:repeat(5,minmax(0,1fr))!important;
- grid-template-rows:none!important;
- margin-top:2px!important;
+ flex:none;
+ height:auto;
+ min-height:0;
+ grid-template-columns:repeat(5,minmax(0,1fr));
+ grid-template-rows:none;
+ margin-top:2px;
 }
 @container goonk-viewport (orientation:landscape) {
- #mobile-app .hero-exchange-page[data-army-view=true][data-joining=true] .exchange-slot.exchange-joining-card {flex-direction:column!important;padding:14px 6px 6px!important}
- #mobile-app .hero-exchange-page[data-army-view=true][data-joining=true] .exchange-slot.exchange-joining-card .hero-army-slot-content {flex-direction:column!important;gap:6px!important}
- #mobile-app .hero-exchange-page[data-army-view=true][data-joining=true] .exchange-slot.exchange-joining-card .hero-army-slot-info {align-items:center!important}
- #mobile-app .hero-exchange-page[data-army-view=true][data-joining=true] .exchange-slot.exchange-joining-card .hero-army-slot-title {justify-content:center!important}
- #mobile-app .hero-exchange-page[data-army-view=true][data-joining=true] .exchange-slot.exchange-joining-card .creature-stats {grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:4px 2px!important}
+ #mobile-app .hero-exchange-page[data-army-view=true][data-joining=true] .exchange-slot.exchange-joining-card {flex-direction:column;padding:14px 6px 6px}
+ #mobile-app .hero-exchange-page[data-army-view=true][data-joining=true] .exchange-slot.exchange-joining-card .hero-army-slot-content {flex-direction:column;gap:6px}
+ #mobile-app .hero-exchange-page[data-army-view=true][data-joining=true] .exchange-slot.exchange-joining-card .hero-army-slot-info {align-items:center}
+ #mobile-app .hero-exchange-page[data-army-view=true][data-joining=true] .exchange-slot.exchange-joining-card .hero-army-slot-title {justify-content:center}
+ #mobile-app .hero-exchange-page[data-army-view=true][data-joining=true] .exchange-slot.exchange-joining-card .creature-stats {grid-template-columns:repeat(3,minmax(0,1fr));gap:4px 2px}
 }
 
 /* Danger / Dismiss button in hero-exchange */
@@ -231,11 +233,11 @@
  gap:3px;
 }
 #mobile-app .hero-exchange-page .exchange-stepper button {
- width:44px!important;
- min-width:44px!important;
- height:40px!important;
- min-height:40px!important;
- padding:0!important;
+ width:44px;
+ min-width:44px;
+ height:40px;
+ min-height:40px;
+ padding:0;
  font-size:16px;
  border-radius:0;
  font-weight:400;
@@ -247,4 +249,6 @@
  text-align:center;
  border-radius:0;
  font-weight:400;
+}
+
 }

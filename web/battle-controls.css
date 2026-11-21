@@ -1,198 +1,199 @@
+@layer legacy-screen {
 /* Keep all four combat commands on one row, including on narrow phones. */
 html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .mobile-top{
  display:grid;grid-template-columns:44px minmax(0,1fr) minmax(0,1.6fr);gap:4px 6px;align-items:stretch;min-height:0;
  padding:4px max(8px,env(safe-area-inset-right)) 4px max(8px,env(safe-area-inset-left))
 }
 html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .mobile-title{display:none}
-html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .mobile-top>#game-menu-toggle{width:44px;min-width:44px;min-height:44px!important}
+html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .mobile-top>#game-menu-toggle{width:44px;min-width:44px;min-height:44px}
 html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .battle-view{grid-column:2;grid-row:1}
 html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .battle-team-actions{
  display:grid;grid-column:3;grid-row:1;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:6px;min-width:0
 }
 html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .battle-view,
 html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .battle-team-actions button{
- width:100%;min-width:44px;min-height:44px!important;padding:3px 4px!important;
- font-size:clamp(12px,3.6vw,15px)!important;line-height:1.1;white-space:normal
+ width:100%;min-width:44px;min-height:44px;padding:3px 4px;
+ font-size:clamp(12px,3.6vw,15px);line-height:1.1;white-space:normal
 }
 html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] [data-ui=battle-retreat]{grid-column:2}
-html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .battle-tools button{min-height:52px!important;font-size:var(--ui-type-body2)!important}
+html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .battle-tools button{min-height:52px;font-size:var(--ui-type-body2)}
 @container goonk-viewport (orientation:portrait){
  html.goonk-mobile #mobile-app[data-mode=battle]{
-  grid-template-rows:auto minmax(0,1fr) auto auto!important;
-  height:100%!important;
+  grid-template-rows:auto minmax(0,1fr) auto auto;
+  height:100%;
  }
  html.goonk-mobile #mobile-app[data-mode=battle] .mobile-top{
-  grid-column:1!important;
-  grid-row:1!important;
+  grid-column:1;
+  grid-row:1;
  }
  html.goonk-mobile #mobile-app[data-mode=battle]:not([data-battle-layout=dual]) .mobile-play{
-  grid-column:1!important;
-  grid-row:2!important;
-  height:100%!important;
-  min-height:0!important;
-  display:flex!important;
-  flex-direction:column!important;
-  justify-content:center!important;
-  align-items:center!important;
-  background:#181b12!important;
+  grid-column:1;
+  grid-row:2;
+  height:100%;
+  min-height:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  background:#181b12;
  }
  html.goonk-mobile #mobile-app[data-mode=battle][data-battle-layout=dual] .mobile-play{
-  grid-column:1!important;
-  grid-row:2!important;
-  height:100%!important;
-  min-height:0!important;
-  display:grid!important;
-  grid-template-columns:minmax(0,1fr)!important;
-  grid-template-rows:auto minmax(0,1fr)!important;
-  gap:0!important;
-  background:#181b12!important;
-  overflow:hidden!important;
+  grid-column:1;
+  grid-row:2;
+  height:100%;
+  min-height:0;
+  display:grid;
+  grid-template-columns:minmax(0,1fr);
+  grid-template-rows:auto minmax(0,1fr);
+  gap:0;
+  background:#181b12;
+  overflow:hidden;
  }
  html.goonk-mobile #mobile-app[data-mode=battle] #mobile-scene{
-  display:block!important;
+  display:block;
  }
  html.goonk-mobile #mobile-app[data-mode=battle]:not([data-battle-layout=dual])[data-battle-camera=whole] #mobile-scene{
-  width:100%!important;
-  height:auto!important;
-  aspect-ratio:800/555!important;
-  max-height:100%!important;
-  margin:auto!important;
+  width:100%;
+  height:auto;
+  aspect-ratio:800/555;
+  max-height:100%;
+  margin:auto;
  }
  html.goonk-mobile #mobile-app[data-mode=battle]:not([data-battle-layout=dual])[data-battle-camera=close] #mobile-scene{
-  width:100%!important;
-  height:100%!important;
-  max-height:none!important;
-  aspect-ratio:auto!important;
-  flex:1 1 auto!important;
-  min-height:0!important;
+  width:100%;
+  height:100%;
+  max-height:none;
+  aspect-ratio:auto;
+  flex:1 1 auto;
+  min-height:0;
  }
  html.goonk-mobile #mobile-app[data-mode=battle][data-battle-layout=dual] #mobile-scene{
-  grid-column:1!important;
-  grid-row:2!important;
-  width:100%!important;
-  height:100%!important;
-  min-height:0!important;
-  max-height:none!important;
-  aspect-ratio:auto!important;
-  align-self:stretch!important;
+  grid-column:1;
+  grid-row:2;
+  width:100%;
+  height:100%;
+  min-height:0;
+  max-height:none;
+  aspect-ratio:auto;
+  align-self:stretch;
  }
  html.goonk-mobile #mobile-app[data-mode=battle] .battle-panel{
-  grid-column:1!important;
-  grid-row:3!important;
-  display:block!important;
-  padding:3px 8px!important;
-  border-top:2px ridge #ba974b!important;
-  background:rgba(20,14,8,0.92)!important;
-  box-sizing:border-box!important;
+  grid-column:1;
+  grid-row:3;
+  display:block;
+  padding:3px 8px;
+  border-top:2px ridge #ba974b;
+  background:rgba(20,14,8,0.92);
+  box-sizing:border-box;
  }
  html.goonk-mobile #mobile-app[data-mode=battle] .battle-panel-card{
-  display:grid!important;
-  grid-template-columns:36px minmax(0,1fr)!important;
-  grid-template-rows:auto auto!important;
-  gap:2px 8px!important;
-  align-items:center!important;
+  display:grid;
+  grid-template-columns:36px minmax(0,1fr);
+  grid-template-rows:auto auto;
+  gap:2px 8px;
+  align-items:center;
  }
  html.goonk-mobile #mobile-app[data-mode=battle] #battle-creature-detail{
-  grid-column:1!important;
-  grid-row:1/3!important;
-  width:36px!important;
-  height:42px!important;
-  border-radius:4px!important;
-  border:1px solid #7a5f32!important;
-  background:#000!important;
-  align-self:center!important;
-  object-fit:contain!important;
+  grid-column:1;
+  grid-row:1/3;
+  width:36px;
+  height:42px;
+  border-radius:4px;
+  border:1px solid #7a5f32;
+  background:#000;
+  align-self:center;
+  object-fit:contain;
  }
  html.goonk-mobile #mobile-app[data-mode=battle] .battle-unit-info{
-  grid-column:2!important;
-  grid-row:1!important;
-  display:flex!important;
-  gap:6px!important;
-  align-items:baseline!important;
-  min-width:0!important;
+  grid-column:2;
+  grid-row:1;
+  display:flex;
+  gap:6px;
+  align-items:baseline;
+  min-width:0;
  }
  html.goonk-mobile #mobile-app[data-mode=battle] .battle-turn{
-  font-size:var(--ui-type-caption)!important;
-  font-weight:bold!important;
-  line-height:1.2!important;
-  color:#ffea9f!important;
-  margin:0!important;
-  white-space:nowrap!important;
-  overflow:hidden!important;
-  text-overflow:ellipsis!important;
+  font-size:var(--ui-type-caption);
+  font-weight:bold;
+  line-height:1.2;
+  color:#ffea9f;
+  margin:0;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
  }
  html.goonk-mobile #mobile-app[data-mode=battle] .battle-unit-sub{
-  font-size:var(--ui-type-micro)!important;
-  line-height:1.2!important;
-  color:#d5c29b!important;
-  white-space:nowrap!important;
-  overflow:hidden!important;
-  text-overflow:ellipsis!important;
+  font-size:var(--ui-type-micro);
+  line-height:1.2;
+  color:#d5c29b;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
  }
  html.goonk-mobile #mobile-app[data-mode=battle] .battle-unit-stats{
-  grid-column:2!important;
-  grid-row:2!important;
-  display:flex!important;
-  gap:4px!important;
-  align-items:center!important;
-  margin:0!important;
+  grid-column:2;
+  grid-row:2;
+  display:flex;
+  gap:4px;
+  align-items:center;
+  margin:0;
  }
  html.goonk-mobile #mobile-app[data-mode=battle] .battle-selection{
-  font-size:var(--ui-type-micro)!important;
-  line-height:1.2!important;
-  color:#ccc!important;
-  margin:2px 0 0!important;
-  max-height:26px!important;
-  overflow:hidden!important;
+  font-size:var(--ui-type-micro);
+  line-height:1.2;
+  color:#ccc;
+  margin:2px 0 0;
+  max-height:26px;
+  overflow:hidden;
  }
  html.goonk-mobile #mobile-app[data-mode=battle] .mobile-nav{
-  grid-column:1!important;
-  grid-row:4!important;
-  display:grid!important;
-  grid-template-columns:repeat(4,minmax(0,1fr))!important;
-  gap:6px!important;
-  padding:6px 8px calc(6px + var(--safe-bottom))!important;
+  grid-column:1;
+  grid-row:4;
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:6px;
+  padding:6px 8px calc(6px + var(--safe-bottom));
  }
  html.goonk-mobile #mobile-app[data-mode=battle] .mobile-nav button{
-  min-height:48px!important;
-  font-size:var(--ui-type-body2)!important;
-  padding:4px 2px!important;
+  min-height:48px;
+  font-size:var(--ui-type-body2);
+  padding:4px 2px;
  }
  html.goonk-mobile #mobile-app[data-mode=battle] .mobile-nav>[data-ui=target]{
-  grid-column:1/-1!important;
-  min-height:50px!important;
+  grid-column:1/-1;
+  min-height:50px;
  }
  html.goonk-mobile #mobile-app[data-mode=battle] .mobile-nav>[data-ui=battle-confirm-move]{
-  grid-column:1/3!important;
-  min-height:50px!important;
+  grid-column:1/3;
+  min-height:50px;
  }
  html.goonk-mobile #mobile-app[data-mode=battle] .mobile-nav>[data-ui=battle-confirm-spell]{
-  grid-column:3/5!important;
-  min-height:50px!important;
+  grid-column:3/5;
+  min-height:50px;
  }
  html.goonk-mobile #mobile-app[data-mode=battle] .mobile-nav>[data-ui=battle-magic]{
-  grid-column:1!important;
+  grid-column:1;
  }
  html.goonk-mobile #mobile-app[data-mode=battle] .mobile-nav>[data-ui=targets]{
-  grid-column:2!important;
+  grid-column:2;
  }
  html.goonk-mobile #mobile-app[data-mode=battle] .mobile-nav>[data-ui=wait]{
-  grid-column:3!important;
+  grid-column:3;
  }
  html.goonk-mobile #mobile-app[data-mode=battle] .mobile-nav>[data-ui=defend]{
-  grid-column:4!important;
+  grid-column:4;
  }
  html.goonk-mobile #mobile-app[data-mode=battle][data-battle-camera=close] #mobile-scene{
-  width:100%!important;
-  height:100%!important;
-  max-height:none!important;
-  aspect-ratio:auto!important;
-  flex:1 1 auto!important;
+  width:100%;
+  height:100%;
+  max-height:none;
+  aspect-ratio:auto;
+  flex:1 1 auto;
  }
  html.goonk-mobile #mobile-app[data-mode=battle][data-battle-camera=close] .battle-panel{
-  flex:0 0 auto!important;
-  max-height:56px!important;
-  height:56px!important;
+  flex:0 0 auto;
+  max-height:56px;
+  height:56px;
  }
  html.goonk-mobile #mobile-app[data-mode=battle] .battle-unit-stats{
   display:flex;
@@ -213,233 +214,233 @@ html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .battle
 }
 @container goonk-viewport (orientation:portrait) and (min-width:768px){
  html.goonk-mobile #mobile-app[data-mode=battle] .battle-panel-card{
-  grid-template-columns:54px minmax(0,1fr)!important;
-  gap:4px 12px!important;
-  padding:6px 12px!important;
+  grid-template-columns:54px minmax(0,1fr);
+  gap:4px 12px;
+  padding:6px 12px;
  }
  html.goonk-mobile #mobile-app[data-mode=battle] #battle-creature-detail{
-  width:54px!important;
-  height:58px!important;
+  width:54px;
+  height:58px;
  }
  html.goonk-mobile #mobile-app[data-mode=battle] .battle-turn{
-  font-size:var(--ui-type-body1)!important;
+  font-size:var(--ui-type-body1);
  }
  html.goonk-mobile #mobile-app[data-mode=battle] .battle-unit-sub{
-  font-size:var(--ui-type-body2)!important;
+  font-size:var(--ui-type-body2);
  }
  html.goonk-mobile #mobile-app[data-mode=battle] .battle-stat-pill{
-  font-size:var(--ui-type-caption)!important;
-  padding:2px 8px!important;
-  line-height:18px!important;
+  font-size:var(--ui-type-caption);
+  padding:2px 8px;
+  line-height:18px;
  }
  html.goonk-mobile #mobile-app[data-mode=battle] .mobile-nav button{
-  min-height:54px!important;
-  font-size:var(--ui-type-body1)!important;
+  min-height:54px;
+  font-size:var(--ui-type-body1);
  }
 }
 @container goonk-viewport (orientation:portrait) and (max-height:650px){
- html.goonk-mobile #mobile-app[data-mode=battle] .mobile-nav{gap:4px!important;padding:4px 6px calc(4px + var(--safe-bottom))!important}
- html.goonk-mobile #mobile-app[data-mode=battle] .mobile-nav button{min-height:44px!important;font-size:var(--ui-type-caption)!important}
+ html.goonk-mobile #mobile-app[data-mode=battle] .mobile-nav{gap:4px;padding:4px 6px calc(4px + var(--safe-bottom))}
+ html.goonk-mobile #mobile-app[data-mode=battle] .mobile-nav button{min-height:44px;font-size:var(--ui-type-caption)}
  html.goonk-mobile #mobile-app[data-mode=battle] .mobile-nav>[data-ui=target],
  html.goonk-mobile #mobile-app[data-mode=battle] .mobile-nav>[data-ui=battle-confirm-move],
- html.goonk-mobile #mobile-app[data-mode=battle] .mobile-nav>[data-ui=battle-confirm-spell]{min-height:46px!important}
+ html.goonk-mobile #mobile-app[data-mode=battle] .mobile-nav>[data-ui=battle-confirm-spell]{min-height:46px}
 }
 @container goonk-viewport (orientation:landscape){
  html.goonk-mobile #mobile-app[data-mode=battle]{
   --battle-safe-top:env(safe-area-inset-top,0px);
   --battle-safe-right:env(safe-area-inset-right,0px);
   --battle-sidebar:calc(clamp(185px,24vw,270px) + var(--battle-safe-right));
-  grid-template-columns:minmax(0,1fr) var(--battle-sidebar)!important;
-  grid-template-rows:auto minmax(0,1fr) auto!important;
-  padding:0!important;
-  height:100%!important;
-  max-height:100dvh!important;
-  overflow:hidden!important;
+  grid-template-columns:minmax(0,1fr) var(--battle-sidebar);
+  grid-template-rows:auto minmax(0,1fr) auto;
+  padding:0;
+  height:100%;
+  max-height:100dvh;
+  overflow:hidden;
  }
  html.goonk-mobile #mobile-app[data-mode=battle] .mobile-play{
-  grid-column:1!important;
-  grid-row:1/-1!important;
-  display:block!important;
-  width:100%!important;
-  height:100%!important;
+  grid-column:1;
+  grid-row:1/-1;
+  display:block;
+  width:100%;
+  height:100%;
  }
  html.goonk-mobile #mobile-app[data-mode=battle] #mobile-scene{
-  width:100%!important;
-  height:100%!important;
-  max-height:none!important;
-  aspect-ratio:auto!important;
-  min-width:0!important;
+  width:100%;
+  height:100%;
+  max-height:none;
+  aspect-ratio:auto;
+  min-width:0;
  }
  html.goonk-mobile #mobile-app[data-mode=battle] .battle-panel{
-  grid-column:2!important;
-  grid-row:2!important;
-  display:flex!important;
-  flex-direction:column!important;
-  justify-content:center!important;
-  padding:3px calc(6px + var(--battle-safe-right)) 3px 6px!important;
-  border-left:1px solid #b59750!important;
-  border-bottom:1px solid #b59750!important;
-  background:rgba(20,14,8,0.92)!important;
-  box-sizing:border-box!important;
-  min-height:0!important;
-  max-height:none!important;
-  overflow:hidden!important;
+  grid-column:2;
+  grid-row:2;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:3px calc(6px + var(--battle-safe-right)) 3px 6px;
+  border-left:1px solid #b59750;
+  border-bottom:1px solid #b59750;
+  background:rgba(20,14,8,0.92);
+  box-sizing:border-box;
+  min-height:0;
+  max-height:none;
+  overflow:hidden;
  }
  html.goonk-mobile #mobile-app[data-mode=battle] .battle-panel-card{
-  display:grid!important;
-  grid-template-columns:34px minmax(0,1fr)!important;
-  grid-template-rows:auto auto!important;
-  gap:2px 6px!important;
-  align-items:center!important;
-  width:100%!important;
-  border:1px solid #7a5f32!important;
-  border-radius:4px!important;
-  padding:3px 6px!important;
-  background:rgba(12,8,4,0.65)!important;
-  box-sizing:border-box!important;
+  display:grid;
+  grid-template-columns:34px minmax(0,1fr);
+  grid-template-rows:auto auto;
+  gap:2px 6px;
+  align-items:center;
+  width:100%;
+  border:1px solid #7a5f32;
+  border-radius:4px;
+  padding:3px 6px;
+  background:rgba(12,8,4,0.65);
+  box-sizing:border-box;
  }
  html.goonk-mobile #mobile-app[data-mode=battle] #battle-creature-detail{
-  grid-column:1!important;
-  grid-row:1/3!important;
-  width:34px!important;
-  height:36px!important;
-  min-height:0!important;
-  max-height:36px!important;
-  border-radius:3px!important;
-  border:1px solid #7a5f32!important;
-  background:#000!important;
-  align-self:center!important;
-  object-fit:contain!important;
+  grid-column:1;
+  grid-row:1/3;
+  width:34px;
+  height:36px;
+  min-height:0;
+  max-height:36px;
+  border-radius:3px;
+  border:1px solid #7a5f32;
+  background:#000;
+  align-self:center;
+  object-fit:contain;
  }
  html.goonk-mobile #mobile-app[data-mode=battle] .battle-unit-info{
-  grid-column:2!important;
-  grid-row:1!important;
-  display:flex!important;
-  flex-direction:column!important;
-  gap:1px!important;
-  min-width:0!important;
+  grid-column:2;
+  grid-row:1;
+  display:flex;
+  flex-direction:column;
+  gap:1px;
+  min-width:0;
  }
  html.goonk-mobile #mobile-app[data-mode=battle] .battle-turn{
-  font-size:var(--ui-type-micro)!important;
-  font-weight:bold!important;
-  line-height:1.15!important;
-  color:#ffea9f!important;
-  margin:0!important;
-  white-space:nowrap!important;
-  overflow:hidden!important;
-  text-overflow:ellipsis!important;
+  font-size:var(--ui-type-micro);
+  font-weight:bold;
+  line-height:1.15;
+  color:#ffea9f;
+  margin:0;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
  }
  html.goonk-mobile #mobile-app[data-mode=battle] .battle-unit-sub{
-  font-size:var(--ui-type-resource)!important;
-  line-height:1.15!important;
-  color:#d5c29b!important;
-  white-space:nowrap!important;
-  overflow:hidden!important;
-  text-overflow:ellipsis!important;
+  font-size:var(--ui-type-resource);
+  line-height:1.15;
+  color:#d5c29b;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
  }
  html.goonk-mobile #mobile-app[data-mode=battle] .battle-unit-stats{
-  grid-column:1/3!important;
-  grid-row:2!important;
-  display:flex!important;
-  gap:3px!important;
-  justify-content:space-between!important;
-  margin-top:1px!important;
+  grid-column:1/3;
+  grid-row:2;
+  display:flex;
+  gap:3px;
+  justify-content:space-between;
+  margin-top:1px;
  }
  html.goonk-mobile #mobile-app[data-mode=battle] .battle-stat-pill{
-  flex:1 1 auto!important;
-  background:rgba(14,9,5,0.85)!important;
-  border:1px solid #7a5f32!important;
-  border-radius:3px!important;
-  padding:1px 3px!important;
-  font-size:var(--ui-type-resource)!important;
-  font-weight:bold!important;
-  color:#f7dfa3!important;
-  text-align:center!important;
-  white-space:nowrap!important;
-  line-height:1.2!important;
+  flex:1 1 auto;
+  background:rgba(14,9,5,0.85);
+  border:1px solid #7a5f32;
+  border-radius:3px;
+  padding:1px 3px;
+  font-size:var(--ui-type-resource);
+  font-weight:bold;
+  color:#f7dfa3;
+  text-align:center;
+  white-space:nowrap;
+  line-height:1.2;
  }
  html.goonk-mobile #mobile-app[data-mode=battle] .battle-selection,
  html.goonk-mobile #mobile-app[data-mode=battle] .battle-panel .battle-tools,
  html.goonk-mobile #mobile-app[data-mode=battle] .battle-panel .battle-unit-list,
  html.goonk-mobile #mobile-app[data-mode=battle] .battle-panel .battle-precision{
-  display:none!important;
+  display:none;
  }
  html.goonk-mobile #mobile-app[data-mode=battle] .battle-strategic-view{
-  display:none!important;
+  display:none;
  }
  html.goonk-mobile #mobile-app[data-mode=battle] .mobile-top{
-  grid-column:2!important;
-  grid-row:1!important;
-  display:grid!important;
-  grid-template-columns:minmax(0,1fr) 36px!important;
-  grid-template-rows:auto auto!important;
-  gap:2px!important;
-  padding:calc(2px + var(--battle-safe-top)) calc(6px + var(--battle-safe-right)) 2px 6px!important;
-  border-left:1px solid #b59750!important;
-  border-bottom:1px solid #b59750!important;
+  grid-column:2;
+  grid-row:1;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 36px;
+  grid-template-rows:auto auto;
+  gap:2px;
+  padding:calc(2px + var(--battle-safe-top)) calc(6px + var(--battle-safe-right)) 2px 6px;
+  border-left:1px solid #b59750;
+  border-bottom:1px solid #b59750;
  }
  html.goonk-mobile #mobile-app[data-mode=battle] .battle-view{
-  grid-column:1!important;
-  grid-row:1!important;
-  width:100%!important;
-  min-height:30px!important;
-  font-size:var(--ui-type-micro)!important;
-  padding:1px 3px!important;
+  grid-column:1;
+  grid-row:1;
+  width:100%;
+  min-height:30px;
+  font-size:var(--ui-type-micro);
+  padding:1px 3px;
  }
  html.goonk-mobile #mobile-app[data-mode=battle] .mobile-top>#game-menu-toggle{
-  grid-column:2!important;
-  grid-row:1!important;
-  min-width:36px!important;
-  min-height:30px!important;
-  padding:1px 3px!important;
+  grid-column:2;
+  grid-row:1;
+  min-width:36px;
+  min-height:30px;
+  padding:1px 3px;
  }
  html.goonk-mobile #mobile-app[data-mode=battle] .battle-team-actions{
-  grid-column:1/-1!important;
-  grid-row:2!important;
-  display:grid!important;
-  grid-template-columns:1.2fr 1fr!important;
-  gap:2px!important;
-  width:100%!important;
+  grid-column:1/-1;
+  grid-row:2;
+  display:grid;
+  grid-template-columns:1.2fr 1fr;
+  gap:2px;
+  width:100%;
  }
  html.goonk-mobile #mobile-app[data-mode=battle] .battle-team-actions button{
-  min-height:28px!important;
-  font-size:var(--ui-type-micro)!important;
-  padding:1px 3px!important;
+  min-height:28px;
+  font-size:var(--ui-type-micro);
+  padding:1px 3px;
  }
  html.goonk-mobile #mobile-app[data-mode=battle] .mobile-nav{
-  grid-column:2!important;
-  grid-row:3!important;
-  display:grid!important;
-  grid-template-columns:repeat(2,minmax(0,1fr))!important;
-  grid-auto-rows:minmax(28px,auto)!important;
-  align-content:end!important;
-  gap:2px!important;
-  overflow-y:hidden!important;
-  padding:2px calc(6px + var(--battle-safe-right)) max(2px,env(safe-area-inset-bottom,0px)) 6px!important;
-  border-left:1px solid #b59750!important;
-  border-top:1px solid #b59750!important;
+  grid-column:2;
+  grid-row:3;
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  grid-auto-rows:minmax(28px,auto);
+  align-content:end;
+  gap:2px;
+  overflow-y:hidden;
+  padding:2px calc(6px + var(--battle-safe-right)) max(2px,env(safe-area-inset-bottom,0px)) 6px;
+  border-left:1px solid #b59750;
+  border-top:1px solid #b59750;
  }
  html.goonk-mobile #mobile-app[data-mode=battle] .mobile-nav button{
-  min-height:30px!important;
-  min-width:0!important;
-  padding:2px 2px!important;
-  font-size:var(--ui-type-micro)!important;
+  min-height:30px;
+  min-width:0;
+  padding:2px 2px;
+  font-size:var(--ui-type-micro);
  }
  html.goonk-mobile #mobile-app[data-mode=battle] .mobile-nav>[data-ui=target]{
-  grid-column:1/-1!important;
-  min-height:32px!important;
+  grid-column:1/-1;
+  min-height:32px;
  }
  html.goonk-mobile #mobile-app[data-mode=battle] .mobile-nav>[data-ui=battle-confirm-move]{
-  grid-column:1!important;
-  min-height:32px!important;
+  grid-column:1;
+  min-height:32px;
  }
  html.goonk-mobile #mobile-app[data-mode=battle] .mobile-nav>[data-ui=battle-confirm-spell]{
-  grid-column:2!important;
-  min-height:32px!important;
+  grid-column:2;
+  min-height:32px;
  }
  html.goonk-mobile #mobile-app[data-mode=battle] .toast-mobile{
-  bottom:12px!important;
-  right:calc(var(--battle-sidebar) + 8px)!important;
+  bottom:12px;
+  right:calc(var(--battle-sidebar) + 8px);
  }
 }
 @container goonk-viewport (orientation:landscape) and (max-height:519px){
@@ -447,63 +448,63 @@ html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .battle
   --battle-sidebar:calc(clamp(175px,23vw,230px) + var(--battle-safe-right));
  }
  html.goonk-mobile #mobile-app[data-mode=battle] .mobile-top{
-  padding:calc(1px + var(--battle-safe-top)) calc(4px + var(--battle-safe-right)) 1px 4px!important;
-  gap:2px!important;
+  padding:calc(1px + var(--battle-safe-top)) calc(4px + var(--battle-safe-right)) 1px 4px;
+  gap:2px;
  }
  html.goonk-mobile #mobile-app[data-mode=battle] .battle-view,
  html.goonk-mobile #mobile-app[data-mode=battle] .mobile-top>#game-menu-toggle{
-  min-height:24px!important;
-  font-size:var(--ui-type-micro)!important;
-  padding:1px 2px!important;
+  min-height:24px;
+  font-size:var(--ui-type-micro);
+  padding:1px 2px;
  }
  html.goonk-mobile #mobile-app[data-mode=battle] .battle-team-actions button{
-  min-height:22px!important;
-  font-size:var(--ui-type-resource)!important;
-  padding:1px 2px!important;
+  min-height:22px;
+  font-size:var(--ui-type-resource);
+  padding:1px 2px;
  }
  html.goonk-mobile #mobile-app[data-mode=battle] .battle-panel{
-  padding:2px calc(4px + var(--battle-safe-right)) 2px 4px!important;
-  justify-content:center!important;
+  padding:2px calc(4px + var(--battle-safe-right)) 2px 4px;
+  justify-content:center;
  }
  html.goonk-mobile #mobile-app[data-mode=battle] .battle-panel-card{
-  grid-template-columns:30px minmax(0,1fr)!important;
-  gap:1px 4px!important;
-  padding:2px 4px!important;
+  grid-template-columns:30px minmax(0,1fr);
+  gap:1px 4px;
+  padding:2px 4px;
  }
  html.goonk-mobile #mobile-app[data-mode=battle] #battle-creature-detail{
-  width:30px!important;
-  height:32px!important;
-  min-height:0!important;
-  max-height:32px!important;
+  width:30px;
+  height:32px;
+  min-height:0;
+  max-height:32px;
  }
  html.goonk-mobile #mobile-app[data-mode=battle] .battle-turn{
-  font-size:var(--ui-type-micro)!important;
-  line-height:1.1!important;
+  font-size:var(--ui-type-micro);
+  line-height:1.1;
  }
  html.goonk-mobile #mobile-app[data-mode=battle] .battle-unit-sub{
-  font-size:var(--ui-type-resource)!important;
-  line-height:1.1!important;
+  font-size:var(--ui-type-resource);
+  line-height:1.1;
  }
  html.goonk-mobile #mobile-app[data-mode=battle] .battle-stat-pill{
-  font-size:var(--ui-type-resource)!important;
-  padding:0 2px!important;
-  line-height:1.15!important;
+  font-size:var(--ui-type-resource);
+  padding:0 2px;
+  line-height:1.15;
  }
  html.goonk-mobile #mobile-app[data-mode=battle] .mobile-nav{
-  gap:2px!important;
-  padding:2px calc(4px + var(--battle-safe-right)) max(2px,env(safe-area-inset-bottom,0px)) 4px!important;
-  overflow-y:hidden!important;
+  gap:2px;
+  padding:2px calc(4px + var(--battle-safe-right)) max(2px,env(safe-area-inset-bottom,0px)) 4px;
+  overflow-y:hidden;
  }
  html.goonk-mobile #mobile-app[data-mode=battle] .mobile-nav button{
-  min-height:24px!important;
-  font-size:var(--ui-type-resource)!important;
-  padding:1px 1px!important;
+  min-height:24px;
+  font-size:var(--ui-type-resource);
+  padding:1px 1px;
  }
  html.goonk-mobile #mobile-app[data-mode=battle] .mobile-nav>[data-ui=target],
  html.goonk-mobile #mobile-app[data-mode=battle] .mobile-nav>[data-ui=battle-confirm-move],
  html.goonk-mobile #mobile-app[data-mode=battle] .mobile-nav>[data-ui=battle-confirm-spell]{
-  min-height:26px!important;
-  font-size:var(--ui-type-resource)!important;
+  min-height:26px;
+  font-size:var(--ui-type-resource);
  }
 }
 @container goonk-viewport (orientation:landscape) and (min-width:768px) and (min-height:520px){
@@ -511,61 +512,61 @@ html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .battle
   --battle-sidebar:calc(clamp(250px,26vw,320px) + var(--battle-safe-right));
  }
  html.goonk-mobile #mobile-app[data-mode=battle] .battle-panel{
-  padding:8px calc(10px + var(--battle-safe-right)) 8px 10px!important;
-  overflow:hidden!important;
-  justify-content:flex-start!important;
+  padding:8px calc(10px + var(--battle-safe-right)) 8px 10px;
+  overflow:hidden;
+  justify-content:flex-start;
  }
  html.goonk-mobile #mobile-app[data-mode=battle] .battle-panel-card{
-  grid-template-columns:60px minmax(0,1fr)!important;
-  gap:4px 10px!important;
-  padding:8px 10px!important;
-  flex:1 1 auto!important;
+  grid-template-columns:60px minmax(0,1fr);
+  gap:4px 10px;
+  padding:8px 10px;
+  flex:1 1 auto;
  }
  html.goonk-mobile #mobile-app[data-mode=battle] #battle-creature-detail{
-  width:60px!important;
-  height:64px!important;
-  min-height:0!important;
-  max-height:64px!important;
-  border:2px solid #ba974b!important;
-  border-radius:4px!important;
+  width:60px;
+  height:64px;
+  min-height:0;
+  max-height:64px;
+  border:2px solid #ba974b;
+  border-radius:4px;
  }
  html.goonk-mobile #mobile-app[data-mode=battle] .battle-turn{
-  font-size:var(--ui-type-body1)!important;
-  line-height:1.25!important;
+  font-size:var(--ui-type-body1);
+  line-height:1.25;
  }
  html.goonk-mobile #mobile-app[data-mode=battle] .battle-unit-sub{
-  font-size:var(--ui-type-caption)!important;
-  color:#73e28a!important;
-  font-weight:bold!important;
+  font-size:var(--ui-type-caption);
+  color:#73e28a;
+  font-weight:bold;
  }
  html.goonk-mobile #mobile-app[data-mode=battle] .battle-unit-stats{
-  grid-column:1/3!important;
-  display:grid!important;
-  grid-template-columns:repeat(2,1fr)!important;
-  gap:4px 6px!important;
-  margin-top:6px!important;
+  grid-column:1/3;
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:4px 6px;
+  margin-top:6px;
  }
  html.goonk-mobile #mobile-app[data-mode=battle] .battle-stat-pill{
-  font-size:var(--ui-type-micro)!important;
-  padding:3px 6px!important;
-  line-height:1.25!important;
-  text-align:center!important;
+  font-size:var(--ui-type-micro);
+  padding:3px 6px;
+  line-height:1.25;
+  text-align:center;
  }
  html.goonk-mobile #mobile-app[data-mode=battle] .mobile-nav{
-  overflow-y:hidden!important;
-  gap:5px!important;
-  padding:6px calc(10px + var(--battle-safe-right)) calc(8px + var(--safe-bottom)) 10px!important;
-  border-top:1px solid #b59750!important;
+  overflow-y:hidden;
+  gap:5px;
+  padding:6px calc(10px + var(--battle-safe-right)) calc(8px + var(--safe-bottom)) 10px;
+  border-top:1px solid #b59750;
  }
  html.goonk-mobile #mobile-app[data-mode=battle] .mobile-nav button{
-  min-height:44px!important;
-  font-size:var(--ui-type-body2)!important;
+  min-height:44px;
+  font-size:var(--ui-type-body2);
  }
  html.goonk-mobile #mobile-app[data-mode=battle] .mobile-nav>[data-ui=target],
  html.goonk-mobile #mobile-app[data-mode=battle] .mobile-nav>[data-ui=battle-confirm-move],
  html.goonk-mobile #mobile-app[data-mode=battle] .mobile-nav>[data-ui=battle-confirm-spell]{
-  min-height:48px!important;
-  font-size:var(--ui-type-body2)!important;
+  min-height:48px;
+  font-size:var(--ui-type-body2);
  }
 }
 @container goonk-viewport (orientation:landscape) and (min-height:650px){
@@ -573,65 +574,67 @@ html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .battle
   --battle-sidebar:calc(clamp(280px,28vw,360px) + var(--battle-safe-right));
  }
  html.goonk-mobile #mobile-app[data-mode=battle] .battle-panel-card{
-  grid-template-columns:72px minmax(0,1fr)!important;
-  gap:6px 12px!important;
-  padding:12px 14px!important;
+  grid-template-columns:72px minmax(0,1fr);
+  gap:6px 12px;
+  padding:12px 14px;
  }
  html.goonk-mobile #mobile-app[data-mode=battle] #battle-creature-detail{
-  width:72px!important;
-  height:76px!important;
-  max-height:76px!important;
+  width:72px;
+  height:76px;
+  max-height:76px;
  }
  html.goonk-mobile #mobile-app[data-mode=battle] .battle-turn{
-  font-size:var(--ui-type-titleSmall)!important;
+  font-size:var(--ui-type-titleSmall);
  }
  html.goonk-mobile #mobile-app[data-mode=battle] .battle-unit-sub{
-  font-size:var(--ui-type-body2)!important;
+  font-size:var(--ui-type-body2);
  }
  html.goonk-mobile #mobile-app[data-mode=battle] .battle-stat-pill{
-  font-size:var(--ui-type-caption)!important;
-  padding:4px 8px!important;
+  font-size:var(--ui-type-caption);
+  padding:4px 8px;
  }
  html.goonk-mobile #mobile-app[data-mode=battle] .mobile-nav button{
-  min-height:50px!important;
-  font-size:var(--ui-type-body2)!important;
+  min-height:50px;
+  font-size:var(--ui-type-body2);
  }
  html.goonk-mobile #mobile-app[data-mode=battle] .mobile-nav>[data-ui=target],
  html.goonk-mobile #mobile-app[data-mode=battle] .mobile-nav>[data-ui=battle-confirm-move],
  html.goonk-mobile #mobile-app[data-mode=battle] .mobile-nav>[data-ui=battle-confirm-spell]{
-  min-height:54px!important;
-  font-size:var(--ui-type-body1)!important;
+  min-height:54px;
+  font-size:var(--ui-type-body1);
  }
 }
 
 /* Spend available height on the active creature while preserving touch targets. */
 @container goonk-viewport (orientation:landscape){
  html.goonk-mobile #mobile-app[data-mode=battle] .mobile-top :is(button,.battle-view),
- html.goonk-mobile #mobile-app[data-mode=battle] .mobile-nav button{min-height:44px!important}
- html.goonk-mobile #mobile-app[data-mode=battle] .battle-panel-card{flex:1;grid-template-columns:minmax(44px,.8fr) minmax(0,1fr)!important;align-content:center;gap:4px 6px!important}
- html.goonk-mobile #mobile-app[data-mode=battle] #battle-creature-detail{width:100%!important;height:100%!important;max-height:clamp(48px,22dvh,160px)!important;min-height:44px!important;aspect-ratio:1;object-fit:contain}
- html.goonk-mobile #mobile-app[data-mode=battle] .battle-turn{font-size:clamp(12px,1.6vw,18px)!important}
- html.goonk-mobile #mobile-app[data-mode=battle] .battle-stat-pill{font-size:clamp(10px,1.25vw,14px)!important}
- html.goonk-mobile #mobile-app[data-mode=battle] .mobile-nav button{font-size:clamp(11px,1.35vw,15px)!important}
+ html.goonk-mobile #mobile-app[data-mode=battle] .mobile-nav button{min-height:44px}
+ html.goonk-mobile #mobile-app[data-mode=battle] .battle-panel-card{flex:1;grid-template-columns:minmax(44px,.8fr) minmax(0,1fr);align-content:center;gap:4px 6px}
+ html.goonk-mobile #mobile-app[data-mode=battle] #battle-creature-detail{width:100%;height:100%;max-height:clamp(48px,22dvh,160px);min-height:44px;aspect-ratio:1;object-fit:contain}
+ html.goonk-mobile #mobile-app[data-mode=battle] .battle-turn{font-size:clamp(12px,1.6vw,18px)}
+ html.goonk-mobile #mobile-app[data-mode=battle] .battle-stat-pill{font-size:clamp(10px,1.25vw,14px)}
+ html.goonk-mobile #mobile-app[data-mode=battle] .mobile-nav button{font-size:clamp(11px,1.35vw,15px)}
 }
 @container goonk-viewport (orientation:landscape){
  html.goonk-mobile #mobile-app[data-mode=battle] .mobile-top .battle-team-actions button,
- html.goonk-mobile #mobile-app[data-mode=battle] .mobile-nav>[data-ui]{min-height:44px!important}
+ html.goonk-mobile #mobile-app[data-mode=battle] .mobile-nav>[data-ui]{min-height:44px}
 }
 @container goonk-viewport (orientation:landscape){
- html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native]{--battle-sidebar:var(--control-rail,clamp(220px,29vw,340px));grid-template-columns:minmax(0,1fr) var(--battle-sidebar)!important}
- html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .mobile-top{grid-column:2!important;grid-row:1!important;grid-template-columns:44px minmax(0,1fr)!important;padding:3px!important;gap:3px!important}
- html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .mobile-top .battle-team-actions{grid-column:1/-1!important;grid-row:2!important;grid-template-columns:repeat(2,minmax(0,1fr))!important}
- html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .mobile-top .battle-view{grid-column:2!important;grid-row:1!important;min-width:0!important}
+ html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native]{--battle-sidebar:var(--control-rail,clamp(220px,29vw,340px));grid-template-columns:minmax(0,1fr) var(--battle-sidebar)}
+ html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .mobile-top{grid-column:2;grid-row:1;grid-template-columns:44px minmax(0,1fr);padding:3px;gap:3px}
+ html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .mobile-top .battle-team-actions{grid-column:1/-1;grid-row:2;grid-template-columns:repeat(2,minmax(0,1fr))}
+ html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native] .mobile-top .battle-view{grid-column:2;grid-row:1;min-width:0}
 }
 
 /* Contextual actions occupy two compact rows in either orientation. */
 html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native]>.mobile-nav:has(>[data-ui=battle-action]){
- grid-template-columns:repeat(3,minmax(0,1fr))!important;
- grid-template-rows:repeat(2,minmax(44px,auto))!important;
- grid-auto-flow:row!important;
+ grid-template-columns:repeat(3,minmax(0,1fr));
+ grid-template-rows:repeat(2,minmax(44px,auto));
+ grid-auto-flow:row;
 }
 html.goonk-mobile #mobile-app[data-mode=battle][data-battle-view=native]>.mobile-nav:has(>[data-ui=battle-action])>button{
- grid-column:auto!important;grid-row:auto!important;min-width:0!important;
- min-height:44px!important;padding:4px!important;white-space:normal;overflow-wrap:anywhere;
+ grid-column:auto;grid-row:auto;min-width:0;
+ min-height:44px;padding:4px;white-space:normal;overflow-wrap:anywhere;
+}
+
 }

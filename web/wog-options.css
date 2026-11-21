@@ -1,3 +1,4 @@
+@layer legacy-base {
 #mobile-app .wog-options{min-width:0}
 #mobile-app .wog-options [data-ui-accordion-summary]{min-height:var(--ui-touch);box-sizing:border-box;cursor:pointer;padding:var(--ui-space-2) var(--ui-space-3);font:var(--ui-font-label)}
 #mobile-app .wog-rules{display:grid;gap:var(--ui-space-3);min-width:0}
@@ -15,3 +16,5 @@
 #mobile-app .wog-rule-choices .MuiRadio-root{flex:none;color:var(--ui-on-surface-variant)}
 #mobile-app .wog-rule-choices .MuiRadio-root.Mui-checked{color:var(--ui-primary)}
 #mobile-app .wog-rule-choices .MuiRadio-root svg{width:24px;height:24px;flex:none}
+
+}

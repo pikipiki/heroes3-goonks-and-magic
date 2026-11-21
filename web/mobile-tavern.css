@@ -1,3 +1,4 @@
+@layer legacy-base {
 html.goonk-mobile #mobile-app[data-mobile-tavern]{grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(0,1fr)}
 #mobile-app[data-mobile-tavern] .mobile-top{grid-column:1}
 #mobile-app[data-mobile-tavern] .mobile-play{grid-column:1;grid-row:2}
@@ -34,4 +35,6 @@ html.goonk-mobile #mobile-app[data-mobile-tavern]{grid-template-columns:minmax(0
 @container goonk-viewport (orientation:landscape) and (max-height:360px){
  .mobile-tavern{gap:4px;padding-top:2px}
  .tavern-identity canvas{height:60px}
+}
+
 }

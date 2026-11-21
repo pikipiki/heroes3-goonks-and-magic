@@ -20,6 +20,6 @@ test('Mobile map nav buttons sit on a single line and town actions have valid ic
  assert.match(h3css, /#mobile-app\[data-mode=map\]\s*\.mobile-nav\{\s*grid-template-columns:\s*repeat\(4,\s*minmax\(0,\s*1fr\)\)/);
  assert.match(upcss, /#mobile-app\[data-mode=map\]\s*\.mobile-nav:not\(:has\(>\[data-ui=hero-exchange\]\)\)>\[data-ui=endturn\]\{\s*grid-column:\s*auto\s*\}/);
  const {townActionIcon}=await import('../web/town-action-icons.mjs');assert.match(townActionIcon('build'),/^data:image\/svg\+xml,/);assert.match(mobileMjs,/warmTownActionIcons\(\)/);
- assert.match(eqcss, /touch-action:\s*pan-x\s*!important/);
- assert.match(eqcss, /border-image:\s*none\s*!important/);
+ assert.match(eqcss, /touch-action:\s*pan-x/);
+ assert.match(eqcss, /border-image:\s*none/);
 });

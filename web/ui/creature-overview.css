@@ -1,86 +1,86 @@
 /* Inspection and recruitment consume the same artwork/stat/narrative regions. */
 @layer ui-composition {
  @container goonk-viewport (orientation:landscape){
-  #mobile-app[data-mode=creature] .ui-creature-overview{display:grid!important;grid-template-columns:clamp(156px,30cqw,224px) minmax(0,1fr) var(--control-rail,220px)!important;grid-template-rows:auto minmax(0,1fr) min-content!important;gap:8px!important;padding:8px!important;min-height:0!important;min-width:0!important;overflow:hidden!important}
-  #mobile-app[data-mode=creature] .ui-creature-overview :is(.featured-creature,.creature-details){display:contents!important}
-  #mobile-app[data-mode=creature] .ui-creature-overview>.creature-view-head{grid-area:1/3!important;align-self:start!important;min-width:0!important;width:calc(100% - 12px)!important;margin-left:12px!important;box-sizing:border-box!important;display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:8px!important;height:auto!important;max-height:none!important}
-  #mobile-app[data-mode=creature] .ui-creature-overview>.creature-view-head>.creature-description{flex:none!important;min-height:0!important;max-height:26cqh!important;overflow-y:auto!important;overscroll-behavior:contain!important;touch-action:pan-y!important;margin:0!important;padding:0 8px 8px!important;box-sizing:border-box!important;font:var(--ui-font-body-medium)!important}
-  #mobile-app[data-mode=creature] .ui-creature-overview .creature-stage{grid-area:1/1/3/2!important;min-width:0!important;min-height:0!important;width:100%!important;height:100%!important;padding:0!important;box-sizing:border-box!important}
-  #mobile-app[data-mode=creature] .ui-creature-overview .creature-stage canvas{width:100%!important;height:100%!important;min-height:0!important;max-height:100%!important;aspect-ratio:auto!important;box-sizing:border-box!important;display:block!important;object-fit:contain!important}
-  #mobile-app[data-mode=creature] .ui-creature-overview .creature-facts{grid-area:3/1/4/2!important;min-width:0!important;width:100%!important;box-sizing:border-box!important;margin:0!important;min-height:0!important;height:auto!important;max-height:none!important;overflow:visible!important;touch-action:pan-y!important}
-  #mobile-app[data-mode=creature] .ui-creature-overview .creature-facts>h3{display:none!important}
-  #mobile-app[data-mode=creature] .ui-creature-overview .creature-stats{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;grid-template-rows:none!important;grid-auto-rows:minmax(40px,auto)!important;height:auto!important;min-height:0!important;gap:4px!important;margin:0!important}
-  #mobile-app[data-mode=creature] .ui-creature-overview .creature-stats>div{display:flex!important;flex-direction:column!important;justify-content:center!important;gap:0!important;min-height:0!important;min-width:0!important;padding:4px!important;box-sizing:border-box!important;border:1px solid #95743f!important;background:linear-gradient(#49301de0,#25190fe8)!important}
-  #mobile-app[data-mode=creature] .ui-creature-overview .creature-stats dt{margin:0!important;font:var(--ui-font-body-small)!important;overflow-wrap:normal!important;word-break:normal!important}
-  #mobile-app[data-mode=creature] .ui-creature-overview .creature-stats abbr{font:inherit!important;color:inherit!important}
-  #mobile-app[data-mode=creature] .ui-creature-overview .creature-stats:has(>div:nth-child(7))>div{padding:2px 4px!important}
-  #mobile-app[data-mode=creature] .ui-creature-overview .creature-stats dd{font:var(--ui-font-body-medium)!important;white-space:nowrap!important;margin:0!important}
-  #mobile-app[data-mode=creature] .ui-creature-overview .creature-narrative{grid-area:1/2/-1/3!important;min-width:0!important;min-height:0!important;overflow:auto!important;touch-action:pan-y!important;overscroll-behavior:contain!important;padding:8px!important;box-sizing:border-box!important}
-  #mobile-app[data-mode=creature] .ui-creature-overview>.featured-price{grid-area:3/3!important;align-self:end!important;width:calc(100% - 12px)!important;margin:0 0 0 12px!important;min-width:0!important;box-sizing:border-box!important;font:var(--ui-font-body-small)!important}
-  #mobile-app[data-mode=creature] .ui-creature-has-upgrades>.creature-view-head{display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:4px!important}
-  #mobile-app[data-mode=creature] .ui-creature-has-upgrades>.creature-view-head .featured-price{grid-area:auto!important;align-self:stretch!important;padding:4px 8px!important;margin:0!important;font:var(--ui-font-body-small)!important}
-  #mobile-app[data-mode=creature] .ui-creature-has-upgrades>.creature-view-head .creature-stack-count{font:var(--ui-font-label)!important}
-  #mobile-app[data-mode=creature] .ui-creature-has-upgrades>.creature-upgrades{grid-area:2/3/-1/4!important;width:calc(100% - 12px)!important;margin-left:12px!important;box-sizing:border-box!important;max-height:none!important;min-height:0!important;padding:0!important;overflow-y:auto!important;touch-action:pan-y!important}
-  #mobile-app[data-mode=creature] .ui-creature-has-upgrades .upgrade-options{grid-template-columns:minmax(0,1fr)!important}
-  #mobile-app[data-mode=creature] .ui-creature-has-upgrades .creature-upgrade{display:grid!important;grid-template-columns:56px minmax(0,1fr)!important;gap:4px 8px!important;padding:4px!important;align-items:center!important}
-  #mobile-app[data-mode=creature] .ui-creature-has-upgrades .upgrade-creature{display:contents!important}
-  #mobile-app[data-mode=creature] .ui-creature-has-upgrades .upgrade-creature .unit-portrait{grid-area:1/1/3/2!important}
-  #mobile-app[data-mode=creature] .ui-creature-has-upgrades .upgrade-creature strong{grid-area:1/2!important;overflow-wrap:normal!important;word-break:normal!important;hyphens:none!important;font:var(--ui-font-label)!important}
-  #mobile-app[data-mode=creature] .ui-creature-has-upgrades .upgrade-price{grid-area:2/2!important;margin:0!important;font:var(--ui-font-body-small)!important}
-  #mobile-app[data-mode=creature] .ui-creature-has-upgrades .creature-upgrade>button{grid-area:3/1/4/3!important;margin:0!important;min-height:48px!important;width:100%!important;font:var(--ui-font-label)!important}
-  #mobile-app[data-mode=creature]>.mobile-nav{display:none!important}
+  #mobile-app[data-mode=creature] .ui-creature-overview{display:grid;grid-template-columns:clamp(156px,30cqw,224px) minmax(0,1fr) var(--control-rail,220px);grid-template-rows:auto minmax(0,1fr) min-content;gap:8px;padding:8px;min-height:0;min-width:0;overflow:hidden}
+  #mobile-app[data-mode=creature] .ui-creature-overview :is(.featured-creature,.creature-details){display:contents}
+  #mobile-app[data-mode=creature] .ui-creature-overview>.creature-view-head{grid-area:1/3;align-self:start;min-width:0;width:calc(100% - 12px);margin-left:12px;box-sizing:border-box;display:flex;flex-direction:column;align-items:stretch;gap:8px;height:auto;max-height:none}
+  #mobile-app[data-mode=creature] .ui-creature-overview>.creature-view-head>.creature-description{flex:none;min-height:0;max-height:26cqh;overflow-y:auto;overscroll-behavior:contain;touch-action:pan-y;margin:0;padding:0 8px 8px;box-sizing:border-box;font:var(--ui-font-body-medium)}
+  #mobile-app[data-mode=creature] .ui-creature-overview .creature-stage{grid-area:1/1/3/2;min-width:0;min-height:0;width:100%;height:100%;padding:0;box-sizing:border-box}
+  #mobile-app[data-mode=creature] .ui-creature-overview .creature-stage canvas{width:100%;height:100%;min-height:0;max-height:100%;aspect-ratio:auto;box-sizing:border-box;display:block;object-fit:contain}
+  #mobile-app[data-mode=creature] .ui-creature-overview .creature-facts{grid-area:3/1/4/2;min-width:0;width:100%;box-sizing:border-box;margin:0;min-height:0;height:auto;max-height:none;overflow:visible;touch-action:pan-y}
+  #mobile-app[data-mode=creature] .ui-creature-overview .creature-facts>h3{display:none}
+  #mobile-app[data-mode=creature] .ui-creature-overview .creature-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:none;grid-auto-rows:minmax(40px,auto);height:auto;min-height:0;gap:4px;margin:0}
+  #mobile-app[data-mode=creature] .ui-creature-overview .creature-stats>div{display:flex;flex-direction:column;justify-content:center;gap:0;min-height:0;min-width:0;padding:4px;box-sizing:border-box;border:1px solid #95743f;background:linear-gradient(#49301de0,#25190fe8)}
+  #mobile-app[data-mode=creature] .ui-creature-overview .creature-stats dt{margin:0;font:var(--ui-font-body-small);overflow-wrap:normal;word-break:normal}
+  #mobile-app[data-mode=creature] .ui-creature-overview .creature-stats abbr{font:inherit;color:inherit}
+  #mobile-app[data-mode=creature] .ui-creature-overview .creature-stats:has(>div:nth-child(7))>div{padding:2px 4px}
+  #mobile-app[data-mode=creature] .ui-creature-overview .creature-stats dd{font:var(--ui-font-body-medium);white-space:nowrap;margin:0}
+  #mobile-app[data-mode=creature] .ui-creature-overview .creature-narrative{grid-area:1/2/-1/3;min-width:0;min-height:0;overflow:auto;touch-action:pan-y;overscroll-behavior:contain;padding:8px;box-sizing:border-box}
+  #mobile-app[data-mode=creature] .ui-creature-overview>.featured-price{grid-area:3/3;align-self:end;width:calc(100% - 12px);margin:0 0 0 12px;min-width:0;box-sizing:border-box;font:var(--ui-font-body-small)}
+  #mobile-app[data-mode=creature] .ui-creature-has-upgrades>.creature-view-head{display:flex;flex-direction:column;align-items:stretch;gap:4px}
+  #mobile-app[data-mode=creature] .ui-creature-has-upgrades>.creature-view-head .featured-price{grid-area:auto;align-self:stretch;padding:4px 8px;margin:0;font:var(--ui-font-body-small)}
+  #mobile-app[data-mode=creature] .ui-creature-has-upgrades>.creature-view-head .creature-stack-count{font:var(--ui-font-label)}
+  #mobile-app[data-mode=creature] .ui-creature-has-upgrades>.creature-upgrades{grid-area:2/3/-1/4;width:calc(100% - 12px);margin-left:12px;box-sizing:border-box;max-height:none;min-height:0;padding:0;overflow-y:auto;touch-action:pan-y}
+  #mobile-app[data-mode=creature] .ui-creature-has-upgrades .upgrade-options{grid-template-columns:minmax(0,1fr)}
+  #mobile-app[data-mode=creature] .ui-creature-has-upgrades .creature-upgrade{display:grid;grid-template-columns:56px minmax(0,1fr);gap:4px 8px;padding:4px;align-items:center}
+  #mobile-app[data-mode=creature] .ui-creature-has-upgrades .upgrade-creature{display:contents}
+  #mobile-app[data-mode=creature] .ui-creature-has-upgrades .upgrade-creature .unit-portrait{grid-area:1/1/3/2}
+  #mobile-app[data-mode=creature] .ui-creature-has-upgrades .upgrade-creature strong{grid-area:1/2;overflow-wrap:normal;word-break:normal;hyphens:none;font:var(--ui-font-label)}
+  #mobile-app[data-mode=creature] .ui-creature-has-upgrades .upgrade-price{grid-area:2/2;margin:0;font:var(--ui-font-body-small)}
+  #mobile-app[data-mode=creature] .ui-creature-has-upgrades .creature-upgrade>button{grid-area:3/1/4/3;margin:0;min-height:48px;width:100%;font:var(--ui-font-label)}
+  #mobile-app[data-mode=creature]>.mobile-nav{display:none}
  }
 }
 @layer ui-composition {
- #mobile-app[data-mode=creature] .ui-creature-overview .creature-stage{width:100%!important;box-sizing:border-box!important}
- #mobile-app[data-mode=creature] .ui-creature-overview .creature-stage canvas{width:100%!important;box-sizing:border-box!important;aspect-ratio:auto!important;display:block!important}
- #mobile-app[data-mode=creature] .ui-creature-overview .creature-facts{width:100%!important;box-sizing:border-box!important}
- #mobile-app[data-mode=creature] .ui-creature-overview .creature-stats>div{border:1px solid #95743f!important;background:linear-gradient(#49301de0,#25190fe8)!important;box-sizing:border-box!important}
- #mobile-app[data-mode=creature] .ui-creature-overview .featured-price{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:8px!important;padding:8px 12px!important;border:1px solid var(--ui-outline)!important;font:var(--ui-font-body-medium)!important;background:var(--ui-surface-container)!important;box-shadow:none!important}
- #mobile-app[data-mode=creature] .ui-creature-overview .creature-stack-count{white-space:nowrap!important;font:var(--ui-font-title-compact)!important}
- #mobile-app[data-mode=creature] .ui-creature-overview .creature-description{margin:0 0 12px!important;font:var(--ui-font-body-medium)!important}
+ #mobile-app[data-mode=creature] .ui-creature-overview .creature-stage{width:100%;box-sizing:border-box}
+ #mobile-app[data-mode=creature] .ui-creature-overview .creature-stage canvas{width:100%;box-sizing:border-box;aspect-ratio:auto;display:block}
+ #mobile-app[data-mode=creature] .ui-creature-overview .creature-facts{width:100%;box-sizing:border-box}
+ #mobile-app[data-mode=creature] .ui-creature-overview .creature-stats>div{border:1px solid #95743f;background:linear-gradient(#49301de0,#25190fe8);box-sizing:border-box}
+ #mobile-app[data-mode=creature] .ui-creature-overview .featured-price{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 12px;border:1px solid var(--ui-outline);font:var(--ui-font-body-medium);background:var(--ui-surface-container);box-shadow:none}
+ #mobile-app[data-mode=creature] .ui-creature-overview .creature-stack-count{white-space:nowrap;font:var(--ui-font-title-compact)}
+ #mobile-app[data-mode=creature] .ui-creature-overview .creature-description{margin:0 0 12px;font:var(--ui-font-body-medium)}
 }
 @layer ui-composition {
  #mobile-app .ui-stat-short{display:none;text-decoration:none}
  @container goonk-viewport (orientation:landscape){
-  #mobile-app .ui-creature-overview .ui-stat-full{display:none!important}
-  #mobile-app .ui-creature-overview .ui-stat-short{display:inline!important;text-decoration:none!important}
-  #mobile-app .recruitment-view:not([data-variant-count="1"]) .creature-facts{overflow:hidden!important}
-  #mobile-app .recruitment-view:not([data-variant-count="1"]) .creature-stats{grid-template-rows:repeat(3,minmax(36px,1fr))!important;gap:3px!important}
-  #mobile-app .recruitment-view:not([data-variant-count="1"]) .creature-stats>div{padding:0 2px!important;justify-content:center!important}
-  #mobile-app .recruitment-view:not([data-variant-count="1"]) .creature-stats>div:last-child:nth-child(even){grid-column:auto!important}
+  #mobile-app .ui-creature-overview .ui-stat-full{display:none}
+  #mobile-app .ui-creature-overview .ui-stat-short{display:inline;text-decoration:none}
+  #mobile-app .recruitment-view:not([data-variant-count="1"]) .creature-facts{overflow:hidden}
+  #mobile-app .recruitment-view:not([data-variant-count="1"]) .creature-stats{grid-template-rows:repeat(3,minmax(36px,1fr));gap:3px}
+  #mobile-app .recruitment-view:not([data-variant-count="1"]) .creature-stats>div{padding:0 2px;justify-content:center}
+  #mobile-app .recruitment-view:not([data-variant-count="1"]) .creature-stats>div:last-child:nth-child(even){grid-column:auto}
  }
 }
 @layer ui-composition {
  @container goonk-viewport (orientation:landscape){
-  #mobile-app .recruitment-view:not([data-variant-count="1"]) .creature-stats>div{display:flex!important;flex-direction:column!important;justify-content:center!important;min-height:0!important}
-  #mobile-app .recruitment-view .creature-stats :is(dt,dd){margin:0!important}
+  #mobile-app .recruitment-view:not([data-variant-count="1"]) .creature-stats>div{display:flex;flex-direction:column;justify-content:center;min-height:0}
+  #mobile-app .recruitment-view .creature-stats :is(dt,dd){margin:0}
  }
 }
 @layer ui-composition {
  @container goonk-viewport (orientation:landscape){
-  #mobile-app .creature-presentation.recruitment-view:not([data-variant-count="1"]){grid-template-rows:minmax(0,1.3fr) minmax(120px,1fr)!important}
-  #mobile-app .recruitment-view:not([data-variant-count="1"]) .creature-stats>div{gap:0!important}
+  #mobile-app .creature-presentation.recruitment-view:not([data-variant-count="1"]){grid-template-rows:minmax(0,1.3fr) minmax(120px,1fr)}
+  #mobile-app .recruitment-view:not([data-variant-count="1"]) .creature-stats>div{gap:0}
  }
 }
 @layer ui-composition {
  @container goonk-viewport (orientation:landscape){
-  #mobile-app .creature-presentation.recruitment-view:not([data-variant-count="1"]){grid-template-rows:minmax(0,1.3fr) minmax(132px,1fr)!important}
-  #mobile-app .recruitment-view:not([data-variant-count="1"]) .creature-stats>div{padding:2px 4px!important}
+  #mobile-app .creature-presentation.recruitment-view:not([data-variant-count="1"]){grid-template-rows:minmax(0,1.3fr) minmax(132px,1fr)}
+  #mobile-app .recruitment-view:not([data-variant-count="1"]) .creature-stats>div{padding:2px 4px}
  }
  @container goonk-viewport (orientation:landscape) and (min-width:680px){
-  #mobile-app .creature-presentation.recruitment-view:not([data-variant-count="1"]){grid-template-rows:minmax(0,1.3fr) minmax(120px,1fr)!important}
-  #mobile-app .recruitment-view:not([data-variant-count="1"]) .creature-stats{grid-template-columns:repeat(3,minmax(0,1fr))!important;grid-template-rows:repeat(2,minmax(42px,1fr))!important}
-  #mobile-app .recruitment-view:not([data-variant-count="1"]) .creature-stats>div:last-child:nth-child(odd){grid-column:span 2!important}
+  #mobile-app .creature-presentation.recruitment-view:not([data-variant-count="1"]){grid-template-rows:minmax(0,1.3fr) minmax(120px,1fr)}
+  #mobile-app .recruitment-view:not([data-variant-count="1"]) .creature-stats{grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:repeat(2,minmax(42px,1fr))}
+  #mobile-app .recruitment-view:not([data-variant-count="1"]) .creature-stats>div:last-child:nth-child(odd){grid-column:span 2}
  }
 }
 @layer ui-composition {
  @container goonk-viewport (orientation:landscape){
-  #mobile-app .recruitment-view:not([data-variant-count="1"]) .creature-stats:has(>div:nth-child(5):last-child)>div:nth-child(3){grid-area:3/1/4/-1!important}
-  #mobile-app .recruitment-view:not([data-variant-count="1"]) .creature-stats>div:nth-child(5):last-child{grid-area:2/1/3/2!important}
+  #mobile-app .recruitment-view:not([data-variant-count="1"]) .creature-stats:has(>div:nth-child(5):last-child)>div:nth-child(3){grid-area:3/1/4/-1}
+  #mobile-app .recruitment-view:not([data-variant-count="1"]) .creature-stats>div:nth-child(5):last-child{grid-area:2/1/3/2}
  }
  @container goonk-viewport (orientation:landscape) and (min-width:680px){
-  #mobile-app .recruitment-view:not([data-variant-count="1"]) .creature-stats:has(>div:nth-child(5):last-child)>div:nth-child(3){grid-area:2/2/3/4!important}
-  #mobile-app .recruitment-view:not([data-variant-count="1"]) .creature-stats>div:nth-child(5):last-child{grid-area:1/3/2/4!important}
+  #mobile-app .recruitment-view:not([data-variant-count="1"]) .creature-stats:has(>div:nth-child(5):last-child)>div:nth-child(3){grid-area:2/2/3/4}
+  #mobile-app .recruitment-view:not([data-variant-count="1"]) .creature-stats>div:nth-child(5):last-child{grid-area:1/3/2/4}
  }
 }
