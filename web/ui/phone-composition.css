@@ -187,11 +187,11 @@
  @container goonk-viewport (orientation:landscape){
   html.goonk-mobile #mobile-viewport #mobile-app[data-ui-map-rail=true]{grid-template-rows:56px minmax(72px,1fr) minmax(121px,1fr)}
   #mobile-viewport #mobile-app[data-ui-map-rail=true]>.mobile-calendar:not([hidden]){position:static;display:flex;flex-direction:column;grid-column:3;grid-row:2;align-self:stretch;justify-content:center;align-items:center;width:calc(100% - 8px);height:calc(100% - 8px);min-height:48px;max-height:none;margin:4px;padding:4px;gap:8px;box-sizing:border-box}
-  #mobile-viewport #mobile-app[data-ui-map-rail=true]>.mobile-nav.ui-map-compact{height:100%;align-self:stretch;align-content:end;grid-template-rows:48px minmax(48px,1fr)}
-  #mobile-viewport #mobile-app[data-mode=map]>.mobile-nav{align-self:end;align-content:end}
+  #mobile-viewport #mobile-app[data-ui-map-rail=true]>.mobile-nav.ui-map-compact{height:auto;align-self:end;align-content:end;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:auto 48px}
+  #mobile-viewport #mobile-app[data-mode=map]>.mobile-nav{align-self:end;align-content:end;grid-template-columns:repeat(3,minmax(0,1fr))}
   #mobile-viewport #mobile-app[data-mode=map]>.mobile-nav>[data-ui=endturn]{grid-column:auto}
-  #mobile-viewport #mobile-app[data-ui-map-rail=true]>.mobile-nav.ui-map-compact>button:not([hidden]){height:100%;min-height:48px;max-height:none;align-self:stretch}
-  #mobile-viewport #mobile-app[data-ui-map-rail=true]>.mobile-nav.ui-map-compact:not(:has(>.hero-movement-summary)){grid-template-rows:minmax(48px,1fr)}
+  #mobile-viewport #mobile-app[data-ui-map-rail=true]>.mobile-nav.ui-map-compact>button:not([hidden]){height:48px;min-height:48px;max-height:48px;align-self:stretch}
+  #mobile-viewport #mobile-app[data-ui-map-rail=true]>.mobile-nav.ui-map-compact:not(:has(>.hero-movement-summary)){grid-template-rows:48px}
  }
 }
 @layer ui-composition {

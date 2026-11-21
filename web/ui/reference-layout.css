@@ -50,10 +50,16 @@
  #mobile-app[data-sheet=army] .army-grid .army-upgrade-all span{font-size:clamp(9px,16cqh,11px);line-height:1.1}
  @container goonk-viewport (orientation:landscape){
   #mobile-app[data-sheet=army] .army-grid .army-upgrade-all{width:100%}
-  #mobile-app[data-sheet=army] .mobile-sheet{display:grid;grid-template-columns:minmax(0,1fr) var(--control-rail,220px);grid-template-rows:minmax(0,1fr)}
+  #mobile-app[data-sheet=army] .mobile-sheet{display:grid;grid-template-columns:minmax(0,1fr) var(--control-rail,240px);grid-template-rows:auto minmax(0,1fr)}
+  #mobile-app[data-sheet=army] .sheet-head{grid-column:2;grid-row:1;height:auto;min-height:0}
   #mobile-app[data-sheet=army] .sheet-body,#mobile-app[data-sheet=army] .army-panel{display:contents}
-  #mobile-app[data-sheet=army] .army-rosters{grid-column:1;grid-row:1}
-  #mobile-app[data-sheet=army] .army-dock{grid-column:2;grid-row:1;align-self:end}
+  #mobile-app[data-sheet=army] .army-rosters{grid-column:1;grid-row:1/-1;gap:12px;padding-bottom:max(16px,env(safe-area-inset-bottom))}
+  #mobile-app[data-sheet=army] .army-dock{grid-column:2;grid-row:2;margin-top:0;align-self:stretch;justify-content:flex-end}
+ }
+ @container goonk-viewport (orientation:portrait){
+  #mobile-app[data-sheet=army] .army-rosters{gap:16px}
+  #mobile-app[data-sheet=army] .army-roster{min-height:0;padding-bottom:12px}
+  #mobile-app[data-sheet=army] .army-transfer-all{margin:8px 0}
  }
 }
 @layer screen-layouts {

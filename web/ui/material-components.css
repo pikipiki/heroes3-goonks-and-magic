@@ -122,7 +122,7 @@
  #mobile-app .mobile-spellbook>.spell-workspace{grid-area:workspace;display:grid;grid-template-rows:auto minmax(0,1fr);min-width:0;min-height:0;gap:8px;overflow:hidden}
  #mobile-app .mobile-spellbook[data-browsing=true]>.spell-workspace{grid-template-rows:auto auto minmax(0,1fr)}
  #mobile-app .mobile-spellbook .spell-workspace>:is(.spell-content,.spell-contexts,.spell-schools,.spell-school-picker){grid-area:auto}
- #mobile-app .mobile-spellbook .spell-school-picker{display:none}
+ #mobile-app .mobile-spellbook .spell-school-picker{display:block;min-width:0}
  #mobile-app .mobile-spellbook .spell-top-actions{margin:0;min-height:48px}
  #mobile-app .mobile-spellbook :is(.spell-content,.spell-selection,.spell-list){min-width:0;min-height:0}
  #mobile-app .mobile-spellbook>footer{grid-template-rows:auto;min-height:0}

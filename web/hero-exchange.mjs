@@ -144,7 +144,7 @@ export function createHeroExchange({root,command,refresh,portrait}){
    ${confirmFinish?`<div class="exchange-actions"><button data-exchange-cancel-finish>${fr?'Retour':'Back'}</button><button class="primary" data-exchange-commit-finish>${fr?'Confirmer et terminer':'Confirm and finish'}</button></div>`:item?`
     ${splitMode&&canSplit?`<label class="exchange-quantity"><span>${fr?'Quantité à scinder':'Split quantity'}</span><span class="exchange-stepper">
      <button type="button" data-exchange-qty-delta="-1" aria-label="${fr?'Diminuer la quantité':'Decrease quantity'}" ${quantity<=1||pending?'disabled':''}>−</button>
-     <input type="number" inputmode="numeric" min="1" max="${splitMax}" value="${quantity||''}" aria-label="${fr?'Quantité':'Quantity'}" data-exchange-quantity ${pending?'disabled':''}>
+     <input type="number" inputmode="numeric" enterkeyhint="done" min="1" max="${splitMax}" value="${quantity||''}" aria-label="${fr?'Quantité':'Quantity'}" data-exchange-quantity ${pending?'disabled':''}>
      <button type="button" data-exchange-qty-delta="1" aria-label="${fr?'Augmenter la quantité':'Increase quantity'}" ${quantity>=splitMax||pending?'disabled':''}>+</button>
     </span></label>`:''}
     <div class="exchange-actions">

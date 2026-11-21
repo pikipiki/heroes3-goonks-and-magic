@@ -15,7 +15,8 @@ export function renderArmyPanel({body,armies=[],portrait=()=>'',onMove,onTransfe
  const tools=document.createElement('div');tools.className='army-transfer-tools';
  const splitLabel=document.createElement('label');splitLabel.className='army-split-toggle';
  const splitField=createUIField({type:'checkbox',disabled:true}),split=splitField.input;split.id='army-split';split.type='checkbox';split.disabled=true;splitLabel.append(splitField.element,fr?'Scinder':'Split');
- const amountField=createUIField({type:'number',disabled:true,value:1,min:1}),amount=amountField.input;amount.type='number';amount.min='1';amount.step='1';amount.value='1';amount.disabled=true;amount.setAttribute('aria-label',fr?'Nombre de créatures à séparer':'Number of creatures to split');
+ const amountField=createUIField({type:'number',disabled:true,value:1,min:1}),amount=amountField.input;amount.type='number';amount.min='1';amount.step='1';amount.value='1';amount.disabled=true;amount.enterKeyHint='done';amount.setAttribute('aria-label',fr?'Nombre de créatures à séparer':'Number of creatures to split');
+ amount.addEventListener('keydown',event=>{if(event.key==='Enter'){event.preventDefault();amount.blur();}});
  const info=createUIElement('button');info.type='button';info.textContent=fr?'Fiche':'Details';info.disabled=true;info.hidden=!onInfo;
  const manage=createUIElement('button');manage.type='button';manage.textContent=fr?'Gérer':'Manage';manage.disabled=true;manage.hidden=readOnly||!onManage;
  if(!readOnly)tools.append(splitLabel,amountField.element,manage);tools.append(info);if(onBack){const back=createUIElement('button');back.type='button';back.className='army-back back-button';back.textContent=fr?'Retour':'Back';bindPress(back,onBack);tools.append(back);}dock.append(status,tools);panel.append(rosters,dock);body.replaceChildren(panel);

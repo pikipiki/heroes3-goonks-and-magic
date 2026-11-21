@@ -84,6 +84,8 @@
  #mobile-app:is([data-mode=menu],[data-mode=lobby],[data-mode=load],[data-mode=campaign],[data-mode=campaign-scenario],[data-mode=online-login],[data-mode=online-lobby],[data-mode=connecting],[data-mode=battle],[data-mode=hero-exchange],[data-mode=spellbook],[data-mode=mage-guild],[data-mode=creature])>.mobile-top>.mobile-resources{display:none}
  #mobile-app:is([data-mode=menu],[data-mode=lobby],[data-mode=load],[data-mode=campaign],[data-mode=campaign-scenario],[data-mode=online-login],[data-mode=online-lobby],[data-mode=connecting],[data-mode=hero],[data-mode=hero-exchange],[data-creature-view=fort])>.mobile-top>.mobile-calendar{display:none}
  #mobile-app[data-mode=hero]:not([data-hero-view=classic]) :is(#mobile-scene,.scene-tools,.scene-hint,.mobile-nav){display:none}
+ #mobile-app[data-mode=connecting] :is(.mobile-top,.mobile-nav,.scene-tools,.scene-hint,#mobile-scene,#mobile-overview){display:none}
+ #mobile-app[data-mode=connecting] .mobile-play{grid-column:1/-1;grid-row:1/-1;background:#24190f url('../h3-theme/stone.png')}
  #mobile-app[data-mode=spellbook] :is(.scene-tools,#mobile-scene,.scene-hint,.mobile-nav){display:none}
  #mobile-app[data-ui-loading=true] :is(.mobile-top,.mobile-nav,.scene-tools,.scene-hint,.mobile-menu,.mobile-overview,.mobile-battle-panel,.menu-launch-status){display:none}
  @container goonk-viewport (orientation:landscape){
