@@ -95,7 +95,7 @@
     "proof": "scripts/era-bridge/gameplay/map-extra-dwellings-native-validation.json",
     "engineSha256": "b27b08074655b63cc0ddfef758d357bf3b73c628f836f984e6caf925b67cec37",
     "previousSourceBindings": {
-      "work/browser-tests/wog-henchmen-native-e2e.mjs": "4d297b35e0a14e26f6c0e237bde8797491b86585f6e6f3a75b4fe862b293aae4"
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "77b0f561de3c7325c9d8ce65acde9d86ae4e3ff0564672a5c5a3f767129cbeb0"
     },
     "historicalReportsRetained": true,
     "existingOption17And36SemanticsUnchanged": true,
@@ -116,7 +116,7 @@
   "stringLocalsRevalidation": {
     "scope": "Legacy contracts remain unchanged; historical native reports retained. New local-z scope and current-engine regressions are documented separately.",
     "previousBindings": {
-      "work/browser-tests/wog-henchmen-native-e2e.mjs": "4d297b35e0a14e26f6c0e237bde8797491b86585f6e6f3a75b4fe862b293aae4"
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "dc4b66c4b2d99626873c33406e3b994169ac504f035e921d92916d7a6301e2b0"
     },
     "proof": "scripts/era-bridge/gameplay/era3-string-locals-native-validation.json",
     "currentEngineSha256": "35fa7a008e636db70081b336523da1ddef2636b78992db07ae9f67f3700d8f7e"
@@ -124,7 +124,7 @@
   "stringReceiverCellsRevalidation": {
     "scope": "Historical native reports retained; current-engine regression and valid scoped-save evidence linked separately.",
     "previousBindings": {
-      "work/browser-tests/wog-henchmen-native-e2e.mjs": "4d297b35e0a14e26f6c0e237bde8797491b86585f6e6f3a75b4fe862b293aae4"
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "750e667d7b648a5f50c0abee1b1a65b5e41a166c7bbd77f3a9480d894a54b9a1"
     },
     "proof": "scripts/era-bridge/gameplay/era3-string-receivers-native-validation.json",
     "currentEngineSha256": "795810c396ddaa959d2369547eac4b86c017c04d489b51810732b944147e183d"
@@ -132,7 +132,7 @@
   "randomRangesRevalidation": {
     "scope": "Historical native reports retained; current-engine regressions and valid scoped-save evidence linked separately.",
     "previousBindings": {
-      "work/browser-tests/wog-henchmen-native-e2e.mjs": "4d297b35e0a14e26f6c0e237bde8797491b86585f6e6f3a75b4fe862b293aae4"
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "4ff3e60906850a70ee4390e8163d89cac698978fda00929d8a2d4a93c6f9af53"
     },
     "proof": "scripts/era-bridge/gameplay/era3-random-ranges-native-validation.json",
     "currentEngineSha256": "51197f8a775d9e2dd7970c228a3e9f4a156464a09c5b54305bda5b5035a5a1e4"
@@ -140,7 +140,7 @@
   "signedHenchmenExperienceRevalidation": {
     "scope": "Historical native reports retained; current-engine regression evidence linked separately.",
     "previousBindings": {
-      "work/browser-tests/wog-henchmen-native-e2e.mjs": "4d297b35e0a14e26f6c0e237bde8797491b86585f6e6f3a75b4fe862b293aae4"
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "0250d0d4c79e3ebdf657ea82f0e72b5a0c9e9e3a0e4fe1d34fabc4daccc0ca8d"
     },
     "proof": "scripts/era-bridge/gameplay/henchmen-signed-experience-native-validation.json",
     "currentEngineSha256": "b980660dbf4aee44fdc7dee2baef5ae7a08815f63d2ab51a65d9562f1a82e245"
@@ -148,9 +148,9 @@
   "mithrilDisplayRevalidation": {
     "scope": "Historical native reports retained; current-engine regressions and legacy-save control linked separately.",
     "previousBindings": {
-      "mod/tum-era/content/translation/tum-era-ui-english.json": "41215b7a421a6eb42233820e910c86f752193fcb22ee3b64cf306dd6096a54b0",
-      "mod/tum-era/content/translation/tum-era-ui-french.json": "d5e7d0e6ff5171a891e509cc837ee8cfe0f2dfed0e2bab7cb57e372f8e1934c3",
-      "work/vcmi-wasm/client/MobileBridge.cpp": "257f7256cc2db1a66980faad2d53af241efd1e4011dc5418aac40d47d7d324da"
+      "mod/tum-era/content/translation/tum-era-ui-english.json": "d199283bbc3c8ab14d2a95993b2c75ea71252f3f7bf657956d3e8a1d0f2e18ec",
+      "mod/tum-era/content/translation/tum-era-ui-french.json": "e4e2d6a9ca4d9faab524233c42e976a9c10b487837a1e813b1f58707e131f8ae",
+      "work/vcmi-wasm/client/MobileBridge.cpp": "3ababa8e08e1ebbe9bc8d7a41dd5a69b5a41dc041018ea5005ce85b6d52201a2"
     },
     "proof": "scripts/era-bridge/gameplay/mithril-display-native-validation.json",
     "currentEngineSha256": "6b3a20f68107c79dd08266d2606412e3cb41a88d1265fa5c6f1a3b7b824cd67e"
@@ -158,7 +158,7 @@
   "noActorRewardRevalidation": {
     "scope": "Historical native reports retained. Current engine no-actor and regression evidence linked separately.",
     "previousBindings": {
-      "work/browser-tests/wog-henchmen-native-e2e.mjs": "4d297b35e0a14e26f6c0e237bde8797491b86585f6e6f3a75b4fe862b293aae4"
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "a31f233853f3e7bff713d0e8a1987fb9ca31b5ebdcd6e094eafdb2142fa5a7e6"
     },
     "proof": "scripts/era-bridge/gameplay/henchmen-ai-no-actor-native-validation.json",
     "currentEngineSha256": "7d52900bd67702e7bc824addb1028f00e3ea46365d96e7f22be5a831b102219a"
@@ -167,7 +167,7 @@
     "scope": "Historical native reports retained; current engine PO:N, legacy-save and regression evidence linked separately.",
     "proof": "scripts/era-bridge/gameplay/tile-properties-native-validation.json",
     "previousBindings": {
-      "work/browser-tests/wog-henchmen-native-e2e.mjs": "4d297b35e0a14e26f6c0e237bde8797491b86585f6e6f3a75b4fe862b293aae4"
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "8c07b15dd1bb7423aa7b6d2d3ebe653c6238985c91c7d14ac378a140d47d48ed"
     },
     "currentEngineSha256": "2739a7ea706044a53136c22c5d41557dc17ef7416f16334b2d6c43a67bcebb6b"
   },
@@ -175,9 +175,9 @@
     "scope": "Historical reports retained; current rule119, direct artifact record counting and regressions linked separately.",
     "proof": "scripts/era-bridge/gameplay/map-double-artifacts-native-validation.json",
     "previousBindings": {
-      "mod/tum-era/content/translation/tum-era-ui-english.json": "41215b7a421a6eb42233820e910c86f752193fcb22ee3b64cf306dd6096a54b0",
-      "mod/tum-era/content/translation/tum-era-ui-french.json": "d5e7d0e6ff5171a891e509cc837ee8cfe0f2dfed0e2bab7cb57e372f8e1934c3",
-      "work/browser-tests/wog-henchmen-native-e2e.mjs": "4d297b35e0a14e26f6c0e237bde8797491b86585f6e6f3a75b4fe862b293aae4"
+      "mod/tum-era/content/translation/tum-era-ui-english.json": "9f79924da49232315170c2bc6e4f85caed65102f0500304418ada4dc94be6565",
+      "mod/tum-era/content/translation/tum-era-ui-french.json": "975a2b1594a579b216ea4de7b943808992379780c08dbcb19930cf91d81d5b82",
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "a0b7242e0d84c48ff629607e4541128a9c7c51c7a105db93078c1b3bfe7dba26"
     },
     "currentEngineSha256": "ab6222d547e040618cde85fa8d0974d1e71e022a42b32d3359a37ae2b8cdb319"
   },
@@ -185,7 +185,7 @@
     "scope": "Historical reports retained; shared mine markers, migration, neutral mine UI and current regression evidence linked separately.",
     "proof": "scripts/era-bridge/gameplay/mithril-mine-tiles-native-validation.json",
     "previousBindings": {
-      "work/vcmi-wasm/client/MobileBridge.cpp": "257f7256cc2db1a66980faad2d53af241efd1e4011dc5418aac40d47d7d324da"
+      "work/vcmi-wasm/client/MobileBridge.cpp": "4e45120603c15d1f141733e7cb363be5920792aafcc4945521f575920317e261"
     },
     "currentEngineSha256": "6fdf3693ed2118b22664a5fcf678cef83752f03428b8fbb83bebf210364f969e"
   },
@@ -193,8 +193,8 @@
     "scope": "Historical reports retained; aggregate income, raw grants, mobile presets and mine information separately validated on the current engine.",
     "proof": "scripts/era-bridge/gameplay/mithril-income-native-validation.json",
     "previousBindings": {
-      "work/browser-tests/wog-henchmen-native-e2e.mjs": "4d297b35e0a14e26f6c0e237bde8797491b86585f6e6f3a75b4fe862b293aae4",
-      "work/vcmi-wasm/client/MobileBridge.cpp": "257f7256cc2db1a66980faad2d53af241efd1e4011dc5418aac40d47d7d324da"
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "d2306b62dd8e227c5b80ddc16aabeac2d54ebc1538f40d93a8f32a3cc59eed7b",
+      "work/vcmi-wasm/client/MobileBridge.cpp": "85dda88f0b0e61a598e7580419b1e914be52e3889510354d2eb2d1ada78d47c0"
     },
     "currentEngineSha256": "4c3eb6638eeb3398164618cf413b7f451894ead66345660d96b5acf2135d92b3"
   },
@@ -202,8 +202,8 @@
     "scope": "Historical engine reports retained; current per-game prices, save migration and selected Advanced Classes, companion, Mithril, income and C7/F regressions are independently validated.",
     "proof": "scripts/era-bridge/gameplay/creature-prices-native-validation.json",
     "previousBindings": {
-      "work/vcmi-wasm/client/MobileBridge.cpp": "257f7256cc2db1a66980faad2d53af241efd1e4011dc5418aac40d47d7d324da",
-      "work/vcmi-wasm/server/era/EraHenchmanPrompts.h": "019c64a1023ad3b1e0805c7fdd23745251155002f16aac97bf9a01d52df0fe73"
+      "work/vcmi-wasm/client/MobileBridge.cpp": "4b469a570e6e298ec96a8e0f915a030439fc842eff4b9e4be4d3c20f9f57a25f",
+      "work/vcmi-wasm/server/era/EraHenchmanPrompts.h": "4d57d85ca0f9b48e793a969326a52dee7de947439d330c5009c1a864f67aa79e"
     },
     "currentEngineSha256": "e162ec4607e4b8c2022c52b5193a7a38fd3460d9a826699e8b8a7bee0f89926e"
   },
@@ -211,7 +211,7 @@
     "scope": "Historical reports retained; current original-hero conversions, signed XP consumers, migration and selected Advanced Classes, companions, growth, Mithril and price regressions are independently validated.",
     "proof": "scripts/era-bridge/gameplay/map-eighth-upgrades-native-validation.json",
     "previousBindings": {
-      "work/browser-tests/wog-henchmen-native-e2e.mjs": "4d297b35e0a14e26f6c0e237bde8797491b86585f6e6f3a75b4fe862b293aae4"
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "6c0adbaadc5b63bcffeee3aed8e557edb1500f68325264480e530e89ed12bc80"
     },
     "currentEngineSha256": "a70be26e9136742bb0939dcbe044138dc01d7d8b8262e052fa67a82861c88455"
   },
@@ -219,8 +219,8 @@
     "scope": "Historical reports retained. Selective source129 behavior and creature world previews verified on the current engine together with companions, class core, sites, prices, speed, flight and monthly regression cases.",
     "proof": "scripts/era-bridge/gameplay/map-no-shooting-native-validation.json",
     "previousBindings": {
-      "work/browser-tests/wog-henchmen-native-e2e.mjs": "4d297b35e0a14e26f6c0e237bde8797491b86585f6e6f3a75b4fe862b293aae4",
-      "work/vcmi-wasm/client/MobileBridge.cpp": "257f7256cc2db1a66980faad2d53af241efd1e4011dc5418aac40d47d7d324da"
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "8ab2d841fc2e4ef902b8790399df2907b0de72bf5cc6166272d75a961c44e297",
+      "work/vcmi-wasm/client/MobileBridge.cpp": "639beeaec94ffc8dde48e7f1fc69954008daa7a9447670dddb50051d815ff760"
     },
     "currentEngineSha256": "89904944df2e8b913d00639dbc7b7ae11fa3a2d87dcdc6db3dbc07cafd4ee953"
   },
@@ -228,7 +228,7 @@
     "scope": "Historical reports retained. Corrected fog receiver and human standard-movement darkness verified on two levels with per-game activation, native save controls and selected companions, class core, sites, prices, shooter and eighth-upgrade regressions.",
     "proof": "scripts/era-bridge/gameplay/map-darkness-native-validation.json",
     "previousBindings": {
-      "work/browser-tests/wog-henchmen-native-e2e.mjs": "4d297b35e0a14e26f6c0e237bde8797491b86585f6e6f3a75b4fe862b293aae4"
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "a21b31fc5b837bf30474d0923858205d0ee83e7b5a089e6380c01bba93a4c89a"
     },
     "currentEngineSha256": "ada86ddac91a00feda7433cd9c1d3850dcd530de3ab120874c8e921e883f5cb5"
   },
@@ -236,11 +236,11 @@
     "scope": "Historical native reports retained. Source126 shared rewards and saved choices/pages/visits, stable assembly memory and selected companions/classes/mithril/prices/map-rule regressions verified on the current engine.",
     "proof": "scripts/era-bridge/gameplay/map-level-artifacts-native-validation.json",
     "previousBindings": {
-      "mod/tum-era/content/translation/tum-era-ui-english.json": "41215b7a421a6eb42233820e910c86f752193fcb22ee3b64cf306dd6096a54b0",
-      "mod/tum-era/content/translation/tum-era-ui-french.json": "d5e7d0e6ff5171a891e509cc837ee8cfe0f2dfed0e2bab7cb57e372f8e1934c3",
-      "web/dialog-presentation.mjs": "7dbc96d26f2bb0eb2d3580fffdcdfb70ae510b814841f107c8c2d356dd50f1ef",
-      "work/browser-tests/wog-henchmen-native-e2e.mjs": "4d297b35e0a14e26f6c0e237bde8797491b86585f6e6f3a75b4fe862b293aae4",
-      "work/vcmi-wasm/client/MobileBridge.cpp": "257f7256cc2db1a66980faad2d53af241efd1e4011dc5418aac40d47d7d324da"
+      "mod/tum-era/content/translation/tum-era-ui-english.json": "b56a19866612cf603158953ccf6b9f5777d38ecd045cb05cf349c39fda985bad",
+      "mod/tum-era/content/translation/tum-era-ui-french.json": "bf1a0292368a06acb50d156952c4c949613b0193f9dc75649f028470759495e4",
+      "web/dialog-presentation.mjs": "c3e5ff3b87c37e25917bc526dc71acce52a9ce67f4cd9e8899afe463f4c35300",
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "49cdf31a90753a57f1dfc66d2c448db34cd9708fa90de2f3351109d95ed0f77b",
+      "work/vcmi-wasm/client/MobileBridge.cpp": "4e77a6ca200006df02872e257c45805dc883aef732fa887fdb731db48e6808a9"
     },
     "currentEngineSha256": "ca151fe19bf8ab4e97fa2f06d7278c423116ad6433cb041666b6b279227841e7"
   },
@@ -248,7 +248,7 @@
     "scope": "Historical native reports and engines retained. Current source239 and 63 previously admitted native scenarios revalidated on938.",
     "proof": "scripts/era-bridge/gameplay/map-town-banners-native-validation.json",
     "previousBindings": {
-      "work/browser-tests/wog-henchmen-native-e2e.mjs": "4d297b35e0a14e26f6c0e237bde8797491b86585f6e6f3a75b4fe862b293aae4"
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "a9c37e02dfd7576cbb5ab5b5313abbab60410309687b17748edb5a6e346d7978"
     },
     "currentEngineSha256": "962ad98c204cb32cdea635d943c86e2ab2d491d764e89c39182a4d17ffde5e26"
   },
@@ -256,8 +256,8 @@
     "scope": "Historical native reports and engines retained. Off-map army lifetime and admitted regressions revalidated on939; see linked proof for exact scope.",
     "proof": "scripts/era-bridge/gameplay/temporary-battle-armies-native-validation.json",
     "previousBindings": {
-      "work/browser-tests/wog-henchmen-native-e2e.mjs": "4d297b35e0a14e26f6c0e237bde8797491b86585f6e6f3a75b4fe862b293aae4",
-      "work/browser-tests/wog-henchmen-prompt-cases.mjs": "268768b1eb9a35899af25e90b7590c52db9af9066a211a071d505507ab2d976e"
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "5530e9f95ded527cddee6ee15a43636ff2cf120107aebabb46d8ad082f798cdd",
+      "work/browser-tests/wog-henchmen-prompt-cases.mjs": "a5ac7dc85ba6d8edad1c78b1c9b14951db971e7c52369684443fb59f47bca93c"
     },
     "currentEngineSha256": "1f8c6a563fe769d477dcb666965913ae28e0bf109043e33adc11135614eb89c2"
   },

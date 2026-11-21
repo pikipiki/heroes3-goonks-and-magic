@@ -1489,8 +1489,8 @@
     "proof": "scripts/era-bridge/gameplay/map-extra-dwellings-native-validation.json",
     "engineSha256": "b27b08074655b63cc0ddfef758d357bf3b73c628f836f984e6caf925b67cec37",
     "previousSourceBindings": {
-      "work/browser-tests/wog-henchmen-native-e2e.mjs": "4d297b35e0a14e26f6c0e237bde8797491b86585f6e6f3a75b4fe862b293aae4",
-      "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "6a98e1fd611d85a3cbcc197a66e20206eda4f468929abec21e5bb34236923f35"
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "96e5ad90bf7ff35dd08d7d9d51592701cfaa0e9fb34488fa0df194063ebfb7b2",
+      "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "5aa07c864110cd864d13f339341ad9419c71843b689483933564ef6c1b6d7f63"
     },
     "historicalReportsRetained": true,
     "existingOption17And36SemanticsUnchanged": true,
@@ -1512,7 +1512,7 @@
     "proof": "scripts/era-bridge/gameplay/map-inverted-speeds-native-validation.json",
     "engineSha256": "7dfb464aa0f53f2d69c05e5c587cbbf475601b3c2eea89a734060dda0aab1613",
     "previousSourceBindings": {
-      "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "affc617663efdca4ff34bb9bb4da1716fe06758ec1e4915e2f6f2bb4e472b767"
+      "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "ce99e6a8264e45b7f60b59f3a5669bae42b9adb358eb0c0635c4d4894fe87ca1"
     },
     "historicalReportsRetained": true,
     "receiverScope": "Only numeric MA reads now use live map-local canonical base overlays; all six numeric fields and subsequent writes are exercised with pending native save/reload. Other receiver branches are unchanged.",
@@ -1536,15 +1536,15 @@
   "stringLocalsRevalidation": {
     "scope": "Legacy contracts remain unchanged; historical native reports retained. New local-z scope and current-engine regressions are documented separately.",
     "previousBindings": {
-      "scripts/era-bridge/campaigns/parser.mjs": "70f65f26c3636c7f352ec8c8ba751cb82812151f4ece87e71f432bdccfdf4c9f",
-      "scripts/era-bridge/campaigns/local-bindings.mjs": "67d1faf2db1376002e1612b02502b96fb0dd9a725d377be597e04982e666b281",
-      "work/vcmi-wasm/lib/era/EraCampaignProgram.h": "1fff2141c32f61b999571627080c72225b23bc2ae5a1cfd16abcf461fe9d2310",
-      "work/vcmi-wasm/lib/era/EraCampaignExecutor.h": "d6846282ede7798fb3598cb3c66dd10b590be1e845b3c8b2fcb277748c69aa8b",
-      "work/vcmi-wasm/lib/era/EraCampaignJson.h": "63e2b6aff007190a6fd81f631193823723a032068a2f815072e685e49ea89dc5",
-      "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "affc617663efdca4ff34bb9bb4da1716fe06758ec1e4915e2f6f2bb4e472b767",
-      "work/browser-tests/wog-henchmen-native-e2e.mjs": "4d297b35e0a14e26f6c0e237bde8797491b86585f6e6f3a75b4fe862b293aae4",
-      "scripts/era-bridge/campaigns/importer.mjs": "932dcbf6f736ff30f5d313f9fda933d2defa84852716a880102cafaeff097009",
-      "scripts/era-bridge/campaigns/native-compiler.mjs": "c9f2498bdf10d9baa2cc65db376926941281634532aedc4283323ff2135db065"
+      "scripts/era-bridge/campaigns/parser.mjs": "01e24dcb01d72f5785abc96e18dab47d595456237d03c03d4cc020f3749f17e9",
+      "scripts/era-bridge/campaigns/local-bindings.mjs": "de53fdab9cddaa5b3b63cd425d51134876f192010330c9bf965b97d9fe13a498",
+      "work/vcmi-wasm/lib/era/EraCampaignProgram.h": "aac5976f6e7e8eea7dca0026fc0629466c9853957a168158b5978187f403c55a",
+      "work/vcmi-wasm/lib/era/EraCampaignExecutor.h": "b3572e87c8cc9db71583847d3541aaf9e2e1178bd195b1e15964d766fd1554ae",
+      "work/vcmi-wasm/lib/era/EraCampaignJson.h": "ccce0ce91e1e9da4ce20e7c8adfe02ac38ab069c0abd9c867c02e4fe0c068173",
+      "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "c4bf01e653cb7a70431a7f4d5c3dfe6a31c7e7d41eea234e422329423d194549",
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "dc4b66c4b2d99626873c33406e3b994169ac504f035e921d92916d7a6301e2b0",
+      "scripts/era-bridge/campaigns/importer.mjs": "d19be1f5f4d4dab127a0317810fc11543bd7ea2790e8cb608c0fa129df3b7740",
+      "scripts/era-bridge/campaigns/native-compiler.mjs": "299afddd2a8a34b652f71dff42718157ec83531e27f82df0033e311429725fd2"
     },
     "proof": "scripts/era-bridge/gameplay/era3-string-locals-native-validation.json",
     "currentEngineSha256": "35fa7a008e636db70081b336523da1ddef2636b78992db07ae9f67f3700d8f7e"
@@ -1552,9 +1552,9 @@
   "stringReceiverCellsRevalidation": {
     "scope": "Historical native reports retained; current-engine regression and valid scoped-save evidence linked separately.",
     "previousBindings": {
-      "work/vcmi-wasm/lib/era/EraCampaignProgram.h": "1fff2141c32f61b999571627080c72225b23bc2ae5a1cfd16abcf461fe9d2310",
-      "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "affc617663efdca4ff34bb9bb4da1716fe06758ec1e4915e2f6f2bb4e472b767",
-      "work/browser-tests/wog-henchmen-native-e2e.mjs": "4d297b35e0a14e26f6c0e237bde8797491b86585f6e6f3a75b4fe862b293aae4"
+      "work/vcmi-wasm/lib/era/EraCampaignProgram.h": "6fe6663d191191e7f261ef6812f461989f131d5f48655f9e3a636866269df734",
+      "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "f41c9b6d220d8d4cb3eff9ac16b1c2907a474e7f5eb70d474a6d7fd75088d846",
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "750e667d7b648a5f50c0abee1b1a65b5e41a166c7bbd77f3a9480d894a54b9a1"
     },
     "proof": "scripts/era-bridge/gameplay/era3-string-receivers-native-validation.json",
     "currentEngineSha256": "795810c396ddaa959d2369547eac4b86c017c04d489b51810732b944147e183d"
@@ -1562,14 +1562,14 @@
   "randomRangesRevalidation": {
     "scope": "Historical native reports retained; current-engine regressions and valid scoped-save evidence linked separately.",
     "previousBindings": {
-      "scripts/era-bridge/campaigns/importer.mjs": "932dcbf6f736ff30f5d313f9fda933d2defa84852716a880102cafaeff097009",
-      "scripts/era-bridge/campaigns/native-compiler.mjs": "c9f2498bdf10d9baa2cc65db376926941281634532aedc4283323ff2135db065",
-      "scripts/era-bridge/campaigns/parser.mjs": "70f65f26c3636c7f352ec8c8ba751cb82812151f4ece87e71f432bdccfdf4c9f",
-      "work/browser-tests/wog-henchmen-native-e2e.mjs": "4d297b35e0a14e26f6c0e237bde8797491b86585f6e6f3a75b4fe862b293aae4",
-      "work/vcmi-wasm/lib/era/EraCampaignExecutor.h": "d6846282ede7798fb3598cb3c66dd10b590be1e845b3c8b2fcb277748c69aa8b",
-      "work/vcmi-wasm/lib/era/EraCampaignJson.h": "63e2b6aff007190a6fd81f631193823723a032068a2f815072e685e49ea89dc5",
-      "work/vcmi-wasm/lib/era/EraCampaignProgram.h": "1fff2141c32f61b999571627080c72225b23bc2ae5a1cfd16abcf461fe9d2310",
-      "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "affc617663efdca4ff34bb9bb4da1716fe06758ec1e4915e2f6f2bb4e472b767"
+      "scripts/era-bridge/campaigns/importer.mjs": "e130aa9e58463642b85bdf86ce2a0559a5c9ad2bc29dfa00ba23f91269f25fc0",
+      "scripts/era-bridge/campaigns/native-compiler.mjs": "3b82cec8cc18a5a6b51e5bc83c66a3f720f918e9b3b6f3c31b643080931b1934",
+      "scripts/era-bridge/campaigns/parser.mjs": "0b83c20325e58f085be8017a13fadcaf3c01f2e150e54c3e76b12bb02783a913",
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "4ff3e60906850a70ee4390e8163d89cac698978fda00929d8a2d4a93c6f9af53",
+      "work/vcmi-wasm/lib/era/EraCampaignExecutor.h": "b36ad88f8b6a155a82ec51c8c4194eef407cf6f2e635e0d3539b94b574d2e02b",
+      "work/vcmi-wasm/lib/era/EraCampaignJson.h": "266dfa660958267f306e640f01b556ccda19d1e2634a0734d2e3ba5a39fee4cb",
+      "work/vcmi-wasm/lib/era/EraCampaignProgram.h": "88cefc5256ace92633a33c4bd449453988210f567503253b5909cc3d914c43d4",
+      "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "0f4ce00fa34c8337fe9ca1493c22cb0883d231837412c3d3bd1132a63f5b955b"
     },
     "proof": "scripts/era-bridge/gameplay/era3-random-ranges-native-validation.json",
     "currentEngineSha256": "51197f8a775d9e2dd7970c228a3e9f4a156464a09c5b54305bda5b5035a5a1e4"
@@ -1577,7 +1577,7 @@
   "signedHenchmenExperienceRevalidation": {
     "scope": "Historical native reports retained; current-engine regression evidence linked separately.",
     "previousBindings": {
-      "work/browser-tests/wog-henchmen-native-e2e.mjs": "4d297b35e0a14e26f6c0e237bde8797491b86585f6e6f3a75b4fe862b293aae4"
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "0250d0d4c79e3ebdf657ea82f0e72b5a0c9e9e3a0e4fe1d34fabc4daccc0ca8d"
     },
     "proof": "scripts/era-bridge/gameplay/henchmen-signed-experience-native-validation.json",
     "currentEngineSha256": "b980660dbf4aee44fdc7dee2baef5ae7a08815f63d2ab51a65d9562f1a82e245"
@@ -1585,7 +1585,7 @@
   "weeklyMithrilRevalidation": {
     "scope": "Historical native reports retained; current-engine regression and legacy-save evidence linked separately.",
     "previousBindings": {
-      "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "6a98e1fd611d85a3cbcc197a66e20206eda4f468929abec21e5bb34236923f35"
+      "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "0ba89cdc924bfa8e11e37547982f62e864ab6d848b99d5a4f52047fab449707a"
     },
     "proof": "scripts/era-bridge/gameplay/mithril-weekly-native-validation.json",
     "currentEngineSha256": "fb03689663d4adb24e0551bbcdfa61ffd8345b2eb91f263c57ed503f5ad8e801"
@@ -1593,8 +1593,8 @@
   "mithrilReplacementRevalidation": {
     "scope": "Historical native reports retained; current-engine regression and legacy-save evidence linked separately.",
     "previousBindings": {
-      "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "6a98e1fd611d85a3cbcc197a66e20206eda4f468929abec21e5bb34236923f35",
-      "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "affc617663efdca4ff34bb9bb4da1716fe06758ec1e4915e2f6f2bb4e472b767"
+      "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "230ec23a4fa35e838958563bb96e2c6f77499b6c210562200b2fcc329e3c9b23",
+      "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "81af6ad6d160606385ff51783047ce58f944a33c91eab777bc30d6c5caacc541"
     },
     "proof": "scripts/era-bridge/gameplay/mithril-replacement-native-validation.json",
     "currentEngineSha256": "ba28152fa8a84fdc96e64e9edb0ff147cc31e03450a7644145e5a8dc0f074bf5"
@@ -1602,7 +1602,7 @@
   "mithrilDisplayRevalidation": {
     "scope": "Historical native reports retained; current-engine regressions and legacy-save control linked separately.",
     "previousBindings": {
-      "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "6a98e1fd611d85a3cbcc197a66e20206eda4f468929abec21e5bb34236923f35"
+      "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "4b9edae848a4d90cc2efcb6139037e6b1e75f62ed2db9e22a444753c6ef6a955"
     },
     "proof": "scripts/era-bridge/gameplay/mithril-display-native-validation.json",
     "currentEngineSha256": "6b3a20f68107c79dd08266d2606412e3cb41a88d1265fa5c6f1a3b7b824cd67e"
@@ -1610,7 +1610,7 @@
   "liveCreatureLevelsRevalidation": {
     "scope": "Historical native reports retained; current-engine regression, dynamic-price and legacy-save evidence linked separately.",
     "previousBindings": {
-      "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "affc617663efdca4ff34bb9bb4da1716fe06758ec1e4915e2f6f2bb4e472b767"
+      "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "fff528d09befbc68fd4e9f47ede454d97b641fbd0775edb8f8d4dd70f81de22d"
     },
     "proof": "scripts/era-bridge/gameplay/mithril-live-levels-native-validation.json",
     "currentEngineSha256": "c7e1662ad617a1f1499165821bc604b7e5cb2b9e9ba6786ffc4aac0e0342e657"
@@ -1618,7 +1618,7 @@
   "fortlessTownsRevalidation": {
     "scope": "Historical native reports retained; current-engine regression, initial-town and legacy-save evidence linked separately.",
     "previousBindings": {
-      "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "6a98e1fd611d85a3cbcc197a66e20206eda4f468929abec21e5bb34236923f35"
+      "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "36de476c1ce5278033b2694ea79a225488108fb385e2c7c2fc9f6b0a7a1b9227"
     },
     "proof": "scripts/era-bridge/gameplay/map-fortless-native-validation.json",
     "currentEngineSha256": "37b8c15a7f682f2f16d58158949e736757eab07a57efec8035c69a6d439f4207"
@@ -1626,7 +1626,7 @@
   "noActorRewardRevalidation": {
     "scope": "Historical native reports retained. Current engine no-actor and regression evidence linked separately.",
     "previousBindings": {
-      "work/browser-tests/wog-henchmen-native-e2e.mjs": "4d297b35e0a14e26f6c0e237bde8797491b86585f6e6f3a75b4fe862b293aae4"
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "a31f233853f3e7bff713d0e8a1987fb9ca31b5ebdcd6e094eafdb2142fa5a7e6"
     },
     "proof": "scripts/era-bridge/gameplay/henchmen-ai-no-actor-native-validation.json",
     "currentEngineSha256": "7d52900bd67702e7bc824addb1028f00e3ea46365d96e7f22be5a831b102219a"
@@ -1635,8 +1635,8 @@
     "scope": "Historical native reports retained; current engine PO:N, legacy-save and regression evidence linked separately.",
     "proof": "scripts/era-bridge/gameplay/tile-properties-native-validation.json",
     "previousBindings": {
-      "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "affc617663efdca4ff34bb9bb4da1716fe06758ec1e4915e2f6f2bb4e472b767",
-      "work/browser-tests/wog-henchmen-native-e2e.mjs": "4d297b35e0a14e26f6c0e237bde8797491b86585f6e6f3a75b4fe862b293aae4"
+      "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "d94431bfd64a07ffa3feef32dab6ae8b00d0168050e646308f6465c68e8d5451",
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "8c07b15dd1bb7423aa7b6d2d3ebe653c6238985c91c7d14ac378a140d47d48ed"
     },
     "currentEngineSha256": "2739a7ea706044a53136c22c5d41557dc17ef7416f16334b2d6c43a67bcebb6b"
   },
@@ -1644,9 +1644,9 @@
     "scope": "Historical reports retained; current rule119, direct artifact record counting and regressions linked separately.",
     "proof": "scripts/era-bridge/gameplay/map-double-artifacts-native-validation.json",
     "previousBindings": {
-      "work/browser-tests/wog-henchmen-native-e2e.mjs": "4d297b35e0a14e26f6c0e237bde8797491b86585f6e6f3a75b4fe862b293aae4",
-      "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "6a98e1fd611d85a3cbcc197a66e20206eda4f468929abec21e5bb34236923f35",
-      "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "affc617663efdca4ff34bb9bb4da1716fe06758ec1e4915e2f6f2bb4e472b767"
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "a0b7242e0d84c48ff629607e4541128a9c7c51c7a105db93078c1b3bfe7dba26",
+      "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "5638576ef483f51bf1eb38a42c060210fd0eb2bc3ba1dc0b4a005d0b60b53f18",
+      "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "14d14c1065cab1d2da0dff0bd3f259c6b6be2a15abcb660f1c9895f5580965fd"
     },
     "currentEngineSha256": "ab6222d547e040618cde85fa8d0974d1e71e022a42b32d3359a37ae2b8cdb319"
   },
@@ -1654,7 +1654,7 @@
     "scope": "Historical reports retained; shared mine markers, migration, neutral mine UI and current regression evidence linked separately.",
     "proof": "scripts/era-bridge/gameplay/mithril-mine-tiles-native-validation.json",
     "previousBindings": {
-      "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "affc617663efdca4ff34bb9bb4da1716fe06758ec1e4915e2f6f2bb4e472b767"
+      "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "be116c94a2d598c73fb4d668d3ecd118ddca038c99d7eaef8f6c298d226cbeb9"
     },
     "currentEngineSha256": "6fdf3693ed2118b22664a5fcf678cef83752f03428b8fbb83bebf210364f969e"
   },
@@ -1662,7 +1662,7 @@
     "scope": "Historical reports retained; shared site markers, subtype admission, legacy imports, first-week and current regressions linked separately.",
     "proof": "scripts/era-bridge/gameplay/mithril-site-tiles-native-validation.json",
     "previousBindings": {
-      "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "affc617663efdca4ff34bb9bb4da1716fe06758ec1e4915e2f6f2bb4e472b767"
+      "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "a83a4e2e83c1cf9fbfaa9e260c849821efc30b9ebe0fa5ff6f225379d968b8c6"
     },
     "currentEngineSha256": "f3cdda4873cb648791173dfde4c82631f20091ec53d539947ed51ae51563633f"
   },
@@ -1670,7 +1670,7 @@
     "scope": "Historical reports retained; aggregate income, raw grants, mobile presets and mine information separately validated on the current engine.",
     "proof": "scripts/era-bridge/gameplay/mithril-income-native-validation.json",
     "previousBindings": {
-      "work/browser-tests/wog-henchmen-native-e2e.mjs": "4d297b35e0a14e26f6c0e237bde8797491b86585f6e6f3a75b4fe862b293aae4"
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "d2306b62dd8e227c5b80ddc16aabeac2d54ebc1538f40d93a8f32a3cc59eed7b"
     },
     "currentEngineSha256": "4c3eb6638eeb3398164618cf413b7f451894ead66345660d96b5acf2135d92b3"
   },
@@ -1678,7 +1678,7 @@
     "scope": "Historical reports retained; read-only C7/F mapping, signed words, continuation compatibility and selected current regressions separately validated.",
     "proof": "scripts/era-bridge/gameplay/creature-cost-alias-native-validation.json",
     "previousBindings": {
-      "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "affc617663efdca4ff34bb9bb4da1716fe06758ec1e4915e2f6f2bb4e472b767"
+      "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "0ea216332f26e1fd5a5e3fc2b49098bb51372bf80e890e952a2d61c4b111ef56"
     },
     "currentEngineSha256": "797ce98c32ed58f3285ba82a5f19ed1c8ec5bfc274521aa18d372c9354b8ba7b"
   },
@@ -1686,8 +1686,8 @@
     "scope": "Historical engine reports retained; current per-game prices, save migration and selected Advanced Classes, companion, Mithril, income and C7/F regressions are independently validated.",
     "proof": "scripts/era-bridge/gameplay/creature-prices-native-validation.json",
     "previousBindings": {
-      "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "6a98e1fd611d85a3cbcc197a66e20206eda4f468929abec21e5bb34236923f35",
-      "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "affc617663efdca4ff34bb9bb4da1716fe06758ec1e4915e2f6f2bb4e472b767"
+      "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "446a52d49339ec9b52c24cb60ba5c60383eab3747b17d60a0ff65e8bffb672d2",
+      "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "a4fe52ade44cc074b96ad792cf46f75cb4fa94c85c10953bb67686a4646c993c"
     },
     "currentEngineSha256": "e162ec4607e4b8c2022c52b5193a7a38fd3460d9a826699e8b8a7bee0f89926e"
   },
@@ -1695,8 +1695,8 @@
     "scope": "Historical reports retained; current original-hero conversions, signed XP consumers, migration and selected Advanced Classes, companions, growth, Mithril and price regressions are independently validated.",
     "proof": "scripts/era-bridge/gameplay/map-eighth-upgrades-native-validation.json",
     "previousBindings": {
-      "work/browser-tests/wog-henchmen-native-e2e.mjs": "4d297b35e0a14e26f6c0e237bde8797491b86585f6e6f3a75b4fe862b293aae4",
-      "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "6a98e1fd611d85a3cbcc197a66e20206eda4f468929abec21e5bb34236923f35"
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "6c0adbaadc5b63bcffeee3aed8e557edb1500f68325264480e530e89ed12bc80",
+      "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "f62fca39e23c712048a181857131ad5645a7dea0dbb6979014d387059e66554a"
     },
     "currentEngineSha256": "a70be26e9136742bb0939dcbe044138dc01d7d8b8262e052fa67a82861c88455"
   },
@@ -1704,8 +1704,8 @@
     "scope": "Historical reports retained. Selective source129 behavior and creature world previews verified on the current engine together with companions, class core, sites, prices, speed, flight and monthly regression cases.",
     "proof": "scripts/era-bridge/gameplay/map-no-shooting-native-validation.json",
     "previousBindings": {
-      "work/browser-tests/wog-henchmen-native-e2e.mjs": "4d297b35e0a14e26f6c0e237bde8797491b86585f6e6f3a75b4fe862b293aae4",
-      "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "6a98e1fd611d85a3cbcc197a66e20206eda4f468929abec21e5bb34236923f35"
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "8ab2d841fc2e4ef902b8790399df2907b0de72bf5cc6166272d75a961c44e297",
+      "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "5e52ec79f7e5367ce70ae6b47ed7f96125be52515559dfdc0f58d32ed97825cc"
     },
     "currentEngineSha256": "89904944df2e8b913d00639dbc7b7ae11fa3a2d87dcdc6db3dbc07cafd4ee953"
   },
@@ -1713,9 +1713,9 @@
     "scope": "Historical reports retained. Corrected fog receiver and human standard-movement darkness verified on two levels with per-game activation, native save controls and selected companions, class core, sites, prices, shooter and eighth-upgrade regressions.",
     "proof": "scripts/era-bridge/gameplay/map-darkness-native-validation.json",
     "previousBindings": {
-      "work/browser-tests/wog-henchmen-native-e2e.mjs": "4d297b35e0a14e26f6c0e237bde8797491b86585f6e6f3a75b4fe862b293aae4",
-      "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "6a98e1fd611d85a3cbcc197a66e20206eda4f468929abec21e5bb34236923f35",
-      "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "affc617663efdca4ff34bb9bb4da1716fe06758ec1e4915e2f6f2bb4e472b767"
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "a21b31fc5b837bf30474d0923858205d0ee83e7b5a089e6380c01bba93a4c89a",
+      "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "a9fd7c85ccd2a7ec6aa5c5e65624879c1baff695b178cb6522f44aee128ce323",
+      "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "66fcc20cbfaa93e25b4efd00bcb08d2c2e1a161ab681ea9ac15bf4b7cc0a4f44"
     },
     "currentEngineSha256": "ada86ddac91a00feda7433cd9c1d3850dcd530de3ab120874c8e921e883f5cb5"
   },
@@ -1723,9 +1723,9 @@
     "scope": "Historical native reports retained. Source126 shared rewards and saved choices/pages/visits, stable assembly memory and selected companions/classes/mithril/prices/map-rule regressions verified on the current engine.",
     "proof": "scripts/era-bridge/gameplay/map-level-artifacts-native-validation.json",
     "previousBindings": {
-      "work/browser-tests/wog-henchmen-native-e2e.mjs": "4d297b35e0a14e26f6c0e237bde8797491b86585f6e6f3a75b4fe862b293aae4",
-      "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "6a98e1fd611d85a3cbcc197a66e20206eda4f468929abec21e5bb34236923f35",
-      "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "affc617663efdca4ff34bb9bb4da1716fe06758ec1e4915e2f6f2bb4e472b767"
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "49cdf31a90753a57f1dfc66d2c448db34cd9708fa90de2f3351109d95ed0f77b",
+      "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "b7f7e6686b8947b4233308a5b34ab16a8d20a7f318fc61c334dc0bba30d120c8",
+      "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "285df009c6404be76e3076ac82ae167947142cedaf65b5059a3c09f80b1983d4"
     },
     "currentEngineSha256": "ca151fe19bf8ab4e97fa2f06d7278c423116ad6433cb041666b6b279227841e7"
   },
@@ -1733,8 +1733,8 @@
     "scope": "Historical native reports and engines retained. Current source239 and 63 previously admitted native scenarios revalidated on938.",
     "proof": "scripts/era-bridge/gameplay/map-town-banners-native-validation.json",
     "previousBindings": {
-      "work/browser-tests/wog-henchmen-native-e2e.mjs": "4d297b35e0a14e26f6c0e237bde8797491b86585f6e6f3a75b4fe862b293aae4",
-      "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "6a98e1fd611d85a3cbcc197a66e20206eda4f468929abec21e5bb34236923f35"
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "a9c37e02dfd7576cbb5ab5b5313abbab60410309687b17748edb5a6e346d7978",
+      "work/vcmi-wasm/server/era/EraCampaignWogOptions.h": "3166968f244cc72f6cc76b49e3db87950ed2e8fd181dc8102f0483b31513210f"
     },
     "currentEngineSha256": "962ad98c204cb32cdea635d943c86e2ab2d491d764e89c39182a4d17ffde5e26"
   },
@@ -1742,8 +1742,8 @@
     "scope": "Historical native reports and engines retained. Off-map army lifetime and admitted regressions revalidated on939; see linked proof for exact scope.",
     "proof": "scripts/era-bridge/gameplay/temporary-battle-armies-native-validation.json",
     "previousBindings": {
-      "work/browser-tests/wog-henchmen-native-e2e.mjs": "4d297b35e0a14e26f6c0e237bde8797491b86585f6e6f3a75b4fe862b293aae4",
-      "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "affc617663efdca4ff34bb9bb4da1716fe06758ec1e4915e2f6f2bb4e472b767"
+      "work/browser-tests/wog-henchmen-native-e2e.mjs": "5530e9f95ded527cddee6ee15a43636ff2cf120107aebabb46d8ad082f798cdd",
+      "work/vcmi-wasm/server/era/SourceCampaignProcessor.cpp": "0c59e90468c42fbe31afde1b32e75e27a4e79e620126cefdbc6634aecd45ef67"
     },
     "currentEngineSha256": "1f8c6a563fe769d477dcb666965913ae28e0bf109043e33adc11135614eb89c2"
   },

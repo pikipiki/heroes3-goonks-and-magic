@@ -317,7 +317,7 @@
   "signedHenchmenExperienceRevalidation": {
     "scope": "Historical native reports retained; current-engine regression evidence linked separately.",
     "previousBindings": {
-      "work/vcmi-wasm/server/era/EraHenchmanRuntime.h": "0419705343e94ee3cf57be35c5328936661ca6c8cfcd467c75858d7cbd273d84"
+      "work/vcmi-wasm/server/era/EraHenchmanRuntime.h": "db285e230a40dbd2bc552acc2956f8c371cbef96b6479429a279c9d6e906e708"
     },
     "proof": "scripts/era-bridge/gameplay/henchmen-signed-experience-native-validation.json",
     "currentEngineSha256": "b980660dbf4aee44fdc7dee2baef5ae7a08815f63d2ab51a65d9562f1a82e245"
@@ -325,7 +325,7 @@
   "noActorRewardRevalidation": {
     "scope": "Historical native reports retained. Current engine no-actor and regression evidence linked separately.",
     "previousBindings": {
-      "work/vcmi-wasm/server/era/EraHenchmanRuntime.h": "0419705343e94ee3cf57be35c5328936661ca6c8cfcd467c75858d7cbd273d84"
+      "work/vcmi-wasm/server/era/EraHenchmanRuntime.h": "52e785cce8a018dd5ba8b730714d283af5e374244afef7954a5b646e6288ffbb"
     },
     "proof": "scripts/era-bridge/gameplay/henchmen-ai-no-actor-native-validation.json",
     "currentEngineSha256": "7d52900bd67702e7bc824addb1028f00e3ea46365d96e7f22be5a831b102219a"
@@ -334,7 +334,7 @@
     "scope": "Historical engine reports retained; current per-game prices, save migration and selected Advanced Classes, companion, Mithril, income and C7/F regressions are independently validated.",
     "proof": "scripts/era-bridge/gameplay/creature-prices-native-validation.json",
     "previousBindings": {
-      "work/vcmi-wasm/server/era/EraHenchmanRuntime.h": "0419705343e94ee3cf57be35c5328936661ca6c8cfcd467c75858d7cbd273d84"
+      "work/vcmi-wasm/server/era/EraHenchmanRuntime.h": "acc29e1277d4efbc28f0bd2f3ff60ebe5aba77b9d2ed3d8e221aa8ec78ae8d91"
     },
     "currentEngineSha256": "e162ec4607e4b8c2022c52b5193a7a38fd3460d9a826699e8b8a7bee0f89926e"
   }
