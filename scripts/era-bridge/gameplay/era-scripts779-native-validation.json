@@ -89,8 +89,8 @@
     "proof": "scripts/era-bridge/gameplay/map-extra-dwellings-native-validation.json",
     "engineSha256": "b27b08074655b63cc0ddfef758d357bf3b73c628f836f984e6caf925b67cec37",
     "previousSourceBindings": {
-      "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "af9f5866b677f66909cd03197b530d64dcde2d2551f9e7291c81f6199264f90a",
-      "work/browser-tests/era-learning-stone-native-e2e.mjs": "93cbb167cc14e85b0f91cd2cefd7ebff5b7beb25b7396f0f4f5925e405172760"
+      "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "080ddfb28485573f0647dbebdd7acac01a77f3652478de5455df4f03578cfb3a",
+      "work/browser-tests/era-learning-stone-native-e2e.mjs": "9f44a7f7e9c59b1dafc231dba94dc5f261a6178fe714ce75f1af167385c80838"
     },
     "historicalReportsRetained": true,
     "existingOption17And36SemanticsUnchanged": true,
@@ -112,7 +112,7 @@
     "proof": "scripts/era-bridge/gameplay/map-grounded-fliers-native-validation.json",
     "engineSha256": "c2bba23fe111380c7f7524b5c0a623a62d7416f30a9e629b3e246c20854e1e9f",
     "previousSourceBindings": {
-      "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "db6c259a1888d34c62f17b22af704b1a3a5bb66944c5a74a2ce101b01b7ccc33"
+      "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "080ddfb28485573f0647dbebdd7acac01a77f3652478de5455df4f03578cfb3a"
     },
     "historicalReportsRetained": true,
     "existingFeatureSemanticsUnchanged": true,
@@ -136,7 +136,7 @@
     "proof": "scripts/era-bridge/gameplay/map-inverted-speeds-native-validation.json",
     "engineSha256": "7dfb464aa0f53f2d69c05e5c587cbbf475601b3c2eea89a734060dda0aab1613",
     "previousSourceBindings": {
-      "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "97a2ada3f77f78aa9711e6ae25e8aa41c7920398bedca9b210b65563d7e49af5"
+      "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "080ddfb28485573f0647dbebdd7acac01a77f3652478de5455df4f03578cfb3a"
     },
     "historicalReportsRetained": true,
     "receiverScope": "Only numeric MA reads now use live map-local canonical base overlays; all six numeric fields and subsequent writes are exercised with pending native save/reload. Other receiver branches are unchanged.",
@@ -160,7 +160,7 @@
   "weeklyMithrilRevalidation": {
     "scope": "Historical native reports retained; current-engine regression and legacy-save evidence linked separately.",
     "previousBindings": {
-      "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "000a737edf1cad9231a3ad015faf15a90c20bb0f76decf3a4d723b3eec835182"
+      "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "080ddfb28485573f0647dbebdd7acac01a77f3652478de5455df4f03578cfb3a"
     },
     "proof": "scripts/era-bridge/gameplay/mithril-weekly-native-validation.json",
     "currentEngineSha256": "fb03689663d4adb24e0551bbcdfa61ffd8345b2eb91f263c57ed503f5ad8e801"
@@ -168,7 +168,7 @@
   "mithrilReplacementRevalidation": {
     "scope": "Historical native reports retained; current-engine regression and legacy-save evidence linked separately.",
     "previousBindings": {
-      "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "d67bbbc1788c81e44a403c145494fd11fb2774bf4dd69b2b7b51b38ebb98f291"
+      "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "080ddfb28485573f0647dbebdd7acac01a77f3652478de5455df4f03578cfb3a"
     },
     "proof": "scripts/era-bridge/gameplay/mithril-replacement-native-validation.json",
     "currentEngineSha256": "ba28152fa8a84fdc96e64e9edb0ff147cc31e03450a7644145e5a8dc0f074bf5"
@@ -176,7 +176,7 @@
   "fortlessTownsRevalidation": {
     "scope": "Historical native reports retained; current-engine regression, initial-town and legacy-save evidence linked separately.",
     "previousBindings": {
-      "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "83a0f4dc733891baf642faaea91bee30931a8ff6ae5b09f0bd5b19245e0fa7f4"
+      "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "080ddfb28485573f0647dbebdd7acac01a77f3652478de5455df4f03578cfb3a"
     },
     "proof": "scripts/era-bridge/gameplay/map-fortless-native-validation.json",
     "currentEngineSha256": "37b8c15a7f682f2f16d58158949e736757eab07a57efec8035c69a6d439f4207"
@@ -185,7 +185,7 @@
     "scope": "Historical native reports retained; current engine PO:N, legacy-save and regression evidence linked separately.",
     "proof": "scripts/era-bridge/gameplay/tile-properties-native-validation.json",
     "previousBindings": {
-      "work/vcmi-wasm/lib/gameState/GameStatePackVisitor.cpp": "4becc4fe9f23efbc7d5a9af89ae08a6c3b2326cf7530f79ebd61ca252a51d3e1"
+      "work/vcmi-wasm/lib/gameState/GameStatePackVisitor.cpp": "9a9c53d3c3df37efbd7d7cbd859e62dbfcdd12f7626398dd08c93bd5a2d8b57a"
     },
     "currentEngineSha256": "2739a7ea706044a53136c22c5d41557dc17ef7416f16334b2d6c43a67bcebb6b"
   },
@@ -193,7 +193,7 @@
     "scope": "Historical reports retained; current rule119, direct artifact record counting and regressions linked separately.",
     "proof": "scripts/era-bridge/gameplay/map-double-artifacts-native-validation.json",
     "previousBindings": {
-      "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "7195e72e6d8014b60e5da3fc938bf134ca0be8da15dbee8f58ba6babb5dac8d9"
+      "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "080ddfb28485573f0647dbebdd7acac01a77f3652478de5455df4f03578cfb3a"
     },
     "currentEngineSha256": "ab6222d547e040618cde85fa8d0974d1e71e022a42b32d3359a37ae2b8cdb319"
   },
@@ -201,7 +201,7 @@
     "scope": "Historical reports retained; shared mine markers, migration, neutral mine UI and current regression evidence linked separately.",
     "proof": "scripts/era-bridge/gameplay/mithril-mine-tiles-native-validation.json",
     "previousBindings": {
-      "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "ac3ebdcb1daf50c335f8128d90c1aa12c7df77e01a5c1bab2f6fd9af62207e2b"
+      "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "080ddfb28485573f0647dbebdd7acac01a77f3652478de5455df4f03578cfb3a"
     },
     "currentEngineSha256": "6fdf3693ed2118b22664a5fcf678cef83752f03428b8fbb83bebf210364f969e"
   },
@@ -209,7 +209,7 @@
     "scope": "Historical reports retained; shared site markers, subtype admission, legacy imports, first-week and current regressions linked separately.",
     "proof": "scripts/era-bridge/gameplay/mithril-site-tiles-native-validation.json",
     "previousBindings": {
-      "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "c284f9447d4323396952e22d11f0ceab07d65a03dbedbabd3626849e1d090ded"
+      "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "080ddfb28485573f0647dbebdd7acac01a77f3652478de5455df4f03578cfb3a"
     },
     "currentEngineSha256": "f3cdda4873cb648791173dfde4c82631f20091ec53d539947ed51ae51563633f"
   },
@@ -217,7 +217,7 @@
     "scope": "Historical reports retained; aggregate income, raw grants, mobile presets and mine information separately validated on the current engine.",
     "proof": "scripts/era-bridge/gameplay/mithril-income-native-validation.json",
     "previousBindings": {
-      "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "4c2041019543c0b8de7120456eae5da58e0b30820bbaa9a0d44b147c580f8d56"
+      "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "080ddfb28485573f0647dbebdd7acac01a77f3652478de5455df4f03578cfb3a"
     },
     "currentEngineSha256": "4c3eb6638eeb3398164618cf413b7f451894ead66345660d96b5acf2135d92b3"
   },
@@ -225,8 +225,8 @@
     "scope": "Historical engine reports retained; current per-game prices, save migration and selected Advanced Classes, companion, Mithril, income and C7/F regressions are independently validated.",
     "proof": "scripts/era-bridge/gameplay/creature-prices-native-validation.json",
     "previousBindings": {
-      "work/vcmi-wasm/lib/gameState/GameStatePackVisitor.cpp": "9b6bb5063165c7bc87370e1562c83d9c065518e52aba291d1fc25edb872f88ca",
-      "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "c7df615ab8cbd4824dd39511b21a310804408e2a3c35d94797613c41912df636"
+      "work/vcmi-wasm/lib/gameState/GameStatePackVisitor.cpp": "9a9c53d3c3df37efbd7d7cbd859e62dbfcdd12f7626398dd08c93bd5a2d8b57a",
+      "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "080ddfb28485573f0647dbebdd7acac01a77f3652478de5455df4f03578cfb3a"
     },
     "currentEngineSha256": "e162ec4607e4b8c2022c52b5193a7a38fd3460d9a826699e8b8a7bee0f89926e"
   },
@@ -234,7 +234,7 @@
     "scope": "Historical reports retained. Selective source129 behavior and creature world previews verified on the current engine together with companions, class core, sites, prices, speed, flight and monthly regression cases.",
     "proof": "scripts/era-bridge/gameplay/map-no-shooting-native-validation.json",
     "previousBindings": {
-      "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "b071e7200aa79c8ed2b74be3e904bdc2dfa3b9f7eea628a16b52d891ec30fd3d"
+      "work/vcmi-wasm/server/processors/NewTurnProcessor.cpp": "080ddfb28485573f0647dbebdd7acac01a77f3652478de5455df4f03578cfb3a"
     },
     "currentEngineSha256": "89904944df2e8b913d00639dbc7b7ae11fa3a2d87dcdc6db3dbc07cafd4ee953"
   },
@@ -242,7 +242,7 @@
     "scope": "Historical native reports retained. Source126 shared rewards and saved choices/pages/visits, stable assembly memory and selected companions/classes/mithril/prices/map-rule regressions verified on the current engine.",
     "proof": "scripts/era-bridge/gameplay/map-level-artifacts-native-validation.json",
     "previousBindings": {
-      "work/vcmi-wasm/lib/gameState/GameStatePackVisitor.cpp": "a2c7d59dc5be056078559343e70565894b3c562c908eeaa3fbc1a3d4c12932e8"
+      "work/vcmi-wasm/lib/gameState/GameStatePackVisitor.cpp": "9a9c53d3c3df37efbd7d7cbd859e62dbfcdd12f7626398dd08c93bd5a2d8b57a"
     },
     "currentEngineSha256": "ca151fe19bf8ab4e97fa2f06d7278c423116ad6433cb041666b6b279227841e7"
   },
@@ -250,7 +250,7 @@
     "scope": "Historical native reports and engines retained. Off-map army lifetime and admitted regressions revalidated on939; see linked proof for exact scope.",
     "proof": "scripts/era-bridge/gameplay/temporary-battle-armies-native-validation.json",
     "previousBindings": {
-      "work/vcmi-wasm/lib/gameState/GameStatePackVisitor.cpp": "02854624d7c71697fd9f4d68b0335d665daf71934adcd0f72861474aa97fa559"
+      "work/vcmi-wasm/lib/gameState/GameStatePackVisitor.cpp": "9a9c53d3c3df37efbd7d7cbd859e62dbfcdd12f7626398dd08c93bd5a2d8b57a"
     },
     "currentEngineSha256": "1f8c6a563fe769d477dcb666965913ae28e0bf109043e33adc11135614eb89c2"
   },
