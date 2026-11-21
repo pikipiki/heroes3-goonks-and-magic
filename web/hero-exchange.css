@@ -121,16 +121,20 @@
  padding:2px 3px;
 }
 @container goonk-viewport (orientation:landscape) {
- .hero-exchange-page {grid-template-columns:minmax(0,1fr) minmax(210px,32%);grid-template-rows:auto auto minmax(0,1fr)}
- #mobile-app .hero-exchange-page .exchange-toolbar {grid-column:2;grid-row:1;grid-template-columns:minmax(0,1fr) auto;align-items:center}
- #mobile-app .hero-exchange-page .exchange-toolbar h2 {grid-column:1;font-size:var(--ui-type-body1,16px)}
- .exchange-tabs {grid-column:1;grid-row:1}
- .exchange-inventories {grid-column:1;grid-row:2/4}
- #mobile-app .hero-exchange-page .exchange-detail {grid-column:2;grid-row:2/4;display:flex;flex-direction:column;justify-content:flex-end;gap:8px;border-top:0;border-inline-start:1px solid var(--line);min-height:0;overflow:auto}
- .exchange-summary {overflow:auto;touch-action:pan-y;flex:0 1 auto}
- #mobile-app .hero-exchange-page .exchange-actions {display:grid;grid-template-columns:1fr 1fr;align-items:center;align-content:end;gap:6px;flex:none}
- #mobile-app .hero-exchange-page .exchange-actions button {height:auto}
- .exchange-quantity {grid-column:1/-1}
+ #mobile-app .hero-exchange-page {grid-template-columns:minmax(0,1fr) minmax(200px,32%)!important;grid-template-rows:auto auto minmax(0,1fr)!important}
+ #mobile-app .hero-exchange-page .exchange-toolbar {grid-column:2!important;grid-row:1!important;grid-template-columns:minmax(0,1fr) auto!important;align-items:center}
+ #mobile-app .hero-exchange-page .exchange-toolbar h2 {grid-column:1!important;font-size:var(--ui-type-body1,16px)}
+ #mobile-app .hero-exchange-page .exchange-tabs {grid-column:1!important;grid-row:1!important;z-index:2}
+ #mobile-app .hero-exchange-page .exchange-inventories {grid-column:1!important;grid-row:2/4!important;min-height:0;overflow-y:auto;overscroll-behavior:contain;touch-action:pan-y}
+ #mobile-app .hero-exchange-page[data-troops-only=true] .exchange-inventories {grid-row:1/4!important}
+ #mobile-app .hero-exchange-page .exchange-detail {grid-column:2!important;grid-row:2/4!important;display:flex!important;flex-direction:column!important;justify-content:flex-start!important;gap:6px;border-top:0;border-inline-start:1px solid var(--line);min-height:0;overflow-y:auto;overscroll-behavior:contain;touch-action:pan-y}
+ .exchange-summary {flex:0 0 auto;overflow:visible}
+ #mobile-app .hero-exchange-page .exchange-actions {display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;align-items:stretch;align-content:end;gap:5px!important;margin-top:auto;flex:none;width:100%}
+ #mobile-app .hero-exchange-page .exchange-actions>button {height:auto;width:100%;min-width:0!important;min-height:44px!important;padding:4px 6px!important;font-size:13px!important}
+ #mobile-app .hero-exchange-page .exchange-quantity {grid-column:1/-1!important;display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:4px!important}
+ #mobile-app .hero-exchange-page .exchange-stepper {display:grid!important;grid-template-columns:34px minmax(0,1fr) 34px auto;gap:4px;width:100%}
+ #mobile-app .hero-exchange-page .exchange-stepper input {width:100%!important;min-width:0;min-height:36px!important}
+ #mobile-app .hero-exchange-page .exchange-stepper .exchange-quick-half {width:auto!important;padding:0 8px!important}
 }
 #mobile-app .hero-exchange-page[data-joining=true] {grid-template-rows:auto auto minmax(0,1fr) auto}
 #mobile-app .hero-exchange-page[data-joining=true] .exchange-inventories {display:grid!important;grid-template-columns:minmax(0,1fr)!important;grid-template-rows:auto minmax(0,1fr);overflow:hidden;align-content:stretch;gap:8px}
@@ -139,10 +143,10 @@
 #mobile-app .hero-exchange-page[data-joining=true] .exchange-inventory:nth-child(2)>header {position:sticky;top:0;z-index:2}
 #mobile-app .exchange-joining-help {margin:0;padding:4px 8px;font-size:var(--ui-type-body2);line-height:1.35;color:#ffe6af}
 @container goonk-viewport (orientation:landscape) {
- #mobile-app .hero-exchange-page[data-joining=true] {grid-template-rows:auto auto minmax(0,1fr)}
- #mobile-app .hero-exchange-page[data-joining=true]>.exchange-inventories {grid-column:1;grid-row:1/4;grid-template-columns:minmax(150px,34%) minmax(0,1fr)!important;grid-template-rows:minmax(0,1fr)!important}
- #mobile-app .hero-exchange-page[data-joining=true]>.exchange-joining-help {grid-column:2;grid-row:2;overflow-y:auto;min-height:0}
- #mobile-app .hero-exchange-page[data-joining=true]>.exchange-detail {grid-column:2;grid-row:3;overflow-y:auto;min-height:0}
+ #mobile-app .hero-exchange-page[data-joining=true] {grid-template-rows:auto auto minmax(0,1fr)!important}
+ #mobile-app .hero-exchange-page[data-joining=true]>.exchange-inventories {grid-column:1!important;grid-row:1/4!important;grid-template-columns:minmax(150px,34%) minmax(0,1fr)!important;grid-template-rows:minmax(0,1fr)!important;overflow:hidden!important}
+ #mobile-app .hero-exchange-page[data-joining=true]>.exchange-joining-help {grid-column:2!important;grid-row:2!important;font-size:12px;line-height:1.25;padding:4px 8px;overflow:visible;min-height:0}
+ #mobile-app .hero-exchange-page[data-joining=true]>.exchange-detail {grid-column:2!important;grid-row:3!important;overflow-y:auto;min-height:0}
 }
 
 /* Reuse web/hero-equipment.css .hero-army-slots & .hero-army-slot; only add exchange-specific layout */
@@ -213,11 +217,11 @@
  gap:3px;
 }
 #mobile-app .hero-exchange-page .exchange-stepper button {
- width:36px;
- min-width:36px;
- height:36px;
- min-height:36px;
- padding:0;
+ width:34px!important;
+ min-width:34px!important;
+ height:36px!important;
+ min-height:36px!important;
+ padding:0!important;
  font-size:15px;
  border-radius:0;
  font-weight:400;
