@@ -1,7 +1,9 @@
 @layer ui-composition {
 /* Intelligence is a comparison table plus one readable player profile, never
    eight narrow columns of names. These rules replace the legacy compact grid. */
-html.goonk-mobile #mobile-viewport #mobile-app .town-service[data-kind=thieves-guild]{display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:auto 48px minmax(0,1fr) auto;gap:8px;padding:8px;border-width:4px;min-height:0;overflow:hidden}
+#mobile-viewport #mobile-app .town-service[hidden]{display:none}
+#mobile-app[data-town-service]>.mobile-nav{display:none}
+html.goonk-mobile #mobile-viewport #mobile-app .town-service[data-kind=thieves-guild]:not([hidden]){display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:auto 48px minmax(0,1fr) auto;gap:8px;padding:8px;border-width:4px;min-height:0;overflow:hidden}
 #mobile-viewport #mobile-app .town-service[data-kind=thieves-guild]>.ui-screen-header{--ui-header-padding:8px;grid-area:1/1;display:flex;flex-direction:row;align-items:center;justify-content:space-between;gap:8px;padding:8px;min-height:64px}
 #mobile-viewport #mobile-app .town-service[data-kind=thieves-guild]>.ui-screen-header h2{flex:1;min-width:0}
 #mobile-viewport #mobile-app .town-service[data-kind=thieves-guild]>.ui-action-dock{grid-area:4/1;display:grid;grid-template-columns:minmax(0,1fr);gap:4px;padding:8px}
@@ -35,7 +37,7 @@ html.goonk-mobile #mobile-viewport #mobile-app .town-service[data-kind=thieves-g
 #mobile-viewport #mobile-app .guild-profile>.ui-stat-grid dd{margin:0;font:var(--ui-font-body);text-align:center}
 #mobile-viewport #mobile-app .guild-profile>.ui-stat-grid canvas{display:block;width:16px;height:16px}
 @container goonk-viewport (orientation:landscape){
- html.goonk-mobile #mobile-viewport #mobile-app .town-service[data-kind=thieves-guild]{grid-template-columns:minmax(0,1fr) var(--control-rail,240px);grid-template-rows:auto 48px minmax(0,1fr) auto;row-gap:4px}
+ html.goonk-mobile #mobile-viewport #mobile-app .town-service[data-kind=thieves-guild]:not([hidden]){grid-template-columns:minmax(0,1fr) var(--control-rail,240px);grid-template-rows:auto 48px minmax(0,1fr) auto;row-gap:4px}
  #mobile-viewport #mobile-app .town-service[data-kind=thieves-guild]>.ui-screen-header{--ui-header-padding:var(--mobile-top-height,48px) 8px 0;--ui-header-min:48px;grid-area:1/2;padding:var(--mobile-top-height,48px) 8px 0;min-height:48px}
  #mobile-viewport #mobile-app .town-service[data-kind=thieves-guild]>.ui-action-dock{grid-area:4/2;padding:0}
  #mobile-viewport #mobile-app .guild-workspace{grid-area:1/1/5/2}
