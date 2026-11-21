@@ -1,4 +1,4 @@
-import {useScreenComponents,renderMarkup,requestMaterialConfirmation,chipMarkup} from './ui/material-components.mjs';
+import {useScreenComponents,renderMarkup,requestMaterialConfirmation,chipMarkup,createPopupMenu,createUIElement} from './ui/material-components.mjs';
 import {equipmentSlotNames, paintArtifactIcons, armySlotMarkup} from './hero-equipment.mjs';
 import {plainGameText} from './game-text.mjs';
 import {getLanguage} from './locale-state.mjs';
@@ -14,8 +14,8 @@ export function createHeroExchange({root,command,refresh,portrait}){
  panel.hidden=true;
  root.querySelector('.mobile-play').append(panel);
  let joining=false,confirmFinish=false;let garrison=false,heroes=[],classic=false,turn=false,classicOnly=false,troopsOnly=false,signature='',tab='equipment';
- let source=null,destination=null,quantity=1,pending=null,message='';
- let held=false,closing=false;
+ let source=null,destination=null,quantity=1,splitMode=false,pending=null,message='';
+ let held=false,closing=false,actionsMenu=null;
  const slots=side=>tab==='troops'?heroes[side]?.roster:heroes[side]?.slots;
  const itemAt=selection=>slots(selection?.side)?.find(item=>item.slot===selection.slot&&item.id===selection.id);
  const troopSwap=(item,target)=>!!target.name&&target.id!==item.id;
@@ -33,6 +33,7 @@ export function createHeroExchange({root,command,refresh,portrait}){
   source=null;
   destination=null;
   quantity=1;
+  splitMode=false;
  }
  function setView(value){
   classic=value;
@@ -102,9 +103,10 @@ export function createHeroExchange({root,command,refresh,portrait}){
    swap?(troops?(troopsOnly?(fr?'Les deux troupes vont être échangées.':'Both units will swap places.'):(fr?'Les deux troupes vont changer de héros.':'Both units will swap heroes.')):(fr?'Les deux objets vont changer de héros.':'Both items will swap heroes.')):
    (troops?(troopsOnly?(fr?'Les créatures vont rejoindre cette armée.':'The creatures will join this army.'):(fr?'Les créatures vont rejoindre l’autre héros.':'The creatures will join the other hero.')):(fr?'L’objet va rejoindre l’autre héros.':'The item will join the other hero.'));
   const disabled=!target||!available||!!pending||quantity<1||quantity>countLimit;
-  const detailButton=troops&&!confirmFinish?`<button type="button" data-exchange-details data-exchange-focus="details" ${!item?.name||pending?'disabled':''}>${fr?'Fiche':'Details'}</button>`:'';
+  const canSplit=troops&&!!item?.name&&item.count>1&&(!target||!swap)&&turn&&!pending&&heroes[source.side]?.owned&&heroes[source.side]?.withdrawAllowed!==false;
+  const splitMax=target&&!swap?countLimit:Math.max(1,(item?.count||1)-(troops&&item&&mustKeepOne(heroes[source.side])?1:0));
   const canDismiss=troops&&turn&&!pending&&item?.name&&heroes[source.side]?.owned&&heroes[source.side]?.withdrawAllowed!==false&&(!mustKeepOne(heroes[source.side])||heroes[source.side].roster.filter(u=>u.name&&u.count>0).length>1);
-  const dismissButton=troops&&!confirmFinish&&item?.name&&heroes[source.side]?.owned?`<button type="button" class="danger" data-exchange-dismiss data-exchange-focus="dismiss" ${!canDismiss||pending?'disabled':''} title="${!canDismiss&&mustKeepOne(heroes[source.side])?(fr?'Le héros doit garder au moins une créature':'A hero must keep at least one creature'):''}">${fr?'Faire partir':'Dismiss'}</button>`:'';
+  if(actionsMenu){actionsMenu.dispose();actionsMenu=null;}
   renderMarkup(panel,`<header class="exchange-toolbar">
    <h2>${joining?(fr?'Faire de la place':'Make room'):troopsOnly?(garrison?(fr?'Laisser des gardes':'Leave guards'):(fr?'Répartir les troupes':'Arrange army')):(fr?'Échange entre héros':'Hero exchange')}</h2>
    <button type="button" data-exchange-close data-exchange-focus="close" aria-label="${troopsOnly?(fr?'Terminer la répartition':'Finish arranging army'):(fr?'Fermer l’échange':'Close exchange')}" ${confirmFinish?'hidden':''} ${pending?'disabled':''}>×</button>
@@ -113,7 +115,7 @@ export function createHeroExchange({root,command,refresh,portrait}){
    <button type="button" data-exchange-tab="equipment" data-exchange-focus="equipment" aria-pressed="${!troops}" ${pending?'disabled':''}>${fr?'Équipement':'Equipment'}</button>
    <button type="button" data-exchange-tab="troops" data-exchange-focus="troops" aria-pressed="${troops}" ${pending?'disabled':''}>${fr?'Troupes':'Army'}</button>
   </nav>
-  ${joining?`<p class="exchange-joining-help">${fr?'Déplace, fusionne ou échange les troupes. Seules les créatures placées dans l’armée du héros le rejoindront.':'Move, merge or swap units. Only creatures placed in the hero’s army will join them.'}</p>`:''}
+  ${joining&&!target?`<p class="exchange-joining-help">${fr?'Déplace, fusionne ou échange les troupes. Seules les créatures placées dans l’armée du héros le rejoindront.':'Move, merge or swap units. Only creatures placed in the hero’s army will join them.'}</p>`:''}
   <div class="exchange-inventories">${heroes.map(sideMarkup).join('')}</div>
   <footer class="exchange-detail">
    <div class="exchange-summary" aria-live="polite" aria-atomic="true">
@@ -123,20 +125,38 @@ export function createHeroExchange({root,command,refresh,portrait}){
     <p>${confirmFinish?escape((fr?'Terminer sans ces troupes : ':'Finish without these units: ')+heroes[0].roster.filter(u=>u.name&&u.count>0).map(u=>u.name+' × '+u.count).join(', ')):message||instruction}</p>
     ${!target&&item?.description?`<p class="exchange-description">${escape(plainGameText(item.description))}</p>`:''}
    </div>
-   ${confirmFinish?`<div class="exchange-actions"><button data-exchange-cancel-finish>${fr?'Retour':'Back'}</button><button class="primary" data-exchange-commit-finish>${fr?'Confirmer et terminer':'Confirm and finish'}</button></div>`:(detailButton||dismissButton||item)?`<div class="exchange-actions">
-    ${detailButton}
-    ${dismissButton}
-    ${item?`
-    ${troops&&target&&!swap?`<label class="exchange-quantity"><span>${fr?'Quantité':'Quantity'}</span><span class="exchange-stepper">
+   ${confirmFinish?`<div class="exchange-actions"><button data-exchange-cancel-finish>${fr?'Retour':'Back'}</button><button class="primary" data-exchange-commit-finish>${fr?'Confirmer et terminer':'Confirm and finish'}</button></div>`:item?`
+    ${splitMode&&canSplit?`<label class="exchange-quantity"><span>${fr?'Quantité à scinder':'Split quantity'}</span><span class="exchange-stepper">
      <button type="button" data-exchange-qty-delta="-1" aria-label="${fr?'Diminuer la quantité':'Decrease quantity'}" ${quantity<=1||pending?'disabled':''}>−</button>
-     <input type="number" inputmode="numeric" min="1" max="${countLimit}" value="${quantity||''}" aria-label="${fr?'Quantité':'Quantity'}" data-exchange-quantity ${pending?'disabled':''}>
-     <button type="button" data-exchange-qty-delta="1" aria-label="${fr?'Augmenter la quantité':'Increase quantity'}" ${quantity>=countLimit||pending?'disabled':''}>+</button>
-     ${countLimit>2?`<button type="button" class="exchange-quick-half" data-exchange-qty-half aria-label="${fr?'Séparer en deux':'Split in half'}" ${pending?'disabled':''}>½</button>`:''}
+     <input type="number" inputmode="numeric" min="1" max="${splitMax}" value="${quantity||''}" aria-label="${fr?'Quantité':'Quantity'}" data-exchange-quantity ${pending?'disabled':''}>
+     <button type="button" data-exchange-qty-delta="1" aria-label="${fr?'Augmenter la quantité':'Increase quantity'}" ${quantity>=splitMax||pending?'disabled':''}>+</button>
+     ${splitMax>2?`<button type="button" class="exchange-quick-half" data-exchange-qty-half aria-label="${fr?'Séparer en deux':'Split in half'}" ${pending?'disabled':''}>½</button>`:''}
     </span></label>`:''}
-    <button type="button" data-exchange-reset data-exchange-focus="reset" ${pending?'disabled':''}>${fr?'Annuler':'Cancel'}</button>
-    <button type="button" class="primary" data-exchange-confirm data-exchange-focus="confirm" ${disabled?'disabled':''}>${pending?(fr?'Transfert en cours…':'Transferring…'):swap?(fr?'Confirmer l’échange':'Confirm exchange'):(fr?'Confirmer le transfert':'Confirm transfer')}</button>`:''}
-   </div>`:''}
+    <div class="exchange-actions">
+     <button type="button" data-exchange-reset data-exchange-focus="reset" ${pending?'disabled':''}>${splitMode?(fr?'Retour':'Back'):(fr?'Annuler':'Cancel')}</button>
+     <button type="button" class="primary" data-exchange-actions data-exchange-focus="actions" ${pending?'disabled':''}>${pending?(fr?'Transfert en cours…':'Transferring…'):(fr?'Actions':'Actions')}</button>
+    </div>`:''}
   </footer>`);
+  const actionsBtn=panel.querySelector('[data-exchange-actions]');
+  if(actionsBtn){
+   const makeMenuItem=(label,attrs,className='',isDisabled=false)=>{
+    const btn=createUIElement('button',{className});
+    btn.type='button';
+    btn.textContent=label;
+    for(const [k,v] of Object.entries(attrs))btn.setAttribute(k,v);
+    if(isDisabled)btn.disabled=true;
+    return btn;
+   };
+   const menuItems=[
+    makeMenuItem(swap?(fr?'Confirmer l’échange':'Confirm exchange'):(fr?'Confirmer le transfert':'Confirm transfer'),{'data-exchange-confirm':'','data-exchange-focus':'confirm'},'primary',disabled)
+   ];
+   if(canSplit)menuItems.push(makeMenuItem(splitMode?(fr?'Masquer la scission':'Hide split'):(fr?'Scinder':'Split'),{'data-exchange-split':'','data-exchange-focus':'split'},'',!!pending));
+   if(troops&&item?.name&&heroes[source.side]?.owned)menuItems.push(makeMenuItem(fr?'Faire partir':'Dismiss',{'data-exchange-dismiss':'','data-exchange-focus':'dismiss'},'danger',!canDismiss||!!pending));
+   if(troops&&item?.name)menuItems.push(makeMenuItem(fr?'Fiche':'Details',{'data-exchange-details':'','data-exchange-focus':'details'},'',!!pending));
+   actionsMenu=createPopupMenu({anchor:actionsBtn,container:panel,placement:'top-end',className:'exchange-actions-menu',label:()=>fr?'Actions sur la troupe':'Unit actions'});
+   actionsMenu.setItems(menuItems);
+   actionsMenu.list.addEventListener('click',event=>{const b=event.target.closest('button');if(b){event.stopPropagation();handleButton(b);}});
+  }
   panel.querySelector('.exchange-inventories').scrollTop=scroll;
   const previous=focused?panel.querySelector(`[data-exchange-focus="${focused}"]`):focusedSlot?panel.querySelector(`[data-exchange-slot="${focusedSlot}"]`):null;
   if(previous&&!previous.disabled)previous.focus({preventScroll:true});
@@ -148,21 +168,33 @@ export function createHeroExchange({root,command,refresh,portrait}){
   if(!input.matches('[data-exchange-quantity]'))return;
   const value=input.valueAsNumber;
   quantity=Number.isInteger(value)?value:0;
-  panel.querySelector('[data-exchange-confirm]').disabled=!input.validity.valid||quantity<1;
+  const confirmBtn=panel.querySelector('[data-exchange-confirm]')||actionsMenu?.list.querySelector('[data-exchange-confirm]');
+  if(confirmBtn)confirmBtn.disabled=!input.validity.valid||quantity<1||!destination;
  });
- panel.addEventListener('click',async event=>{
-  const button=event.target.closest('button');
+ async function handleButton(button){
   if(!button||button.disabled||closing)return;
   if(button.hasAttribute('data-exchange-classic')){setView(true);return;}
+  if(button.hasAttribute('data-exchange-split')){
+   splitMode=!splitMode;
+   const selected=itemAt(source);
+   if(splitMode&&selected){
+    const max=destination?maximum(selected,destination.side,itemAt(destination)):Math.max(1,selected.count-(tab==='troops'&&mustKeepOne(heroes[source.side])?1:0));
+    if(quantity<1||quantity>=max)quantity=Math.max(1,Math.floor(max/2));
+   }
+   render();
+   return;
+  }
   if(button.hasAttribute('data-exchange-qty-delta')){
    const delta=Number(button.dataset.exchangeQtyDelta);
-   const max=maximum(itemAt(source),destination?.side,itemAt(destination));
+   const selected=itemAt(source);
+   const max=destination?maximum(selected,destination.side,itemAt(destination)):Math.max(1,(selected?.count||1)-(tab==='troops'&&selected&&mustKeepOne(heroes[source.side])?1:0));
    quantity=Math.max(1,Math.min(max,quantity+delta));
    render();
    return;
   }
   if(button.hasAttribute('data-exchange-qty-half')){
-   const max=maximum(itemAt(source),destination?.side,itemAt(destination));
+   const selected=itemAt(source);
+   const max=destination?maximum(selected,destination.side,itemAt(destination)):Math.max(1,(selected?.count||1)-(tab==='troops'&&selected&&mustKeepOne(heroes[source.side])?1:0));
    quantity=Math.max(1,Math.min(max,Math.floor(max/2)));
    render();
    return;
@@ -214,7 +246,8 @@ export function createHeroExchange({root,command,refresh,portrait}){
    if(troops)command(94,source.side+(troopsOnly&&source.side===destination.side?2:0),item.slot,target.slot,quantity,item.id);
    else command(92,source.side,item.slot,target.slot,item.id,target.id??-1);
   }else if(button.hasAttribute('data-exchange-reset')){
-   clearSelection();
+   if(splitMode)splitMode=false;
+   else clearSelection();
   }else if(button.dataset.exchangeTab){
    tab=button.dataset.exchangeTab;
    clearSelection();
@@ -225,12 +258,13 @@ export function createHeroExchange({root,command,refresh,portrait}){
    if(tab==='troops'&&item?.name&&source?.side===side&&source.slot===slot&&source.id===item.id){command(41,heroes[side].id,slot);return;}
    const selection={side,slot,id:item.id};
    const limit=maximum(itemAt(source),side,item);
-   if(limit>0){destination=selection;quantity=limit;}
-   else if(item.name){source=selection;destination=null;quantity=1;}
+   if(limit>0){destination=selection;quantity=splitMode?Math.max(1,Math.min(limit,quantity)):limit;}
+   else if(item.name){source=selection;destination=null;quantity=1;splitMode=false;}
   }
   message='';
   render();
- });
+ }
+ panel.addEventListener('click',event=>{const button=event.target.closest('button');if(button)handleButton(button);});
 
  return {
   hold(next){
@@ -242,6 +276,7 @@ export function createHeroExchange({root,command,refresh,portrait}){
   update(state){
    if(state.mode!=='hero-exchange'||state.heroExchange?.heroes?.length!==2){
     if(pending)clearTimeout(pending.timer);
+    if(actionsMenu){actionsMenu.dispose();actionsMenu=null;}
     joining=false;confirmFinish=false;heroes=[];clearSelection();pending=null;message='';signature='';classic=false;classicOnly=false;troopsOnly=false;held=false;closing=false;tab='equipment';
     panel.hidden=true;
     delete root.dataset.exchangeView;
