@@ -37,7 +37,7 @@ export function isLandscapeOrientation(win=typeof window!=='undefined'?window:nu
 // share the same origin. This also follows browser toolbar/keyboard resizing.
 export function anchorMobileViewport(root,win=window){
  const editingViewport=w=>/^(INPUT|TEXTAREA)$/.test(w.document?.activeElement?.tagName||'');
- const viewport=win.visualViewport;let pending=false,disposed=false,lastLayoutWidth,lastDynamicWidth,rotationPending=true;
+ const viewport=win.visualViewport;let pending=false,disposed=false,lastLayoutWidth,lastDynamicWidth,rotationPending=true,lastUneditedSize=null;
  const wakeTimers=new Set(),physicalViewports=new Map();
  const probe=win.document?.createElement?.('div');if(probe){probe.setAttribute('aria-hidden','true');Object.assign(probe.style,{position:'fixed',width:'100dvw',height:'100dvh',visibility:'hidden',pointerEvents:'none',inset:'0'});win.document.body.append(probe);}
  function clearWakeTimers(){for(const t of wakeTimers)clearTimeout(t);wakeTimers.clear();}
@@ -108,10 +108,22 @@ export function anchorMobileViewport(root,win=window){
   if(root.dataset)root.dataset.orientation=isLandscape?'landscape':'portrait';
   // pageTop/pageLeft may lag scrollTo(0,0) after an iOS wake. Gameplay has no
   // keyboard panning; anchor its document-space box to the actual scroll origin.
-  const editing=/^(INPUT|TEXTAREA)$/.test(win.document?.activeElement?.tagName||'');
+  const editing=editingViewport(win);
+  if(!editing){lastUneditedSize={width:finalWidth,height:finalHeight};}
+  else if(lastUneditedSize&&((finalWidth>lastUneditedSize.width*.8&&finalHeight>0)||(isLandscape===(lastUneditedSize.width>lastUneditedSize.height)))){
+   finalWidth=lastUneditedSize.width;
+   finalHeight=Math.max(finalHeight,lastUneditedSize.height);
+  }
   const left=editing&&Number.isFinite(viewport?.pageLeft)?viewport.pageLeft:win.scrollX||0;
   const visualOffset=Math.max(0,viewport?.offsetTop||0);
-  const top=editing&&Number.isFinite(viewport?.pageTop)?viewport.pageTop:(win.scrollY||0)+(Math.abs((viewport?.pageTop||0)-(win.scrollY||0)-visualOffset)<2?visualOffset:0);
+  let top=editing&&Number.isFinite(viewport?.pageTop)?viewport.pageTop:(win.scrollY||0)+(Math.abs((viewport?.pageTop||0)-(win.scrollY||0)-visualOffset)<2?visualOffset:0);
+  if(editing&&viewport?.height>0&&viewport.height<finalHeight-40){
+   const activeRect=win.document?.activeElement?.getBoundingClientRect?.();
+   const visibleBottom=viewport.height-8;
+   if(activeRect&&activeRect.bottom>visibleBottom){
+    top-=Math.max(0,Math.min(Math.max(0,activeRect.top-8),activeRect.bottom-visibleBottom));
+   }
+  }
   const next={position:'absolute',inset:'auto',left:left+'px',top:top+'px',width:finalWidth+'px',height:finalHeight+'px'};
   for(const [name,value] of Object.entries(next))if(root.style[name]!==value)root.style[name]=value;
  }
@@ -151,6 +163,8 @@ export function anchorMobileViewport(root,win=window){
   [win,'orientationchange',onOrientationChange],
   [win.screen?.orientation,'change',onOrientationChange],
   [win,'scroll',schedule],
+  [win.document,'focusin',schedule],
+  [win.document,'focusout',schedule],
   [win,'pageshow',onWake],
   [win,'focus',onWake],
   [win,'fullscreenchange',schedule],
