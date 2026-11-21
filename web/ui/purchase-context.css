@@ -27,7 +27,7 @@
   #mobile-app .ui-creature-overview .mobile-recruit-amount label{width:100%;min-width:0;max-width:none}
   #mobile-app .ui-creature-overview .mobile-recruit-amount .MuiInputBase-root{width:100%;min-width:0;max-width:100%;box-sizing:border-box}
   #mobile-app .ui-creature-overview .mobile-recruit-amount .MuiSlider-root{width:calc(100% - 48px);margin-inline:24px}
-  #mobile-app .recruitment-view .recruitment-sidebar{padding-top:max(72px,calc(var(--mobile-top-height,72px) + 4px));padding-bottom:60px;gap:4px}
+  #mobile-app .recruitment-view .recruitment-sidebar{padding-top:8px;padding-bottom:60px;gap:4px}
   #mobile-app .recruitment-view .recruit-context{overflow:visible}
   #mobile-app .recruitment-view .creature-view-head{--ui-header-min:32px;min-height:32px;height:auto;padding:0}
   #mobile-app .recruitment-view .creature-view-head h2{min-height:32px;height:auto;line-height:20px}

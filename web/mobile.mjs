@@ -233,11 +233,8 @@ function mount(){
    const magicCancel=state.spellTargeting===true;
    const cancelSpellAction=canCancelSpell(state);
    const magicDisabled=!!spellRecovery.pending||(!magicCancel&&(!cap.magic||(!state.heroHasSpellbook||state.heroCanCast===false)));
-   const lastSpell=spellbook.lastSpell(state);
-   const lastSpellDisabled=!!spellRecovery.pending||magicCancel||!cap.magic||!state.heroHasSpellbook||state.heroCanCast===false||!lastSpell||(Number.isFinite(state.heroMana)&&state.heroMana<lastSpell.cost);
    items=[btn(cancelSpellAction?(fr?'Annuler le sort':'Cancel spell'):translate(action.label),'battle-action',true,cancelSpellAction?!!spellRecovery.pending:(!cap.move||!!spellRecovery.pending||!action.enabled)),
     btn(fr?'Magie':'Magic','battle-magic',false,magicDisabled),
-    btn(lastSpell?`↻ ${lastSpell.name}`:(fr?'↻ Dernier sort':'↻ Last spell'),'battle-reuse-spell',false,lastSpellDisabled),
     btn(fr?'◎ Cibles':'◎ Targets','targets',false,!cap.move||!!spellRecovery.pending),
     btn(state.canWait===false?(fr?'Déjà attendu':'Already waited'):(fr?'◷ Attendre':'◷ Wait'),'wait',false,state.canWait===false||!(cap.combatReady||cap.targeting)||!!spellRecovery.pending),
     btn(fr?'⛨ Défendre':'⛨ Defend','defend',false,!(cap.combatReady||cap.targeting)||!!spellRecovery.pending),btn(fr?'ⓘ Inspecter':'ⓘ Inspect','battle-inspect',false,!canInspectBattle(state))].map(html=>html.replace('<button ','<button translate="no" '));

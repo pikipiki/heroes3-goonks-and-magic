@@ -116,7 +116,7 @@
 }
 @layer ui-composition {
  .ui-material-menu .ui-popup-list{position:static;box-sizing:border-box;width:auto;height:auto;max-height:none;padding:4px;overflow:auto;background:transparent;border:0;box-shadow:none;touch-action:pan-y}
- .ui-material-menu .ui-popup-list>button{display:block;width:100%;text-align:left}
+ .ui-material-menu .ui-popup-list>button{display:flex;flex-direction:row;align-items:center;gap:8px;width:100%;text-align:left}
  #mobile-app .mobile-spellbook .spell-schools{grid-template-columns:repeat(auto-fit,minmax(72px,1fr));gap:8px}
  #mobile-app .mobile-spellbook{grid-template:"title" auto "reuse" auto "workspace" minmax(0,1fr) "footer" auto/minmax(0,1fr);gap:8px;padding:8px}
  #mobile-app .mobile-spellbook>.spell-workspace{grid-area:workspace;display:grid;grid-template-rows:auto minmax(0,1fr);min-width:0;min-height:0;gap:8px;overflow:hidden}

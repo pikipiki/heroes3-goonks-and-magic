@@ -77,10 +77,13 @@
  #mobile-app [hidden],#game-menu [hidden],.ui-popup [hidden]{display:none}
  #mobile-app [data-ui-screen][hidden]{display:none}
  #mobile-app .lobby-native-label{display:none}
+ #mobile-app .lobby-choice-radios label{padding:8px 4px}
+ #mobile-app .mobile-menu:is([data-kind=lobby],[data-kind=load]){background:#24190f url('../h3-theme/stone.png')}
+ #mobile-app[data-mode=menu] .mobile-menu{background:linear-gradient(#21140666,#1b100be6),var(--welcome-image) center/cover,#24190f url('../h3-theme/stone.png')}
  #mobile-app:is([data-mode=menu],[data-mode=lobby],[data-mode=load],[data-mode=campaign],[data-mode=campaign-scenario]) .scene-hint{display:none}
- #mobile-app:is([data-mode=menu],[data-mode=lobby],[data-mode=load],[data-mode=campaign],[data-mode=campaign-scenario],[data-mode=online-login],[data-mode=online-lobby],[data-mode=connecting],[data-mode=battle],[data-mode=hero],[data-mode=hero-exchange],[data-mode=spellbook],[data-mode=mage-guild],[data-mode=creature])>.mobile-top>.mobile-resources{display:none}
+ #mobile-app:is([data-mode=menu],[data-mode=lobby],[data-mode=load],[data-mode=campaign],[data-mode=campaign-scenario],[data-mode=online-login],[data-mode=online-lobby],[data-mode=connecting],[data-mode=battle],[data-mode=hero-exchange],[data-mode=spellbook],[data-mode=mage-guild],[data-mode=creature])>.mobile-top>.mobile-resources{display:none}
  #mobile-app:is([data-mode=menu],[data-mode=lobby],[data-mode=load],[data-mode=campaign],[data-mode=campaign-scenario],[data-mode=online-login],[data-mode=online-lobby],[data-mode=connecting],[data-mode=hero],[data-mode=hero-exchange],[data-creature-view=fort])>.mobile-top>.mobile-calendar{display:none}
- #mobile-app[data-mode=hero] :is(#mobile-scene,.scene-tools,.scene-hint,.mobile-nav){display:none}
+ #mobile-app[data-mode=hero]:not([data-hero-view=classic]) :is(#mobile-scene,.scene-tools,.scene-hint,.mobile-nav){display:none}
  #mobile-app[data-mode=spellbook] :is(.scene-tools,#mobile-scene,.scene-hint,.mobile-nav){display:none}
  #mobile-app[data-ui-loading=true] :is(.mobile-top,.mobile-nav,.scene-tools,.scene-hint,.mobile-menu,.mobile-overview,.mobile-battle-panel,.menu-launch-status){display:none}
  @container goonk-viewport (orientation:landscape){

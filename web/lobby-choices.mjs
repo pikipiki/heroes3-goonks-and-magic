@@ -110,7 +110,7 @@ export function createLobbyChoices({menu,getState,isScenarioPending=()=>false}){
    const metadata=map?scenarioDetails(map,fr):'';
    const details=metadata?`<small class="lobby-map-meta">${esc(metadata)}</small>`:'';
    const copy=isFaction?name:`<span class="lobby-choice-copy">${name}${details}</span>`;
-   return `<button type="button" data-choice-value="${esc(o.value)}" aria-pressed="${o.value===s.value}" ${o.disabled?'disabled':''}>${isFaction?art(s,o.value):'<img src="./web/h3-theme/adventure-map.svg" alt="">'}${copy}<span class="lobby-choice-check" aria-hidden="true">${o.value===s.value?'✓':''}</span></button>`;
+   return `<button type="button" data-choice-value="${esc(o.value)}" ${isFaction?`aria-pressed="${o.value===s.value}"`:''} ${o.disabled?'disabled':''}>${isFaction?art(s,o.value):'<img src="./web/h3-theme/adventure-map.svg" alt="">'}${copy}${isFaction?`<span class="lobby-choice-check" aria-hidden="true">${o.value===s.value?'✓':''}</span>`:''}</button>`;
   }).join(''));
   if(isMap)for(const image of dialog.querySelectorAll('[data-choice-value] img'))showScenarioPreview(image,maps.get(image.closest('[data-choice-value]').dataset.choiceValue)?.path,{catalogueOnly:true});
   filters.update([...dialog.querySelectorAll('[data-choice-value]')].map(row=>({row,map:maps.get(row.dataset.choiceValue)})),{french:fr,enabled:isMap});

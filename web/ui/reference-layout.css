@@ -48,10 +48,18 @@
  #mobile-app[data-sheet=army] .army-grid .army-upgrade-all{width:100%;max-width:100%;height:100%;min-width:0;min-height:0;padding:2px 3px;gap:2px;border-width:1px;flex:1;box-sizing:border-box;container-type:size}
  #mobile-app[data-sheet=army] .army-grid .army-upgrade-all img{width:clamp(12px,26cqh,18px);height:clamp(12px,26cqh,18px)}
  #mobile-app[data-sheet=army] .army-grid .army-upgrade-all span{font-size:clamp(9px,16cqh,11px);line-height:1.1}
- @container goonk-viewport (orientation:landscape){#mobile-app[data-sheet=army] .army-grid .army-upgrade-all{width:100%}}
+ @container goonk-viewport (orientation:landscape){
+  #mobile-app[data-sheet=army] .army-grid .army-upgrade-all{width:100%}
+  #mobile-app[data-sheet=army] .mobile-sheet{display:grid;grid-template-columns:minmax(0,1fr) var(--control-rail,220px);grid-template-rows:minmax(0,1fr)}
+  #mobile-app[data-sheet=army] .sheet-body,#mobile-app[data-sheet=army] .army-panel{display:contents}
+  #mobile-app[data-sheet=army] .army-rosters{grid-column:1;grid-row:1}
+  #mobile-app[data-sheet=army] .army-dock{grid-column:2;grid-row:1;align-self:end}
+ }
 }
 @layer screen-layouts {
- #mobile-app[data-sheet=army] .army-rosters{overflow:auto;touch-action:pan-y;align-content:start;grid-auto-rows:minmax(220px,auto)}
+ #mobile-app[data-sheet=army] .army-rosters{overflow:auto;touch-action:pan-y;align-content:start;grid-auto-rows:minmax(220px,auto);padding-bottom:max(16px,env(safe-area-inset-bottom))}
+ #mobile-app .commander-summary .commander-facts{align-content:start;align-self:start}
+ #mobile-app .commander-summary .commander-facts>div{min-height:0;height:auto;padding:4px 6px}
  #mobile-app[data-sheet=army] .army-grid .army-troop{height:90px;min-height:90px;justify-content:flex-start}
  #mobile-app[data-sheet=army] .army-grid .army-slot-art{box-sizing:border-box;flex:1;min-height:0;width:min(100%,100px);max-height:none}
  #mobile-app[data-sheet=army] .army-grid .army-upgrade-all{max-height:none;min-height:0;align-self:stretch}

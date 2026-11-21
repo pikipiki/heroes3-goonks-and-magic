@@ -37,10 +37,10 @@ html.goonk-mobile #mobile-viewport #mobile-app .town-service[data-kind=thieves-g
 #mobile-viewport #mobile-app .guild-profile>.ui-stat-grid dd{margin:0;font:var(--ui-font-body);text-align:center}
 #mobile-viewport #mobile-app .guild-profile>.ui-stat-grid canvas{display:block;width:16px;height:16px}
 @container goonk-viewport (orientation:landscape){
- html.goonk-mobile #mobile-viewport #mobile-app .town-service[data-kind=thieves-guild]:not([hidden]){grid-template-columns:minmax(0,1fr) var(--control-rail,240px);grid-template-rows:auto 48px minmax(0,1fr) auto;row-gap:4px}
+ html.goonk-mobile #mobile-viewport #mobile-app .town-service[data-kind=thieves-guild]:not([hidden]){grid-template-columns:minmax(0,1fr) var(--control-rail,240px);grid-template-rows:auto minmax(0,1fr) auto;row-gap:4px}
  #mobile-viewport #mobile-app .town-service[data-kind=thieves-guild]>.ui-screen-header{--ui-header-padding:var(--mobile-top-height,48px) 8px 0;--ui-header-min:48px;grid-area:1/2;padding:var(--mobile-top-height,48px) 8px 0;min-height:48px}
- #mobile-viewport #mobile-app .town-service[data-kind=thieves-guild]>.ui-action-dock{grid-area:4/2;padding:0}
- #mobile-viewport #mobile-app .guild-workspace{grid-area:1/1/5/2}
+ #mobile-viewport #mobile-app .town-service[data-kind=thieves-guild]>.ui-action-dock{grid-area:3/2;padding:0}
+ #mobile-viewport #mobile-app .guild-workspace{grid-area:1/1/4/2}
  #mobile-viewport #mobile-app .guild-view-tabs{grid-area:2/2}
  #mobile-viewport #mobile-app .guild-help{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
  #mobile-viewport #mobile-app .guild-workspace>.guild-rankings th:first-child{width:132px}

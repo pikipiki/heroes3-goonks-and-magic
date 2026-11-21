@@ -11,8 +11,9 @@
  :is(#mobile-app,#game-menu,[data-ui-app]) .ui-screen-header :is(h1,h2){font:var(--ui-font-title);letter-spacing:0;min-width:0;margin:0;white-space:normal;overflow-wrap:normal;word-break:normal}
  :is(#mobile-app,#game-menu,[data-ui-app]) .ui-action-dock{gap:var(--ui-space-2);padding:var(--ui-space-2)}
  :is(#mobile-app,#game-menu,[data-ui-app]) :is(.hero-bag-tabs,.lobby-panel-body){gap:var(--ui-space-2);padding:var(--ui-space-2)}
- :is(#mobile-app,#game-menu,[data-ui-app]) :is(.ui-text-field,.material-select-trigger){box-sizing:border-box;min-height:var(--ui-field);padding:var(--ui-space-2) var(--ui-space-4);border-radius:0;font:var(--ui-font-body);transition:border-color 120ms linear,background-color 120ms linear}
- :is(#mobile-app,#game-menu,[data-ui-app]) .ui-text-field{width:100%;min-width:0}
+ :is(#mobile-app,#game-menu,[data-ui-app]) .ui-text-field{box-sizing:border-box;min-height:var(--ui-field);padding:var(--ui-space-2) var(--ui-space-4);border-radius:0;font:var(--ui-font-body);transition:border-color 120ms linear,background-color 120ms linear;width:100%;min-width:0}
+ :is(#mobile-app,#game-menu,[data-ui-app]) .material-select-trigger{box-sizing:border-box;min-height:var(--ui-touch);padding:0;border-radius:0;font:var(--ui-font-body-medium);transition:border-color 120ms linear,background-color 120ms linear}
+ :is(#mobile-app,#game-menu,[data-ui-app]) .material-select-trigger .MuiSelect-select{display:flex;align-items:center;min-height:var(--ui-touch);padding:8px 36px 8px 12px;box-sizing:border-box;font:var(--ui-font-body-medium);line-height:1.3}
  :is(#mobile-app,#game-menu,[data-ui-app]) .ui-compact-input{min-height:var(--ui-touch);min-width:var(--ui-touch);box-sizing:border-box;font:var(--ui-font-body);transition:border-color 120ms linear}
  :is(#mobile-app,#game-menu,[data-ui-app]) .ui-check-field{min-height:var(--ui-touch);min-width:var(--ui-touch);display:inline-flex;align-items:center;gap:var(--ui-space-2);touch-action:manipulation}
  :is(#mobile-app,#game-menu,[data-ui-app]) .ui-check-input{flex:0 0 24px;width:24px;height:24px;min-width:24px;min-height:24px;transition:background-color 120ms linear,border-color 120ms linear}
