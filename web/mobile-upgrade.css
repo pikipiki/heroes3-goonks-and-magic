@@ -19,7 +19,7 @@ button[aria-busy=true]::after{content:'';position:absolute;right:10px;top:calc(5
 #mobile-app .mobile-menu{box-sizing:border-box;overflow:auto;overscroll-behavior:contain;display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;gap:10px;padding:16px;max-height:100%;width:100%;max-width:680px;margin:auto;touch-action:pan-y}
 #mobile-app[data-mode=menu] .mobile-menu{align-items:center}
 #mobile-app .mobile-menu[hidden]{display:none}
-#mobile-app .mobile-menu label,.custom-game-options label{display:flex;flex-direction:column;align-items:stretch;gap:6px;text-align:left;min-width:0;margin:4px 0}
+#mobile-app .mobile-menu label:not(.lobby-checkbox),.custom-game-options label:not(.lobby-checkbox){display:flex;flex-direction:column;align-items:stretch;gap:6px;text-align:left;min-width:0;margin:4px 0}
 #mobile-app .mobile-menu select,.language-setting select{box-sizing:border-box;width:100%;max-width:100%;min-height:48px;border:2px ridge #b89c5d;background:#24190e;color:#ffedb6;font:16px Georgia,serif;padding:6px}
 .custom-game-options{display:flex;flex-direction:column;gap:10px;min-width:0;padding:12px;border:2px ridge #b89c5d}.custom-game-options p{font-size:var(--ui-type-body2)}.custom-game-options input[type=checkbox]{width:22px;height:22px}.campaign-list{display:grid;gap:10px}.language-setting{display:grid;gap:8px;margin:0 0 20px}
 #mobile-app[data-mode=town] #town-overview,#mobile-app[data-town-layout=portrait] #town-overview{left:0;right:0;width:100%;max-width:none}

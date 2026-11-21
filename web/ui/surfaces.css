@@ -14,7 +14,7 @@
  #storage-manager[data-ui-app] .storage-site{overflow-wrap:normal;word-break:normal;font:var(--ui-font-body-medium)}
  #storage-manager[data-ui-app] .storage-identity{margin:16px 0}
  #storage-manager[data-ui-app] p{font:var(--ui-font-body)}
- .session-recovery[data-ui-app]{width:min(560px,calc(100vw - 32px));max-width:none}
+ .session-recovery[data-ui-app]{position:fixed;inset-inline:0;top:50%;bottom:auto;transform:translateY(-50%);margin:0 auto;width:min(560px,calc(100vw - 32px));max-width:none;height:auto;max-height:calc(100dvh - 32px)}
  .session-recovery[data-ui-app] p{margin:0;font:var(--ui-font-body)}
  .session-recovery[data-ui-app] footer{min-height:0}
  .session-recovery[data-ui-app] footer:not(:has(button:not([hidden]))){display:none}
