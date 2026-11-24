@@ -109,6 +109,7 @@ export function createHeroEquipment({root,command,pointer=()=>{},onViewChange=()
   const grid=panel.querySelector('.hero-equipment-grid');
   const navScrollLeft=panel.querySelector('.hero-bag-tabs')?.scrollLeft||0;
   const rebalanceFocused=panel.querySelector('[data-hero-source-rebalance]')===document.activeElement;
+  const focusedArmySlot=document.activeElement?.closest?.('[data-army-slot]')?.dataset.armySlot;
   if(grid)scrollPositions[panel.dataset.inventory||tab]=grid.scrollTop;
   panel.dataset.inventory=tab;
   const hero=state.heroWindow||{},picked=hero.picked,items=slots(),item=items.find(a=>a.slot===selected);
@@ -184,6 +185,7 @@ export function createHeroEquipment({root,command,pointer=()=>{},onViewChange=()
   panel.querySelector('.hero-equipment-grid').scrollTop=scrollPositions[tab]||0;
   panel.querySelector('.hero-bag-tabs').scrollLeft=navScrollLeft;
   if(rebalanceFocused)panel.querySelector('[data-hero-source-rebalance]')?.focus({preventScroll:true});
+  if(focusedArmySlot!==undefined)panel.querySelector(`[data-army-slot="${focusedArmySlot}"]`)?.focus({preventScroll:true});
  }
  panel.addEventListener('click',event=>{
   const button=event.target.closest('button');if(!button||button.disabled)return;
@@ -249,7 +251,7 @@ export function createHeroEquipment({root,command,pointer=()=>{},onViewChange=()
      selectedArmySlot=null;splitActive=false;render();
     }else{
      command(10,heroArmy.id,selectedArmySlot,heroArmy.id,slot,0);
-     selectedArmySlot=null;render();
+     selectedArmySlot=slot;render();
     }
    }else{
     if(unit){selectedArmySlot=slot;render();}

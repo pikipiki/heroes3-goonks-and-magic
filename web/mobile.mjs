@@ -347,7 +347,7 @@ function mount(){
   const countdown=state.mode==='map'&&state.turnRemainingMs!==undefined
    ? Math.floor(seconds/60)+':'+String(seconds%60).padStart(2,'0')+' · ' : '';
   recruitmentBatch.update(state);
-  root.querySelector('.scene-hint').textContent=countdown+hint;controls();if(sheetKind==='army'&&(changedTurn||armySignature!==JSON.stringify(state.armies||[])))refreshArmy();if(sheetKind==='build')townBuildings.update(state);if(sheetKind==='weekly-recruits')weeklyRecruits.update(state);
+  root.querySelector('.scene-hint').textContent=countdown+hint;controls();if(sheetKind==='army'&&(changedTurn||armySignature!==JSON.stringify(state.armies||[])))refreshArmy(changedTurn);if(sheetKind==='build')townBuildings.update(state);if(sheetKind==='weekly-recruits')weeklyRecruits.update(state);
   if(pendingTownConstruction&&Date.now()>pendingTownConstruction.until)pendingTownConstruction=null;
   if(newTownBuilding&&state.mode==='town'&&newTownBuilding.town!==state.armyTownId)clearNewBuilding();
   if(pendingTownConstruction&&state.mode==='town'&&pendingTownConstruction.town===state.armyTownId){const built=state.buildings?.find(b=>b.id===pendingTownConstruction.id&&b.built);if(built){newTownBuilding={town:state.armyTownId,...built};pendingTownConstruction=null;portraitTown.highlight(built.id);townWhole=true;townPortraitEnabled=true;focus=null;if(sheetKind==='build')closeSheet();notify('New building: '+built.name);}}
@@ -396,9 +396,14 @@ function mount(){
  function openRecruit(level){if(!recruitChoices.length){notify('Aucune recrue disponible dans les logements construits.');return;}resetGestures();activeRecruitLevel=level??recruitChoices[0].level;expectedRecruitId=recruitChoices.find(u=>u.level===activeRecruitLevel)?.id;recruitLoading=true;root.querySelector('#recruit-number').blur();controls();if(state.mode==='recruit')command(33);command(30,activeRecruitLevel);}
 
  function openSheet(kind,title){previousFocus=document.activeElement;resetGestures();sheetKind=kind;root.dataset.sheet=kind;sheet.hidden=false;root.querySelector('#sheet-title').textContent=title;renderMarkup(body,'');normalizeReturnControls(document.body);sheet.querySelector(kind==='build'?'[data-ui=sheet-back]':'[data-ui=close-sheet]').focus({preventScroll:true});}
- function refreshArmy(){
+ function refreshArmy(forceRecreate=false){
   clearTimeout(armyTimer);armyPending=false;sheet.removeAttribute('aria-busy');
-  const scroll=body.scrollTop,focused=document.activeElement,army=armyFocus?.army??focused?.dataset.army,slot=armyFocus?.slot??focused?.dataset.slot;armyFocus=null;
+  const scroll=body.scrollTop,focused=document.activeElement,army=armyFocus?.army??focused?.dataset.army,slot=armyFocus?.slot??focused?.dataset.slot,target=armyFocus;armyFocus=null;
+  if(!forceRecreate&&body.firstElementChild?.refreshArmies?.(state.armies||[],target)){
+   armySignature=JSON.stringify(state.armies||[]);
+   if(army!==undefined&&slot!==undefined)body.querySelector('[data-army="'+army+'"][data-slot="'+slot+'"]')?.focus({preventScroll:true});
+   return;
+  }
   body.replaceChildren();showList('army',true);body.scrollTop=scroll;
   if(army!==undefined&&slot!==undefined)body.querySelector('[data-army="'+army+'"][data-slot="'+slot+'"]')?.focus({preventScroll:true});
  }

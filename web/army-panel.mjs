@@ -58,10 +58,11 @@ export function renderArmyPanel({body,armies=[],portrait=()=>'',onMove,onTransfe
    art.append(count);button.append(art,name);grid.append(button);buttons.push({button,army:army.id,slot});
    bindPress(button,()=>{
     if(pending)return;
-    if(!selection||readOnly){if(unit)select({army:army.id,slot,unit});return;}
+    const currentUnit=(armies.find(a=>a.id===army.id)?.slots?.[slot])||null;
+    if(!selection||readOnly){if(currentUnit)select({army:army.id,slot,unit:currentUnit});return;}
     if(selection.army===army.id&&selection.slot===slot){if(onInfo)onInfo(army.id,slot);else select(null);return;}
     const separated=split.checked?Number(amount.value):0;
-    if(split.checked&&(unit||!Number.isInteger(separated)||separated<1||separated>=selection.unit.count)){onMessage(unit?(fr?'Choisis un emplacement libre pour scinder.':'Choose an empty slot to split.'):(fr?'Choisis une quantité entre 1 et '+(selection.unit.count-1)+'.':'Choose an amount between 1 and '+(selection.unit.count-1)+'.'));return;}
+    if(split.checked&&(currentUnit||!Number.isInteger(separated)||separated<1||separated>=selection.unit.count)){onMessage(currentUnit?(fr?'Choisis un emplacement libre pour scinder.':'Choose an empty slot to split.'):(fr?'Choisis une quantité entre 1 et '+(selection.unit.count-1)+'.':'Choose an amount between 1 and '+(selection.unit.count-1)+'.'));return;}
     pending=true;for(const item of buttons)item.button.disabled=true;split.disabled=true;amount.disabled=true;info.disabled=true;manage.disabled=true;status.textContent=fr?'Déplacement en cours…':'Moving…';
     onMove({fromArmy:selection.army,fromSlot:selection.slot,toArmy:army.id,toSlot:slot,amount:separated});
    });
@@ -69,5 +70,42 @@ export function renderArmyPanel({body,armies=[],portrait=()=>'',onMove,onTransfe
   if(!readOnly&&onUpgradeAll){const upgrade=createUIElement('button');upgrade.type='button';upgrade.className='army-upgrade-all';renderMarkup(upgrade,'<img src="./web/h3-theme/troops.svg" alt="" aria-hidden="true"><span>'+(fr?'Tout améliorer':'Upgrade all')+'</span>');upgrade.disabled=!army.slots?.some(Boolean);bindPress(upgrade,()=>{if(!pending)onUpgradeAll(army.id);});if(showVisitorPlaceholder){const cell=document.createElement('div');cell.className='army-upgrade-cell';const caption=document.createElement('span');caption.className='army-slot-name';caption.setAttribute('aria-hidden','true');caption.textContent='\u00a0';cell.append(upgrade,caption);grid.append(cell);}else section.append(upgrade);}
  }
  if(showVisitorPlaceholder&&armies.length<2){const absent=document.createElement('section');absent.className='army-roster army-absent';const title=document.createElement('h3');title.textContent=fr?'Héros en visite':'Visiting hero';const note=document.createElement('p');note.textContent=fr?'Aucun héros en visite. Fais entrer ton héros dans ce château pour échanger les troupes.':'No visiting hero. Move your hero into this town to exchange troops.';absent.append(title,note);rosters.append(absent);}
+ panel.refreshArmies=(nextArmies=[],focusTarget=null)=>{
+  const nextCount=String(showVisitorPlaceholder?Math.max(2,nextArmies.length):nextArmies.length);
+  if(panel.dataset.armyCount!==nextCount||nextArmies.length!==armies.length)return false;
+  for(let i=0;i<nextArmies.length;i++)if(nextArmies[i].id!==armies[i].id)return false;
+  armies=nextArmies;pending=false;
+  for(const item of buttons)item.button.disabled=false;
+  for(const army of armies){
+   const section=rosters.querySelector(`.army-roster[aria-label="${CSS.escape(army.name)}"]`);
+   const source=armies.find(other=>other.id!==army.id);
+   const transfer=section?.querySelector('.army-transfer-all');
+   if(transfer){transfer.disabled=!source||bulkTransferSummary(source,army).count===0;transfer.removeAttribute('aria-busy');}
+   const upgrade=section?.querySelector('.army-upgrade-all');
+   if(upgrade)upgrade.disabled=!army.slots?.some(Boolean);
+   for(let slot=0;slot<7;slot++){
+    const unit=army.slots?.[slot]||null;
+    const entry=buttons.find(b=>b.army===army.id&&b.slot===slot);
+    if(!entry)continue;
+    entry.unit=unit;
+    const button=entry.button;
+    button.toggleAttribute('data-empty',!unit);
+    button.setAttribute('aria-label',`${army.name}, ${fr?'emplacement':'slot'} ${slot+1} : ${unit?unit.name+', '+unit.count+(fr?' créatures':' creatures'):(fr?'libre':'empty')}`);
+    const art=button.querySelector('.army-slot-art');
+    const name=button.querySelector('.army-slot-name');
+    if(art){
+     const countEl=art.querySelector('.army-slot-count');
+     renderMarkup(art,unit?portrait(unit):'<span class="army-empty" aria-hidden="true">＋</span>');
+     if(countEl){countEl.textContent=unit?String(unit.count):'';art.append(countEl);}
+    }
+    if(name)name.textContent=unit?unit.name:(fr?'Libre':'Empty');
+   }
+  }
+  const targetArmy=focusTarget?armies.find(a=>String(a.id)===String(focusTarget.army)):null;
+  const targetSlot=focusTarget?Number(focusTarget.slot):NaN;
+  const targetUnit=targetArmy&&Number.isInteger(targetSlot)?targetArmy.slots?.[targetSlot]||null:null;
+  select(targetUnit?{army:targetArmy.id,slot:targetSlot,unit:targetUnit}:null);
+  return true;
+ };
  return panel;
 }
