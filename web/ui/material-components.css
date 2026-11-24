@@ -134,11 +134,5 @@
   #mobile-app .mobile-spellbook .spell-content{grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:minmax(0,1fr)}
   #mobile-app .mobile-spellbook .spell-selection{overflow:auto;touch-action:pan-y}
  }
- #mobile-app .hero-equipment-page .hero-body-layout{display:flex;flex-direction:column;gap:16px;height:auto;min-height:min-content;flex:none}
- #mobile-app .hero-equipment-page .hero-body-stage{flex:none;height:auto;min-height:280px;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:repeat(3,minmax(88px,auto));gap:8px;max-width:none}
- #mobile-app .hero-equipment-page .hero-body-stage .hero-artifact-slot{width:100%;height:auto;min-height:88px}
  #mobile-app .hero-equipment-page .hero-artifact-slot small{white-space:normal;overflow:visible;text-overflow:clip;word-break:normal;font:var(--ui-font-label-medium)}
- #mobile-app .hero-equipment-page .hero-extra-equipment{flex:none;display:block;min-height:min-content}
- #mobile-app .hero-equipment-page .hero-extra-equipment>div{grid-template-columns:repeat(auto-fit,minmax(104px,1fr));grid-template-rows:none;grid-auto-rows:minmax(88px,auto)}
- #mobile-app .hero-equipment-page .hero-extra-equipment .hero-artifact-slot{height:auto;min-height:88px}
 }

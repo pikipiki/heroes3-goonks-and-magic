@@ -41,12 +41,12 @@
   #mobile-app>.mobile-top .mobile-resource[data-resource=gold]{grid-column:span 2}
   #mobile-app>.mobile-top .mobile-resource img{width:14px;height:14px;object-fit:contain}
   #mobile-app>.mobile-top .resource-quantity{font:var(--ui-font-resource);white-space:nowrap}
-  #mobile-app[data-ui-rail-chrome=true] .ui-rail-title{margin-top:56px;min-height:32px;max-height:none;padding:4px 8px;gap:8px}
+  #mobile-app[data-ui-rail-chrome=true] .ui-rail-title{margin-top:56px;min-height:32px;max-height:none;padding:4px;gap:8px}
   #mobile-app .ui-rail-title h2{font:var(--ui-font-title-compact);margin:0;min-height:0;height:auto}
   #mobile-app .hero-equipment-page{grid-template-rows:auto auto 64px minmax(0,1fr) auto;gap:8px}
-  #mobile-app .hero-equipment-page>.hero-card-head.ui-rail-title{display:grid;grid-template-columns:40px minmax(0,1fr);grid-template-rows:auto;padding:4px 8px;min-height:64px}
+  #mobile-app .hero-equipment-page>.hero-card-head.ui-rail-title{display:grid;grid-template-columns:40px minmax(0,1fr);grid-template-rows:auto;padding:4px;min-height:64px}
   #mobile-app .hero-card-head>.hero-face{display:block;width:40px;height:44px;object-fit:contain}
-  #mobile-app .hero-equipment-page>.hero-primary{height:auto;min-height:40px;gap:4px;padding:0 8px}
+  #mobile-app .hero-equipment-page>.hero-primary{height:auto;min-height:40px;gap:4px;padding:0 4px}
   #mobile-app .hero-equipment-page>.hero-primary>div{min-width:0;padding:2px}
   #mobile-app .hero-equipment-page>.hero-primary :is(dt,dd){font:var(--ui-font-resource);margin:0}
   #mobile-app .hero-equipment-page>.hero-primary .hero-icon{width:16px;height:16px}
@@ -108,7 +108,7 @@
  @container goonk-viewport (orientation:landscape){
   #mobile-app[data-mode=map]>.mobile-top{overflow:visible;z-index:10}
   #mobile-app .market-page{display:grid;grid-template-columns:minmax(0,1fr) var(--control-rail,244px);grid-template-rows:56px 32px minmax(0,1fr);gap:4px 8px;padding:0;overflow:hidden}
-  #mobile-app .market-page>.market-header.ui-rail-title{grid-area:2/2;margin-top:0;min-height:32px;height:32px;padding:0 8px}
+  #mobile-app .market-page>.market-header.ui-rail-title{grid-area:2/2;margin-top:0;min-height:32px;height:32px;padding:0 4px}
   #mobile-app .market-page>.market-header img{width:24px;height:24px;object-fit:contain}
   #mobile-app .market-page>.market-sides{grid-area:1/1/4/2;min-height:0;grid-template-columns:minmax(0,1fr);grid-template-rows:repeat(2,minmax(0,1fr));gap:8px}
   #mobile-app .market-page>.market-deal{grid-area:3/2;display:grid;grid-template-rows:minmax(32px,1fr) 48px 48px;gap:8px;padding:4px;align-content:stretch;min-height:0;border:0;overflow:hidden}
