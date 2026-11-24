@@ -127,29 +127,19 @@ export function createHeroEquipment({root,command,pointer=()=>{},onViewChange=()
    splitAmount=Math.max(1,Math.min(selectedUnit.count-1,splitAmount));
   }
   const slotsContainer=isArmy&&prevInventory==='army'?panel.querySelector('.hero-army-slots'):null;
-  if(slotsContainer&&panel._armyHeroId===hero.id&&panel._armyLang===fr){
-   const prevSlots=panel._armyPrevSlots||[];
-   const nextSlots=Array.from({length:7},(_,i)=>armySlots[i]||null);
-   let needsPaint=false;
+  const nextSlots=isArmy?Array.from({length:7},(_,i)=>armySlots[i]||null):null;
+  const slotsUnchanged=!!(slotsContainer&&panel._armyHeroId===hero.id&&panel._armyLang===fr&&JSON.stringify(nextSlots)===JSON.stringify(panel._armyPrevSlots||[]));
+  if(slotsUnchanged){
    for(let slot=0;slot<7;slot++){
-    const unit=nextSlots[slot],prev=prevSlots[slot]||null;
     const isSelected=selectedArmySlot===slot;
     const isTarget=hero.owned!==false&&state.turn&&selectedArmySlot!==null&&selectedArmySlot!==slot;
     const existing=slotsContainer.querySelector(`[data-army-slot="${slot}"]`);
-    if(existing&&JSON.stringify(unit)===JSON.stringify(prev)){
+    if(existing){
      existing.classList.toggle('selected',isSelected);
      existing.classList.toggle('can-target',isTarget);
      existing.setAttribute('aria-pressed',String(isSelected));
-    }else if(existing){
-     const tmp=document.createElement('div');
-     renderMarkup(tmp,armySlotMarkup(slot,unit,{selected:isSelected,target:isTarget,attrs:`data-army-slot="${slot}"`,portrait,fr}));
-     const replacement=tmp.firstElementChild;
-     if(replacement)existing.replaceWith(replacement);
-     needsPaint=true;
     }
    }
-   panel._armyPrevSlots=nextSlots.map(u=>u?{...u}:null);
-   if(needsPaint)paintCreaturePortraits(panel);
    const upgradeAll=panel.querySelector('[data-hero-upgrade-all]');
    if(upgradeAll)upgradeAll.disabled=!state.turn||hero.owned===false||!nextSlots.some(Boolean);
    const detailTitle=panel.querySelector('.hero-artifact-detail h3');
