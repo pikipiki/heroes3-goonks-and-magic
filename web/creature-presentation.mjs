@@ -95,7 +95,7 @@ export function createCreaturePresentation({root,command,pointer,openRecruit,bui
     for(const button of panel.querySelectorAll('[data-variant]')){const selected=state.previewUnits?.[Number(button.dataset.variant)]?.id===unit?.id;const value=String(selected);if(button.getAttribute('aria-pressed')!==value)button.setAttribute('aria-pressed',value);}
    }
    if(state.mode==='fort'){panel.querySelector('[data-recruit-all]').disabled=!state.turn;hall.update(state);canvases=hall.canvases;iconsDirty=true;}
-   else{const price=panel.querySelector('.featured-price');price.hidden=state.mode==='creature'&&!(unit?.count>0);const html=state.mode==='recruit'?'<span>'+(getLanguage()==='fr'?'Coût par créature':'Cost per creature')+'</span>'+prices(unit||{},1,state.resourceTypes):'<span class="creature-stack-label">'+(getLanguage()==='fr'?'Effectif de la troupe':'Stack size')+'</span><span class="creature-stack-count">× '+(unit?.count??1)+'</span>';if(price._sourceMarkup!==html){price._sourceMarkup=html;renderMarkup(price,html);}}
+   else{const price=panel.querySelector('.featured-price');if(state.mode==='creature'){price.hidden=true;}else{price.hidden=false;const html='<span>'+(getLanguage()==='fr'?'Coût par créature':'Cost per creature')+'</span>'+prices(unit||{},1,state.resourceTypes);if(price._sourceMarkup!==html){price._sourceMarkup=html;renderMarkup(price,html);}}}
   },
   paint(source){if(panel.hidden)return false;if(document.hidden)return true;const isFort=state.mode==='fort';const sx=source.width/800,sy=source.height/600;
    const clip=isFort?panel.querySelector('.hall-families')?.getBoundingClientRect():null;let anyUnpainted=false;

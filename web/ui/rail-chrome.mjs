@@ -11,7 +11,7 @@ function createRailClose(record){
 export function useRailChrome(app){
  const chrome=app.querySelector(':scope>.mobile-top');if(!chrome)return;
  const landscape=app.clientWidth>app.clientHeight,visible=node=>node&&!node.closest('[hidden]')&&!node.closest('.MuiDialog-root[aria-hidden="true"]')&&node.getBoundingClientRect().height>0;
- const portraitHeader=!landscape&&!chrome.querySelector('.mobile-resources')?.hidden?[...app.querySelectorAll('.mobile-sheet:not([hidden])>.sheet-head')].filter(visible).at(-1):null;
+ const portraitHeader=null;
  const header=portraitHeader|| (landscape&&visible(chrome)&&!app.dataset.sheet&&!["map","battle"].includes(app.dataset.mode)?[...app.querySelectorAll('.ui-rail-header,.hero-card-head')].filter(visible).at(-1):null);
  const source=header?.querySelector('.ui-header-close-control,[data-ui-header-close],[data-hero-close]');
  let record=records.get(app);

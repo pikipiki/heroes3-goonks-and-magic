@@ -57,9 +57,6 @@
   #mobile-app .online-lobby[data-online-view=create]>.online-lobby-body{display:flex;flex-direction:column;gap:16px}
   #mobile-app[data-battle-result] .ui-screen-header{--ui-header-padding:8px}
   #mobile-app[data-dialog-presentation] .ui-screen-header{--ui-header-padding:8px}
-  #mobile-app .mobile-spellbook[data-browsing=true]{grid-template-areas:"workspace title" "workspace reuse" "workspace ." "workspace footer";grid-template-rows:auto auto minmax(0,1fr) auto;grid-template-columns:minmax(0,1fr) var(--control-rail,244px)}
-  #mobile-app .mobile-spellbook .spell-workspace>.spell-contexts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-column:auto;grid-row:auto}
-  #mobile-app .mobile-spellbook .spell-workspace{grid-column:1;grid-row:1/-1}
   #mobile-app .town-service>header{--ui-header-padding:calc(var(--mobile-top-height,0px) + 8px) 8px 8px}
   #mobile-app .hero-exchange-page>.exchange-toolbar{--ui-header-padding:8px}
   #mobile-app .creature-upgrades{position:relative;z-index:1;background:var(--ui-surface-container)}
@@ -81,8 +78,10 @@
  #mobile-app .mobile-menu:is([data-kind=lobby],[data-kind=load]){background:#24190f url('../h3-theme/stone.png')}
  #mobile-app[data-mode=menu] .mobile-menu{background:linear-gradient(#21140666,#1b100be6),var(--welcome-image) center/cover,#24190f url('../h3-theme/stone.png')}
  #mobile-app:is([data-mode=menu],[data-mode=lobby],[data-mode=load],[data-mode=campaign],[data-mode=campaign-scenario]) .scene-hint{display:none}
- #mobile-app:is([data-mode=menu],[data-mode=lobby],[data-mode=load],[data-mode=campaign],[data-mode=campaign-scenario],[data-mode=online-login],[data-mode=online-lobby],[data-mode=connecting],[data-mode=battle],[data-mode=hero-exchange],[data-mode=spellbook],[data-mode=mage-guild],[data-mode=creature])>.mobile-top>.mobile-resources{display:none}
- #mobile-app:is([data-mode=menu],[data-mode=lobby],[data-mode=load],[data-mode=campaign],[data-mode=campaign-scenario],[data-mode=online-login],[data-mode=online-lobby],[data-mode=connecting],[data-mode=hero],[data-mode=hero-exchange],[data-creature-view=fort])>.mobile-top>.mobile-calendar{display:none}
+ #mobile-app:is([data-mode=menu],[data-mode=lobby],[data-mode=load],[data-mode=campaign],[data-mode=campaign-scenario],[data-mode=online-login],[data-mode=online-lobby],[data-mode=connecting],[data-mode=battle],[data-mode=hero-exchange],[data-mode=mage-guild],[data-mode=creature])>.mobile-top>.mobile-resources{display:none}
+ #mobile-app:is([data-mode=menu],[data-mode=lobby],[data-mode=load],[data-mode=campaign],[data-mode=campaign-scenario],[data-mode=online-login],[data-mode=online-lobby],[data-mode=connecting],[data-mode=hero-exchange])>.mobile-top>.mobile-calendar{display:none}
+ #mobile-app:not([data-mode=battle])>.mobile-top>.battle-view{display:none}
+ #mobile-app:is([data-mode=hero],[data-mode=dialog]) .scene-tools{display:none}
  #mobile-app[data-mode=hero]:not([data-hero-view=classic]) :is(#mobile-scene,.scene-tools,.scene-hint,.mobile-nav){display:none}
  #mobile-app[data-mode=connecting] :is(.mobile-top,.mobile-nav,.scene-tools,.scene-hint,#mobile-scene,#mobile-overview){display:none}
  #mobile-app[data-mode=connecting] .mobile-play{grid-column:1/-1;grid-row:1/-1;background:#24190f url('../h3-theme/stone.png')}

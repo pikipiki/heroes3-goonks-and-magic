@@ -201,7 +201,7 @@ html.goonk-mobile #mobile-app .creature-view-head button{min-width:0;width:100%;
 #game-menu header>[data-menu=back]{display:none}
 #game-menu .game-menu-return{display:flex;justify-content:flex-end;flex:none;padding:6px 12px;border-top:1px solid #b59750}
 #game-menu .game-menu-return[hidden]{display:none}
-html.goonk-mobile #game-menu .game-menu-return button{width:min(100%,180px);font-size:var(--ui-type-body1)}
+html.goonk-mobile #game-menu .game-menu-return button{width:100%;font-size:var(--ui-type-body1)}
 #game-menu .menu-confirm-actions{display:grid;grid-template-columns:minmax(0,1fr);gap:8px}
 #game-menu .menu-confirm-actions button{min-width:0;width:100%;font-size:var(--ui-type-body1)}
 html.goonk-mobile #mobile-app[data-town-service]{grid-template-columns:1fr;grid-template-rows:minmax(0,1fr)}

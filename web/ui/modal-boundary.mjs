@@ -23,6 +23,7 @@ function rememberHome(record){
 function synchronize(session){
  if(session.syncing)return;
  session.syncing=true;
+ session.observer?.disconnect();
  try{
   for(const record of [...session.records]){
    rememberHome(record);
@@ -33,12 +34,13 @@ function synchronize(session){
    const next=visible(record);
    if(next!==record.boundary.open)record.boundary.setOpen(next);
   }
- }finally{session.syncing=false;}
+ }finally{session.syncing=false;session.observer?.observe(session.doc.documentElement,{subtree:true,childList:true,attributes:true,attributeFilter:['hidden','open']});}
 }
 function sessionFor(doc){
  let session=sessions.get(doc);if(session)return session;
- session={records:new Set(),syncing:false,queued:false};sessions.set(doc,session);
- const observer=new MutationObserver(()=>{if(session.queued)return;session.queued=true;queueMicrotask(()=>{session.queued=false;synchronize(session);});});
+ session={doc,records:new Set(),syncing:false,queued:false,observer:null};sessions.set(doc,session);
+ const observer=new MutationObserver(()=>{if(session.syncing||session.queued)return;session.queued=true;queueMicrotask(()=>{session.queued=false;synchronize(session);});});
+ session.observer=observer;
  observer.observe(doc.documentElement,{subtree:true,childList:true,attributes:true,attributeFilter:['hidden','open']});
  return session;
 }

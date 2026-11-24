@@ -5,9 +5,9 @@
   #mobile-app[data-mode=creature] .ui-creature-overview :is(.featured-creature,.creature-details){display:contents}
   #mobile-app[data-mode=creature] .ui-creature-overview>.creature-view-head{grid-area:1/3;align-self:start;min-width:0;min-height:min-content;width:calc(100% - 12px);margin-left:12px;box-sizing:border-box;display:flex;flex-direction:column;align-items:stretch;gap:8px;height:auto;max-height:none}
   #mobile-app[data-mode=creature] .ui-creature-overview>.creature-view-head>.creature-description{flex:none;min-height:0;max-height:26cqh;overflow-y:auto;overscroll-behavior:contain;touch-action:pan-y;margin:0;padding:0 8px 8px;box-sizing:border-box;font:var(--ui-font-body-medium)}
-  #mobile-app[data-mode=creature] .ui-creature-overview .creature-stage{grid-area:1/1/3/2;min-width:0;min-height:0;width:100%;height:100%;padding:0;box-sizing:border-box;transition:none;animation:none}
-  #mobile-app[data-mode=creature] .ui-creature-overview .creature-stage canvas{width:100%;height:100%;min-height:0;max-height:100%;aspect-ratio:auto;box-sizing:border-box;display:block;object-fit:contain;transition:none;animation:none}
-  #mobile-app[data-mode=creature] .ui-creature-overview .creature-facts{grid-area:3/1/4/2;min-width:0;width:100%;box-sizing:border-box;margin:0;min-height:0;height:auto;max-height:none;overflow:visible;touch-action:pan-y}
+  #mobile-app[data-mode=creature] .ui-creature-overview .creature-stage{grid-area:1/1/3/2;min-width:0;min-height:0;width:100%;height:100%;padding:0;border:0;box-shadow:none;box-sizing:border-box;transition:none;animation:none}
+  #mobile-app[data-mode=creature] .ui-creature-overview .creature-stage canvas{width:100%;height:100%;min-height:0;max-height:100%;aspect-ratio:auto;border:0;box-shadow:none;box-sizing:border-box;display:block;object-fit:contain;transition:none;animation:none}
+  #mobile-app[data-mode=creature] .ui-creature-overview .creature-facts{grid-area:3/1/4/2;min-width:0;width:100%;max-width:100%;box-sizing:border-box;margin:0;min-height:0;height:auto;max-height:none;overflow:visible;touch-action:pan-y}
   #mobile-app[data-mode=creature] .ui-creature-overview .creature-facts>h3{display:none}
   #mobile-app[data-mode=creature] .ui-creature-overview .creature-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:none;grid-auto-rows:minmax(40px,auto);height:auto;min-height:0;gap:4px;margin:0}
   #mobile-app[data-mode=creature] .ui-creature-overview .creature-stats>div{display:flex;flex-direction:column;justify-content:center;gap:0;min-height:0;min-width:0;padding:4px;box-sizing:border-box;border:1px solid #95743f;background:linear-gradient(#49301de0,#25190fe8)}
@@ -35,7 +35,7 @@
  #mobile-app[data-mode=creature] .ui-creature-overview .creature-stage{width:100%;box-sizing:border-box}
  #mobile-app[data-mode=creature] .ui-creature-overview .creature-stage canvas{width:100%;box-sizing:border-box;aspect-ratio:auto;display:block}
  #mobile-app[data-mode=creature] .ui-creature-overview .creature-facts{width:100%;box-sizing:border-box}
- #mobile-app[data-mode=creature] .ui-creature-overview .creature-stats>div{border:1px solid #95743f;background:linear-gradient(#49301de0,#25190fe8);box-sizing:border-box}
+ #mobile-app[data-mode=creature] .ui-creature-overview .creature-stats>div{border:1px solid #95743f;background:linear-gradient(#49301de0,#25190fe8);padding:6px 8px;box-sizing:border-box}
  #mobile-app[data-mode=creature] .ui-creature-overview .featured-price{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 12px;border:1px solid var(--ui-outline);font:var(--ui-font-body-medium);background:var(--ui-surface-container);box-shadow:none}
  #mobile-app[data-mode=creature] .ui-creature-overview .creature-stack-count{white-space:nowrap;font:var(--ui-font-title-compact)}
  #mobile-app[data-mode=creature] .ui-creature-overview .creature-description{margin:0 0 12px;font:var(--ui-font-body-medium)}

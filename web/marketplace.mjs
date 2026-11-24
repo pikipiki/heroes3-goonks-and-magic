@@ -19,7 +19,7 @@ export function createMarketplace({root, command, refresh}) {
  <section aria-labelledby="market-receive"><h3 id="market-receive"></h3><div class="market-grid" data-side="receive"></div></section></div>
  <section class="market-deal"><div class="market-total" role="status" aria-live="polite"></div><div class="market-order"><div class="market-stepper">
  <button type="button" data-market="minus">−</button><input type="number" inputmode="numeric" min="1" step="1"><button type="button" data-market="plus">+</button><button type="button" data-market="max"></button>
- </div><button class="primary" type="button" data-market="trade"></button></div><footer class="market-view-actions"><button type="button" data-market="classic"></button><button class="primary" type="button" data-market="close">← Back</button></footer></section>`);
+ </div></div><footer class="market-view-actions"><button type="button" data-market="classic"></button><button class="primary" type="button" data-market="trade"></button><button class="primary" type="button" data-market="close">← Back</button></footer></section>`);
  root.querySelector('.mobile-play').append(panel);
  const find = s => panel.querySelector(s);
  const amount = find('input'), total = find('.market-total');

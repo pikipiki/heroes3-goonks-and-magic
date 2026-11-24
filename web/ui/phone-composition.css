@@ -162,9 +162,9 @@
   #mobile-app[data-mode=map] .mobile-calendar .calendar-recruit-cue{flex-wrap:nowrap;min-height:24px;height:24px;border:0;white-space:nowrap;font:var(--ui-font-resource)}
   #mobile-app[data-mode=map] .mobile-calendar>span:first-child{order:1;min-height:14px;height:14px;line-height:14px;white-space:nowrap;width:100%;text-align:center;align-self:center}
   #mobile-app[data-mode=map] .mobile-calendar .calendar-recruit-cue>*{font:inherit;line-height:inherit}
-  #mobile-viewport #mobile-app[data-mode=map]>.mobile-nav.ui-map-compact{grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:auto 48px;height:max-content;min-height:0;align-self:end;align-content:end}
+  #mobile-viewport #mobile-app[data-mode=map]>.mobile-nav.ui-map-compact{grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:auto 48px;height:max-content;min-height:0;gap:4px;padding:4px;align-self:end;align-content:end}
   #mobile-viewport #mobile-app[data-mode=map]>.mobile-nav.ui-map-compact:not(:has(>.hero-movement-summary)){grid-template-rows:48px}
-  #mobile-viewport #mobile-app[data-mode=map]>.mobile-nav .hero-movement-summary{height:auto;min-height:72px;max-height:none;align-items:stretch;margin:0;gap:4px}
+  #mobile-viewport #mobile-app[data-mode=map]>.mobile-nav .hero-movement-summary{height:48px;min-height:48px;max-height:48px;align-items:stretch;margin:0;gap:4px}
   #mobile-viewport #mobile-app[data-mode=map]>.mobile-nav.ui-map-compact>button:not([hidden]){display:flex;flex-direction:column;justify-content:center;gap:2px;padding:4px;font:var(--ui-font-label);white-space:nowrap;overflow:visible}
   #mobile-viewport #mobile-app[data-mode=map]>.mobile-nav.ui-map-compact>button>span{font:inherit;line-height:inherit;margin:0}
  }
@@ -185,7 +185,8 @@
 
 @layer ui-composition {
  @container goonk-viewport (orientation:landscape){
-  html.goonk-mobile #mobile-viewport #mobile-app[data-ui-map-rail=true]{grid-template-rows:56px minmax(72px,1fr) minmax(121px,1fr)}
+  html.goonk-mobile #mobile-viewport #mobile-app[data-ui-map-rail=true]{grid-template-rows:56px minmax(56px,1fr) auto}
+  html.goonk-mobile #mobile-viewport #mobile-app[data-mode=map] .mobile-play .scene-tools{top:4px;left:8px;height:48px}
   #mobile-viewport #mobile-app[data-ui-map-rail=true]>.mobile-calendar:not([hidden]){position:static;display:flex;flex-direction:column;grid-column:3;grid-row:2;align-self:stretch;justify-content:center;align-items:center;width:calc(100% - 8px);height:calc(100% - 8px);min-height:48px;max-height:none;margin:4px;padding:4px;gap:8px;box-sizing:border-box}
   #mobile-viewport #mobile-app[data-ui-map-rail=true]>.mobile-nav.ui-map-compact{height:auto;align-self:end;align-content:end;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:auto 48px}
   #mobile-viewport #mobile-app[data-mode=map]>.mobile-nav{align-self:end;align-content:end;grid-template-columns:repeat(3,minmax(0,1fr))}

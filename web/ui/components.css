@@ -67,7 +67,8 @@
 
 /* The short market rail keeps the primary action above two secondary actions. */
 #mobile-app .market-view-actions.ui-action-dock{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
-#mobile-app .market-view-actions.ui-action-dock>[data-market=trade]{grid-column:1/-1;grid-row:1}
+#mobile-app .market-view-actions.ui-action-dock>[data-market=classic]{grid-column:1/-1;grid-row:1;width:min(100%,240px);justify-self:center}
+#mobile-app .market-view-actions.ui-action-dock>[data-market=trade]{grid-column:1/-1;grid-row:2;width:min(100%,240px);justify-self:center}
 @container goonk-viewport (orientation:landscape){
  #mobile-app .market-page .market-deal{min-height:0;gap:4px;align-content:end}
  #mobile-app .market-page .market-view-actions.ui-action-dock{padding:4px;gap:4px}

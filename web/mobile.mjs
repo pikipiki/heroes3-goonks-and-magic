@@ -218,11 +218,11 @@ function mount(){
   }
   else if(m==='market')items=[btn(fr?'Vue mobile':'Mobile view','market-mobile'),btn('↩ Back','market-back')];
   else if(m==='hero-exchange')items=heroExchange.classic?[btn(fr?'Vue mobile':'Mobile view','exchange-mobile'),btn(fr?'Fermer l’échange':'Close exchange','exchange-close'),btn('＋ Zoom','zoom-in'),btn('− Zoom','zoom-out')]:[];
-  else if(m==='hero')items=[btn('↩ Back','hero-back'),btn('＋ Zoom','zoom-in'),btn('− Zoom','zoom-out')];
+  else if(m==='hero')items=[btn('↩ Back','hero-back')];
   else if(m==='fort'||m==='creature')items=[];
   else if(canCloseTavern(state))items=[];
   else if(m==='dialog'&&state.dialogKind==='fort')items=[btn(fr?'Retour au château':'Back to castle','back')];
-  else if(m==='dialog'&&state.dialogKind==='commander')items=[btn('↩ Back','presentation-back'),btn('＋ Zoom','zoom-in'),btn('− Zoom','zoom-out')];
+  else if(m==='dialog'&&state.dialogKind==='commander')items=[btn('↩ Back','presentation-back')];
   else if(m==='dialog'&&state.dialogKind==='commander-level-up'){
    items=[btn(fr?'✓ Valider la compétence':'✓ Confirm skill','accept',true),btn('＋ Zoom','zoom-in'),btn('− Zoom','zoom-out')];
   }

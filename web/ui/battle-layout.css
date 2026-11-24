@@ -41,7 +41,7 @@
   #mobile-app[data-mode=battle]>.battle-panel{grid-area:2/2;position:relative;inset:auto;height:100%;max-height:none;justify-content:flex-start;gap:8px}
   #mobile-app[data-mode=battle] .battle-panel-card{grid-template-columns:clamp(64px,22cqh,96px) minmax(0,1fr)}
   #mobile-app[data-mode=battle] .battle-unit-inspect{width:clamp(64px,22cqh,96px);height:clamp(64px,22cqh,96px)}
-  #mobile-app[data-mode=battle] .battle-selection{max-height:none;overflow:visible}
+  #mobile-app[data-mode=battle] .battle-selection{flex:1 1 auto;min-height:0;max-height:none;overflow-y:auto;touch-action:pan-y;white-space:normal}
   #mobile-app[data-mode=battle]>.mobile-nav{grid-area:3/2}
   #mobile-app[data-mode=battle][data-target-picker]>.mobile-nav{grid-row:2/4;height:100%;max-height:none}
  }

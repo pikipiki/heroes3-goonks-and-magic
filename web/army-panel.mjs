@@ -1,6 +1,7 @@
 import {createUIField} from './ui/material-components.mjs';
 import {createUIElement} from './ui/material-components.mjs';
 import {renderMarkup} from './ui/material-components.mjs';
+import {createPopupMenu} from './ui/menu.mjs';
 import {bulkTransferSummary} from './army-transfer.mjs';
 import {bindPress} from './mobile-press.mjs';
 import {getLanguage} from './locale-state.mjs';
@@ -19,10 +20,24 @@ export function renderArmyPanel({body,armies=[],portrait=()=>'',onMove,onTransfe
  amount.addEventListener('keydown',event=>{if(event.key==='Enter'){event.preventDefault();amount.blur();}});
  const info=createUIElement('button');info.type='button';info.textContent=fr?'Fiche':'Details';info.disabled=true;info.hidden=!onInfo;
  const manage=createUIElement('button');manage.type='button';manage.textContent=fr?'Gérer':'Manage';manage.disabled=true;manage.hidden=readOnly||!onManage;
- if(!readOnly)tools.append(splitLabel,amountField.element,manage);tools.append(info);if(onBack){const back=createUIElement('button');back.type='button';back.className='army-back back-button';back.textContent=fr?'Retour':'Back';bindPress(back,onBack);tools.append(back);}dock.append(status,tools);panel.append(rosters,dock);body.replaceChildren(panel);
+ const app=body.closest('#mobile-app'),landscape=!!(app&&app.clientWidth>app.clientHeight);
+ const hasMore=landscape&&onBack&&(!manage.hidden||!info.hidden);
+ let moreButton=null,moreMenu=null;
+ if(!readOnly)tools.append(splitLabel,amountField.element);
+ if(hasMore){
+  moreButton=createUIElement('button');moreButton.type='button';moreButton.className='ui-overflow-trigger';moreButton.textContent=fr?'Plus':'More';moreButton.disabled=true;
+  tools.append(moreButton);
+  moreMenu=createPopupMenu({anchor:moreButton,container:tools,placement:'top-end',label:()=>fr?'Actions sur la troupe':'Troop actions'});
+  if(!manage.hidden)moreMenu.list.append(manage);
+  if(!info.hidden)moreMenu.list.append(info);
+ }else{
+  if(!readOnly)tools.append(manage);
+  tools.append(info);
+ }
+ if(onBack){const back=createUIElement('button');back.type='button';back.className='army-back back-button';back.textContent=fr?'Retour':'Back';bindPress(back,onBack);tools.append(back);}dock.append(status,tools);panel.append(rosters,dock);body.replaceChildren(panel);
  let selection=null,pending=false;const buttons=[];
  const select=record=>{
-  selection=record;split.disabled=!record||record.unit.count<2;if(split.disabled)split.checked=false;amount.disabled=!split.checked||!record||record.unit.count<2;amount.max=String(record?record.unit.count-1:1);amount.value=String(record?Math.max(1,Math.floor(record.unit.count/2)):1);info.disabled=!record||!onInfo;manage.disabled=!record;
+  selection=record;split.disabled=!record||record.unit.count<2;if(split.disabled)split.checked=false;amount.disabled=!split.checked||!record||record.unit.count<2;amount.max=String(record?record.unit.count-1:1);amount.value=String(record?Math.max(1,Math.floor(record.unit.count/2)):1);info.disabled=!record||!onInfo;manage.disabled=!record;if(moreButton){moreButton.disabled=info.disabled&&manage.disabled;if(moreButton.disabled)moreMenu?.close(false);}
   status.textContent=readOnly?(record?`${record.unit.name} × ${record.unit.count}`:(fr?'Disponible à ton tour':'Available on your turn')):record?`${record.unit.name} × ${record.unit.count} · `+(fr?'Choisis la destination.':'Choose the destination.'):(fr?'Choisis une troupe, puis sa destination.':'Choose a unit, then choose its destination.');
   for(const item of buttons){const active=!!record&&item.army===record.army&&item.slot===record.slot;item.button.classList.toggle('selected',active);item.button.setAttribute('aria-pressed',String(active));}
  };

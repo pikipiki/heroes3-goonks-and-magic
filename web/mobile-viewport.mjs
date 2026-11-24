@@ -93,13 +93,15 @@ export function anchorMobileViewport(root,win=window){
   const physicalMobile=/Android/.test(win.navigator?.userAgent||'');
   const sw=win.screen?.width,sh=win.screen?.height;
   if(physicalMobile&&!zoomed&&sw>0&&sh>0){
-   const key=sw+':'+sh;
-   if(finalWidth<=sw+2&&finalHeight<=sh+2){
+   const screenW=isLandscape?Math.max(sw,sh):Math.min(sw,sh);
+   const screenH=isLandscape?Math.min(sw,sh):Math.max(sw,sh);
+   const key=screenW+':'+screenH;
+   if(finalWidth<=screenW+2&&finalHeight<=screenH+2){
     if(!editingViewport(win))physicalViewports.set(key,{width:finalWidth,height:finalHeight});
    }else{
     const previous=physicalViewports.get(key);
     if(previous){finalWidth=previous.width;finalHeight=previous.height;}
-    else{finalWidth=Math.min(finalWidth,sw);finalHeight=Math.min(finalHeight,sh);}
+    else{finalWidth=Math.min(finalWidth,screenW);finalHeight=Math.min(finalHeight,screenH);}
     isLandscape=finalWidth>finalHeight;
    }
   }

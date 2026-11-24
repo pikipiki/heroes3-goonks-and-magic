@@ -74,11 +74,12 @@ export function refreshScreenComponents(scope=document.body){
 }
 export function installScreenComponents(scope=document.body){
  if(globalThis[sessionKey])return globalThis[sessionKey];
- let queued=false;const pending=new Set();
- const flush=()=>{queued=false;closeDetachedMenu();for(const root of pending)if(root.isConnected)applyScreenComponents(root);pending.clear();};
+ let queued=false,flushing=false;const pending=new Set();
+ const options={subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:['hidden','disabled']};
+ const flush=()=>{if(flushing)return;flushing=true;queued=false;observer.disconnect();try{closeDetachedMenu();for(const root of pending)if(root.isConnected)applyScreenComponents(root);pending.clear();}finally{flushing=false;observer.observe(scope,options);}};
  const collect=node=>{const element=node.nodeType===1?node:node.parentElement;if(!element)return;const root=element.closest(screenSelector);if(root)pending.add(root);for(const child of element.querySelectorAll?.(screenSelector)||[])pending.add(child);};
- const observer=new MutationObserver(records=>{for(const record of records){collect(record.target);if(record.type==='childList')for(const node of record.addedNodes)collect(node);}if(!queued&&pending.size){queued=true;queueMicrotask(flush);}});
- refreshScreenComponents(scope);observer.observe(scope,{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:['hidden','disabled']});
+ const observer=new MutationObserver(records=>{if(flushing)return;for(const record of records){collect(record.target);if(record.type==='childList')for(const node of record.addedNodes)collect(node);}if(!queued&&pending.size){queued=true;queueMicrotask(flush);}});
+ refreshScreenComponents(scope);observer.observe(scope,options);
  const onLanguage=()=>refreshScreenComponents(scope),onResize=()=>{if(!queued){queued=true;requestAnimationFrame(()=>{queued=false;refreshScreenComponents(scope);});}};
  window.addEventListener('goonk-language',onLanguage);window.addEventListener('resize',onResize);
  const api={refresh:()=>refreshScreenComponents(scope),dispose(){observer.disconnect();pending.clear();window.removeEventListener('goonk-language',onLanguage);window.removeEventListener('resize',onResize);delete globalThis[sessionKey];}};globalThis[sessionKey]=api;return api;

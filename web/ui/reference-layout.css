@@ -128,13 +128,13 @@
   #mobile-app[data-mode=map]>.mobile-nav .troops-nav-icon{width:20px;height:20px}
  }
  #mobile-app[data-mode=map] .hero-movement-item>button{border:0;box-shadow:none;background:transparent;padding:4px;color:inherit}
- #mobile-app[data-mode=map] .hero-movement-summary[data-hero-solo=true] :is(.hero-picker,.hero-movement-item>button):disabled{opacity:1;cursor:default}
+ #mobile-app[data-mode=map] .hero-movement-summary[data-hero-solo=true] :is(.hero-picker,.hero-movement-item>button):disabled{opacity:1;cursor:default;pointer-events:none}
 }
 @layer screen-layouts {
  /* One thin outline for controls and cards; no inner bevel or selected ring. */
  :is(#mobile-app,#game-menu,[data-ui-app],.ui-popup) :is(.MuiButton-root,.MuiIconButton-root,.ui-button,.ui-choice-tile,.ui-action-tile){border:1px solid var(--ui-primary);border-image:none;box-shadow:var(--ui-control-shadow);outline:none;font-weight:400}
  :is(#mobile-app,#game-menu,[data-ui-app],.ui-popup) :is(.MuiButton-root,.MuiIconButton-root,.ui-button,.ui-choice-tile,.ui-action-tile):hover{border-color:#ffe9a8;box-shadow:var(--ui-control-shadow-hover)}
- :is(#mobile-app,#game-menu,[data-ui-app],.ui-popup) :is(.MuiButton-root,.ui-choice-tile):not(.hall-form):not([data-guild-spell]):not([data-variant]):not([data-commander-tree]):not(.lobby-choice-card):not([data-choice-value])[aria-pressed=true]{border-color:#66bb6a;background:#163519;outline:none;box-shadow:0 0 8px rgba(76,175,80,0.45)}
+ :is(#mobile-app,#game-menu,[data-ui-app],.ui-popup) :is(.MuiButton-root,.ui-choice-tile):not(.hall-form):not([data-guild-spell]):not([data-variant]):not([data-commander-tree]):not(.lobby-choice-card):not([data-choice-value]):not(.battle-view)[aria-pressed=true]{border-color:#66bb6a;background:#163519;outline:none;box-shadow:0 0 8px rgba(76,175,80,0.45)}
  :is(#mobile-app,#game-menu,[data-ui-app]) .town-building-hit.MuiButton-root,
  :is(#mobile-app,#game-menu,[data-ui-app]) .hero-movement-item>button{border:0;box-shadow:none;background:transparent}
  :is(#mobile-app,#game-menu,[data-ui-app]) .army-grid .army-troop{border:1px solid transparent;box-shadow:none}
@@ -263,8 +263,8 @@
 }
 @layer screen-layouts {
  @container goonk-viewport (orientation:landscape){
-  #mobile-app .dialog-presentation[data-kind=commander]:not([data-tree=true]){grid-template-columns:minmax(0,1fr) clamp(288px,44cqw,300px);grid-template-rows:48px minmax(122px,1fr) 64px;gap:8px}
-  #mobile-app .dialog-presentation[data-kind=commander]:not([data-tree=true])>header{grid-area:1/2;padding:0;min-height:48px;gap:8px}
+  #mobile-app .dialog-presentation[data-kind=commander]:not([data-tree=true]){grid-template-columns:minmax(0,1fr) clamp(288px,44cqw,300px);grid-template-rows:56px minmax(122px,1fr) 64px;gap:8px}
+  #mobile-app .dialog-presentation[data-kind=commander]:not([data-tree=true])>header{grid-area:1/2;display:flex;align-items:center;padding:4px 8px;min-height:56px;gap:8px;box-sizing:border-box}
   #mobile-app .dialog-presentation[data-kind=commander]:not([data-tree=true])>header button{height:48px;min-height:48px;width:48px;padding:0}
   #mobile-app .dialog-presentation[data-kind=commander]:not([data-tree=true])>.dialog-copy{grid-area:1/1/4/2;display:grid;grid-template-columns:minmax(96px,.8fr) minmax(0,1fr);grid-template-rows:minmax(0,1fr);gap:8px;padding:8px;box-sizing:border-box;overflow:hidden;min-height:0}
   #mobile-app .dialog-presentation[data-kind=commander]:not([data-tree=true]) .commander-summary{display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:32px minmax(0,1fr) 56px;gap:8px;height:100%;min-height:0}
@@ -295,10 +295,14 @@
   #mobile-app .dialog-presentation[data-kind=commander][data-tree=true]>.ui-screen-header button{flex:0 0 48px;width:48px;height:48px;min-height:48px;padding:0}
   #mobile-app .dialog-presentation[data-kind=commander][data-tree=true]>footer.ui-action-dock{grid-row:3;gap:8px;padding:8px}
   #mobile-app .dialog-presentation[data-kind=commander][data-tree=true]>footer>[data-commander-tree]{height:64px;min-height:64px;flex-basis:64px}
+  #mobile-app .dialog-presentation:not([data-kind=commander])[data-choices="2"]{grid-template-rows:auto minmax(0,1fr) auto}
+  #mobile-app .dialog-presentation:not([data-kind=commander])[data-choices="2"]>.dialog-copy{grid-column:1;grid-row:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:8px}
+  #mobile-app .dialog-presentation:not([data-kind=commander])[data-choices="2"]>.dialog-choices{grid-column:1;grid-row:2/-1;align-content:start}
+  #mobile-app .dialog-presentation .dialog-choice{height:auto;min-height:64px;overflow:visible;white-space:normal}
  }
  #mobile-app .dialog-presentation[data-kind=commander]>footer:has(>[data-dialog-confirm][hidden]){grid-template-columns:repeat(2,minmax(0,1fr))}
- :is(#mobile-app,#game-menu,[data-ui-app],.ui-popup) :is(.MuiButton-root,.ui-choice-tile,.hero-army-slot):not(.hall-form):not([data-guild-spell]):not([data-variant]):not([data-commander-tree]):not(.lobby-choice-card):not([data-choice-value]):is([aria-pressed=true],.selected),
- :is(#mobile-app,#game-menu,[data-ui-app],.ui-popup) :is(.MuiButton-root,.ui-choice-tile,.hero-army-slot):not(.hall-form):not([data-guild-spell]):not([data-variant]):not([data-commander-tree]):not(.lobby-choice-card):not([data-choice-value]):is([aria-pressed=true],.selected):hover,
- :is(#mobile-app,#game-menu,[data-ui-app],.ui-popup) :is(.MuiButton-root,.ui-choice-tile,.hero-army-slot):not(.hall-form):not([data-guild-spell]):not([data-variant]):not([data-commander-tree]):not(.lobby-choice-card):not([data-choice-value]):is([aria-pressed=true],.selected):focus-visible{border-color:#66bb6a;background:#163519;outline:2px solid #66bb6a;outline-offset:-2px;box-shadow:0 0 10px rgba(76,175,80,0.65)}
+ :is(#mobile-app,#game-menu,[data-ui-app],.ui-popup) :is(.MuiButton-root,.ui-choice-tile,.hero-army-slot):not(.hall-form):not([data-guild-spell]):not([data-variant]):not([data-commander-tree]):not(.lobby-choice-card):not([data-choice-value]):not(.battle-view):is([aria-pressed=true],.selected),
+ :is(#mobile-app,#game-menu,[data-ui-app],.ui-popup) :is(.MuiButton-root,.ui-choice-tile,.hero-army-slot):not(.hall-form):not([data-guild-spell]):not([data-variant]):not([data-commander-tree]):not(.lobby-choice-card):not([data-choice-value]):not(.battle-view):is([aria-pressed=true],.selected):hover,
+ :is(#mobile-app,#game-menu,[data-ui-app],.ui-popup) :is(.MuiButton-root,.ui-choice-tile,.hero-army-slot):not(.hall-form):not([data-guild-spell]):not([data-variant]):not([data-commander-tree]):not(.lobby-choice-card):not([data-choice-value]):not(.battle-view):is([aria-pressed=true],.selected):focus-visible{border-color:#66bb6a;background:#163519;outline:2px solid #66bb6a;outline-offset:-2px;box-shadow:0 0 10px rgba(76,175,80,0.65)}
  .MuiDialogActions-root{gap:12px;padding:12px 16px}
 }

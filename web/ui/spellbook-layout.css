@@ -25,9 +25,9 @@
  #mobile-app .mobile-spellbook>footer>button{width:100%;height:48px;min-height:48px;padding:4px;font:var(--ui-font-label)}
  #mobile-app .mobile-spellbook>.spell-top-actions{grid-area:footer;justify-self:end;align-self:stretch;width:calc(50% - 2px);min-height:48px;height:48px;margin:0;padding:0}
  #mobile-app .mobile-spellbook>footer{width:calc(50% - 2px);justify-self:start}
- #mobile-app .mobile-spellbook [data-reuse]{height:48px;min-height:48px;gap:4px;padding:4px;font:var(--ui-font-body-small)}
- #mobile-app .mobile-spellbook [data-reuse]>.spell-reuse-detail{display:none}
- #mobile-app .mobile-spellbook .spell-reuse-short{display:inline;font:var(--ui-font-body-small)}
+ #mobile-app .mobile-spellbook [data-reuse]{height:auto;min-height:48px;gap:4px;padding:4px 6px;font:var(--ui-font-body-small);white-space:normal}
+ #mobile-app .mobile-spellbook [data-reuse]>.spell-reuse-detail{display:inline;white-space:normal;line-height:1.15}
+ #mobile-app .mobile-spellbook .spell-reuse-short{display:none}
  #mobile-app .mobile-spellbook .last-spell-icon{width:24px;height:24px;flex:0 0 24px}
  #mobile-app .mobile-spellbook[data-read-only=true]>.spell-inspection-note{width:100%;font:var(--ui-font-body-small);padding:4px 8px;box-sizing:border-box}
  @container goonk-viewport (orientation:landscape){
