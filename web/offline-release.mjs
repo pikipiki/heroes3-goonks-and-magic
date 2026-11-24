@@ -1,7 +1,8 @@
-const updateCheckMs = 8000;
+const updateCheckMs = 12000;
 const installationMs = 120000;
 const activationRequestMs = 8000;
 const activationMs = 8000;
+const backgroundCheckIntervalMs = 30000;
 
 async function withTimeout(promise, ms) {
   let timer;
@@ -75,4 +76,54 @@ export async function refreshOfflineRelease(showStatus) {
     channel.port1.close();
     events.abort();
   }
+}
+
+export async function watchOfflineRelease(onReady) {
+  const {serviceWorker} = navigator;
+  if (!serviceWorker || !crossOriginIsolated) return () => {};
+  const registration = await serviceWorker.getRegistration().catch(() => null);
+  if (!registration) return () => {};
+
+  let lastCheck = Date.now();
+  let notifiedWorker = null;
+  const notify = worker => {
+    if (!worker || worker === notifiedWorker || worker.state === 'redundant') return;
+    notifiedWorker = worker;
+    onReady?.(worker);
+  };
+  const trackInstalling = worker => {
+    if (!worker) return;
+    if (worker.state === 'installed') { notify(worker); return; }
+    const onState = () => {
+      if (worker.state === 'installed') {
+        worker.removeEventListener('statechange', onState);
+        notify(worker);
+      } else if (worker.state === 'redundant') {
+        worker.removeEventListener('statechange', onState);
+      }
+    };
+    worker.addEventListener('statechange', onState);
+  };
+
+  if (registration.waiting) notify(registration.waiting);
+  else if (registration.installing) trackInstalling(registration.installing);
+
+  const onUpdateFound = () => trackInstalling(registration.installing);
+  const check = () => {
+    if (document.visibilityState !== 'visible' || !navigator.onLine) return;
+    const now = Date.now();
+    if (now - lastCheck < backgroundCheckIntervalMs) return;
+    lastCheck = now;
+    registration.update().catch(() => {});
+  };
+  const onVisible = () => check();
+  const onOnline = () => { lastCheck = 0; check(); };
+  registration.addEventListener('updatefound', onUpdateFound);
+  document.addEventListener('visibilitychange', onVisible);
+  window.addEventListener('online', onOnline);
+  return () => {
+    registration.removeEventListener('updatefound', onUpdateFound);
+    document.removeEventListener('visibilitychange', onVisible);
+    window.removeEventListener('online', onOnline);
+  };
 }

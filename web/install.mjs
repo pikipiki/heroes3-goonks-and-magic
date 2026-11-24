@@ -5,7 +5,7 @@ import {syncAssets} from './asset-cache.mjs';
 import {downloadFetch} from './download-fetch.mjs';
 import {createLoadingView} from './loading.mjs';
 import {createTemporaryBoot} from './boot-screen.mjs';
-import {refreshOfflineRelease} from './offline-release.mjs';
+import {refreshOfflineRelease,watchOfflineRelease} from './offline-release.mjs';
 const status=text=>{const el=document.querySelector('#status');if(el)el.textContent=text;};
 // The OPFS worker forwards the browser's message without its DOMException name.
 class GameStorageUnavailable extends Error {}
@@ -48,6 +48,12 @@ const prepare=async()=>{
 };
 window.goonkAssetsReady=(async()=>{
  if(await refreshOfflineRelease(status))return new Promise(()=>{});
+ watchOfflineRelease(worker=>{
+  const app=document.querySelector('#mobile-app');
+  if(!app||app.dataset.mode==='menu'){refreshOfflineRelease(status).catch(()=>{});return;}
+  const toast=document.querySelector('.toast-mobile');
+  if(toast){toast.textContent='Mise à jour prête — recharge la page pour l’appliquer.';toast.hidden=false;}
+ });
  await holdGameStorage();
  return navigator.locks?navigator.locks.request('heroes-goonk-install',prepare):prepare();
 })().catch(error=>{status(error.message+' — Recharge la page pour réessayer.');throw error;});
