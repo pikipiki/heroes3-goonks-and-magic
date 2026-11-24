@@ -1,6 +1,6 @@
 /* A casualty count of one keeps exactly the same geometry as a complete army. */
 @layer legacy-screen {
-html.goonk-mobile #mobile-app[data-battle-result]>*:not(.battle-result){display:none}
+html.goonk-mobile #mobile-app[data-battle-result]>*:not(.battle-result):not(.MuiDialog-root):not([data-ui-dialog-boundary]){display:none}
 #mobile-app .battle-result{position:absolute;inset:0;z-index:10;display:grid;grid-template-rows:auto minmax(0,1fr) auto;gap:8px;box-sizing:border-box;padding:max(8px,env(safe-area-inset-top)) max(8px,env(safe-area-inset-right)) max(8px,env(safe-area-inset-bottom)) max(8px,env(safe-area-inset-left));border:4px ridge #b99b57;background:#2b1d12 url('./h3-theme/stone.png');font-family:Georgia,serif;overflow:hidden;touch-action:pan-y}
 #mobile-app .battle-result[hidden]{display:none}
 #mobile-app .battle-result>header{padding:8px 12px;border:2px ridge #d3ad5e;background:linear-gradient(#7c261b,#3e180f);min-width:0}

@@ -42,7 +42,8 @@ function synchronize(session){
 function sessionFor(doc){
  let session=sessions.get(doc);if(session)return session;
  session={doc,records:new Set(),syncing:false,queued:false,observer:null};sessions.set(doc,session);
- const observer=new MutationObserver(()=>{if(session.syncing||session.queued)return;session.queued=true;queueMicrotask(()=>{session.queued=false;synchronize(session);});});
+ const touchesModal=node=>{if(!node||node.nodeType!==1)return false;for(const r of session.records)if(r.root===node||r.home===node||r.root.contains(node)||node.contains(r.root)||r.parents.includes(node))return true;return false;};
+ const observer=new MutationObserver(records=>{if(session.syncing||session.queued)return;if(!records.some(rec=>touchesModal(rec.target)))return;session.queued=true;queueMicrotask(()=>{session.queued=false;synchronize(session);});});
  session.observer=observer;
  observer.observe(doc.documentElement,{subtree:true,childList:true,attributes:true,attributeFilter:['hidden','open']});
  return session;

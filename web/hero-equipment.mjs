@@ -290,6 +290,11 @@ export function createHeroEquipment({root,command,pointer=()=>{},onViewChange=()
      command(11,heroArmy.id,selectedArmySlot,heroArmy.id,slot,splitAmount);
      selectedArmySlot=null;splitActive=false;render();
     }else{
+     const fromUnit=heroArmy.slots?.[selectedArmySlot]||null,toUnit=heroArmy.slots?.[slot]||null;
+     if(heroArmy.slots&&fromUnit&&(!toUnit||fromUnit.id!==toUnit.id)){
+      heroArmy.slots[slot]=fromUnit;
+      heroArmy.slots[selectedArmySlot]=toUnit;
+     }
      command(10,heroArmy.id,selectedArmySlot,heroArmy.id,slot,0);
      selectedArmySlot=slot;render();
     }
