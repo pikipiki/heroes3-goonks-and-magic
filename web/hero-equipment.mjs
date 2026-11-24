@@ -1,4 +1,5 @@
 import {useScreenComponents,renderMarkup,creatureStatsMarkup} from './ui/material-components.mjs';
+import {paintCreaturePortraits} from './creature-portraits.mjs';
 import {getLanguage} from './locale-state.mjs';
 import {createTroopEquipment} from './troop-equipment.mjs';
 import {createTroopDeployment} from './troop-deployment.mjs';
@@ -106,11 +107,12 @@ export function createHeroEquipment({root,command,pointer=()=>{},onViewChange=()
   </div>`;
  }
  function render(){
+  const prevInventory=panel.dataset.inventory;
   const grid=panel.querySelector('.hero-equipment-grid');
   const navScrollLeft=panel.querySelector('.hero-bag-tabs')?.scrollLeft||0;
   const rebalanceFocused=panel.querySelector('[data-hero-source-rebalance]')===document.activeElement;
   const focusedArmySlot=document.activeElement?.closest?.('[data-army-slot]')?.dataset.armySlot;
-  if(grid)scrollPositions[panel.dataset.inventory||tab]=grid.scrollTop;
+  if(grid)scrollPositions[prevInventory||tab]=grid.scrollTop;
   panel.dataset.inventory=tab;
   const hero=state.heroWindow||{},picked=hero.picked,items=slots(),item=items.find(a=>a.slot===selected);
   panel.dataset.artifactSelected=String(!!item?.name||!!picked);
@@ -123,6 +125,49 @@ export function createHeroEquipment({root,command,pointer=()=>{},onViewChange=()
   const selectedUnit=Number.isInteger(selectedArmySlot)?armySlots[selectedArmySlot]:null;panel.dataset.armySelected=String(!!selectedUnit);
   if(selectedUnit&&selectedUnit.count>1){
    splitAmount=Math.max(1,Math.min(selectedUnit.count-1,splitAmount));
+  }
+  const slotsContainer=isArmy&&prevInventory==='army'?panel.querySelector('.hero-army-slots'):null;
+  if(slotsContainer&&panel._armyHeroId===hero.id&&panel._armyLang===fr){
+   const prevSlots=panel._armyPrevSlots||[];
+   const nextSlots=Array.from({length:7},(_,i)=>armySlots[i]||null);
+   let needsPaint=false;
+   for(let slot=0;slot<7;slot++){
+    const unit=nextSlots[slot],prev=prevSlots[slot]||null;
+    const isSelected=selectedArmySlot===slot;
+    const isTarget=hero.owned!==false&&state.turn&&selectedArmySlot!==null&&selectedArmySlot!==slot;
+    const existing=slotsContainer.querySelector(`[data-army-slot="${slot}"]`);
+    if(existing&&JSON.stringify(unit)===JSON.stringify(prev)){
+     existing.classList.toggle('selected',isSelected);
+     existing.classList.toggle('can-target',isTarget);
+     existing.setAttribute('aria-pressed',String(isSelected));
+    }else if(existing){
+     const tmp=document.createElement('div');
+     renderMarkup(tmp,armySlotMarkup(slot,unit,{selected:isSelected,target:isTarget,attrs:`data-army-slot="${slot}"`,portrait,fr}));
+     const replacement=tmp.firstElementChild;
+     if(replacement)existing.replaceWith(replacement);
+     needsPaint=true;
+    }
+   }
+   panel._armyPrevSlots=nextSlots.map(u=>u?{...u}:null);
+   if(needsPaint)paintCreaturePortraits(panel);
+   const upgradeAll=panel.querySelector('[data-hero-upgrade-all]');
+   if(upgradeAll)upgradeAll.disabled=!state.turn||hero.owned===false||!nextSlots.some(Boolean);
+   const detailTitle=panel.querySelector('.hero-artifact-detail h3');
+   if(detailTitle)detailTitle.textContent=selectedUnit?(selectedUnit.name+' × '+selectedUnit.count):(fr?'Gestion des troupes':'Manage army');
+   const detailDesc=panel.querySelector('.hero-artifact-detail .hero-artifact-description');
+   if(detailDesc)detailDesc.textContent=hero.owned===false?(fr?'Consulte la fiche des troupes avant de recruter ce héros.':'Inspect this hero’s troops before recruiting them.'):selectedUnit?(selectedUnit.count>1?(fr?'Touche un emplacement libre pour déplacer, ou coche « Scinder » pour séparer les troupes.':'Tap another slot to move, or check « Split » to split the army.'):(fr?'Touche un autre emplacement pour déplacer ou fusionner.':'Tap another slot to move or merge.')):(fr?'Touche une troupe pour la réorganiser, la scinder ou voir sa fiche.':'Tap a unit stack to manage, split or view details.');
+   const manageBtn=panel.querySelector('[data-hero-manage-troops]');
+   if(manageBtn)manageBtn.disabled=!selectedUnit||!state.turn;
+   const splitChk=panel.querySelector('#hero-army-split');
+   if(splitChk){splitChk.checked=splitActive;splitChk.disabled=hero.owned===false||!selectedUnit||selectedUnit.count<2||!state.turn;}
+   const splitBox=panel.querySelector('.hero-army-split-amount');
+   if(splitBox)splitBox.hidden=!splitActive;
+   const splitInput=panel.querySelector('#hero-army-split-num');
+   if(splitInput){splitInput.max=String(selectedUnit?selectedUnit.count-1:1);splitInput.value=String(splitAmount);}
+   const detailsBtn=panel.querySelector('[data-hero-army-details]');
+   if(detailsBtn)detailsBtn.disabled=!selectedUnit;
+   if(focusedArmySlot!==undefined)panel.querySelector(`[data-army-slot="${focusedArmySlot}"]`)?.focus({preventScroll:true});
+   return;
   }
   const extraSlots=[9,10,11,12,18,13,14,15,16,17];
   const extra=extraSlots.flatMap(slot=>items.filter(a=>a.slot===slot)).map(slotMarkup).join('');
@@ -182,6 +227,11 @@ export function createHeroEquipment({root,command,pointer=()=>{},onViewChange=()
     </div>`}
    `}
   </section>`);
+  if(isArmy){
+   panel._armyHeroId=hero.id;panel._armyLang=fr;
+   panel._armyPrevSlots=Array.from({length:7},(_,i)=>armySlots[i]?{...armySlots[i]}:null);
+   paintCreaturePortraits(panel);
+  }
   panel.querySelector('.hero-equipment-grid').scrollTop=scrollPositions[tab]||0;
   panel.querySelector('.hero-bag-tabs').scrollLeft=navScrollLeft;
   if(rebalanceFocused)panel.querySelector('[data-hero-source-rebalance]')?.focus({preventScroll:true});
