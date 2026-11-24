@@ -11,7 +11,10 @@ function visible(record){
  if(home&&!home.isConnected)return false;
  if(parents.some(parent=>parent.hidden||!parent.isConnected||parent.tagName==='DIALOG'&&!parent.open))return false;
  if(root.closest('[hidden]'))return false;
- return root.getClientRects().length>0&&root.ownerDocument.defaultView.getComputedStyle(root).visibility!=='hidden';
+ const cs=root.ownerDocument.defaultView.getComputedStyle(root);
+ if(cs.display==='none'||cs.visibility==='hidden')return false;
+ if(record.boundary.open)return true;
+ return root.getClientRects().length>0;
 }
 function rememberHome(record){
  if(!record.root.isConnected||record.home&&(record.boundary.open||record.root.parentElement===record.home||record.root.closest('.MuiDialog-root')))return;
