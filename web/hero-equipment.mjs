@@ -128,18 +128,32 @@ export function createHeroEquipment({root,command,pointer=()=>{},onViewChange=()
   }
   const slotsContainer=isArmy&&prevInventory==='army'?panel.querySelector('.hero-army-slots'):null;
   const nextSlots=isArmy?Array.from({length:7},(_,i)=>armySlots[i]||null):null;
-  const slotsUnchanged=!!(slotsContainer&&panel._armyHeroId===hero.id&&panel._armyLang===fr&&JSON.stringify(nextSlots)===JSON.stringify(panel._armyPrevSlots||[]));
-  if(slotsUnchanged){
+  if(slotsContainer&&panel._armyHeroId===hero.id&&panel._armyLang===fr){
+   const prevSlots=panel._armyPrevSlots||[];
+   let needsPaint=false;
    for(let slot=0;slot<7;slot++){
+    const unit=nextSlots[slot],prev=prevSlots[slot]||null;
     const isSelected=selectedArmySlot===slot;
     const isTarget=hero.owned!==false&&state.turn&&selectedArmySlot!==null&&selectedArmySlot!==slot;
     const existing=slotsContainer.querySelector(`[data-army-slot="${slot}"]`);
-    if(existing){
-     existing.classList.toggle('selected',isSelected);
-     existing.classList.toggle('can-target',isTarget);
-     existing.setAttribute('aria-pressed',String(isSelected));
+    if(!existing)continue;
+    existing.classList.toggle('hero-army-empty',!unit);
+    existing.classList.toggle('selected',isSelected);
+    existing.classList.toggle('can-target',isTarget);
+    existing.setAttribute('aria-pressed',String(isSelected));
+    if(JSON.stringify(unit)!==JSON.stringify(prev)){
+     const label=unit?`${unit.name} × ${unit.count}`:(fr?`Emplacement libre #${slot+1}`:`Empty slot #${slot+1}`);
+     existing.setAttribute('aria-label',label);
+     const tpl=document.createElement('template');
+     tpl.innerHTML=armySlotMarkup(slot,unit,{selected:isSelected,target:isTarget,attrs:`data-army-slot="${slot}"`,portrait,fr});
+     const nextContent=tpl.content.firstElementChild?.querySelector('.hero-army-slot-content,.hero-army-empty-content');
+     const curContent=existing.querySelector('.hero-army-slot-content,.hero-army-empty-content');
+     if(nextContent&&curContent)curContent.replaceWith(nextContent);
+     needsPaint=true;
     }
    }
+   panel._armyPrevSlots=nextSlots.map(u=>u?{...u}:null);
+   if(needsPaint)paintCreaturePortraits(slotsContainer);
    const upgradeAll=panel.querySelector('[data-hero-upgrade-all]');
    if(upgradeAll)upgradeAll.disabled=!state.turn||hero.owned===false||!nextSlots.some(Boolean);
    const detailTitle=panel.querySelector('.hero-artifact-detail h3');
