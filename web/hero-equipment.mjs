@@ -310,7 +310,7 @@ export function createHeroEquipment({root,command,pointer=()=>{},onViewChange=()
       heroArmy.slots[selectedArmySlot]=toUnit;
      }
      command(10,heroArmy.id,selectedArmySlot,heroArmy.id,slot,0);
-     selectedArmySlot=slot;render();
+     selectedArmySlot=null;render();
     }
    }else{
     if(unit){selectedArmySlot=slot;render();}

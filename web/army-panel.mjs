@@ -101,10 +101,7 @@ export function renderArmyPanel({body,armies=[],portrait=()=>'',onMove,onTransfe
     if(name)name.textContent=unit?unit.name:(fr?'Libre':'Empty');
    }
   }
-  const targetArmy=focusTarget?armies.find(a=>String(a.id)===String(focusTarget.army)):null;
-  const targetSlot=focusTarget?Number(focusTarget.slot):NaN;
-  const targetUnit=targetArmy&&Number.isInteger(targetSlot)?targetArmy.slots?.[targetSlot]||null:null;
-  select(targetUnit?{army:targetArmy.id,slot:targetSlot,unit:targetUnit}:null);
+  select(null);
   return true;
  };
  return panel;
