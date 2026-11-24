@@ -147,7 +147,6 @@
 @layer ui-composition {
  #mobile-viewport #mobile-app .ui-hero-navigation .ui-hero-section-field,
  #mobile-viewport #mobile-app .ui-hero-navigation .ui-hero-section-field :is(.material-select-host,.MuiInputBase-root,[role=combobox]){pointer-events:auto;touch-action:manipulation}
- #mobile-viewport #mobile-app[data-mode=hero]>.mobile-nav{display:none}
  @container goonk-viewport (orientation:portrait) and (max-width:380px){
   #mobile-viewport #mobile-app .hero-primary .hero-stat-label-full{display:none}
   #mobile-viewport #mobile-app .hero-primary .hero-stat-label-short{display:inline}
