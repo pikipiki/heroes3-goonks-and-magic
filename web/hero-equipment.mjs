@@ -291,9 +291,7 @@ export function createHeroEquipment({root,command,pointer=()=>{},onViewChange=()
     return;
    }
    if(selectedArmySlot===slot){
-    selectedArmySlot=null;
-    splitActive=false;
-    render();
+    openCreatureDetails(slot);
     return;
    }
    if(hero.owned!==false&&state.turn){
