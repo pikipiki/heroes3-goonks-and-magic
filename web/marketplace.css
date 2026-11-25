@@ -3,7 +3,7 @@ html.goonk-mobile #mobile-app[data-market-view=mobile] {
  grid-template-columns:minmax(0,1fr);
  grid-template-rows:minmax(0,1fr);
 }
-#mobile-app[data-market-view=mobile] :is(.mobile-top,.mobile-nav,#mobile-scene,.scene-tools,.scene-hint,#mobile-overview) {display:none}
+#mobile-app[data-market-view=mobile] :is(.mobile-nav,#mobile-scene,.scene-tools,.scene-hint,#mobile-overview) {display:none}
 #mobile-app[data-mode=market] :is(.town-portrait-buildings,.town-view,#town-overview) {display:none}
 #mobile-app[data-market-view=mobile] .mobile-play {grid-column:1;grid-row:1}
 .market-page {

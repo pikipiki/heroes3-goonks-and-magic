@@ -128,7 +128,7 @@ html.goonk-mobile #mobile-viewport #mobile-app:is([data-mode]){position:relative
 #mobile-app .dialog-choice p{font-size:var(--ui-type-body2);line-height:1.35;margin:0;max-width:36ch}
 #mobile-app .dialog-presentation footer{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px}
 #mobile-app .dialog-presentation footer button{min-height:48px}
-html.goonk-mobile #mobile-app[data-dialog-presentation]>:is(.mobile-nav,.mobile-top),#mobile-app[data-dialog-presentation] :is(.scene-tools,.scene-hint){display:none}
+html.goonk-mobile #mobile-app[data-dialog-presentation]>.mobile-nav,#mobile-app[data-dialog-presentation] :is(.scene-tools,.scene-hint){display:none}
 @container goonk-viewport (orientation:landscape){
  html.goonk-mobile #mobile-app[data-mode=map] #mobile-scene,html.goonk-mobile #mobile-app[data-mode=town] #mobile-scene{width:100%;height:100%;max-width:none;margin:0}
  html.goonk-mobile #mobile-app:is([data-mode=map],[data-mode=town])>.mobile-play{margin:0;padding:0;max-width:none;width:100%}
