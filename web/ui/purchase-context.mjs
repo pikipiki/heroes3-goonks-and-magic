@@ -23,10 +23,11 @@ export function usePurchaseContext(root){
   watched?.observer.disconnect();
   if(source){const observer=new MutationObserver(()=>usePurchaseContext(root));observer.observe(source,{subtree:true,childList:true,attributes:true,attributeFilter:['hidden','aria-label']});sources.set(root,{source,observer});}
  }
- const purchase=!!source&&!source.hidden&&(!!root.dataset.sheet||!['map','battle','menu','lobby','campaign'].includes(mode));
+ const landscape=root.clientWidth>root.clientHeight;
+ const purchase=landscape&&!!source&&!source.hidden&&(!!root.dataset.sheet||!['map','battle','menu','lobby','campaign'].includes(mode));
  if(root.dataset.uiPurchase!==String(purchase))root.dataset.uiPurchase=String(purchase);
  let record=records.get(root);
- const candidates=purchase?[...root.querySelectorAll('.mobile-sheet:not([hidden])>.sheet-head,.progression-page:not([hidden])>header')]:[];
+ const candidates=purchase?[...root.querySelectorAll('.mobile-sheet:not([hidden])>.sheet-head,.progression-page:not([hidden]):not(.troop-equipment-page):not(:has(.troop-action-unit))>header')]:[];
  const header=candidates.filter(node=>{
   const dialog=node.closest('.MuiDialog-root'),hidden=node.closest('[aria-hidden="true"]');
   // A Select/Menu may temporarily hide the entire app from accessibility.

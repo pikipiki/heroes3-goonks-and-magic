@@ -58,8 +58,8 @@
  #mobile-app .ui-purchase-header>.ui-header-calendar{grid-area:2/2}
 }
 @layer ui-composition {
- #mobile-app .ui-purchase-header{height:105px;min-height:105px;max-height:105px;grid-template-rows:48px 36px;row-gap:4px;padding:8px;box-sizing:border-box}
- #mobile-app .ui-purchase-header>:is(h2,.ui-heading){align-self:start}
+ #mobile-app .ui-purchase-header{height:auto;min-height:0;max-height:none;grid-template-rows:auto auto;row-gap:4px;padding:4px 8px;box-sizing:border-box}
+ #mobile-app .ui-purchase-header>:is(h2,.ui-heading){align-self:center}
  #mobile-app .mobile-sheet:has(>.ui-purchase-header){--ui-screen-head-height:105px}
 }
 
