@@ -118,3 +118,7 @@
   #mobile-app .MuiDialog-paper:has(.ui-context-layout)>.ui-action-dock{grid-area:4/2}
  }
 }
+@media (orientation:portrait){
+ body:has(#mobile-app:not([data-mode=menu],[data-mode=lobby],[data-mode=load],[data-mode=campaign],[data-mode=campaign-scenario],[data-mode=online-login],[data-mode=online-lobby],[data-mode=connecting],[data-mode=battle])>.mobile-top:not([hidden])) .MuiDialog-root:not(:has(#game-menu,.battle-result,.lobby-picker,.session-recovery,.campaign-media-viewer)){top:56px}
+ body:has(#mobile-app:not([data-mode=menu],[data-mode=lobby],[data-mode=load],[data-mode=campaign],[data-mode=campaign-scenario],[data-mode=online-login],[data-mode=online-lobby],[data-mode=connecting],[data-mode=battle])>.mobile-top:not([hidden])) .MuiDialog-root:not(:has(#game-menu,.battle-result,.lobby-picker,.session-recovery,.campaign-media-viewer)) .MuiDialog-paper{top:0}
+}

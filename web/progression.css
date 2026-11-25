@@ -66,10 +66,6 @@
 #mobile-app .troop-action-choices img{grid-row:span 2;width:48px;height:48px}
 #mobile-app .troop-action-choices span{font-size:var(--ui-type-body2);line-height:1.4;white-space:normal}
 #mobile-app .progression-page:is(.troop-equipment-page,:has(.troop-action-unit)){padding:4px;border:0;box-shadow:none}
-@media (orientation:portrait){
- body:has(#mobile-app>.mobile-top>.mobile-resources:not([hidden])) .MuiDialog-root:has(:is(.progression-page,.mobile-sheet)){top:56px}
- body:has(#mobile-app>.mobile-top>.mobile-resources:not([hidden])) #mobile-app :is(.progression-page,.mobile-sheet){top:56px}
-}
 @container goonk-viewport (orientation:landscape){
  #mobile-app .progression-page:has(.troop-action-unit){grid-template-rows:auto auto minmax(0,1fr)}
  #mobile-app .progression-page:has(.troop-action-unit)>.progression-scroll{display:contents}
