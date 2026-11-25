@@ -26,7 +26,7 @@
 #mobile-app .troop-current canvas{width:48px;height:48px;float:left;margin-right:8px;image-rendering:pixelated}
 #mobile-app .troop-current [data-troop-remove]{width:100%;margin-top:6px}
 #mobile-app .troop-inventory .progression-offer span{font-size:var(--ui-type-caption)}
-#mobile-app:is([data-troop-equipment],[data-progression-choice])>.mobile-top,#mobile-app:is([data-troop-equipment],[data-progression-choice])>.mobile-nav{visibility:hidden;pointer-events:none}
+#mobile-app:is([data-troop-equipment],[data-progression-choice])>.mobile-nav{visibility:hidden;pointer-events:none}
 @container goonk-viewport (orientation:landscape){
  #mobile-app .progression-page{grid-template-columns:minmax(0,1fr) var(--control-rail,180px);grid-template-rows:auto minmax(0,1fr)}
  #mobile-app .progression-page>header{grid-column:1;grid-row:1}
@@ -35,7 +35,7 @@
  #mobile-app .progression-page footer p{max-height:50%;margin-bottom:auto}
 }
 @media(min-width:900px){#mobile-app .progression-offers,#mobile-app .troop-inventory{grid-template-columns:repeat(2,minmax(0,1fr))}}
-#mobile-app[data-troop-deployment]>.mobile-top,#mobile-app[data-troop-deployment]>.mobile-nav{visibility:hidden;pointer-events:none}
+#mobile-app[data-troop-deployment]>.mobile-nav{visibility:hidden;pointer-events:none}
 #mobile-app .deployment-quantity{display:flex;align-items:center;gap:12px;justify-content:space-between}
 #mobile-app .deployment-quantity input{box-sizing:border-box;min-height:44px;width:100px;font-size:var(--ui-type-titleSmall);background:#291a10;color:#ffe9b5;border:2px ridge #b99a56;padding:6px}
 #mobile-app .deployment-quantity-tools{display:grid;grid-template-columns:44px minmax(40px,1fr) 44px 52px;align-items:center;gap:6px;margin:6px 0}
@@ -55,7 +55,7 @@
  #mobile-app .troop-deployment-page>footer{grid-column:2;grid-row:2;min-height:0}
  #mobile-app .troop-deployment-page h2{font-size:var(--ui-type-statLarge)}
 }
-#mobile-app[data-troop-actions]>.mobile-top,#mobile-app[data-troop-actions]>.mobile-nav{visibility:hidden;pointer-events:none}
+#mobile-app[data-troop-actions]>.mobile-nav{visibility:hidden;pointer-events:none}
 #mobile-app .troop-actions-page{z-index:40}
 #mobile-app .troop-action-unit{display:flex;align-items:center;gap:12px;padding:12px;border:2px ridge #b99a56;background:#21160dcc}
 #mobile-app .troop-action-unit>:is(img,canvas,span){width:64px;height:72px;object-fit:contain;flex-shrink:0}

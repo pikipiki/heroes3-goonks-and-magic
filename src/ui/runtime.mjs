@@ -232,7 +232,7 @@ export function createMaterialDialogBoundary(nativeRoot,initialOptions={}){
    onClose:(event,reason)=>options.onClose?.(event,reason),
    transitionDuration:options.transitionDuration,
    slots:{paper:NativePaper,container:NativeContainer},
-   slotProps:{root:{ref:node=>{modalRoot=node;},style:{position:'absolute',inset:0,pointerEvents:open?'auto':'none'}},paper:{'aria-label':options.ariaLabel},backdrop:{style:{position:'absolute',pointerEvents:open?'auto':'none'}}},
+   slotProps:{root:{ref:node=>{modalRoot=node;},style:{position:'absolute',pointerEvents:open?'auto':'none'}},paper:{'aria-label':options.ariaLabel},backdrop:{style:{position:'absolute',pointerEvents:open?'auto':'none'}}},
   }))));
  };
  return{
@@ -260,7 +260,7 @@ function requestMaterialPrompt({title,message,confirmLabel,cancelLabel,closeLabe
   const finish=()=>queueMicrotask(()=>{react.unmount();host.remove();resolve(confirmation?value:undefined);});
   const update=()=>flushSync(()=>react.render(h(Themed,null,h(Dialog,{
    open,container,maxWidth:'sm',fullWidth:true,disableScrollLock:true,closeAfterTransition:false,onClose:(event,reason)=>{if(reason==='escapeKeyDown')close(false);},onTransitionExited:finish,
-   slotProps:{root:{style:{position:'absolute',inset:0,pointerEvents:open?'auto':'none'}},backdrop:{style:{position:'absolute',pointerEvents:open?'auto':'none'}}},
+   slotProps:{root:{style:{position:'absolute',pointerEvents:open?'auto':'none'}},backdrop:{style:{position:'absolute',pointerEvents:open?'auto':'none'}}},
   },h(DialogTitle,null,title),h(DialogContent,null,h(DialogContentText,{sx:{whiteSpace:'pre-line'}},message)),h(DialogActions,null,
    confirmation?h(Button,{onClick:()=>close(false)},cancelLabel):null,
    h(Button,{variant:'contained',onClick:()=>close(true),autoFocus:true},confirmation?confirmLabel:closeLabel),
