@@ -78,7 +78,7 @@
  #mobile-app .mobile-menu:is([data-kind=lobby],[data-kind=load]){background:#24190f url('../h3-theme/stone.png')}
  #mobile-app[data-mode=menu] .mobile-menu{background:linear-gradient(#21140666,#1b100be6),var(--welcome-image) center/cover,#24190f url('../h3-theme/stone.png')}
  #mobile-app:is([data-mode=menu],[data-mode=lobby],[data-mode=load],[data-mode=campaign],[data-mode=campaign-scenario]) .scene-hint{display:none}
- #mobile-app:is([data-mode=menu],[data-mode=lobby],[data-mode=load],[data-mode=campaign],[data-mode=campaign-scenario],[data-mode=online-login],[data-mode=online-lobby],[data-mode=connecting],[data-mode=battle],[data-mode=hero-exchange],[data-mode=mage-guild],[data-mode=creature])>.mobile-top>.mobile-resources{display:none}
+ #mobile-app:is([data-mode=menu],[data-mode=lobby],[data-mode=load],[data-mode=campaign],[data-mode=campaign-scenario],[data-mode=online-login],[data-mode=online-lobby],[data-mode=connecting],[data-mode=battle],[data-mode=hero-exchange],[data-mode=mage-guild])>.mobile-top>.mobile-resources{display:none}
  #mobile-app:is([data-mode=menu],[data-mode=lobby],[data-mode=load],[data-mode=campaign],[data-mode=campaign-scenario],[data-mode=online-login],[data-mode=online-lobby],[data-mode=connecting],[data-mode=hero-exchange])>.mobile-top>.mobile-calendar{display:none}
  #mobile-app:not([data-mode=battle])>.mobile-top>.battle-view{display:none}
  #mobile-app:is([data-mode=hero],[data-mode=dialog]) .scene-tools{display:none}
