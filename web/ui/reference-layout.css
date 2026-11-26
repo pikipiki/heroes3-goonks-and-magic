@@ -422,4 +422,16 @@
  :is(#mobile-app,#game-menu,[data-ui-app],.ui-popup) :is(.ui-choice-tile,.hero-army-slot):is([aria-pressed=true],.selected,[aria-selected=true]):hover,
  :is(#mobile-app,#game-menu,[data-ui-app],.ui-popup) :is(.ui-choice-tile,.hero-army-slot):is([aria-pressed=true],.selected,[aria-selected=true]):focus-visible{background:linear-gradient(180deg,#741c17,#410d0b);border:1px solid #edca84;border-image:none;outline:none;box-shadow:inset 0 0 0 1px #edca84,0 0 10px rgba(237,202,132,0.65)}
  :is(.MuiDialog-paper,#mobile-app .ui-modal-layout,#mobile-app .mobile-sheet,#mobile-app .dialog-presentation,#mobile-app .progression-page,#mobile-app .creature-sheet,[role="dialog"]){background-color:#24160b;background-image:linear-gradient(180deg,rgba(84,52,26,0.65),rgba(46,26,12,0.75)),url('../h3-theme/stone.png')}
+ @container goonk-viewport (orientation:landscape){
+  #mobile-app .mobile-tavern.ui-screen-layout{grid-template-rows:auto minmax(0,1fr);gap:6px 8px}
+  #mobile-app .mobile-tavern .tavern-header.ui-screen-header{min-height:0;padding:4px 8px;gap:2px}
+  #mobile-app .mobile-tavern .tavern-hero{padding:6px;gap:6px}
+  #mobile-app .mobile-tavern .tavern-hero .tavern-identity{gap:2px;justify-content:center;min-height:0;overflow:hidden}
+  #mobile-app .mobile-tavern .tavern-identity canvas{height:clamp(44px,20cqh,64px);width:auto;max-width:100%}
+  #mobile-app .mobile-tavern .tavern-identity h3{font:var(--ui-font-title-compact);margin:0}
+  #mobile-app .mobile-tavern .tavern-identity p{font:var(--ui-font-body-small);margin:0}
+  #mobile-app .mobile-tavern .tavern-hero .tavern-actions{gap:6px}
+  #mobile-app .mobile-tavern .tavern-extras.ui-action-dock{max-height:100%;align-self:stretch;justify-content:flex-start;gap:6px;padding:4px 8px;overflow-y:auto;touch-action:pan-y}
+  #mobile-app .mobile-tavern .tavern-extras [data-ui-accordion-summary]{min-height:44px}
+ }
 }
