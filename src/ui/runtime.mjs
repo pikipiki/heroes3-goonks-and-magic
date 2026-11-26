@@ -107,10 +107,11 @@ function NativeButton({component:Component,props,children}){
 }
 // Shared navigation primitives retain native game click commands.
 function NativeTabs({props,items}){
- const landscape=useMediaQuery('(orientation: landscape)'),vertical=props['data-ui-tabs-landscape']!==undefined&&landscape;
+ const landscape=useMediaQuery('(orientation: landscape)'),vertical=props['data-ui-tabs-vertical']!==undefined||(props['data-ui-tabs-landscape']!==undefined&&landscape);
  const selected=Math.max(0,items.findIndex(item=>item.getAttribute('aria-pressed')==='true'));
  const [value,setValue]=useState(selected);useLayoutEffect(()=>setValue(selected),[selected]);
- return h(Tabs,{...props,component:'nav',value,orientation:vertical?'vertical':'horizontal',variant:vertical?'standard':'fullWidth',onChange:(_,next)=>setValue(next)},items.map((item,index)=>{const native=propsFor(item);return h(Tab,{...native,key:index,value:index,'data-mui-component':'Tab',label:h(Box,{component:'span',className:'ui-tab-label'},...[...item.childNodes].map(element))});}));
+ const tabProps={...props,className:[props.className,vertical?'ui-vertical-tabs':''].filter(Boolean).join(' ')};
+ return h(Tabs,{...tabProps,component:'nav',value,orientation:vertical?'vertical':'horizontal',variant:vertical?'standard':'fullWidth',onChange:(_,next)=>setValue(next)},items.map((item,index)=>{const native=propsFor(item);if(native.className)native.className=native.className.split(/\s+/).filter(c=>c&&c!=='ui-button').join(' ');return h(Tab,{...native,key:index,value:index,'data-mui-component':'Tab',label:h(Box,{component:'span',className:'ui-tab-label'},...[...item.childNodes].map(element))});}));
 }
 function NativeStepper({props,items}){
  const active=items.findIndex(item=>item.getAttribute('aria-current')==='step');
