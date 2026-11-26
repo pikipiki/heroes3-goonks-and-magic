@@ -329,7 +329,7 @@
 @layer screen-layouts {
  @container goonk-viewport (orientation:landscape){
   #mobile-app .ui-modal-layout{grid-template-columns:minmax(0,1fr) var(--ui-modal-rail,var(--control-rail,244px))}
-  #mobile-app .ui-modal-layout>.ui-screen-header{grid-column:2;grid-row:1;min-width:0}
+  #mobile-app .ui-modal-layout>.ui-screen-header{grid-column:2;grid-row:1;min-width:0;margin-inline:4px}
   #mobile-app .ui-modal-layout>.ui-modal-content{grid-column:1;grid-row:1/-1;min-height:0;min-width:0;overflow:auto;touch-action:pan-y}
   #mobile-app .ui-modal-layout>footer.ui-action-dock{grid-column:2}
   #mobile-app .dialog-presentation[data-kind=commander][data-tree=true]{--ui-modal-rail:168px;grid-template-rows:56px minmax(0,1fr) auto}
