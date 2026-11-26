@@ -92,7 +92,7 @@
  }
 }
 @layer ui-composition {
- #mobile-app .hero-exchange-page>.exchange-inventories{grid-row:1/-1;align-self:stretch;height:100%;max-height:none;min-height:0;grid-template-rows:minmax(0,1fr)}
+ #mobile-app .hero-exchange-page>.exchange-inventories{grid-row:1/4;align-self:stretch;height:100%;max-height:none;min-height:0;grid-template-rows:minmax(0,1fr)}
  #mobile-app .exchange-inventories>section{height:100%;min-height:0;overflow:auto}
  #mobile-app .exchange-troop-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
  #mobile-app .exchange-troop-grid .exchange-slot{padding:8px 4px 4px}
