@@ -411,7 +411,7 @@
  :is(#mobile-app,#game-menu,[data-ui-app],.ui-popup) .MuiButton-root:not(.ui-choice-tile):not(.hero-army-slot):not(.hall-form):not([data-guild-spell]):not([data-variant]):not([data-commander-tree]):not(.lobby-choice-card):not([data-choice-value]):not(.battle-view):not(.army-troop):not(.exchange-slot):is([aria-pressed=true],.selected),
  :is(#mobile-app,#game-menu,[data-ui-app],.ui-popup) .MuiButton-root:not(.ui-choice-tile):not(.hero-army-slot):not(.hall-form):not([data-guild-spell]):not([data-variant]):not([data-commander-tree]):not(.lobby-choice-card):not([data-choice-value]):not(.battle-view):not(.army-troop):not(.exchange-slot):is([aria-pressed=true],.selected):hover,
  :is(#mobile-app,#game-menu,[data-ui-app],.ui-popup) .MuiButton-root:not(.ui-choice-tile):not(.hero-army-slot):not(.hall-form):not([data-guild-spell]):not([data-variant]):not([data-commander-tree]):not(.lobby-choice-card):not([data-choice-value]):not(.battle-view):not(.army-troop):not(.exchange-slot):is([aria-pressed=true],.selected):focus-visible{border-color:#66bb6a;background:#163519;outline:2px solid #66bb6a;outline-offset:-2px;box-shadow:0 0 10px rgba(76,175,80,0.65)}
- :is(#mobile-app,#game-menu,[data-ui-app],.ui-popup) :is(button.back-button,.army-back,[data-ui="sheet-back"],[data-ui="back"],[data-ui="cancel-recruit"],[data-multiplayer-back]){background:linear-gradient(180deg,#741c17,#410d0b);border:1px solid #edca84;border-image:none;color:#fff2cf}
+ :is(#mobile-app,#game-menu,[data-ui-app],.ui-popup) :is(button.back-button,.army-back,[data-ui="sheet-back"],[data-ui="back"],[data-ui="cancel-recruit"],[data-ui="target-picker-back"],[data-multiplayer-back]){background:linear-gradient(180deg,#741c17,#410d0b);border:1px solid #edca84;border-image:none;color:#fff2cf}
  :is(#mobile-app,#game-menu,[data-ui-app],.ui-popup) .ui-overflow-trigger{border:1px solid #edca84;border-image:none}
  .MuiDialog-paper{box-sizing:border-box;width:100%;height:100%;max-width:none;max-height:none;margin:0;display:grid;grid-template-rows:auto minmax(0,1fr) auto;border:1px solid #edca84;border-radius:0;background-color:#24160b;background-image:linear-gradient(180deg,rgba(84,52,26,0.65),rgba(46,26,12,0.75)),url('../h3-theme/stone.png');box-shadow:none}
  .MuiDialogTitle-root{background:linear-gradient(#7c261be6,#3e180fe6),url('../h3-theme/stone.png');border-bottom:1px solid #edca84;padding:10px 16px;color:#fff2cf}
@@ -460,6 +460,13 @@
  #mobile-app .mobile-spellbook .spell-content{border:0;padding:0;background:transparent}
  #mobile-app .mobile-spellbook .spell-list{border:0;padding:0;background:transparent}
  #mobile-viewport #mobile-app[data-mode=battle] .battle-panel .battle-unit-inspect{position:static;overflow:visible}
+ #mobile-app .ui-split-button{display:flex;width:100%;min-width:0}
+ #mobile-app .ui-split-button>.ui-split-button__action{flex:1 1 auto;min-width:0;display:flex;align-items:center;justify-content:flex-start;gap:8px;padding:6px 10px;min-height:56px;text-align:left}
+ #mobile-app .ui-split-button>.ui-split-button__toggle{flex:0 0 48px;width:48px;min-width:48px;min-height:56px;padding:0;font-size:18px;border-left:1px solid #edca84}
+ #mobile-app .target-split-art{width:44px;height:44px;flex:0 0 44px;object-fit:contain;border:1px solid rgba(237,202,132,0.5);background:#17110b}
+ #mobile-app .target-split-copy{display:flex;flex-direction:column;align-items:flex-start;gap:2px;min-width:0;flex:1 1 auto}
+ #mobile-app .target-split-copy>strong{font:var(--ui-font-label);line-height:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+ #mobile-app .target-split-copy>small{font:var(--ui-font-resource);line-height:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
  @container goonk-viewport (orientation:portrait){
   #mobile-viewport #mobile-app[data-mode=battle][data-target-picker]>.mobile-nav{height:auto;min-height:0;max-height:40cqh;padding:4px;gap:6px}
  }

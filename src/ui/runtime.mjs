@@ -3,6 +3,7 @@ import {createRoot} from 'react-dom/client';
 import {flushSync} from 'react-dom';
 import {StyledEngineProvider,ThemeProvider} from '@mui/material/styles';
 import Button from '@mui/material/Button';
+import ButtonGroup from '@mui/material/ButtonGroup';
 import Box from '@mui/material/Box';
 import InputBase from '@mui/material/InputBase';
 import Slider from '@mui/material/Slider';
@@ -113,6 +114,27 @@ function NativeTabs({props,items}){
  const tabProps={...props,className:[props.className,vertical?'ui-vertical-tabs':''].filter(Boolean).join(' ')};
  return h(Tabs,{...tabProps,key:vertical?'vertical':'horizontal',component:'nav',value,orientation:vertical?'vertical':'horizontal',variant:vertical?'standard':'fullWidth',onChange:(_,next)=>setValue(next)},items.map((item,index)=>{const native=propsFor(item);if(native.className)native.className=native.className.split(/\s+/).filter(c=>c&&c!=='ui-button').join(' ');return h(Tab,{...native,key:index,value:index,'data-mui-component':'Tab',label:h(Box,{component:'span',className:'ui-tab-label'},...[...item.childNodes].map(element))});}));
 }
+function NativeSplitButton({props,confirmNode,selectNode}){
+ const [open,setOpen]=useState(false);
+ const groupRef=useRef(null),selectRef=useRef(null);
+ const options=selectNode?[...selectNode.options].map(o=>({value:o.value,label:o.textContent,disabled:o.disabled,selected:o.selected})):[];
+ const selected=options.find(o=>o.selected)?.value??options[0]?.value??'';
+ const [value,setValue]=useState(selected);useLayoutEffect(()=>setValue(selected),[selected]);
+ const confirmProps=confirmNode?propsFor(confirmNode):{};
+ const confirmChildren=confirmNode?[...confirmNode.childNodes].map(element):[];
+ const selectProps=selectNode?propsFor(selectNode):{};
+ const menuLabel=props['data-menu-label']||'Choose option';
+ return h(React.Fragment,null,
+  h(ButtonGroup,{...props,ref:groupRef,variant:'contained',disableElevation:true,className:['ui-split-button',props.className].filter(Boolean).join(' ')},
+   h(Button,{...confirmProps,variant:'contained',disableElevation:true,className:['ui-split-button__action',confirmProps.className].filter(Boolean).join(' ')},...confirmChildren),
+   h(Button,{type:'button',variant:'contained',disableElevation:true,className:'ui-split-button__toggle',disabled:!options.length,'aria-label':menuLabel,'aria-haspopup':'menu','aria-expanded':open?'true':'false',onClick:()=>setOpen(v=>!v)},'▾')
+  ),
+  h('input',{...selectProps,ref:selectRef,type:'hidden',value,readOnly:true}),
+  h(Menu,{anchorEl:groupRef.current,open:open&&Boolean(groupRef.current),onClose:()=>setOpen(false),anchorOrigin:{vertical:'top',horizontal:'right'},transformOrigin:{vertical:'bottom',horizontal:'right'}},
+   options.map((opt,index)=>h(MenuItem,{key:opt.value||index,selected:opt.value===value,disabled:opt.disabled,onClick:()=>{setOpen(false);setValue(opt.value);if(selectRef.current){selectRef.current.value=opt.value;selectRef.current.dispatchEvent(new Event('change',{bubbles:true}));}}},opt.label))
+  )
+ );
+}
 function NativeStepper({props,items}){
  const active=items.findIndex(item=>item.getAttribute('aria-current')==='step');
  return h(Stepper,{...props,component:'nav',orientation:'vertical',nonLinear:true,activeStep:active},items.map((item,index)=>{
@@ -141,6 +163,7 @@ function element(node,index){if(node.nodeType===3)return node.textContent;if(nod
  if(node.tagName==='TR')return h(TableRow,props,...[...node.childNodes].map(element));
  if(['TD','TH'].includes(node.tagName))return h(TableCell,{...props,component:node.localName},...[...node.childNodes].map(element));
  if(node.hasAttribute('data-ui-tabs'))return h(NativeTabs,{key:props.key,props,items:[...node.children].filter(child=>child.tagName==='BUTTON')});
+ if(node.hasAttribute('data-ui-split-button'))return h(NativeSplitButton,{key:props.key,props,confirmNode:node.querySelector(':scope>button'),selectNode:node.querySelector(':scope>select')});
  if(node.hasAttribute('data-ui-stepper'))return h(NativeStepper,{key:props.key,props,items:[...node.children]});
  if(node.tagName==='DETAILS'){const summary=node.querySelector(':scope>summary');return h(NativeAccordion,{key:props.key,props,summary,content:[...node.childNodes].filter(child=>child!==summary)});}
  const choice=node.tagName==='LABEL'&&node.querySelector(':scope>input[type=radio],:scope>input[type=checkbox]');if(choice)return h(ChoiceField,{key:props.key,input:propsFor(choice),labelProps:props,label:[...node.childNodes].filter(child=>child!==choice).map(element)});

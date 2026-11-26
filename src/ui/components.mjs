@@ -61,3 +61,4 @@ export {default as StepLabel} from '@mui/material/StepLabel';
 
 export {RadarChart} from '@mui/x-charts/RadarChart';
 export {VerticalTabs} from './vertical-tabs.mjs';
+export {SplitButton} from './split-button.mjs';
