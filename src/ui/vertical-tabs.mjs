@@ -2,26 +2,30 @@ import React from 'react';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
+import useMediaQuery from '@mui/material/useMediaQuery';
 const h = React.createElement;
 
-// Reusable Material UI vertical tabs with side indicator bar.
+// Reusable Material UI tabs with side indicator (vertical) and bottom indicator (horizontal).
 export function VerticalTabs({
   value,
   onChange,
   items = [],
   label,
   className = '',
+  orientation = 'vertical',
   indicatorSide = 'left',
   ...props
 }) {
+  const landscape = useMediaQuery('(orientation: landscape)');
+  const resolved = orientation === 'responsive' ? (landscape ? 'vertical' : 'horizontal') : orientation;
   const classes = ['ui-vertical-tabs', className].filter(Boolean).join(' ');
   return h(
     Tabs,
     {
       ...props,
       component: 'nav',
-      orientation: 'vertical',
-      variant: 'standard',
+      orientation: resolved,
+      variant: resolved === 'vertical' ? 'standard' : 'fullWidth',
       value,
       onChange,
       className: classes,
