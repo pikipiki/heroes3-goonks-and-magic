@@ -95,7 +95,8 @@
  #mobile-app .hero-exchange-page>.exchange-inventories{grid-row:1/4;align-self:stretch;height:100%;max-height:none;min-height:0;grid-template-rows:minmax(0,1fr)}
  #mobile-app .exchange-inventories>section{height:100%;min-height:0;overflow:auto}
  #mobile-app .exchange-troop-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
- #mobile-app .exchange-troop-grid .exchange-slot{padding:8px 4px 4px}
+ #mobile-app .exchange-troop-grid .exchange-slot{padding:20px 4px 4px}
+ #mobile-app .exchange-troop-grid .exchange-slot:not(:has(img,canvas)){justify-content:center}
  #mobile-app .exchange-troop-grid .exchange-slot>span[aria-hidden]{min-height:96px;height:96px}
  #mobile-app .exchange-troop-grid .exchange-slot>span[aria-hidden] :is(img,canvas){width:100%;height:100%;object-fit:contain}
  #mobile-app[data-sheet=army] .army-grid .army-troop.ui-choice-tile.selected{background:#5c321c;border-color:#ffe4a2;outline:none;box-shadow:0 0 0 1px #ffe4a2}
