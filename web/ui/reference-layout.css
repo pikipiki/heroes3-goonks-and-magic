@@ -351,6 +351,7 @@
   #mobile-app .dialog-presentation:not([data-kind=commander])[data-choices="1"]>.ui-screen-header{grid-column:3;grid-row:1}
   #mobile-app .dialog-presentation:not([data-kind=commander])[data-choices="1"]>footer.ui-action-dock{grid-column:3;grid-row:3}
   #mobile-app .dialog-presentation:not([data-kind=commander])[data-choices="1"]>.dialog-copy{grid-column:1;grid-row:1/-1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:8px;overflow:auto}
+  #mobile-app .dialog-presentation:not([data-kind=commander])[data-choices="1"]>.dialog-copy :is(img,canvas){display:block;margin-inline:auto}
   #mobile-app .dialog-presentation:not([data-kind=commander])[data-choices="1"]>.dialog-choices{grid-column:2;grid-row:1/-1;align-content:center;justify-content:center}
  }
  #mobile-app .dialog-presentation[data-kind=commander]>footer:has(>[data-dialog-confirm][hidden]){grid-template-columns:repeat(2,minmax(0,1fr))}
