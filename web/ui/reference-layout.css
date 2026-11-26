@@ -467,6 +467,10 @@
  #mobile-app .target-split-copy{display:flex;flex-direction:column;align-items:flex-start;gap:2px;min-width:0;flex:1 1 auto}
  #mobile-app .target-split-copy>strong{font:var(--ui-font-label);line-height:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
  #mobile-app .target-split-copy>small{font:var(--ui-font-resource);line-height:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+ #game-menu.MuiDialog-paper{display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start}
+ #game-menu>.autosave-status{flex:none;margin:0;padding:10px 16px 6px}
+ #game-menu>nav{flex:none;margin-top:0}
+ #game-menu>.game-menu-body{flex:1 1 auto;min-height:0;overflow-y:auto;touch-action:pan-y}
  @container goonk-viewport (orientation:portrait){
   #mobile-viewport #mobile-app[data-mode=battle][data-target-picker]>.mobile-nav{height:auto;min-height:0;max-height:40cqh;padding:4px;gap:6px}
  }
