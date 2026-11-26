@@ -8,8 +8,8 @@ test('Only the selected hero is marked when two heroes have the same display nam
   {id:42,index:1,name:'Iona',movement:1000}
  ]});
  assert.match(html,/data-hero-index="0" aria-pressed="false"/);
- assert.match(html,/data-hero-index="1" aria-pressed="true"[^>]*><span class="hero-selected-mark"/);
- assert.equal((html.match(/class="hero-selected-mark"/g)||[]).length,1);
+ assert.match(html,/class="hero-movement-item is-active"><button data-hero-index="1" aria-pressed="true"/);
+ assert.equal((html.match(/is-active/g)||[]).length,1);
 });
 
 test('The no-spellbook badge is independent of mana and hero selection',()=>{
