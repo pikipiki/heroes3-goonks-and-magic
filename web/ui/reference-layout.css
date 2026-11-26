@@ -446,4 +446,6 @@
  #mobile-app .MuiTabs-vertical.ui-vertical-tabs[data-indicator-side=right] .MuiTabs-indicator{left:auto;right:0}
  #mobile-app .MuiTabs-vertical.ui-vertical-tabs .MuiTab-root{width:100%;padding:10px 16px;justify-content:flex-start;align-items:flex-start;text-align:left}
  #mobile-app .MuiTabs-vertical.ui-vertical-tabs .MuiTab-root.Mui-selected{background:linear-gradient(90deg,rgba(116,28,23,0.72),rgba(65,13,11,0.28))}
+ #mobile-app .ui-purchase-resources .mobile-resource{display:flex;align-items:center;gap:2px;min-width:0}
+ #mobile-app .ui-purchase-resources .mobile-resource img{width:16px;height:12px;flex:0 0 16px;object-fit:contain;object-position:center;display:block}
 }
