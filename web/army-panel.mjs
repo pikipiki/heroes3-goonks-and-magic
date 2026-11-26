@@ -63,7 +63,7 @@ export function renderArmyPanel({body,armies=[],portrait=()=>'',onMove,onTransfe
     if(selection.army===army.id&&selection.slot===slot){if(onInfo)onInfo(army.id,slot);else select(null);return;}
     const separated=split.checked?Number(amount.value):0;
     if(split.checked&&(currentUnit||!Number.isInteger(separated)||separated<1||separated>=selection.unit.count)){onMessage(currentUnit?(fr?'Choisis un emplacement libre pour scinder.':'Choose an empty slot to split.'):(fr?'Choisis une quantité entre 1 et '+(selection.unit.count-1)+'.':'Choose an amount between 1 and '+(selection.unit.count-1)+'.'));return;}
-    pending=true;for(const item of buttons)item.button.disabled=true;split.disabled=true;amount.disabled=true;info.disabled=true;manage.disabled=true;status.textContent=fr?'Déplacement en cours…':'Moving…';
+    pending=true;split.disabled=true;amount.disabled=true;info.disabled=true;manage.disabled=true;status.textContent=fr?'Déplacement en cours…':'Moving…';
     onMove({fromArmy:selection.army,fromSlot:selection.slot,toArmy:army.id,toSlot:slot,amount:separated});
    });
   }
@@ -76,7 +76,6 @@ export function renderArmyPanel({body,armies=[],portrait=()=>'',onMove,onTransfe
   for(let i=0;i<nextArmies.length;i++)if(nextArmies[i].id!==armies[i].id)return false;
   armies=nextArmies;pending=false;
   split.disabled=false;amount.disabled=false;
-  for(const item of buttons)item.button.disabled=false;
   for(const army of armies){
    const section=rosters.querySelector(`.army-roster[aria-label="${CSS.escape(army.name)}"]`);
    const source=armies.find(other=>other.id!==army.id);
