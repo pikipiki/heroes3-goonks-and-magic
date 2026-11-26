@@ -471,6 +471,14 @@
  #game-menu>.autosave-status{flex:none;margin:0;padding:10px 16px 6px}
  #game-menu>nav{flex:none;margin-top:0}
  #game-menu>.game-menu-body{flex:1 1 auto;min-height:0;overflow-y:auto;touch-action:pan-y}
+ @media (orientation:landscape){
+  #game-menu.MuiDialog-paper{display:grid;grid-template-columns:minmax(0,1fr) var(--control-rail,244px);grid-template-rows:auto auto minmax(0,1fr);align-items:start}
+  #game-menu>header{grid-column:2;grid-row:1;display:flex;align-items:center;justify-content:space-between}
+  #game-menu>.autosave-status{grid-column:2;grid-row:2;padding:10px 12px}
+  #game-menu>.game-menu-status{grid-column:2;grid-row:3;padding:8px 12px;margin:0}
+  #game-menu>nav{grid-column:1;grid-row:1/-1;align-self:stretch;overflow-y:auto;touch-action:pan-y;padding:12px}
+  #game-menu>.game-menu-body{grid-column:1;grid-row:1/-1;align-self:stretch;overflow-y:auto;touch-action:pan-y;padding:12px}
+ }
  @container goonk-viewport (orientation:portrait){
   #mobile-viewport #mobile-app[data-mode=battle][data-target-picker]>.mobile-nav{height:auto;min-height:0;max-height:40cqh;padding:4px;gap:6px}
  }
