@@ -92,6 +92,7 @@
  }
 }
 @layer ui-composition {
+ #mobile-app .progression-page{background-color:#24160b;background-image:linear-gradient(180deg,rgba(84,52,26,0.55),rgba(46,26,12,0.65)),url('../h3-theme/stone.png');border:1px solid #edca84;box-sizing:border-box}
  #mobile-app:has(.creature-presentation:not([hidden]))>.battle-panel{display:none}
  #mobile-app .battle-panel-card{position:relative;cursor:pointer}
  #mobile-app .battle-unit-inspect{border:none;background:none;box-shadow:none;padding:0;position:static}
