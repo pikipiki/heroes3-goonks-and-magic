@@ -64,7 +64,7 @@
  }
 }
 @layer screen-layouts {
- #mobile-app[data-sheet=army] .army-rosters{overflow:auto;touch-action:pan-y;align-content:start;grid-auto-rows:auto;gap:16px;padding-bottom:max(16px,env(safe-area-inset-bottom))}
+ #mobile-app[data-sheet=army] .army-rosters{overflow:auto;touch-action:pan-y;align-content:start;grid-template-rows:none;grid-auto-rows:max-content;gap:16px;padding-bottom:max(16px,env(safe-area-inset-bottom))}
  #mobile-app[data-sheet=army] .army-roster{height:auto;min-height:0;gap:12px}
  #mobile-app .commander-summary .commander-facts{align-content:start;align-self:start}
  #mobile-app .commander-summary .commander-facts>div{min-height:0;height:auto;padding:4px 6px}
