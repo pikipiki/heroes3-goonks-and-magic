@@ -163,9 +163,9 @@ export function createHeroExchange({root,command,refresh,portrait}){
     return btn;
    };
    const menuItems=[];
+   if(troops&&item?.name)menuItems.push(makeMenuItem(fr?'Fiche':'Details',{'data-exchange-details':'','data-exchange-focus':'details'},'',!!pending));
    if(canSplit)menuItems.push(makeMenuItem(fr?'Scinder':'Split',{'data-exchange-split':'','data-exchange-focus':'split'},'',!!pending));
    if(troops&&item?.name&&heroes[source.side]?.owned)menuItems.push(makeMenuItem(fr?'Faire partir':'Dismiss',{'data-exchange-dismiss':'','data-exchange-focus':'dismiss'},'danger',!canDismiss||!!pending));
-   if(troops&&item?.name)menuItems.push(makeMenuItem(fr?'Fiche':'Details',{'data-exchange-details':'','data-exchange-focus':'details'},'',!!pending));
    actionsMenu=createPopupMenu({anchor:actionsBtn,container:panel,placement:'top-end',className:'exchange-actions-menu',label:()=>fr?'Actions sur la troupe':'Unit actions'});
    actionsMenu.setItems(menuItems);
    actionsMenu.list.addEventListener('click',event=>{const b=event.target.closest('button');if(b){event.stopPropagation();handleButton(b);}});
