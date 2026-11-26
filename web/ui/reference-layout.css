@@ -107,17 +107,16 @@
   #mobile-app[data-creature-view] .creature-presentation{top:56px;bottom:0;height:auto;max-height:none}
   #mobile-app .hero-exchange-page{grid-template-rows:auto auto minmax(0,1fr) auto}
   #mobile-app .hero-exchange-page>.exchange-inventories{grid-row:3}
-  #mobile-app[data-mode=battle] .battle-panel:not([hidden]){position:relative;display:grid;grid-template-columns:56px auto auto minmax(0,1fr);grid-template-rows:20px auto;align-items:start;gap:4px 8px;height:auto;min-height:0;margin:4px;padding:5px 18px 5px 6px;border:1px solid #edca84;background:#1d130b;box-sizing:border-box;cursor:pointer}
+  #mobile-app[data-mode=battle] .battle-panel:not([hidden]){position:relative;display:grid;grid-template-columns:56px auto minmax(0,1fr);grid-template-rows:20px auto;align-items:start;gap:4px 8px;height:auto;min-height:0;margin:4px;padding:5px 18px 5px 6px;border:1px solid #edca84;background:#1d130b;box-sizing:border-box;cursor:pointer}
   #mobile-app[data-mode=battle] .battle-panel:not([hidden])::after{content:'›';position:absolute;right:5px;top:50%;transform:translateY(-50%);color:#edca84;font-size:18px;line-height:1;pointer-events:none;z-index:4}
   #mobile-app[data-mode=battle] .battle-panel:not([hidden])>.battle-panel-card{display:contents}
   #mobile-app .battle-panel-card>.battle-unit-inspect{grid-column:1;grid-row:1/3;width:56px;height:56px}
-  #mobile-app .battle-panel-card>.battle-unit-info{grid-column:2/4;grid-row:1;justify-self:start;display:flex;flex-wrap:nowrap;white-space:nowrap;align-items:center;gap:4px;line-height:20px;align-self:center;min-width:0}
+  #mobile-app .battle-panel-card>.battle-unit-info{grid-column:2/4;grid-row:1;justify-self:start;display:flex;flex-wrap:nowrap;white-space:nowrap;align-items:center;gap:4px;line-height:20px;align-self:center;min-width:0;max-width:100%;overflow:hidden}
   #mobile-app .battle-panel-card>.battle-unit-info>*{line-height:20px;margin:0;white-space:nowrap}
   #mobile-app .battle-panel-card>.battle-unit-info>strong{font-size:13px}
   #mobile-app .battle-panel-card>.battle-unit-info>:not(strong){font-size:11px}
   #mobile-app .battle-panel-card>.battle-unit-stats{grid-column:2;grid-row:2;width:max-content;justify-self:start;align-self:start;display:grid;grid-template-columns:repeat(2,auto);gap:2px 8px}
-  #mobile-app .battle-panel-card>.battle-spell-effects{grid-column:4;grid-row:1;justify-self:stretch;width:100%;min-width:0;max-width:none;margin:0;align-self:center;line-height:20px;font-size:10px;text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  #mobile-viewport #mobile-app[data-mode=battle] .battle-panel:not([hidden])>.battle-selection{grid-column:3/5;grid-row:2;align-self:start;justify-self:stretch;margin:0;width:100%;min-width:0;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;max-height:26px;padding:0;font-size:10px;line-height:13px;text-align:left;box-sizing:border-box;z-index:2;pointer-events:none}
+  #mobile-app .battle-panel-card>.battle-spell-effects{grid-column:3;grid-row:2;justify-self:stretch;align-self:start;width:100%;min-width:0;margin:0;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;max-height:26px;font-size:11px;line-height:13px;text-align:left;white-space:normal}
   #mobile-viewport #mobile-app[data-mode=battle]>.mobile-nav{padding:4px 0;gap:4px}
   #mobile-viewport #mobile-app[data-mode=battle]>.mobile-nav>button{flex-direction:row;gap:6px}
  }
