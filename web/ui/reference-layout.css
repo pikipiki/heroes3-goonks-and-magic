@@ -112,6 +112,7 @@
   #mobile-app .hero-exchange-page>.exchange-inventories{grid-row:1/4;align-self:stretch;height:100%;max-height:none;min-height:0;grid-template-rows:minmax(0,1fr)}
   #mobile-app .exchange-inventories>section{height:100%;min-height:0;overflow:auto}
  }
+ #mobile-app .exchange-summary{min-height:44px}
  #mobile-app .exchange-troop-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
  #mobile-app .exchange-troop-grid .exchange-slot{padding:20px 4px 4px}
  #mobile-app .exchange-troop-grid .exchange-slot[aria-pressed=true]{border:2px solid #edca84;background:linear-gradient(180deg,#741c17,#410d0b);box-shadow:0 0 10px rgba(237,202,132,0.65);outline:none}
