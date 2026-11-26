@@ -112,6 +112,11 @@
   #mobile-app .hero-exchange-page>.exchange-inventories{grid-row:1/4;align-self:stretch;height:100%;max-height:none;min-height:0;grid-template-rows:minmax(0,1fr)}
   #mobile-app .exchange-inventories>section{height:100%;min-height:0;overflow:auto}
  }
+ #mobile-app .battle-panel-card{display:grid;grid-template-columns:auto auto minmax(0,1fr);align-items:start;gap:4px 8px}
+ #mobile-app .battle-panel-card>.battle-unit-inspect{grid-column:1;grid-row:1/3}
+ #mobile-app .battle-panel-card>.battle-unit-info{grid-column:2;grid-row:1}
+ #mobile-app .battle-panel-card>.battle-unit-stats{grid-column:2;grid-row:2;display:grid;grid-template-columns:repeat(2,auto);gap:2px 10px}
+ #mobile-app .battle-panel-card>.battle-spell-effects{grid-column:3;grid-row:1/3;min-width:0;margin:0;align-self:center;max-height:76px;overflow:auto}
  #mobile-app .exchange-summary{min-height:44px}
  #mobile-app .exchange-troop-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
  #mobile-app .exchange-troop-grid .exchange-slot{padding:20px 4px 4px}
