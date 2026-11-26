@@ -343,6 +343,7 @@
   #mobile-app .dialog-presentation:not([data-kind=commander])[data-choices="2"]>.dialog-choices{grid-column:1;grid-row:2/-1;align-content:start}
   #mobile-app .dialog-presentation .dialog-choice{height:auto;min-height:64px;overflow:visible;white-space:normal}
  }
+ #mobile-app[data-dialog-presentation] .dialog-presentation[data-selectable=false],#mobile-app .dialog-presentation[data-selectable=false]{top:0;bottom:0;left:0;right:0;margin:auto;transform:none;height:fit-content;max-height:calc(100% - 16px)}
  #mobile-app .dialog-presentation[data-kind=commander]>footer:has(>[data-dialog-confirm][hidden]){grid-template-columns:repeat(2,minmax(0,1fr))}
  :is(#mobile-app,#game-menu,[data-ui-app],.ui-popup) :is(.MuiButton-root,.ui-choice-tile,.hero-army-slot):not(.hall-form):not([data-guild-spell]):not([data-variant]):not([data-commander-tree]):not(.lobby-choice-card):not([data-choice-value]):not(.battle-view):not(.army-troop):is([aria-pressed=true],.selected),
  :is(#mobile-app,#game-menu,[data-ui-app],.ui-popup) :is(.MuiButton-root,.ui-choice-tile,.hero-army-slot):not(.hall-form):not([data-guild-spell]):not([data-variant]):not([data-commander-tree]):not(.lobby-choice-card):not([data-choice-value]):not(.battle-view):not(.army-troop):is([aria-pressed=true],.selected):hover,
