@@ -41,6 +41,7 @@
  #mobile-app[data-mode=creature] .ui-creature-overview .featured-price{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 12px;border:1px solid var(--ui-outline);font:var(--ui-font-body-medium);background:var(--ui-surface-container);box-shadow:none}
  #mobile-app[data-mode=creature] .ui-creature-overview .creature-stack-count{white-space:nowrap;font:var(--ui-font-title-compact)}
  #mobile-app[data-mode=creature] .ui-creature-overview .creature-description{margin:0 0 12px;font:var(--ui-font-body-medium)}
+ #mobile-app[data-mode=creature] .ui-creature-overview .creature-narrative{border-top:0}
 }
 @layer ui-composition {
  #mobile-app .ui-stat-short{display:none;text-decoration:none}
