@@ -100,7 +100,7 @@
  #mobile-app .battle-unit-inspect::after{content:'';position:absolute;inset:0}
  #mobile-app .ui-action-dock>button{flex-direction:column;gap:2px}
  #mobile-app .ui-action-dock>.ui-overflow-trigger::before{margin-right:0}
- #mobile-viewport #mobile-app[data-mode=battle] .mobile-top>.battle-view{padding:0 2px;font-size:10px;letter-spacing:-0.2px;min-width:0}
+ #mobile-viewport #mobile-app[data-mode=battle] .mobile-top>.battle-view{padding:0 6px;font:var(--ui-font-label);letter-spacing:0;min-width:0}
  #mobile-viewport #mobile-app[data-mode=battle] .battle-team-actions .ui-overflow-trigger{font-size:0;line-height:0;gap:0;justify-content:center;align-items:center}
  #mobile-viewport #mobile-app[data-mode=battle] .battle-team-actions .ui-overflow-trigger::before{font-size:16px;line-height:1;margin-right:0}
  @container goonk-viewport (orientation:portrait){
