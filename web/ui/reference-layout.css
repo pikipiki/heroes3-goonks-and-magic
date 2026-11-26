@@ -456,13 +456,15 @@
  #mobile-app .MuiTabs-vertical.ui-vertical-tabs .MuiTab-root.Mui-selected{background:linear-gradient(90deg,rgba(116,28,23,0.72),rgba(65,13,11,0.28))}
  #mobile-app .ui-purchase-resources .mobile-resource{display:flex;align-items:center;gap:2px;min-width:0}
  #mobile-app .ui-purchase-resources .mobile-resource img{width:16px;height:12px;flex:0 0 16px;object-fit:contain;object-position:center;display:block}
+ #mobile-app .mobile-spellbook .spell-content{border:0;padding:0;background:transparent}
+ #mobile-app .mobile-spellbook .spell-list{border:0;padding:0;background:transparent}
  @container goonk-viewport (orientation:landscape){
   #mobile-app .mobile-spellbook{grid-template-columns:minmax(0,1fr) var(--spell-control-rail,244px);grid-template-rows:48px auto minmax(0,1fr) 48px;grid-template-areas:"schools title" "book contexts" "book detail" "book footer";gap:6px 8px}
   #mobile-app .mobile-spellbook[data-browsing=false]{grid-template-rows:48px minmax(0,1fr) 48px;grid-template-areas:"schools title" "book detail" "book footer"}
   #mobile-app .mobile-spellbook>header.ui-screen-header{grid-area:title;min-height:48px;height:48px;padding:4px 4px 4px 56px;gap:8px}
   #mobile-app .mobile-spellbook .spell-workspace,#mobile-app .mobile-spellbook .spell-content{display:contents}
   #mobile-app .mobile-spellbook .spell-school-picker{grid-area:schools;height:48px}
-  #mobile-app .mobile-spellbook .spell-list{grid-area:book;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));align-content:start;gap:6px;padding:6px;border:1px solid var(--ui-primary);overflow-y:auto;touch-action:pan-y;min-height:0}
+  #mobile-app .mobile-spellbook .spell-list{grid-area:book;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));align-content:start;gap:6px;padding:0;border:0;background:transparent;overflow-y:auto;touch-action:pan-y;min-height:0}
   #mobile-app .mobile-spellbook .spell-row{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:2px;padding:4px;min-height:64px;height:auto}
   #mobile-app .mobile-spellbook .spell-row>span{display:flex;flex-direction:column;align-items:center;gap:1px;min-width:0;width:100%}
   #mobile-app .mobile-spellbook .spell-row strong{font:var(--ui-font-body-small);line-height:1.15;text-align:center}
