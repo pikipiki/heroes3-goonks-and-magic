@@ -296,6 +296,9 @@ export function createHeroExchange({root,command,refresh,portrait}){
     if(limit>0){destination=selection;quantity=splitMode?Math.max(1,Math.min(limit,quantity)):limit;}
     else if(item.name){source=selection;destination=null;quantity=1;splitMode=false;}
    }
+   message='';
+   updateSelection();
+   return;
   }
   message='';
   render();
