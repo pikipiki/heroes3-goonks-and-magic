@@ -186,6 +186,29 @@ export function createHeroExchange({root,command,refresh,portrait}){
   const confirmBtn=panel.querySelector('[data-exchange-confirm]')||actionsMenu?.list.querySelector('[data-exchange-confirm]');
   if(confirmBtn)confirmBtn.disabled=!input.validity.valid||quantity<1||!destination;
  });
+ function updateSelection(){
+  const item=itemAt(source);
+  for(const btn of panel.querySelectorAll('[data-exchange-slot]')){
+   const [s,sl]=btn.dataset.exchangeSlot.split(':').map(Number);
+   const slotItem=slots(s).find(entry=>entry.slot===sl);
+   const isSource=source?.side===s&&source.slot===sl;
+   const isDest=destination?.side===s&&destination.slot===sl;
+   const current=isSource||isDest;
+   btn.setAttribute('aria-pressed',String(current));
+   const compat=!!item&&maximum(item,s,slotItem)>0;
+   btn.classList.toggle('can-receive',compat);
+   btn.classList.toggle('can-target',compat||current);
+  }
+  const summaryEl=panel.querySelector('.exchange-summary');
+  if(summaryEl){
+   const target=itemAt(destination);
+   summaryEl.textContent=message||(item&&target?`${item.name} → ${heroes[destination.side].name}`:item?(fr?`${item.name} · Choisis une destination.`:`${item.name} · Choose a destination.`):(fr?'Choisis une troupe ou un artefact à déplacer.':'Choose a troop or artifact to move.'));
+  }
+  const confirmBtn=panel.querySelector('[data-exchange-confirm]');
+  if(confirmBtn)confirmBtn.disabled=!item||!destination||quantity<1;
+  const actionsBtn=panel.querySelector('[data-exchange-actions]');
+  if(actionsBtn)actionsBtn.disabled=!item;
+ }
  async function handleButton(button){
   if(!button||button.disabled||closing)return;
   if(button.hasAttribute('data-exchange-classic')){setView(true);return;}
