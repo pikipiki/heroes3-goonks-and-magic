@@ -460,6 +460,9 @@
  #mobile-app .mobile-spellbook .spell-content{border:0;padding:0;background:transparent}
  #mobile-app .mobile-spellbook .spell-list{border:0;padding:0;background:transparent}
  #mobile-viewport #mobile-app[data-mode=battle] .battle-panel .battle-unit-inspect{position:static;overflow:visible}
+ @container goonk-viewport (orientation:portrait){
+  #mobile-viewport #mobile-app[data-mode=battle][data-target-picker]>.mobile-nav{height:auto;min-height:0;max-height:40cqh;padding:4px;gap:6px}
+ }
  @container goonk-viewport (orientation:landscape){
   #mobile-app .mobile-spellbook{grid-template-columns:minmax(0,1fr) var(--spell-control-rail,244px);grid-template-rows:48px auto minmax(0,1fr) 48px;grid-template-areas:"schools title" "book contexts" "book detail" "book footer";gap:6px 8px}
   #mobile-app .mobile-spellbook[data-browsing=false]{grid-template-rows:48px minmax(0,1fr) 48px;grid-template-areas:"schools title" "book detail" "book footer"}

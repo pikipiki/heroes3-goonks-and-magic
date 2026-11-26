@@ -429,7 +429,7 @@ function mount(){
  for(const input of root.querySelectorAll('.mobile-recruit-amount input'))input.addEventListener('input',()=>{const value=Number(input.value);if(Number.isInteger(value)&&value>=0&&value<=state.recruitMaximum){for(const other of root.querySelectorAll('.mobile-recruit-amount input'))if(other!==input)other.value=value;command(31,value);}});
  function renderBattlePanel(){
   const fr=getLanguage()==='fr';
-  const inBattle=state.mode==='battle';if(inBattle){if(!battlePanel.isConnected)root.insertBefore(battlePanel,nav);battlePanel.hidden=false;syncBattleSelection();}else if(battlePanel.isConnected)battlePanel.remove();const panel=battlePanel,team=root.querySelector('.battle-team-actions');team.hidden=!inBattle;if(!inBattle)return;panel.querySelector('#battle-creature-detail').hidden=false;
+  const inBattle=state.mode==='battle',showBattlePanel=inBattle&&!battleTargetPicker;if(showBattlePanel){if(!battlePanel.isConnected)root.insertBefore(battlePanel,nav);battlePanel.hidden=false;syncBattleSelection();}else if(battlePanel.isConnected)battlePanel.remove();const panel=battlePanel,team=root.querySelector('.battle-team-actions');team.hidden=!inBattle;if(!inBattle)return;panel.querySelector('#battle-creature-detail').hidden=false;
   const teamCap=battleTeamCapabilities(state),auto=team.querySelector('[data-ui=battle-auto]');team.querySelector('[data-ui=battle-retreat]').disabled=!teamCap.retreat||pendingAuto!==null||!!spellRecovery.pending;auto.disabled=!teamCap.auto||pendingAuto!==null||!!spellRecovery.pending;auto.setAttribute('aria-pressed',String(!!state.autoCombat));auto.setAttribute('aria-busy',String(pendingAuto!==null||spellRecovery.pending?.action===44));auto.setAttribute('aria-label',state.autoCombat?(fr?'Arrêter l’autocombat':'Stop auto combat'):(fr?'Activer l’autocombat':'Start auto combat'));auto.textContent=spellRecovery.pending?.action===44||pendingAuto!==null?'…':state.autoCombat?'■':'▶';
   const cap=battleCapabilities(effectiveBattle()),guidance=battleGuidance(effectiveBattle()),range=guidance.ready?guidance.cells.length+' case'+(guidance.cells.length===1?'':'s')+' accessible'+(guidance.cells.length===1?'':'s')+'. ':'',target=(state.battleUnits||[]).find(u=>selectedPoint&&Math.hypot(u.x-selectedPoint.x,u.y-selectedPoint.y)<16),shown=target||state.activeUnit;
   const cardKey=[shown?.stackId,shown?.id,shown?.name,state.autoCombat,cap.tactics].join(':');if(panel._cardKey!==cardKey){panel._cardKey=cardKey;panel.scrollTop=0;panel.scrollLeft=0;}
@@ -503,9 +503,9 @@ function mount(){
   return '';
  }
  function showBattleTargets(){
-  if(state.tacticsMode)battleTab='allies';battleTargetPicker=true;root.dataset.targetPicker='true';controls();
+  if(state.tacticsMode)battleTab='allies';battleTargetPicker=true;root.dataset.targetPicker='true';renderBattlePanel();controls();
  }
- function closeBattleTargets(){battleTargetPicker=false;delete root.dataset.targetPicker;controls();}
+ function closeBattleTargets(){battleTargetPicker=false;delete root.dataset.targetPicker;renderBattlePanel();controls();}
  function showBattleInspection(refresh=false){
   if(!refresh)openSheet('battle-inspection',getLanguage()==='fr'?'Inspecter les créatures':'Inspect creatures');
   const key=JSON.stringify([getLanguage(),canInspectBattle(state),inspectionUnits(state)]);
