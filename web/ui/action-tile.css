@@ -1,0 +1,5 @@
+@layer components {
+ .ui-action-tile-cell{display:flex;flex-direction:column;min-width:0;min-height:0;padding:0;border:none;background:none}
+ .ui-action-tile{width:100%;height:100%;min-width:0;min-height:0;margin:0;padding:2px;box-sizing:border-box;border:1px solid #a38a55;background:#241910;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+ .ui-action-tile-caption{display:none}
+}

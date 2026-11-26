@@ -23,7 +23,6 @@
 .army-troop[data-empty] .army-slot-art::before{background:repeating-linear-gradient(135deg,#271d14 0 5px,#332619 5px 7px)}
 #mobile-app[data-sheet=army] .army-grid .army-troop.selected{background:#5c321c;border-color:#ffe4a2}
 #mobile-app[data-sheet=army] .army-troop.selected .army-slot-art{background:linear-gradient(#fff1ae,#ba8336)}
-#mobile-app[data-sheet=army] .army-troop.selected::after{content:'✓';position:absolute;right:4px;top:0;color:#fff0a0;font-size:var(--ui-type-titleSmall);font-weight:bold}
 .army-dock{display:grid;gap:4px;padding-top:6px;border-top:1px solid var(--line);min-width:0}
 #mobile-app[data-sheet=army] .army-selection{margin:0;font-size:var(--ui-type-body2);line-height:17px;min-height:34px;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
 .army-transfer-tools{display:flex;align-items:center;gap:10px;min-width:0}
