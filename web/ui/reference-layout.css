@@ -484,6 +484,7 @@
  @container goonk-viewport (orientation:portrait){
   #mobile-viewport #mobile-app[data-mode=battle][data-target-picker]>.mobile-nav{height:auto;min-height:0;max-height:40cqh;padding:4px;gap:6px}
   #mobile-viewport #mobile-app[data-mode=map]>.mobile-nav{padding:4px 0;gap:4px}
+  #mobile-viewport #mobile-app[data-mode=map]>.mobile-nav>button{min-height:56px;height:56px}
   #mobile-viewport #mobile-app[data-mode=map] .scene-tools{left:4px}
  }
  @container goonk-viewport (orientation:landscape){
