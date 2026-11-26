@@ -435,8 +435,9 @@
   #mobile-app .mobile-tavern .tavern-extras [data-ui-accordion-summary]{min-height:44px}
  }
  #mobile-app .ui-vertical-tabs.MuiTabs-root:not(.MuiTabs-vertical){border-bottom:1px solid rgba(237,202,132,0.28)}
+ #mobile-app .ui-vertical-tabs.MuiTabs-root .MuiTabs-list{gap:0}
  #mobile-app .ui-vertical-tabs.MuiTabs-root:not(.MuiTabs-vertical) .MuiTabs-indicator{height:3px;bottom:0;background-color:#edca84}
- #mobile-app .ui-vertical-tabs.MuiTabs-root .MuiTab-root{min-height:44px;height:auto;padding:10px 12px;background:transparent;background-image:none;border:0;border-image:none;box-shadow:none;color:var(--ui-on-surface-variant)}
+ #mobile-app .ui-vertical-tabs.MuiTabs-root .MuiTab-root{min-height:44px;height:auto;padding:10px 12px;background:transparent;background-image:none;border:0;border-image:none;outline:none;box-shadow:none;color:var(--ui-on-surface-variant)}
  #mobile-app .ui-vertical-tabs.MuiTabs-root .MuiTab-root:hover{background:rgba(237,202,132,0.08);color:var(--ui-on-surface)}
  #mobile-app .ui-vertical-tabs.MuiTabs-root .MuiTab-root.Mui-selected{color:var(--ui-primary);background:linear-gradient(180deg,rgba(116,28,23,0.72),rgba(65,13,11,0.28));border-bottom-color:transparent}
  #mobile-app .MuiTabs-vertical.ui-vertical-tabs{border-left:1px solid rgba(237,202,132,0.28)}

@@ -14,7 +14,7 @@ export function verticalTabsMarkup({
   const buttons = items
     .map(
       (item) =>
-        `<button type="button" ${item.attributes || ''} aria-pressed="${Boolean(item.selected)}">${escapeUI(item.label ?? '')}</button>`
+        `<button type="button" ${item.attributes || ''} aria-pressed="${Boolean(item.selected)}">${item.html ?? escapeUI(item.label ?? '')}</button>`
     )
     .join('');
   return `<nav class="${escapeUI(classes)}" data-ui-tabs ${modeAttr} data-indicator-side="${escapeUI(indicatorSide)}" aria-label="${escapeUI(label)}">${buttons}</nav>`;

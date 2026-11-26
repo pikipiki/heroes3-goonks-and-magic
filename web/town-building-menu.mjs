@@ -1,4 +1,5 @@
 import {useActionDock,renderMarkup,useScreenControls} from './ui/material-components.mjs';
+import {verticalTabsMarkup} from './ui/vertical-tabs.mjs';
 import {buildingFunctionSummary} from './town-building-summary.mjs';
 import {getLanguage} from './locale-state.mjs';
 import {plainGameText} from './game-text.mjs';
@@ -170,10 +171,16 @@ export function createTownBuildingMenu({body, getState, asset, backButton, canOp
     const grouped = categories.map(name => group(state, name, other.filter(building => category(building) === name))).join('');
     const collapse = available.length && other.length && !filter;
     return `<div class="building-controls">
-      <nav class="building-tabs" data-ui-tabs data-ui-tabs-landscape aria-label="${tr('Building status','État des bâtiments')}">
-       <button type="button" id="building-tab-unbuilt" aria-controls="construction-building-list" data-building-tab="unbuilt" aria-pressed="${tab==='unbuilt'}">${count(tr('To build','À construire'),buildings.length-builtCount)}</button>
-       <button type="button" id="building-tab-built" aria-controls="construction-building-list" data-building-tab="built" aria-pressed="${tab==='built'}">${count(tr('Built','Construits'),builtCount)}</button>
-      </nav>
+      ${verticalTabsMarkup({
+        className: 'building-tabs',
+        label: tr('Building status', 'État des bâtiments'),
+        landscapeOnly: true,
+        indicatorSide: 'left',
+        items: [
+          { html: count(tr('To build', 'À construire'), buildings.length - builtCount), selected: tab === 'unbuilt', attributes: 'id="building-tab-unbuilt" aria-controls="construction-building-list" data-building-tab="unbuilt"' },
+          { html: count(tr('Built', 'Construits'), builtCount), selected: tab === 'built', attributes: 'id="building-tab-built" aria-controls="construction-building-list" data-building-tab="built"' }
+        ]
+      })}
       <label class="building-category-filter"><span class="building-control-label">${tr('Category','Catégorie')}</span><select data-building-category aria-label="${tr('Building category','Catégorie de bâtiment')}">${filters.map(value=>`<option value="${value}" ${value===filter?'selected':''}>${value?(getLanguage()==='fr'?value:categoryLabels[value]):tr('All','Toutes')}</option>`).join('')}</select></label>
       ${grail?'<button type="button" data-building-grail>Graal</button>':''}
      </div><div class="building-list" id="construction-building-list" role="tabpanel" aria-labelledby="building-tab-${tab}" tabindex="0">
