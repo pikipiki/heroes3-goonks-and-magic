@@ -110,15 +110,15 @@
   #mobile-app .battle-panel-card>.battle-unit-info{grid-column:2;grid-row:1}
   #mobile-app .battle-panel-card>.battle-unit-stats{grid-column:2;grid-row:2;width:max-content;justify-self:start;display:grid;grid-template-columns:repeat(2,auto);gap:2px 10px}
   #mobile-app .battle-panel-card>.battle-spell-effects{grid-column:3;grid-row:1;min-width:0;margin:0;align-self:baseline}
-  #mobile-app .battle-panel{display:grid;grid-template-columns:minmax(0,1fr)}
-  #mobile-app .battle-panel>.battle-panel-card{grid-column:1;grid-row:1}
-  #mobile-viewport #mobile-app .battle-panel>.battle-selection{grid-column:1;grid-row:1;align-self:end;justify-self:end;width:44%;max-height:40px;overflow-y:auto;touch-action:pan-y;scrollbar-width:thin;scrollbar-color:#edca84 transparent;margin:0 0 2px;padding:0 6px;font-size:10px;line-height:12px;text-align:left;z-index:2;pointer-events:auto}
+  #mobile-app[data-mode=battle] .battle-panel:not([hidden]){display:grid;grid-template-columns:minmax(0,1fr)}
+  #mobile-app[data-mode=battle] .battle-panel:not([hidden])>.battle-panel-card{grid-column:1;grid-row:1}
+  #mobile-viewport #mobile-app[data-mode=battle] .battle-panel:not([hidden])>.battle-selection{grid-column:1;grid-row:1;align-self:end;justify-self:end;width:44%;max-height:40px;overflow-y:auto;touch-action:pan-y;scrollbar-width:thin;scrollbar-color:#edca84 transparent;margin:0 0 2px;padding:0 6px;font-size:10px;line-height:12px;text-align:left;z-index:2;pointer-events:auto}
  }
  @container goonk-viewport (orientation:landscape){
   #mobile-app .creature-presentation :is(canvas,img){width:100%;height:100%;max-height:none;object-fit:contain}
   #mobile-app .hero-exchange-page>.exchange-inventories{grid-row:1/4;align-self:stretch;height:100%;max-height:none;min-height:0;grid-template-rows:minmax(0,1fr)}
   #mobile-app .exchange-inventories>section{height:100%;min-height:0;overflow:auto}
-  #mobile-viewport #mobile-app[data-mode=battle] .battle-panel{display:flex;flex-direction:column;gap:4px;overflow:hidden;border:1px solid #edca84;background:#1d130b;padding:6px;box-sizing:border-box}
+  #mobile-viewport #mobile-app[data-mode=battle] .battle-panel:not([hidden]){display:flex;flex-direction:column;gap:4px;overflow:hidden;border:1px solid #edca84;background:#1d130b;padding:6px;box-sizing:border-box}
   #mobile-viewport #mobile-app[data-mode=battle] .battle-panel>.battle-panel-card{flex:0 0 auto;display:grid;grid-template-columns:56px minmax(0,1fr);align-items:start;gap:4px 8px;padding:0;border:none;background:none;box-shadow:none}
   #mobile-app .battle-panel-card>.battle-unit-inspect{grid-column:1;grid-row:1/3;width:56px;height:56px}
   #mobile-app .battle-panel-card>.battle-unit-info{grid-column:2;grid-row:1;min-width:0}
