@@ -59,7 +59,7 @@
  }
  @container goonk-viewport (orientation:portrait){
   #mobile-app[data-sheet=army] .army-rosters{gap:16px}
-  #mobile-app[data-sheet=army] .army-roster{min-height:0;padding-bottom:12px}
+  #mobile-app[data-sheet=army] .army-roster{min-height:0;padding-bottom:16px}
   #mobile-app[data-sheet=army] .army-transfer-all{margin:8px 0}
  }
 }
