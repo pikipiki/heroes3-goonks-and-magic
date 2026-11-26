@@ -132,6 +132,7 @@
   #mobile-app .battle-panel-card>.battle-unit-stats{grid-column:2;grid-row:2;width:max-content;justify-self:start;display:grid;grid-template-columns:repeat(2,auto);gap:2px 12px}
   #mobile-app .battle-panel-card>.battle-spell-effects{grid-column:1/-1;grid-row:3;min-width:0;margin:0;font-size:11px;line-height:14px}
   #mobile-viewport #mobile-app[data-mode=battle] .battle-panel>.battle-selection{display:block;flex:1 1 auto;min-height:0;width:100%;max-height:none;overflow-y:auto;touch-action:pan-y;scrollbar-width:thin;scrollbar-color:#edca84 transparent;margin:0;padding:4px 6px 4px 0;box-sizing:border-box;font-size:11px;line-height:15px;text-align:left}
+  #mobile-viewport #mobile-app[data-mode=battle]{grid-template-columns:minmax(0,calc(100cqh * 800 / 556)) minmax(var(--control-rail,244px),1fr)}
   #mobile-viewport #mobile-app[data-mode=battle]>.mobile-top{padding:4px 0;gap:4px}
   #mobile-viewport #mobile-app[data-mode=battle]>.mobile-nav{padding:4px 0;gap:4px}
  }
