@@ -59,7 +59,7 @@ export function createMobileSpellbook({root,command}){
    </header>
    ${book.readOnly?`<p class="spell-top-actions spell-inspection-note">${getLanguage()==='fr'?'Grimoire du héros à recruter · consultation uniquement.':'Hero for hire spellbook · read only.'}</p>`:`<div class="spell-top-actions">
     <button data-reuse ${reuseDisabled?'disabled':''} ${reusing?'aria-busy="true"':''} title="${esc(previous?previous.name:'No spell used yet')}">
-     ${previous&&!reuseDisabled?`<span><strong>${esc(previous.name)}</strong><small>${previous.cost} mana</small></span>`:'Reuse last spell'}
+     ${previous&&!reuseDisabled?`<img class="last-spell-icon" decoding="sync" src="${spellIconURL(previous.id)}" alt=""><span><strong>${esc(previous.name)}</strong><small>${previous.cost} mana</small></span>`:'Reuse last spell'}
     </button>
    </div>`}
    <div class="spell-workspace">
