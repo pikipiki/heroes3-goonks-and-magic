@@ -23,6 +23,7 @@ export function VerticalTabs({
     Tabs,
     {
       ...props,
+      key: resolved,
       component: 'nav',
       orientation: resolved,
       variant: resolved === 'vertical' ? 'standard' : 'fullWidth',
