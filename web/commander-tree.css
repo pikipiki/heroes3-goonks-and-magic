@@ -17,10 +17,10 @@
 #mobile-app .tree-ability{min-width:0;padding:0;margin:0;border:1px solid var(--ui-outline);border-radius:0}
 #mobile-app .tree-ability [data-ui-accordion-summary]{width:100%;min-height:48px;margin:0;padding:4px 8px;background:linear-gradient(#7c261be6,#3e180fe6);color:var(--ui-on-surface)}
 #mobile-app .tree-ability [data-ui-accordion-label]{display:block;width:100%;min-width:0}
-#mobile-app .tree-ability-heading{display:grid;grid-template-columns:40px minmax(0,1fr);align-items:center;gap:4px 8px;width:100%;min-width:0}
-#mobile-app .tree-combination{grid-column:1;grid-row:1/3;display:flex;align-items:center;gap:0}
-#mobile-app .tree-ability-title{grid-column:2;font:var(--ui-font-label);white-space:normal;word-break:normal;overflow-wrap:normal}
-#mobile-app .tree-ability-heading [data-ui-chip]{grid-column:2;justify-self:start}
+#mobile-app .tree-ability-heading{display:grid;grid-template-columns:40px minmax(0,1fr) auto;align-items:center;gap:8px;width:100%;min-width:0}
+#mobile-app .tree-combination{grid-column:1;display:flex;align-items:center;gap:0}
+#mobile-app .tree-ability-title{grid-column:2;min-width:0;font:var(--ui-font-label);white-space:normal;word-break:normal;overflow-wrap:normal}
+#mobile-app .tree-ability-heading [data-ui-chip]{grid-column:3;justify-self:end;flex:none;white-space:nowrap}
 #mobile-app .tree-effect{font:var(--ui-font-body-medium);white-space:pre-line;margin:0 0 8px}
 #mobile-app .tree-prerequisites{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:8px 0}
 #mobile-app .tree-prerequisite{display:flex;align-items:center;gap:8px;min-width:0}
@@ -49,16 +49,20 @@
  #mobile-app .commander-tree :is(.tree-ability,.tree-mastery){border:1px solid var(--ui-outline);border-radius:0}
  #mobile-app .commander-tree .tree-skill-copy strong{white-space:normal}
  @container goonk-viewport (orientation:portrait){
-  #mobile-app .dialog-presentation[data-tree=true]{grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(0,1fr) auto}
+  #mobile-app .dialog-presentation[data-tree=true]{grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto minmax(0,1fr) auto}
   #mobile-app .dialog-presentation[data-tree=true]>.ui-screen-header{grid-area:1/1}
-  #mobile-app .dialog-presentation[data-tree=true]>.commander-tree{grid-area:2/1}
+  #mobile-app .dialog-presentation[data-tree=true]>.tree-toolbar{grid-area:2/1;margin:0;padding:0 8px}
+  #mobile-app .dialog-presentation[data-tree=true]>.commander-tree{grid-area:3/1}
   #mobile-app .dialog-presentation[data-tree=true]>.dialog-copy{display:none}
-  #mobile-app .dialog-presentation[data-tree=true]>.ui-action-dock{grid-area:3/1;display:flex;flex-direction:row}
+  #mobile-app .dialog-presentation[data-tree=true]>.ui-action-dock{grid-area:4/1;display:flex;flex-direction:row}
  }
  @container goonk-viewport (orientation:landscape){
   #mobile-app .dialog-presentation:is([data-kind=commander],[data-kind=commander-level-up]){grid-template-columns:minmax(0,1fr) var(--control-rail,244px);grid-template-rows:auto minmax(0,1fr) auto}
   #mobile-app .dialog-presentation:is([data-kind=commander],[data-kind=commander-level-up])>.ui-screen-header{grid-area:1/2;min-height:48px;padding:4px 8px}
   #mobile-app .dialog-presentation:is([data-kind=commander],[data-kind=commander-level-up])>.dialog-copy{grid-area:2/2}
+  #mobile-app .dialog-presentation[data-tree=true]>.tree-toolbar{grid-area:2/2;display:flex;flex-direction:column;align-items:stretch;justify-content:start;gap:4px;margin:0;padding:4px 8px;align-self:start;min-width:0}
+  #mobile-app .dialog-presentation[data-tree=true]>.tree-toolbar .tree-filter>select:not(.material-select-source),#mobile-app .dialog-presentation[data-tree=true]>.tree-toolbar .tree-filter .material-select-host,#mobile-app .dialog-presentation[data-tree=true]>.tree-toolbar .tree-filter .material-select-trigger{height:48px;min-height:48px}
+  #mobile-app .dialog-presentation[data-tree=true]>.tree-toolbar .tree-summary{padding:0;text-align:right}
   #mobile-app .dialog-presentation:is([data-kind=commander],[data-kind=commander-level-up])>.ui-action-dock{grid-area:3/2;display:flex;flex-direction:column;align-items:stretch}
   #mobile-app .dialog-presentation:is([data-kind=commander],[data-kind=commander-level-up])>.ui-action-dock>button{flex:none;width:100%}
   #mobile-app .dialog-presentation:is([data-kind=commander],[data-kind=commander-level-up])>.dialog-choices{grid-area:1/1/4/2}
