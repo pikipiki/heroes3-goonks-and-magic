@@ -83,8 +83,9 @@
 #mobile-app .army-upgrade-cost{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:12px 0}
 #mobile-app .army-upgrade-cost img{width:24px;height:24px;object-fit:contain}
 @container goonk-viewport (orientation:landscape){
- #mobile-app[data-sheet=army] .army-upgrade-cell{grid-column:span 2}
- #mobile-app[data-sheet=army] .army-grid .army-upgrade-all{width:100%;max-height:70px;min-height:64px;flex-direction:row}
+ #mobile-app[data-sheet=army] .army-upgrade-cell{grid-column:auto}
+ #mobile-app[data-sheet=army] .army-grid .army-upgrade-all{width:100%;max-height:none;min-height:44px;height:100%;flex-direction:column}
+ #mobile-app[data-sheet=army] .army-grid .army-upgrade-all span{font-size:9px;line-height:1.1}
  #mobile-app .progression-page.army-upgrades-page{grid-template-rows:minmax(0,1fr)}
  #mobile-app .progression-page.army-upgrades-page>header{grid-column:2;grid-row:1;align-self:start;z-index:1}
  #mobile-app .progression-page.army-upgrades-page>.progression-scroll{grid-column:1;grid-row:1}

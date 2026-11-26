@@ -163,12 +163,18 @@ html.goonk-mobile #mobile-app[data-mode=battle] .battle-panel-card{flex:none;min
 html.goonk-mobile #mobile-app[data-mode=battle] #battle-creature-detail{object-fit:contain;align-self:center;max-height:none}
 html.goonk-mobile #mobile-app[data-mode=battle] .battle-selection{flex:none;min-height:30px;max-height:80px;overflow-y:auto;touch-action:pan-y;white-space:normal}
 @container goonk-viewport (orientation:landscape){
- html.goonk-mobile #mobile-app[data-sheet=army] .army-rosters{overflow:auto;grid-template-rows:auto;align-items:start;touch-action:pan-y;min-height:0}
- html.goonk-mobile #mobile-app[data-sheet=army] .army-roster{min-height:350px}
- html.goonk-mobile #mobile-app[data-sheet=army] .army-grid{height:auto;flex:none;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:none;grid-auto-rows:100px}
- html.goonk-mobile #mobile-app[data-sheet=army] .army-slot-art{min-height:64px;max-height:70px}
- html.goonk-mobile #mobile-app[data-sheet=army] .army-slot-name{-webkit-line-clamp:2;max-height:28px}
- html.goonk-mobile #mobile-app[data-sheet=army] .army-transfer-all{margin-top:6px}
+ html.goonk-mobile #mobile-viewport #mobile-app[data-sheet=army] .mobile-sheet{grid-template-rows:auto minmax(0,1fr) auto}
+ html.goonk-mobile #mobile-viewport #mobile-app[data-sheet=army] .mobile-sheet>footer{grid-column:2;grid-row:3;padding:4px}
+ html.goonk-mobile #mobile-viewport #mobile-app[data-sheet=army] .army-rosters{grid-column:1;grid-row:1/4;height:100%;align-self:stretch;overflow:hidden;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:minmax(0,1fr);align-items:stretch;min-height:0;padding-bottom:0}
+ html.goonk-mobile #mobile-viewport #mobile-app[data-sheet=army] .army-roster{min-height:0;height:100%;padding-bottom:0}
+ html.goonk-mobile #mobile-viewport #mobile-app[data-sheet=army] .army-grid{height:auto;flex:1;min-height:0;grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:repeat(2,minmax(44px,1fr));grid-auto-rows:minmax(44px,1fr);gap:4px}
+ html.goonk-mobile #mobile-viewport #mobile-app[data-sheet=army] .army-panel[data-army-count="1"] .army-grid{grid-template-columns:repeat(7,minmax(0,1fr));grid-template-rows:minmax(44px,1fr)}
+ html.goonk-mobile #mobile-viewport #mobile-app[data-sheet=army] .army-grid .army-troop{height:100%;min-height:44px;padding:2px}
+ html.goonk-mobile #mobile-viewport #mobile-app[data-sheet=army] .army-upgrade-cell{grid-column:auto;height:100%;min-height:44px;padding:0}
+ html.goonk-mobile #mobile-viewport #mobile-app[data-sheet=army] .army-grid .army-upgrade-all{min-height:44px;max-height:none;height:100%;flex-direction:column}
+ html.goonk-mobile #mobile-viewport #mobile-app[data-sheet=army] .army-slot-art{min-height:0;max-height:none;flex:1}
+ html.goonk-mobile #mobile-viewport #mobile-app[data-sheet=army] .army-slot-name{-webkit-line-clamp:1;max-height:14px;overflow-wrap:normal;word-break:normal;text-overflow:ellipsis}
+ html.goonk-mobile #mobile-viewport #mobile-app[data-sheet=army] .army-transfer-all{margin-top:2px;min-height:36px}
 }
 #mobile-app .visited-object-art{align-self:center;justify-self:center}
 @container goonk-viewport (orientation:portrait){

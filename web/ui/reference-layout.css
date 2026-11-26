@@ -50,10 +50,11 @@
  #mobile-app[data-sheet=army] .army-grid .army-upgrade-all span{font-size:clamp(9px,16cqh,11px);line-height:1.1}
  @container goonk-viewport (orientation:landscape){
   #mobile-app[data-sheet=army] .army-grid .army-upgrade-all{width:100%}
-  #mobile-app[data-sheet=army] .mobile-sheet{display:grid;grid-template-columns:minmax(0,1fr) var(--control-rail,240px);grid-template-rows:auto minmax(0,1fr)}
+  #mobile-app[data-sheet=army] .mobile-sheet{display:grid;grid-template-columns:minmax(0,1fr) var(--control-rail,240px);grid-template-rows:auto minmax(0,1fr) auto}
   #mobile-app[data-sheet=army] .sheet-head{grid-column:2;grid-row:1;height:auto;min-height:0}
   #mobile-app[data-sheet=army] .sheet-body,#mobile-app[data-sheet=army] .army-panel{display:contents}
-  #mobile-app[data-sheet=army] .army-rosters{grid-column:1;grid-row:1/-1;gap:12px;padding-bottom:max(16px,env(safe-area-inset-bottom))}
+  #mobile-app[data-sheet=army] .army-rosters{grid-column:1;grid-row:1/4;height:100%;gap:12px;padding-bottom:0;align-content:stretch}
+  #mobile-app[data-sheet=army] .mobile-sheet>footer{grid-column:2;grid-row:3;padding:4px}
   #mobile-app[data-sheet=army] .army-dock{grid-column:2;grid-row:2;margin-top:0;align-self:stretch;justify-content:flex-end}
  }
  @container goonk-viewport (orientation:portrait){
@@ -73,6 +74,14 @@
 @layer screen-layouts {
  #mobile-app[data-sheet=army] .army-grid{flex:none;height:auto;min-height:0;max-height:none;grid-template-rows:none;grid-auto-rows:90px}
  #mobile-app[data-sheet=army] .army-upgrade-cell>.army-slot-name{display:block;flex:0 0 14px;height:14px;line-height:14px}
+ @container goonk-viewport (orientation:landscape){
+  #mobile-app[data-sheet=army] .army-rosters{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:minmax(0,1fr);grid-auto-rows:minmax(0,1fr);gap:8px;padding-bottom:0;overflow:hidden;align-content:stretch}
+  #mobile-app[data-sheet=army] .army-roster{min-height:0;height:100%;padding-bottom:0}
+  #mobile-app[data-sheet=army] .army-grid{flex:1;height:100%;min-height:0;grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:repeat(2,minmax(44px,1fr));grid-auto-rows:minmax(44px,1fr);gap:4px}
+  #mobile-app[data-sheet=army] .army-panel[data-army-count="1"] .army-grid{grid-template-columns:repeat(7,minmax(0,1fr));grid-template-rows:minmax(44px,1fr)}
+  #mobile-app[data-sheet=army] .army-grid .army-troop{height:100%;min-height:44px;padding:2px}
+  #mobile-app[data-sheet=army] .army-slot-name{-webkit-line-clamp:1;max-height:14px;overflow-wrap:normal;word-break:normal;text-overflow:ellipsis}
+ }
 }
 @layer screen-layouts {
  @container goonk-viewport (orientation:portrait){
