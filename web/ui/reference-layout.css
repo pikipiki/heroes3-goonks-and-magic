@@ -23,6 +23,14 @@
   #mobile-app[data-creature-view] .creature-presentation{top:56px;bottom:0;height:auto;max-height:none}
   #mobile-app .hero-exchange-page{grid-template-rows:auto auto minmax(0,1fr) auto}
   #mobile-app .hero-exchange-page>.exchange-inventories{grid-row:3}
+  #mobile-app .battle-panel-card{display:grid;grid-template-columns:auto auto minmax(0,1fr);align-items:start;gap:4px 8px}
+  #mobile-app .battle-panel-card>.battle-unit-inspect{grid-column:1;grid-row:1/3}
+  #mobile-app .battle-panel-card>.battle-unit-info{grid-column:2;grid-row:1}
+  #mobile-app .battle-panel-card>.battle-unit-stats{grid-column:2;grid-row:2;width:max-content;justify-self:start;display:grid;grid-template-columns:repeat(2,auto);gap:2px 10px}
+  #mobile-app .battle-panel-card>.battle-spell-effects{grid-column:3;grid-row:1;min-width:0;margin:0;align-self:baseline}
+  #mobile-app .battle-panel{display:grid;grid-template-columns:minmax(0,1fr)}
+  #mobile-app .battle-panel>.battle-panel-card{grid-column:1;grid-row:1}
+  #mobile-viewport #mobile-app .battle-panel>.battle-selection{grid-column:1;grid-row:1;align-self:end;justify-self:end;width:44%;max-height:40px;overflow-y:auto;touch-action:pan-y;scrollbar-width:thin;scrollbar-color:#edca84 transparent;margin:0 0 2px;padding:0 6px;font-size:10px;line-height:12px;text-align:left;z-index:2;pointer-events:auto}
  }
  @container goonk-viewport (orientation:landscape){
   #mobile-app .creature-presentation :is(canvas,img){width:100%;height:100%;max-height:none;object-fit:contain}
@@ -60,6 +68,14 @@
   #mobile-app[data-creature-view] .creature-presentation{top:56px;bottom:0;height:auto;max-height:none}
   #mobile-app .hero-exchange-page{grid-template-rows:auto auto minmax(0,1fr) auto}
   #mobile-app .hero-exchange-page>.exchange-inventories{grid-row:3}
+  #mobile-app .battle-panel-card{display:grid;grid-template-columns:auto auto minmax(0,1fr);align-items:start;gap:4px 8px}
+  #mobile-app .battle-panel-card>.battle-unit-inspect{grid-column:1;grid-row:1/3}
+  #mobile-app .battle-panel-card>.battle-unit-info{grid-column:2;grid-row:1}
+  #mobile-app .battle-panel-card>.battle-unit-stats{grid-column:2;grid-row:2;width:max-content;justify-self:start;display:grid;grid-template-columns:repeat(2,auto);gap:2px 10px}
+  #mobile-app .battle-panel-card>.battle-spell-effects{grid-column:3;grid-row:1;min-width:0;margin:0;align-self:baseline}
+  #mobile-app .battle-panel{display:grid;grid-template-columns:minmax(0,1fr)}
+  #mobile-app .battle-panel>.battle-panel-card{grid-column:1;grid-row:1}
+  #mobile-viewport #mobile-app .battle-panel>.battle-selection{grid-column:1;grid-row:1;align-self:end;justify-self:end;width:44%;max-height:40px;overflow-y:auto;touch-action:pan-y;scrollbar-width:thin;scrollbar-color:#edca84 transparent;margin:0 0 2px;padding:0 6px;font-size:10px;line-height:12px;text-align:left;z-index:2;pointer-events:auto}
  }
  @container goonk-viewport (orientation:landscape){
   #mobile-app .creature-presentation :is(canvas,img){width:100%;height:100%;max-height:none;object-fit:contain}
@@ -101,6 +117,14 @@
   #mobile-app[data-creature-view] .creature-presentation{top:56px;bottom:0;height:auto;max-height:none}
   #mobile-app .hero-exchange-page{grid-template-rows:auto auto minmax(0,1fr) auto}
   #mobile-app .hero-exchange-page>.exchange-inventories{grid-row:3}
+  #mobile-app .battle-panel-card{display:grid;grid-template-columns:auto auto minmax(0,1fr);align-items:start;gap:4px 8px}
+  #mobile-app .battle-panel-card>.battle-unit-inspect{grid-column:1;grid-row:1/3}
+  #mobile-app .battle-panel-card>.battle-unit-info{grid-column:2;grid-row:1}
+  #mobile-app .battle-panel-card>.battle-unit-stats{grid-column:2;grid-row:2;width:max-content;justify-self:start;display:grid;grid-template-columns:repeat(2,auto);gap:2px 10px}
+  #mobile-app .battle-panel-card>.battle-spell-effects{grid-column:3;grid-row:1;min-width:0;margin:0;align-self:baseline}
+  #mobile-app .battle-panel{display:grid;grid-template-columns:minmax(0,1fr)}
+  #mobile-app .battle-panel>.battle-panel-card{grid-column:1;grid-row:1}
+  #mobile-viewport #mobile-app .battle-panel>.battle-selection{grid-column:1;grid-row:1;align-self:end;justify-self:end;width:44%;max-height:40px;overflow-y:auto;touch-action:pan-y;scrollbar-width:thin;scrollbar-color:#edca84 transparent;margin:0 0 2px;padding:0 6px;font-size:10px;line-height:12px;text-align:left;z-index:2;pointer-events:auto}
  }
  @container goonk-viewport (orientation:landscape){
   #mobile-app .creature-presentation :is(canvas,img){width:100%;height:100%;max-height:none;object-fit:contain}
@@ -118,20 +142,23 @@
   #mobile-app[data-creature-view] .creature-presentation{top:56px;bottom:0;height:auto;max-height:none}
   #mobile-app .hero-exchange-page{grid-template-rows:auto auto minmax(0,1fr) auto}
   #mobile-app .hero-exchange-page>.exchange-inventories{grid-row:3}
+  #mobile-app .battle-panel-card{display:grid;grid-template-columns:auto auto minmax(0,1fr);align-items:start;gap:4px 8px}
+  #mobile-app .battle-panel-card>.battle-unit-inspect{grid-column:1;grid-row:1/3}
+  #mobile-app .battle-panel-card>.battle-unit-info{grid-column:2;grid-row:1}
+  #mobile-app .battle-panel-card>.battle-unit-stats{grid-column:2;grid-row:2;width:max-content;justify-self:start;display:grid;grid-template-columns:repeat(2,auto);gap:2px 10px}
+  #mobile-app .battle-panel-card>.battle-spell-effects{grid-column:3;grid-row:1;min-width:0;margin:0;align-self:baseline}
+  #mobile-app .battle-panel{display:grid;grid-template-columns:minmax(0,1fr)}
+  #mobile-app .battle-panel>.battle-panel-card{grid-column:1;grid-row:1}
+  #mobile-viewport #mobile-app .battle-panel>.battle-selection{grid-column:1;grid-row:1;align-self:end;justify-self:end;width:44%;max-height:40px;overflow-y:auto;touch-action:pan-y;scrollbar-width:thin;scrollbar-color:#edca84 transparent;margin:0 0 2px;padding:0 6px;font-size:10px;line-height:12px;text-align:left;z-index:2;pointer-events:auto}
  }
  @container goonk-viewport (orientation:landscape){
   #mobile-app .creature-presentation :is(canvas,img){width:100%;height:100%;max-height:none;object-fit:contain}
   #mobile-app .hero-exchange-page>.exchange-inventories{grid-row:1/4;align-self:stretch;height:100%;max-height:none;min-height:0;grid-template-rows:minmax(0,1fr)}
   #mobile-app .exchange-inventories>section{height:100%;min-height:0;overflow:auto}
  }
- #mobile-app .battle-panel-card{display:grid;grid-template-columns:auto auto minmax(0,1fr);align-items:start;gap:4px 8px}
- #mobile-app .battle-panel-card>.battle-unit-inspect{grid-column:1;grid-row:1/3}
- #mobile-app .battle-panel-card>.battle-unit-info{grid-column:2;grid-row:1}
- #mobile-app .battle-panel-card>.battle-unit-stats{grid-column:2;grid-row:2;width:max-content;justify-self:start;display:grid;grid-template-columns:repeat(2,auto);gap:2px 10px}
- #mobile-app .battle-panel-card>.battle-spell-effects{grid-column:3;grid-row:1;min-width:0;margin:0;align-self:baseline}
- #mobile-app .battle-panel{display:grid;grid-template-columns:minmax(0,1fr)}
- #mobile-app .battle-panel>.battle-panel-card{grid-column:1;grid-row:1}
- #mobile-viewport #mobile-app .battle-panel>.battle-selection{grid-column:1;grid-row:1;align-self:end;justify-self:end;width:44%;max-height:40px;overflow-y:auto;touch-action:pan-y;scrollbar-width:thin;scrollbar-color:#edca84 transparent;margin:0 0 2px;padding:0 6px;font-size:10px;line-height:12px;text-align:left;z-index:2;pointer-events:auto}
+ #mobile-app .battle-unit-inspect{border:none;background:none;box-shadow:none;padding:0}
+ #mobile-app .ui-action-dock>button{flex-direction:column;gap:2px}
+ #mobile-app .mobile-top>.battle-view{padding:0 4px;font-size:12px;min-width:0}
  #mobile-app .exchange-summary{min-height:44px}
  #mobile-app .exchange-troop-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
  #mobile-app .exchange-troop-grid .exchange-slot{padding:20px 4px 4px}
@@ -156,6 +183,14 @@
   #mobile-app[data-creature-view] .creature-presentation{top:56px;bottom:0;height:auto;max-height:none}
   #mobile-app .hero-exchange-page{grid-template-rows:auto auto minmax(0,1fr) auto}
   #mobile-app .hero-exchange-page>.exchange-inventories{grid-row:3}
+  #mobile-app .battle-panel-card{display:grid;grid-template-columns:auto auto minmax(0,1fr);align-items:start;gap:4px 8px}
+  #mobile-app .battle-panel-card>.battle-unit-inspect{grid-column:1;grid-row:1/3}
+  #mobile-app .battle-panel-card>.battle-unit-info{grid-column:2;grid-row:1}
+  #mobile-app .battle-panel-card>.battle-unit-stats{grid-column:2;grid-row:2;width:max-content;justify-self:start;display:grid;grid-template-columns:repeat(2,auto);gap:2px 10px}
+  #mobile-app .battle-panel-card>.battle-spell-effects{grid-column:3;grid-row:1;min-width:0;margin:0;align-self:baseline}
+  #mobile-app .battle-panel{display:grid;grid-template-columns:minmax(0,1fr)}
+  #mobile-app .battle-panel>.battle-panel-card{grid-column:1;grid-row:1}
+  #mobile-viewport #mobile-app .battle-panel>.battle-selection{grid-column:1;grid-row:1;align-self:end;justify-self:end;width:44%;max-height:40px;overflow-y:auto;touch-action:pan-y;scrollbar-width:thin;scrollbar-color:#edca84 transparent;margin:0 0 2px;padding:0 6px;font-size:10px;line-height:12px;text-align:left;z-index:2;pointer-events:auto}
  }
  @container goonk-viewport (orientation:landscape){
   #mobile-app .creature-presentation :is(canvas,img){width:100%;height:100%;max-height:none;object-fit:contain}
@@ -192,6 +227,14 @@
   #mobile-app[data-creature-view] .creature-presentation{top:56px;bottom:0;height:auto;max-height:none}
   #mobile-app .hero-exchange-page{grid-template-rows:auto auto minmax(0,1fr) auto}
   #mobile-app .hero-exchange-page>.exchange-inventories{grid-row:3}
+  #mobile-app .battle-panel-card{display:grid;grid-template-columns:auto auto minmax(0,1fr);align-items:start;gap:4px 8px}
+  #mobile-app .battle-panel-card>.battle-unit-inspect{grid-column:1;grid-row:1/3}
+  #mobile-app .battle-panel-card>.battle-unit-info{grid-column:2;grid-row:1}
+  #mobile-app .battle-panel-card>.battle-unit-stats{grid-column:2;grid-row:2;width:max-content;justify-self:start;display:grid;grid-template-columns:repeat(2,auto);gap:2px 10px}
+  #mobile-app .battle-panel-card>.battle-spell-effects{grid-column:3;grid-row:1;min-width:0;margin:0;align-self:baseline}
+  #mobile-app .battle-panel{display:grid;grid-template-columns:minmax(0,1fr)}
+  #mobile-app .battle-panel>.battle-panel-card{grid-column:1;grid-row:1}
+  #mobile-viewport #mobile-app .battle-panel>.battle-selection{grid-column:1;grid-row:1;align-self:end;justify-self:end;width:44%;max-height:40px;overflow-y:auto;touch-action:pan-y;scrollbar-width:thin;scrollbar-color:#edca84 transparent;margin:0 0 2px;padding:0 6px;font-size:10px;line-height:12px;text-align:left;z-index:2;pointer-events:auto}
  }
  @container goonk-viewport (orientation:landscape){
   #mobile-app .creature-presentation :is(canvas,img){width:100%;height:100%;max-height:none;object-fit:contain}
@@ -257,6 +300,14 @@
   #mobile-app[data-creature-view] .creature-presentation{top:56px;bottom:0;height:auto;max-height:none}
   #mobile-app .hero-exchange-page{grid-template-rows:auto auto minmax(0,1fr) auto}
   #mobile-app .hero-exchange-page>.exchange-inventories{grid-row:3}
+  #mobile-app .battle-panel-card{display:grid;grid-template-columns:auto auto minmax(0,1fr);align-items:start;gap:4px 8px}
+  #mobile-app .battle-panel-card>.battle-unit-inspect{grid-column:1;grid-row:1/3}
+  #mobile-app .battle-panel-card>.battle-unit-info{grid-column:2;grid-row:1}
+  #mobile-app .battle-panel-card>.battle-unit-stats{grid-column:2;grid-row:2;width:max-content;justify-self:start;display:grid;grid-template-columns:repeat(2,auto);gap:2px 10px}
+  #mobile-app .battle-panel-card>.battle-spell-effects{grid-column:3;grid-row:1;min-width:0;margin:0;align-self:baseline}
+  #mobile-app .battle-panel{display:grid;grid-template-columns:minmax(0,1fr)}
+  #mobile-app .battle-panel>.battle-panel-card{grid-column:1;grid-row:1}
+  #mobile-viewport #mobile-app .battle-panel>.battle-selection{grid-column:1;grid-row:1;align-self:end;justify-self:end;width:44%;max-height:40px;overflow-y:auto;touch-action:pan-y;scrollbar-width:thin;scrollbar-color:#edca84 transparent;margin:0 0 2px;padding:0 6px;font-size:10px;line-height:12px;text-align:left;z-index:2;pointer-events:auto}
  }
  @container goonk-viewport (orientation:landscape){
   #mobile-app .creature-presentation :is(canvas,img){width:100%;height:100%;max-height:none;object-fit:contain}
@@ -363,6 +414,14 @@
   #mobile-app[data-creature-view] .creature-presentation{top:56px;bottom:0;height:auto;max-height:none}
   #mobile-app .hero-exchange-page{grid-template-rows:auto auto minmax(0,1fr) auto}
   #mobile-app .hero-exchange-page>.exchange-inventories{grid-row:3}
+  #mobile-app .battle-panel-card{display:grid;grid-template-columns:auto auto minmax(0,1fr);align-items:start;gap:4px 8px}
+  #mobile-app .battle-panel-card>.battle-unit-inspect{grid-column:1;grid-row:1/3}
+  #mobile-app .battle-panel-card>.battle-unit-info{grid-column:2;grid-row:1}
+  #mobile-app .battle-panel-card>.battle-unit-stats{grid-column:2;grid-row:2;width:max-content;justify-self:start;display:grid;grid-template-columns:repeat(2,auto);gap:2px 10px}
+  #mobile-app .battle-panel-card>.battle-spell-effects{grid-column:3;grid-row:1;min-width:0;margin:0;align-self:baseline}
+  #mobile-app .battle-panel{display:grid;grid-template-columns:minmax(0,1fr)}
+  #mobile-app .battle-panel>.battle-panel-card{grid-column:1;grid-row:1}
+  #mobile-viewport #mobile-app .battle-panel>.battle-selection{grid-column:1;grid-row:1;align-self:end;justify-self:end;width:44%;max-height:40px;overflow-y:auto;touch-action:pan-y;scrollbar-width:thin;scrollbar-color:#edca84 transparent;margin:0 0 2px;padding:0 6px;font-size:10px;line-height:12px;text-align:left;z-index:2;pointer-events:auto}
  }
  @container goonk-viewport (orientation:landscape){
   #mobile-app .creature-presentation :is(canvas,img){width:100%;height:100%;max-height:none;object-fit:contain}
@@ -386,6 +445,14 @@
   #mobile-app[data-creature-view] .creature-presentation{top:56px;bottom:0;height:auto;max-height:none}
   #mobile-app .hero-exchange-page{grid-template-rows:auto auto minmax(0,1fr) auto}
   #mobile-app .hero-exchange-page>.exchange-inventories{grid-row:3}
+  #mobile-app .battle-panel-card{display:grid;grid-template-columns:auto auto minmax(0,1fr);align-items:start;gap:4px 8px}
+  #mobile-app .battle-panel-card>.battle-unit-inspect{grid-column:1;grid-row:1/3}
+  #mobile-app .battle-panel-card>.battle-unit-info{grid-column:2;grid-row:1}
+  #mobile-app .battle-panel-card>.battle-unit-stats{grid-column:2;grid-row:2;width:max-content;justify-self:start;display:grid;grid-template-columns:repeat(2,auto);gap:2px 10px}
+  #mobile-app .battle-panel-card>.battle-spell-effects{grid-column:3;grid-row:1;min-width:0;margin:0;align-self:baseline}
+  #mobile-app .battle-panel{display:grid;grid-template-columns:minmax(0,1fr)}
+  #mobile-app .battle-panel>.battle-panel-card{grid-column:1;grid-row:1}
+  #mobile-viewport #mobile-app .battle-panel>.battle-selection{grid-column:1;grid-row:1;align-self:end;justify-self:end;width:44%;max-height:40px;overflow-y:auto;touch-action:pan-y;scrollbar-width:thin;scrollbar-color:#edca84 transparent;margin:0 0 2px;padding:0 6px;font-size:10px;line-height:12px;text-align:left;z-index:2;pointer-events:auto}
  }
  @container goonk-viewport (orientation:landscape){
   #mobile-app .creature-presentation :is(canvas,img){width:100%;height:100%;max-height:none;object-fit:contain}
@@ -415,6 +482,14 @@
   #mobile-app[data-creature-view] .creature-presentation{top:56px;bottom:0;height:auto;max-height:none}
   #mobile-app .hero-exchange-page{grid-template-rows:auto auto minmax(0,1fr) auto}
   #mobile-app .hero-exchange-page>.exchange-inventories{grid-row:3}
+  #mobile-app .battle-panel-card{display:grid;grid-template-columns:auto auto minmax(0,1fr);align-items:start;gap:4px 8px}
+  #mobile-app .battle-panel-card>.battle-unit-inspect{grid-column:1;grid-row:1/3}
+  #mobile-app .battle-panel-card>.battle-unit-info{grid-column:2;grid-row:1}
+  #mobile-app .battle-panel-card>.battle-unit-stats{grid-column:2;grid-row:2;width:max-content;justify-self:start;display:grid;grid-template-columns:repeat(2,auto);gap:2px 10px}
+  #mobile-app .battle-panel-card>.battle-spell-effects{grid-column:3;grid-row:1;min-width:0;margin:0;align-self:baseline}
+  #mobile-app .battle-panel{display:grid;grid-template-columns:minmax(0,1fr)}
+  #mobile-app .battle-panel>.battle-panel-card{grid-column:1;grid-row:1}
+  #mobile-viewport #mobile-app .battle-panel>.battle-selection{grid-column:1;grid-row:1;align-self:end;justify-self:end;width:44%;max-height:40px;overflow-y:auto;touch-action:pan-y;scrollbar-width:thin;scrollbar-color:#edca84 transparent;margin:0 0 2px;padding:0 6px;font-size:10px;line-height:12px;text-align:left;z-index:2;pointer-events:auto}
  }
  @container goonk-viewport (orientation:landscape){
   #mobile-app .creature-presentation :is(canvas,img){width:100%;height:100%;max-height:none;object-fit:contain}
@@ -441,6 +516,14 @@
   #mobile-app[data-creature-view] .creature-presentation{top:56px;bottom:0;height:auto;max-height:none}
   #mobile-app .hero-exchange-page{grid-template-rows:auto auto minmax(0,1fr) auto}
   #mobile-app .hero-exchange-page>.exchange-inventories{grid-row:3}
+  #mobile-app .battle-panel-card{display:grid;grid-template-columns:auto auto minmax(0,1fr);align-items:start;gap:4px 8px}
+  #mobile-app .battle-panel-card>.battle-unit-inspect{grid-column:1;grid-row:1/3}
+  #mobile-app .battle-panel-card>.battle-unit-info{grid-column:2;grid-row:1}
+  #mobile-app .battle-panel-card>.battle-unit-stats{grid-column:2;grid-row:2;width:max-content;justify-self:start;display:grid;grid-template-columns:repeat(2,auto);gap:2px 10px}
+  #mobile-app .battle-panel-card>.battle-spell-effects{grid-column:3;grid-row:1;min-width:0;margin:0;align-self:baseline}
+  #mobile-app .battle-panel{display:grid;grid-template-columns:minmax(0,1fr)}
+  #mobile-app .battle-panel>.battle-panel-card{grid-column:1;grid-row:1}
+  #mobile-viewport #mobile-app .battle-panel>.battle-selection{grid-column:1;grid-row:1;align-self:end;justify-self:end;width:44%;max-height:40px;overflow-y:auto;touch-action:pan-y;scrollbar-width:thin;scrollbar-color:#edca84 transparent;margin:0 0 2px;padding:0 6px;font-size:10px;line-height:12px;text-align:left;z-index:2;pointer-events:auto}
  }
  @container goonk-viewport (orientation:landscape){
   #mobile-app .creature-presentation :is(canvas,img){width:100%;height:100%;max-height:none;object-fit:contain}
