@@ -87,8 +87,8 @@ export function createHeroExchange({root,command,refresh,portrait}){
     if(side===0&&slot.name&&slot.count>0&&heroes[1]?.roster){
      const advice=adviseCreatureExchange(slot,heroes[1].roster,fr?'fr':'en');
      if(advice){
-      const glyph=advice.verdict==='recommended'?'✓':advice.verdict==='neutral'?'≈':'✕';
-      return `<div class="exchange-slot-cell">${cardMarkup}<button type="button" class="exchange-advice-trigger exchange-advice-trigger--${advice.verdict}" data-exchange-advice="${side}:${slot.slot}" aria-label="${escape(`${slot.name} : ${advice.headline}`)}" title="${escape(advice.headline)}"><span class="exchange-advice-trigger__glyph" aria-hidden="true">${glyph}</span><span class="exchange-advice-trigger__info" aria-hidden="true">i</span></button></div>`;
+      const infoIcon='<svg class="exchange-advice-trigger__icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="7.5" r="1.4" fill="currentColor"/><path d="M12 11v6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>';
+      return `<div class="exchange-slot-cell">${cardMarkup}<button type="button" class="exchange-advice-trigger" data-exchange-advice="${side}:${slot.slot}" data-verdict="${advice.verdict}" aria-label="${escape(`${slot.name} : ${advice.headline}`)}" title="${escape(advice.headline)}">${infoIcon}</button></div>`;
      }
     }
     return cardMarkup;
@@ -233,18 +233,20 @@ export function createHeroExchange({root,command,refresh,portrait}){
   const canPreselect=Boolean(turn&&!pending&&targetEntry&&heroes[side]?.owned&&heroes[1]?.owned&&heroes[side]?.withdrawAllowed!==false&&(!targetEntry.name||heroes[1]?.withdrawAllowed!==false));
   renderMarkup(dialog,`
    <header class="exchange-advice-dialog__header">
-    <span class="exchange-advice-dialog__verdict exchange-advice-dialog__verdict--${advice.verdict}">${verdictLabel}</span>
     <h1 id="exchange-advice-title" class="exchange-advice-dialog__title">${escape(unit.name)} × ${unit.count}</h1>
     <button type="button" class="exchange-advice-dialog__close" data-advice-close aria-label="${fr?'Fermer':'Close'}" autofocus>✕</button>
    </header>
-   <div class="exchange-advice-dialog__body">
+   <section class="exchange-advice-dialog__summary">
+    <span class="exchange-advice-dialog__verdict exchange-advice-dialog__verdict--${advice.verdict}">${verdictLabel}</span>
     <p class="exchange-advice-dialog__headline">${escape(advice.headline)}</p>
     ${advice.why?`<p class="exchange-advice-dialog__why">${escape(advice.why)}</p>`:''}
+   </section>
+   <div class="exchange-advice-dialog__body">
     <ul class="exchange-advice-dialog__reasons">${advice.reasons.map(line=>`<li>${escape(line)}</li>`).join('')}</ul>
    </div>
    <footer class="exchange-advice-dialog__footer">
     ${canPreselect?`<button type="button" class="primary" data-advice-select>${fr?'Sélectionner cet échange':'Select this swap'}</button>`:''}
-    <button type="button" data-advice-close>${fr?'Fermer':'Close'}</button>
+    <button type="button" class="back-button" data-advice-close>${fr?'Fermer':'Close'}</button>
    </footer>
   `);
   if(!('closedBy' in HTMLDialogElement.prototype)){
