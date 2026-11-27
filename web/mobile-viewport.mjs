@@ -107,7 +107,11 @@ export function anchorMobileViewport(root,win=window){
   }
   if(dynamic?.width>0)lastDynamicWidth=dynamic.width;
   lastLayoutWidth=layoutWidth;rotationPending=false;
-  if(root.dataset)root.dataset.orientation=isLandscape?'landscape':'portrait';
+  if(root.dataset){
+   root.dataset.orientation=isLandscape?'landscape':'portrait';
+   const angle=typeof win.orientation==='number'?win.orientation:(win.screen?.orientation?.angle??0);
+   root.dataset.notchSide=!isLandscape?'top':(angle===-90||angle===270||win.screen?.orientation?.type==='landscape-secondary')?'right':'left';
+  }
   // pageTop/pageLeft may lag scrollTo(0,0) after an iOS wake. Gameplay has no
   // keyboard panning; anchor its document-space box to the actual scroll origin.
   const editing=editingViewport(win);

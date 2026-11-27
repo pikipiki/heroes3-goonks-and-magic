@@ -483,6 +483,7 @@
  #mobile-app[data-mode=map] .hero-movement-item.is-active,#mobile-app[data-mode=map] .hero-movement-item.is-active[data-movement-band]{background:linear-gradient(180deg,#741c17,#410d0b);border:1px solid #edca84;border-image:none;box-shadow:inset 0 0 0 1px #edca84,0 0 10px rgba(237,202,132,0.65);color:#fff2cf}
  #mobile-app[data-mode=map] .hero-movement-item.is-active>button,#mobile-app[data-mode=map] .hero-movement-item.is-active>button[aria-pressed=true],#mobile-app[data-mode=map] .hero-movement-item.is-active>button[aria-pressed=true]:hover{background:transparent;border:0;outline:none;box-shadow:none;color:inherit}
  #mobile-viewport{padding:env(safe-area-inset-top,0px) calc(env(safe-area-inset-right,0px) * 0.25) calc(env(safe-area-inset-bottom,0px) * 0.45) env(safe-area-inset-left,0px)}
+ #mobile-viewport[data-notch-side=right]{padding:env(safe-area-inset-top,0px) env(safe-area-inset-right,0px) calc(env(safe-area-inset-bottom,0px) * 0.45) calc(env(safe-area-inset-left,0px) * 0.25)}
  #mobile-viewport #mobile-app[data-mode=map]>.mobile-nav .hero-movement-summary{display:flex;align-items:stretch;gap:4px}
  #mobile-viewport #mobile-app[data-mode=map]>.mobile-nav .hero-movement-list{flex:1 1 auto;min-width:0;width:100%;overscroll-behavior-x:contain;scroll-snap-type:x proximity}
  #mobile-viewport #mobile-app[data-mode=map]>.mobile-nav .hero-movement-item{flex:1 0 auto;min-width:0;scroll-snap-align:start}
