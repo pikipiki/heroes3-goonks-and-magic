@@ -1,4 +1,5 @@
 import {useScreenComponents,renderMarkup} from './ui/material-components.mjs';
+import {verticalTabsMarkup} from './ui/vertical-tabs.mjs';
 import {createSpellScroll} from './spell-scroll.mjs';
 import {spellOneClick} from './battle-preferences.mjs';
 import {getLanguage} from './locale-state.mjs';
@@ -63,7 +64,7 @@ export function createMobileSpellbook({root,command}){
     </button>
    </div>`}
    <div class="spell-workspace">
-   ${book.inCombat===false?`<nav class="spell-contexts" aria-label="Spell types"><button data-spell-context="0" aria-pressed="${!book.combatSpells}">Adventure spells</button><button data-spell-context="1" aria-pressed="${!!book.combatSpells}">Combat spells</button></nav>`:''}
+   ${book.inCombat===false?verticalTabsMarkup({className:'spell-contexts',label:'Spell types',landscapeOnly:true,items:[{label:'Adventure spells',attributes:'data-spell-context="0"',selected:!book.combatSpells},{label:'Combat spells',attributes:'data-spell-context="1"',selected:!!book.combatSpells}]}):''}
    <label class="spell-school-picker"><select data-school-select aria-label="${getLanguage()==='fr'?'École de magie':'Magic school'}">${schools.map(([,name],index)=>`<option value="${index}" ${spellSchoolIds[index]===book.school?'selected':''}>${schoolLabels[index]}</option>`).join('')}</select></label>
    <div class="spell-content">
     <div class="spell-list" aria-label="Spells">

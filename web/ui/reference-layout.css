@@ -523,7 +523,10 @@
   #mobile-app .mobile-spellbook .spell-row>span{display:flex;flex-direction:column;align-items:center;gap:1px;min-width:0;width:100%}
   #mobile-app .mobile-spellbook .spell-row strong{font:var(--ui-font-body-small);line-height:1.15;text-align:center}
   #mobile-app .mobile-spellbook .spell-selection{grid-area:detail;min-height:0;overflow-y:auto;touch-action:pan-y;padding:6px 8px;border:1px solid var(--ui-outline);box-sizing:border-box}
+  #mobile-app .mobile-spellbook .spell-contexts.MuiTabs-root{grid-area:contexts;align-self:stretch}
  }
+ #mobile-app .mobile-spellbook .spell-contexts.MuiTabs-root{display:flex;grid-template-columns:none;gap:0;width:100%;min-width:0}
+ #mobile-app .mobile-spellbook .spell-contexts.MuiTabs-root:not(.MuiTabs-vertical) .MuiTab-root{flex:1 1 0;min-width:0}
  #mobile-app .exchange-slot-cell{position:relative;display:flex;min-width:0;width:100%}
  #mobile-app .exchange-slot-cell>.exchange-slot{flex:1 1 auto;width:100%;min-width:0}
  #mobile-app .exchange-advice-trigger{position:absolute;top:4px;right:4px;z-index:3;display:inline-flex;align-items:center;justify-content:center;gap:3px;min-width:32px;min-height:28px;height:28px;padding:2px 6px;border:1px solid #edca84;border-radius:0;background:#24160b;color:#fff2cf;font:var(--ui-font-body-small);font-weight:400;line-height:1;touch-action:manipulation}
