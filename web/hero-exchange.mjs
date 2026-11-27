@@ -231,6 +231,15 @@ export function createHeroExchange({root,command,refresh,portrait}){
   const verdictLabel=advice.verdict==='recommended'?(fr?'✓ Conseillé':'✓ Recommended'):advice.verdict==='neutral'?(fr?'≈ Mitigé':'≈ Mixed'):(fr?'✕ Déconseillé':'✕ Not recommended');
   const targetEntry=advice.targetSlot!==null?heroes[1].roster.find(entry=>entry.slot===advice.targetSlot):null;
   const canPreselect=Boolean(turn&&!pending&&targetEntry&&heroes[side]?.owned&&heroes[1]?.owned&&heroes[side]?.withdrawAllowed!==false&&(!targetEntry.name||heroes[1]?.withdrawAllowed!==false));
+  const hasTarget=Boolean(advice.targetUnit);
+  const targetRole=advice.action==='merge'?(fr?'Votre pile':'Your stack'):(fr?'À remplacer':'Replace');
+  const tableRows=(advice.comparison||[]).map(row=>`
+   <tr class="${row.highlight?'exchange-advice-table__row--score':''}">
+    <th scope="row">${escape(row.label)}</th>
+    <td class="exchange-advice-table__val exchange-advice-table__val--${row.diff}">${escape(row.candidateDisplay)}</td>
+    ${hasTarget?`<td class="exchange-advice-table__val exchange-advice-table__val--target">${escape(row.targetDisplay)}</td>`:''}
+   </tr>`).join('');
+  const teamNotes=(advice.teamNotes||[]).map(note=>`<li class="exchange-advice-notes__item exchange-advice-notes__item--${note.kind}"><span aria-hidden="true">${note.kind==='good'?'✓':note.kind==='warn'?'⚠':'•'}</span><span>${escape(note.text)}</span></li>`).join('');
   renderMarkup(dialog,`
    <header class="exchange-advice-dialog__header">
     <h1 id="exchange-advice-title" class="exchange-advice-dialog__title">${escape(unit.name)} × ${unit.count}</h1>
@@ -242,7 +251,17 @@ export function createHeroExchange({root,command,refresh,portrait}){
     ${advice.why?`<p class="exchange-advice-dialog__why">${escape(advice.why)}</p>`:''}
    </section>
    <div class="exchange-advice-dialog__body">
-    <ul class="exchange-advice-dialog__reasons">${advice.reasons.map(line=>`<li>${escape(line)}</li>`).join('')}</ul>
+    <table class="exchange-advice-table">
+     <thead>
+      <tr>
+       <th scope="col">${fr?'Critère':'Stat'}</th>
+       <th scope="col" class="exchange-advice-table__col--candidate"><small>${fr?'Nouvelle':'Incoming'}</small><span>${escape(unit.name)} × ${unit.count}</span></th>
+       ${hasTarget?`<th scope="col" class="exchange-advice-table__col--target"><small>${targetRole}</small><span>${escape(advice.targetUnit.name)} × ${advice.targetUnit.count}</span></th>`:''}
+      </tr>
+     </thead>
+     <tbody>${tableRows}</tbody>
+    </table>
+    ${teamNotes?`<section class="exchange-advice-notes"><h2 class="exchange-advice-notes__title">${fr?'Compatibilité équipe':'Team synergy'}</h2><ul class="exchange-advice-notes__list">${teamNotes}</ul></section>`:''}
    </div>
    <footer class="exchange-advice-dialog__footer">
     ${canPreselect?`<button type="button" class="primary" data-advice-select>${fr?'Sélectionner cet échange':'Select this swap'}</button>`:''}

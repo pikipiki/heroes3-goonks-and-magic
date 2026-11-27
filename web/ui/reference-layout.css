@@ -553,8 +553,26 @@
  dialog.exchange-advice-dialog .exchange-advice-dialog__verdict--not-recommended{background:#521814;border-color:#e57373;color:#ffebee}
  dialog.exchange-advice-dialog .exchange-advice-dialog__headline{margin:0;font:var(--ui-font-label);color:#ffe8a3}
  dialog.exchange-advice-dialog .exchange-advice-dialog__why{margin:0;font:var(--ui-font-body-small);color:#fff2cf}
- dialog.exchange-advice-dialog .exchange-advice-dialog__body{grid-column:1;grid-row:3;overflow-y:auto;touch-action:pan-y;padding:12px 16px}
- dialog.exchange-advice-dialog .exchange-advice-dialog__reasons{margin:0;padding-inline-start:18px;display:flex;flex-direction:column;gap:8px;font:var(--ui-font-body-medium);color:#f3e4be}
+ dialog.exchange-advice-dialog .exchange-advice-dialog__body{grid-column:1;grid-row:3;overflow-y:auto;touch-action:pan-y;padding:10px 12px;display:flex;flex-direction:column;gap:12px}
+ dialog.exchange-advice-dialog .exchange-advice-table{width:100%;border-collapse:collapse;border:1px solid rgba(237,202,132,0.45);background:rgba(18,11,6,0.65);font:var(--ui-font-body-small)}
+ dialog.exchange-advice-dialog .exchange-advice-table th,
+ dialog.exchange-advice-dialog .exchange-advice-table td{padding:6px 8px;border-bottom:1px solid rgba(237,202,132,0.2);text-align:left;vertical-align:middle}
+ dialog.exchange-advice-dialog .exchange-advice-table thead th{background:rgba(84,52,26,0.55);border-bottom:1px solid #edca84;color:#ffe8a3;font-weight:400}
+ dialog.exchange-advice-dialog .exchange-advice-table thead th small{display:block;font:var(--ui-font-resource);color:#d8c394;text-transform:uppercase;letter-spacing:0.04em}
+ dialog.exchange-advice-dialog .exchange-advice-table thead th.exchange-advice-table__col--candidate{background:rgba(31,102,173,0.35);color:#eef7ff}
+ dialog.exchange-advice-dialog .exchange-advice-table thead th.exchange-advice-table__col--candidate small{color:#b9dcff}
+ dialog.exchange-advice-dialog .exchange-advice-table tbody th{color:#d8c394;font-weight:400;width:34%}
+ dialog.exchange-advice-dialog .exchange-advice-table__row--score{background:rgba(237,202,132,0.1)}
+ dialog.exchange-advice-dialog .exchange-advice-table__val{text-align:right;color:#fff2cf}
+ dialog.exchange-advice-dialog .exchange-advice-table__val--better{color:#9be7a0}
+ dialog.exchange-advice-dialog .exchange-advice-table__val--worse{color:#ff9e9e}
+ dialog.exchange-advice-dialog .exchange-advice-table__val--target{color:#d8c394}
+ dialog.exchange-advice-dialog .exchange-advice-notes{display:flex;flex-direction:column;gap:6px}
+ dialog.exchange-advice-dialog .exchange-advice-notes__title{margin:0;font:var(--ui-font-label);color:#ffe8a3}
+ dialog.exchange-advice-dialog .exchange-advice-notes__list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+ dialog.exchange-advice-dialog .exchange-advice-notes__item{display:flex;align-items:flex-start;gap:8px;padding:6px 10px;border:1px solid rgba(237,202,132,0.35);background:rgba(28,18,10,0.65);font:var(--ui-font-body-small);color:#f3e4be}
+ dialog.exchange-advice-dialog .exchange-advice-notes__item--good{border-color:#81c784;background:rgba(24,58,36,0.55);color:#e8f5e9}
+ dialog.exchange-advice-dialog .exchange-advice-notes__item--warn{border-color:#e57373;background:rgba(82,24,20,0.55);color:#ffebee}
  dialog.exchange-advice-dialog .exchange-advice-dialog__footer{grid-column:1;grid-row:4;display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:8px;padding:8px 12px;border-top:1px solid rgba(237,202,132,0.35)}
  dialog.exchange-advice-dialog .exchange-advice-dialog__footer>button{min-height:48px;padding:6px 12px;font:var(--ui-font-label);font-weight:400}
  @media (orientation:landscape){

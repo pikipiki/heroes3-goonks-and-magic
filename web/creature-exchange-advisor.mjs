@@ -185,6 +185,41 @@ function buildWhySummary(candidate,candScore,targetUnit,targetScore,compatNotes,
  return text.charAt(0).toUpperCase()+text.slice(1)+'.';
 }
 
+function formatEffects(score,language='fr'){
+ const fr=language==='fr';
+ const labels={
+  shooter:fr?'Tireur':'Shooter',
+  flying:fr?'Vol':'Flying',
+  noRetaliation:fr?'Sans riposte':'No retaliation',
+  allAdjacent:fr?'Circulaire':'All adjacent',
+  mindImmune:fr?'Immun. esprit':'Mind immune',
+  chargeImmune:fr?'Anti-charge':'Charge immune'
+ };
+ const parts=score.tags.map(t=>labels[t]).filter(Boolean);
+ const extra=Math.max(0,score.abilityCount-parts.length);
+ if(extra>0)parts.push(fr?`+${extra} cap.`:`+${extra} abil.`);
+ return parts.length?parts.join(', '):'—';
+}
+
+function buildComparisonRows(candidate,candScore,targetUnit,targetScore,language='fr'){
+ const fr=language==='fr';
+ const fmt=n=>Math.round(n).toLocaleString(fr?'fr-FR':'en-US');
+ const cmp=(a,b)=>targetUnit?(a>b?'better':a<b?'worse':'equal'):'equal';
+ const candAvgDmg=(num(candidate.damageMin,1)+num(candidate.damageMax,1))/2;
+ const targAvgDmg=targetUnit?(num(targetUnit.damageMin,1)+num(targetUnit.damageMax,1))/2:0;
+ const rows=[
+  {key:'score',label:fr?'Score puissance':'Power score',candidateDisplay:fmt(candScore.total),targetDisplay:targetUnit?fmt(targetScore.total):'—',diff:cmp(candScore.total,targetScore?.total||0),highlight:true},
+  {key:'count',label:fr?'Effectif':'Count',candidateDisplay:`×${fmt(num(candidate.count,0))}`,targetDisplay:targetUnit?`×${fmt(num(targetUnit.count,0))}`:'—',diff:cmp(num(candidate.count,0),num(targetUnit?.count,0))},
+  {key:'attack',label:fr?'Attaque':'Attack',candidateDisplay:fmt(num(candidate.attack,0)),targetDisplay:targetUnit?fmt(num(targetUnit.attack,0)):'—',diff:cmp(num(candidate.attack,0),num(targetUnit?.attack,0))},
+  {key:'defense',label:fr?'Défense':'Defense',candidateDisplay:fmt(num(candidate.defense,0)),targetDisplay:targetUnit?fmt(num(targetUnit.defense,0)):'—',diff:cmp(num(candidate.defense,0),num(targetUnit?.defense,0))},
+  {key:'damage',label:fr?'Dégâts':'Damage',candidateDisplay:`${num(candidate.damageMin,1)}–${num(candidate.damageMax,1)}`,targetDisplay:targetUnit?`${num(targetUnit.damageMin,1)}–${num(targetUnit.damageMax,1)}`:'—',diff:cmp(candAvgDmg,targAvgDmg)},
+  {key:'health',label:fr?'Points de vie':'Health',candidateDisplay:fmt(num(candidate.health,0)),targetDisplay:targetUnit?fmt(num(targetUnit.health,0)):'—',diff:cmp(num(candidate.health,0),num(targetUnit?.health,0))},
+  {key:'speed',label:fr?'Vitesse':'Speed',candidateDisplay:fmt(num(candidate.speed,0)),targetDisplay:targetUnit?fmt(num(targetUnit.speed,0)):'—',diff:cmp(num(candidate.speed,0),num(targetUnit?.speed,0))},
+  {key:'effects',label:fr?'Effets':'Effects',candidateDisplay:formatEffects(candScore,language),targetDisplay:targetUnit?formatEffects(targetScore,language):'—',diff:cmp(candScore.effectsMultiplier,targetScore?.effectsMultiplier||1)}
+ ];
+ return rows;
+}
+
 function buildDetailReasons(candidate,candScore,targetUnit,targetScore,compatNotes,language='fr'){
  const fr=language==='fr';
  const reasons=[];
@@ -241,6 +276,8 @@ export function adviseCreatureExchange(candidate,heroRoster=[],language='fr'){
    headline,
    why:fr?'Renforce directement la pile existante sans utiliser d’emplacement supplémentaire.':'Directly reinforces your existing stack using no extra slot.',
    shortBadge:fr?'Fusion':'Merge',
+   comparison:buildComparisonRows(candidate,candScore,mergeSlot,targetScore,language),
+   teamNotes:[{kind:'good',text:fr?'Même créature : renfort gratuit sans prendre d’emplacement':'Same creature: free reinforcement using no extra slot'}],
    reasons:buildDetailReasons(candidate,candScore,mergeSlot,targetScore,[{kind:'good',text:fr?'Même créature : renfort gratuit sans prendre d’emplacement':'Same creature: free reinforcement using no extra slot'}],language)
   };
  }
@@ -269,6 +306,8 @@ export function adviseCreatureExchange(candidate,heroRoster=[],language='fr'){
    headline,
    why:buildWhySummary(candidate,candScore,null,null,compat.notes,verdict,language),
    shortBadge:verdict==='recommended'?(fr?'Ajouter':'Add'):verdict==='neutral'?(fr?'Mitigé':'Mixed'):(fr?'Éviter':'Skip'),
+   comparison:buildComparisonRows(candidate,candScore,null,null,language),
+   teamNotes:compat.notes,
    reasons:buildDetailReasons(candidate,candScore,null,null,compat.notes,language)
   };
  }
@@ -305,6 +344,8 @@ export function adviseCreatureExchange(candidate,heroRoster=[],language='fr'){
   headline,
   why:buildWhySummary(candidate,candScore,best.slot,best.slotScore,best.compat.notes,verdict,language),
   shortBadge:verdict==='recommended'?`${sign}${best.deltaPercent}%`:verdict==='neutral'?'≈':`${best.deltaPercent}%`,
+  comparison:buildComparisonRows(candidate,candScore,best.slot,best.slotScore,language),
+  teamNotes:best.compat.notes,
   reasons:buildDetailReasons(candidate,candScore,best.slot,best.slotScore,best.compat.notes,language)
  };
 }
