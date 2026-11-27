@@ -155,6 +155,7 @@ export function anchorMobileViewport(root,win=window){
    const timer=setTimeout(()=>{
     wakeTimers.delete(timer);
     if(disposed||win.document?.hidden===true)return;
+    if(!editingViewport(win)&&typeof win.scrollTo==='function'&&(win.scrollX||win.scrollY))try{win.scrollTo(0,0);}catch(_){}
     schedule();
    },delay);
    wakeTimers.add(timer);
