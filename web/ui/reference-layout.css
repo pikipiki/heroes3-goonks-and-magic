@@ -524,4 +524,27 @@
   #mobile-app .mobile-spellbook .spell-row strong{font:var(--ui-font-body-small);line-height:1.15;text-align:center}
   #mobile-app .mobile-spellbook .spell-selection{grid-area:detail;min-height:0;overflow-y:auto;touch-action:pan-y;padding:6px 8px;border:1px solid var(--ui-outline);box-sizing:border-box}
  }
+ #mobile-app .exchange-slot-cell{position:relative;display:flex;min-width:0;width:100%}
+ #mobile-app .exchange-slot-cell>.exchange-slot{flex:1 1 auto;width:100%;min-width:0}
+ #mobile-app .exchange-advice-trigger{position:absolute;top:4px;right:4px;z-index:3;display:inline-flex;align-items:center;justify-content:center;gap:3px;min-width:32px;min-height:28px;height:28px;padding:2px 6px;border:1px solid #edca84;border-radius:0;background:#24160b;color:#fff2cf;font:var(--ui-font-body-small);font-weight:400;line-height:1;touch-action:manipulation}
+ #mobile-app .exchange-advice-trigger--recommended{background:#183a24;border-color:#81c784;color:#e8f5e9}
+ #mobile-app .exchange-advice-trigger--neutral{background:#49351b;border-color:#edca84;color:#fff2cf}
+ #mobile-app .exchange-advice-trigger--not-recommended{background:#521814;border-color:#e57373;color:#ffebee}
+ #mobile-app .exchange-advice-trigger__info{font-style:italic}
+ dialog.exchange-advice-dialog{padding:0;max-width:min(420px,calc(100dvw - 24px));max-height:calc(100dvh - 24px);width:min(420px,calc(100dvw - 24px));height:auto;margin:auto;color:#fff2cf;overflow:hidden}
+ dialog.exchange-advice-dialog[open]{display:grid;grid-template-rows:auto minmax(0,1fr) auto}
+ dialog.exchange-advice-dialog:modal{overscroll-behavior:contain}
+ dialog.exchange-advice-dialog::backdrop{background:rgba(12,8,4,0.72);overflow:hidden;overscroll-behavior:contain}
+ dialog.exchange-advice-dialog .exchange-advice-dialog__header{display:flex;align-items:center;gap:8px;padding:8px 10px;border-bottom:1px solid #edca84;background:linear-gradient(180deg,rgba(116,28,23,0.85),rgba(65,13,11,0.85))}
+ dialog.exchange-advice-dialog .exchange-advice-dialog__verdict{flex:0 0 auto;padding:2px 6px;border:1px solid #edca84;font:var(--ui-font-body-small);white-space:nowrap}
+ dialog.exchange-advice-dialog .exchange-advice-dialog__verdict--recommended{background:#183a24;border-color:#81c784;color:#e8f5e9}
+ dialog.exchange-advice-dialog .exchange-advice-dialog__verdict--neutral{background:#49351b;border-color:#edca84;color:#fff2cf}
+ dialog.exchange-advice-dialog .exchange-advice-dialog__verdict--not-recommended{background:#521814;border-color:#e57373;color:#ffebee}
+ dialog.exchange-advice-dialog .exchange-advice-dialog__title{flex:1 1 auto;min-width:0;margin:0;font:var(--ui-font-title-compact);color:#fff2cf}
+ dialog.exchange-advice-dialog .exchange-advice-dialog__close{flex:0 0 40px;width:40px;min-width:40px;min-height:40px;height:40px;padding:0;font:var(--ui-font-label)}
+ dialog.exchange-advice-dialog .exchange-advice-dialog__body{overflow-y:auto;touch-action:pan-y;padding:12px;display:flex;flex-direction:column;gap:8px}
+ dialog.exchange-advice-dialog .exchange-advice-dialog__headline{margin:0;font:var(--ui-font-label);color:#ffe8a3}
+ dialog.exchange-advice-dialog .exchange-advice-dialog__reasons{margin:0;padding-inline-start:18px;display:flex;flex-direction:column;gap:4px;font:var(--ui-font-body-small);color:#f3e4be}
+ dialog.exchange-advice-dialog .exchange-advice-dialog__footer{display:flex;gap:8px;justify-content:flex-end;padding:8px 12px;border-top:1px solid rgba(237,202,132,0.35)}
+ dialog.exchange-advice-dialog .exchange-advice-dialog__footer>button{min-height:44px;padding:6px 12px;font:var(--ui-font-label);font-weight:400}
 }

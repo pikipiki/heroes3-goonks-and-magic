@@ -1,5 +1,6 @@
 import {useScreenComponents,renderMarkup,requestMaterialConfirmation,chipMarkup,createPopupMenu,createUIElement} from './ui/material-components.mjs';
 import {equipmentSlotNames, paintArtifactIcons, armySlotMarkup} from './hero-equipment.mjs';
+import {adviseCreatureExchange} from './creature-exchange-advisor.mjs';
 import {plainGameText} from './game-text.mjs';
 import {getLanguage} from './locale-state.mjs';
 
@@ -73,7 +74,7 @@ export function createHeroExchange({root,command,refresh,portrait}){
       </div>
      </button>`;
     }
-    return armySlotMarkup(slot.slot,slot.name?slot:null,{
+    const cardMarkup=armySlotMarkup(slot.slot,slot.name?slot:null,{
      selected:current,
      target:compatible,
      disabled,
@@ -83,6 +84,14 @@ export function createHeroExchange({root,command,refresh,portrait}){
      portrait,
      fr
     });
+    if(side===0&&slot.name&&slot.count>0&&heroes[1]?.roster){
+     const advice=adviseCreatureExchange(slot,heroes[1].roster,fr?'fr':'en');
+     if(advice){
+      const glyph=advice.verdict==='recommended'?'✓':advice.verdict==='neutral'?'≈':'✕';
+      return `<div class="exchange-slot-cell">${cardMarkup}<button type="button" class="exchange-advice-trigger exchange-advice-trigger--${advice.verdict}" data-exchange-advice="${side}:${slot.slot}" aria-label="${escape(`${slot.name} : ${advice.headline}`)}" title="${escape(advice.headline)}"><span class="exchange-advice-trigger__glyph" aria-hidden="true">${glyph}</span><span class="exchange-advice-trigger__info" aria-hidden="true">i</span></button></div>`;
+     }
+    }
+    return cardMarkup;
    }
    return `<button type="button" aria-label="${escape(heroes[side].name)}, ${escape(label)}" class="exchange-slot${compatible?' can-receive':''}" data-exchange-slot="${side}:${slot.slot}"
     aria-pressed="${current}" ${disabled?'disabled':''}>
@@ -209,7 +218,68 @@ export function createHeroExchange({root,command,refresh,portrait}){
   const actionsBtn=panel.querySelector('[data-exchange-actions]');
   if(actionsBtn)actionsBtn.disabled=!item;
  }
+ function showAdviceDialog(side,slotIndex){
+  const unit=heroes[side]?.roster?.find(entry=>entry.slot===slotIndex);
+  if(!unit?.name||!heroes[1]?.roster)return;
+  const advice=adviseCreatureExchange(unit,heroes[1].roster,fr?'fr':'en');
+  if(!advice)return;
+  panel.querySelector('dialog.exchange-advice-dialog')?.remove();
+  const dialog=document.createElement('dialog');
+  dialog.className='exchange-advice-dialog MuiDialog-paper';
+  dialog.setAttribute('closedby','any');
+  dialog.setAttribute('aria-labelledby','exchange-advice-title');
+  const verdictLabel=advice.verdict==='recommended'?(fr?'✓ Conseillé':'✓ Recommended'):advice.verdict==='neutral'?(fr?'≈ Mitigé':'≈ Mixed'):(fr?'✕ Déconseillé':'✕ Not recommended');
+  const targetEntry=advice.targetSlot!==null?heroes[1].roster.find(entry=>entry.slot===advice.targetSlot):null;
+  const canPreselect=Boolean(turn&&!pending&&targetEntry&&heroes[side]?.owned&&heroes[1]?.owned&&heroes[side]?.withdrawAllowed!==false&&(!targetEntry.name||heroes[1]?.withdrawAllowed!==false));
+  renderMarkup(dialog,`
+   <header class="exchange-advice-dialog__header">
+    <span class="exchange-advice-dialog__verdict exchange-advice-dialog__verdict--${advice.verdict}">${verdictLabel}</span>
+    <h1 id="exchange-advice-title" class="exchange-advice-dialog__title">${escape(unit.name)} × ${unit.count}</h1>
+    <button type="button" class="exchange-advice-dialog__close" data-advice-close aria-label="${fr?'Fermer':'Close'}" autofocus>✕</button>
+   </header>
+   <div class="exchange-advice-dialog__body">
+    <p class="exchange-advice-dialog__headline">${escape(advice.headline)}</p>
+    <ul class="exchange-advice-dialog__reasons">${advice.reasons.map(line=>`<li>${escape(line)}</li>`).join('')}</ul>
+   </div>
+   <footer class="exchange-advice-dialog__footer">
+    ${canPreselect?`<button type="button" class="primary" data-advice-select>${fr?'Sélectionner cet échange':'Select this swap'}</button>`:''}
+    <button type="button" data-advice-close>${fr?'Fermer':'Close'}</button>
+   </footer>
+  `);
+  if(!('closedBy' in HTMLDialogElement.prototype)){
+   let pressedOutside=false;
+   const outside=event=>{const rect=dialog.getBoundingClientRect();return event.clientX<rect.left||event.clientX>rect.right||event.clientY<rect.top||event.clientY>rect.bottom;};
+   dialog.addEventListener('pointerdown',event=>{pressedOutside=outside(event);});
+   dialog.addEventListener('pointerup',event=>{if(pressedOutside&&outside(event))dialog.close();});
+  }
+  dialog.addEventListener('click',event=>{
+   const btn=event.target.closest('button');
+   if(!btn)return;
+   if(btn.hasAttribute('data-advice-close')){dialog.close('close');return;}
+   if(btn.hasAttribute('data-advice-select')){
+    source={side,slot:unit.slot,id:unit.id};
+    const limit=maximum(unit,1,targetEntry);
+    if(limit>0){
+     destination={side:1,slot:targetEntry.slot,id:targetEntry.id};
+     quantity=limit;
+     splitMode=false;
+    }else{
+     clearSelection();
+    }
+    dialog.close('select');
+    updateSelection();
+   }
+  });
+  dialog.addEventListener('close',()=>{dialog.returnValue='';dialog.remove();});
+  panel.append(dialog);
+  dialog.showModal();
+ }
  async function handleButton(button){
+  if(button.hasAttribute('data-exchange-advice')){
+   const [side,slot]=button.dataset.exchangeAdvice.split(':').map(Number);
+   showAdviceDialog(side,slot);
+   return;
+  }
   if(!button||button.disabled||closing)return;
   if(button.hasAttribute('data-exchange-classic')){setView(true);return;}
   if(button.hasAttribute('data-exchange-split')){
@@ -326,7 +396,7 @@ export function createHeroExchange({root,command,refresh,portrait}){
   message='';
   render();
  }
- panel.addEventListener('click',event=>{if(event.target.closest('[data-ui-material-prompt]'))return;const button=event.target.closest('button');if(button)handleButton(button);});
+ panel.addEventListener('click',event=>{if(event.target.closest('[data-ui-material-prompt],dialog.exchange-advice-dialog'))return;const button=event.target.closest('button');if(button)handleButton(button);});
 
  return {
   hold(next){
