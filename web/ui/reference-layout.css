@@ -513,17 +513,20 @@
   #mobile-viewport #mobile-app .hero-equipment-page[data-inventory=army]>.hero-army-dock-tools>button.ui-overflow-trigger{grid-row:2;grid-column:3;width:100%;min-width:0}
   #mobile-viewport #mobile-app .hero-equipment-page[data-inventory=army]>.hero-army-dock-tools>.hero-army-split-amount:not([hidden]){position:static;inset:auto;grid-row:1;grid-column:1/-1;display:grid;grid-template-columns:48px minmax(0,1fr) 48px;gap:4px;height:48px;padding:0;background:transparent}
   #mobile-viewport #mobile-app .hero-equipment-page[data-inventory=army]:has(.hero-army-split-amount:not([hidden]))>.hero-equipment-grid{height:100%;max-height:none;padding-bottom:0}
-  #mobile-app .mobile-spellbook{grid-template-columns:minmax(0,1fr) var(--spell-control-rail,244px);grid-template-rows:48px auto minmax(0,1fr) 48px;grid-template-areas:"schools title" "book contexts" "book detail" "book footer";gap:6px 8px}
-  #mobile-app .mobile-spellbook[data-browsing=false]{grid-template-rows:48px minmax(0,1fr) 48px;grid-template-areas:"schools title" "book detail" "book footer"}
-  #mobile-app .mobile-spellbook>header.ui-screen-header{grid-area:title;min-height:48px;height:48px;padding:4px 4px 4px 56px;gap:8px}
-  #mobile-app .mobile-spellbook .spell-workspace,#mobile-app .mobile-spellbook .spell-content{display:contents}
-  #mobile-app .mobile-spellbook .spell-school-picker{grid-area:schools;height:48px}
-  #mobile-app .mobile-spellbook .spell-list{grid-area:book;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));align-content:start;gap:6px;padding:0;border:0;background:transparent;overflow-y:auto;touch-action:pan-y;min-height:0}
-  #mobile-app .mobile-spellbook .spell-row{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:2px;padding:4px;min-height:64px;height:auto}
-  #mobile-app .mobile-spellbook .spell-row>span{display:flex;flex-direction:column;align-items:center;gap:1px;min-width:0;width:100%}
-  #mobile-app .mobile-spellbook .spell-row strong{font:var(--ui-font-body-small);line-height:1.15;text-align:center}
-  #mobile-app .mobile-spellbook .spell-selection{grid-area:detail;min-height:0;overflow-y:auto;touch-action:pan-y;padding:6px 8px;border:1px solid var(--ui-outline);box-sizing:border-box}
-  #mobile-app .mobile-spellbook .spell-contexts.MuiTabs-root{grid-area:contexts;align-self:stretch}
+  #mobile-viewport #mobile-app .mobile-spellbook,
+  #mobile-viewport #mobile-app .mobile-spellbook[data-browsing]{grid-template-columns:minmax(0,1fr) var(--control-rail,244px);grid-template-rows:48px auto minmax(0,1fr) auto auto;grid-template-areas:"schools title" "book contexts" "book detail" "book reuse" "book footer";gap:6px 8px}
+  #mobile-viewport #mobile-app .mobile-spellbook[data-browsing=false]{grid-template-rows:48px minmax(0,1fr) auto auto;grid-template-areas:"schools title" "book detail" "book reuse" "book footer"}
+  #mobile-viewport #mobile-app .mobile-spellbook>header.ui-screen-header{grid-area:title;min-height:48px;height:48px;padding:4px 4px 4px 8px;gap:8px}
+  #mobile-viewport #mobile-app .mobile-spellbook .spell-workspace,#mobile-viewport #mobile-app .mobile-spellbook .spell-content{display:contents}
+  #mobile-viewport #mobile-app .mobile-spellbook .spell-school-picker{grid-area:schools;height:48px}
+  #mobile-viewport #mobile-app .mobile-spellbook .spell-contexts{grid-area:contexts;align-self:stretch}
+  #mobile-viewport #mobile-app .mobile-spellbook .spell-top-actions{grid-area:reuse;min-height:0;width:100%;justify-self:stretch}
+  #mobile-viewport #mobile-app .mobile-spellbook>footer{grid-area:footer;width:100%;justify-self:stretch}
+  #mobile-viewport #mobile-app .mobile-spellbook .spell-list{grid-area:book;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));align-content:start;gap:6px;padding:0;border:0;background:transparent;overflow-y:auto;touch-action:pan-y;min-height:0}
+  #mobile-viewport #mobile-app .mobile-spellbook .spell-row{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:2px;padding:4px;min-height:64px;height:auto}
+  #mobile-viewport #mobile-app .mobile-spellbook .spell-row>span{display:flex;flex-direction:column;align-items:center;gap:1px;min-width:0;width:100%}
+  #mobile-viewport #mobile-app .mobile-spellbook .spell-row strong{font:var(--ui-font-body-small);line-height:1.15;text-align:center}
+  #mobile-viewport #mobile-app .mobile-spellbook .spell-selection{grid-area:detail;min-height:0;overflow-y:auto;touch-action:pan-y;padding:6px 8px;border:1px solid var(--ui-outline);box-sizing:border-box}
  }
  #mobile-app .mobile-spellbook .spell-contexts.MuiTabs-root{display:flex;grid-template-columns:none;gap:0;width:100%;min-width:0}
  #mobile-app .mobile-spellbook .spell-contexts.MuiTabs-root:not(.MuiTabs-vertical) .MuiTab-root{flex:1 1 0;min-width:0}
