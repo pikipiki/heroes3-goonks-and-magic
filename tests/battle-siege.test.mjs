@@ -20,3 +20,26 @@ test('destroyed wall sections leave breaches in the portrait fortification',()=>
  paintVerticalFortifications(ctx,{battleCells:[cell(0,2),cell(30,2)]},c=>c,1,null,[]);
  assert(drawn.some(c=>c[0]==='fill'));
 });
+test('portrait fortification models intact, damaged, and fallen siege gates',()=>{
+ const record=(wallState,kind=4)=>{
+  const ops=[];
+  const ctx=new Proxy({},{set:()=>true,get:(_,key)=>(...args)=>ops.push([key,...args])});
+  const cells=[
+   {x:0,y:100,siegeWall:true,wallPart:3,wallState:2},
+   {x:40,y:100,siegeWall:true,wallPart:7,wallState,kind},
+   {x:80,y:100,siegeWall:true,wallPart:4,wallState:2}
+  ];
+  paintVerticalFortifications(ctx,{battleCells:cells},c=>c,1,null,[]);
+  return ops;
+ };
+ const intact=record(2,4);
+ const damaged=record(1,4);
+ const fallen=record(0,0);
+ assert.ok(intact.some(op=>op[0]==='fill'));
+ assert.ok(damaged.some(op=>op[0]==='fill'));
+ assert.ok(fallen.some(op=>op[0]==='fill'));
+ // Fallen gate draws forward onto +y (y > 100) and rubble fillRects, whereas intact gate draws upright (y <= 100).
+ const maxY=ops=>Math.max(...ops.filter(op=>op[0]==='lineTo'||op[0]==='moveTo').map(op=>op[2]));
+ assert.ok(maxY(fallen)>120,'fallen gate should project forward onto the ground');
+ assert.ok(maxY(intact)<=100,'intact gate should stand upright without projecting forward');
+});
