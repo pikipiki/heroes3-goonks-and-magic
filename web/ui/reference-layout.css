@@ -479,6 +479,7 @@
   #game-menu>nav{grid-column:1;grid-row:1/-1;align-self:stretch;overflow-y:auto;touch-action:pan-y;padding:12px}
   #game-menu>.game-menu-body{grid-column:1;grid-row:1/-1;align-self:stretch;overflow-y:auto;touch-action:pan-y;padding:12px}
  }
+ #mobile-app[data-mode=map] .hero-movement-item,#mobile-app[data-mode=map] .hero-movement-item[data-movement-band]{background:linear-gradient(180deg,rgba(84,52,26,0.55),rgba(46,26,12,0.72));border:1px solid #edca84;border-image:none;box-shadow:var(--ui-control-shadow);color:var(--ui-on-surface)}
  #mobile-app[data-mode=map] .hero-movement-item.is-active,#mobile-app[data-mode=map] .hero-movement-item.is-active[data-movement-band]{background:linear-gradient(180deg,#741c17,#410d0b);border:1px solid #edca84;border-image:none;box-shadow:inset 0 0 0 1px #edca84,0 0 10px rgba(237,202,132,0.65);color:#fff2cf}
  #mobile-app[data-mode=map] .hero-movement-item.is-active>button,#mobile-app[data-mode=map] .hero-movement-item.is-active>button[aria-pressed=true],#mobile-app[data-mode=map] .hero-movement-item.is-active>button[aria-pressed=true]:hover{background:transparent;border:0;outline:none;box-shadow:none;color:inherit}
  #mobile-viewport #mobile-app[data-mode=map]>.mobile-nav .hero-movement-summary{display:flex;align-items:stretch;gap:4px}
