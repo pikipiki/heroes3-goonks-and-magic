@@ -154,19 +154,20 @@ export function anchorMobileViewport(root,win=window){
   clearWakeTimers();
   lastLayoutWidth=undefined;rotationPending=true;
   if(typeof win.scrollTo==='function')try{win.scrollTo(0,0);}catch(_){}
-  schedule();
+  update();schedule();
   for(const delay of [50,120,250,450,750,1500,2500]){
    const timer=setTimeout(()=>{
     wakeTimers.delete(timer);
     if(disposed||win.document?.hidden===true)return;
     if(!editingViewport(win)&&typeof win.scrollTo==='function'&&(win.scrollX||win.scrollY))try{win.scrollTo(0,0);}catch(_){}
-    schedule();
+    update();schedule();
    },delay);
    wakeTimers.add(timer);
   }
  }
+ function onResize(){update();schedule();}
  const bindings=[
-  [win,'resize',schedule],
+  [win,'resize',onResize],
   [win,'orientationchange',onOrientationChange],
   [win.screen?.orientation,'change',onOrientationChange],
   [win,'scroll',schedule],
@@ -174,9 +175,9 @@ export function anchorMobileViewport(root,win=window){
   [win.document,'focusout',schedule],
   [win,'pageshow',onWake],
   [win,'focus',onWake],
-  [win,'fullscreenchange',schedule],
+  [win,'fullscreenchange',onResize],
   [win.document,'visibilitychange',onWake],
-  [viewport,'resize',schedule],
+  [viewport,'resize',onResize],
   [viewport,'scroll',schedule]
  ].filter(([target])=>typeof target?.addEventListener==='function');
  for(const [target,event,listener] of bindings)target.addEventListener(event,listener,{passive:true});

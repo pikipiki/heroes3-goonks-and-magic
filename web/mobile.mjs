@@ -705,7 +705,9 @@ function mount(){
    },delay);
   }
  };
- window.addEventListener('resize',()=>{touches.cancel();resize();controls();});window.addEventListener('orientationchange',()=>{resetGestures();resize();});window.visualViewport?.addEventListener('resize',resize);window.visualViewport?.addEventListener('scroll',resize);window.addEventListener('blur',resetGestures);window.addEventListener('focus',onWake);window.addEventListener('pageshow',onWake);document.addEventListener('visibilitychange',onWake);if(typeof ResizeObserver!=='undefined'){const ro=new ResizeObserver(resize);ro.observe(root);const topEl=root.querySelector('.mobile-top');if(topEl)ro.observe(topEl);}resize();
+ let lastRootLandscape=root.clientWidth>root.clientHeight;
+ const syncOrientationControls=()=>{const land=root.clientWidth>root.clientHeight;if(land!==lastRootLandscape){lastRootLandscape=land;controls();}};
+ window.addEventListener('resize',()=>{touches.cancel();resize();controls();});window.addEventListener('orientationchange',()=>{resetGestures();resize();controls();});window.visualViewport?.addEventListener('resize',()=>{resize();syncOrientationControls();});window.visualViewport?.addEventListener('scroll',resize);window.addEventListener('blur',resetGestures);window.addEventListener('focus',onWake);window.addEventListener('pageshow',onWake);document.addEventListener('visibilitychange',onWake);if(typeof ResizeObserver!=='undefined'){const ro=new ResizeObserver(()=>{syncOrientationControls();resize();});ro.observe(root);const topEl=root.querySelector('.mobile-top');if(topEl)ro.observe(topEl);}resize();
 
  window.goonkAssetsReady?.then(()=>{const image=(window.goonkAssetURLs||[]).find(x=>x.path.endsWith('/goonk/town.png'));if(image)menu.style.setProperty('--welcome-image',`url("${image.url}")`);});
  controls();window.dispatchEvent(new Event('goonk-mobile-mounted'));
