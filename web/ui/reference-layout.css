@@ -514,14 +514,17 @@
   #mobile-viewport #mobile-app .hero-equipment-page[data-inventory=army]>.hero-army-dock-tools>.hero-army-split-amount:not([hidden]){position:static;inset:auto;grid-row:1;grid-column:1/-1;display:grid;grid-template-columns:48px minmax(0,1fr) 48px;gap:4px;height:48px;padding:0;background:transparent}
   #mobile-viewport #mobile-app .hero-equipment-page[data-inventory=army]:has(.hero-army-split-amount:not([hidden]))>.hero-equipment-grid{height:100%;max-height:none;padding-bottom:0}
   #mobile-viewport #mobile-app .mobile-spellbook,
-  #mobile-viewport #mobile-app .mobile-spellbook[data-browsing]{grid-template-columns:minmax(0,1fr) var(--control-rail,244px);grid-template-rows:48px auto minmax(0,1fr) auto auto;grid-template-areas:"schools title" "book contexts" "book detail" "book reuse" "book footer";gap:6px 8px}
-  #mobile-viewport #mobile-app .mobile-spellbook[data-browsing=false]{grid-template-rows:48px minmax(0,1fr) auto auto;grid-template-areas:"schools title" "book detail" "book reuse" "book footer"}
+  #mobile-viewport #mobile-app .mobile-spellbook[data-browsing]{grid-template-columns:minmax(0,1fr) calc((var(--control-rail,244px) - 6px) / 2) calc((var(--control-rail,244px) - 6px) / 2);grid-template-rows:48px auto minmax(0,1fr) 48px;grid-template-areas:"schools title title" "book contexts contexts" "book detail detail" "book reuse footer";gap:6px 6px}
+  #mobile-viewport #mobile-app .mobile-spellbook[data-browsing=false]{grid-template-rows:48px minmax(0,1fr) 48px;grid-template-areas:"schools title title" "book detail detail" "book reuse footer"}
   #mobile-viewport #mobile-app .mobile-spellbook>header.ui-screen-header{grid-area:title;min-height:48px;height:48px;padding:4px 4px 4px 8px;gap:8px}
   #mobile-viewport #mobile-app .mobile-spellbook .spell-workspace,#mobile-viewport #mobile-app .mobile-spellbook .spell-content{display:contents}
   #mobile-viewport #mobile-app .mobile-spellbook .spell-school-picker{grid-area:schools;height:48px}
   #mobile-viewport #mobile-app .mobile-spellbook .spell-contexts{grid-area:contexts;align-self:stretch}
-  #mobile-viewport #mobile-app .mobile-spellbook .spell-top-actions{grid-area:reuse;min-height:0;width:100%;justify-self:stretch}
-  #mobile-viewport #mobile-app .mobile-spellbook>footer{grid-area:footer;width:100%;justify-self:stretch}
+  #mobile-viewport #mobile-app .mobile-spellbook .spell-top-actions{grid-area:reuse;min-height:0;width:100%;height:48px;justify-self:stretch}
+  #mobile-viewport #mobile-app .mobile-spellbook .spell-top-actions>button{width:100%;height:100%;min-height:48px}
+  #mobile-viewport #mobile-app .mobile-spellbook>footer{grid-area:footer;width:100%;height:48px;justify-self:stretch}
+  #mobile-viewport #mobile-app .mobile-spellbook>footer>button{width:100%;height:100%;min-height:48px}
+  #mobile-viewport #mobile-app .mobile-spellbook:has(>footer[hidden]) .spell-top-actions{grid-column:2/4}
   #mobile-viewport #mobile-app .mobile-spellbook .spell-list{grid-area:book;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));align-content:start;gap:6px;padding:0;border:0;background:transparent;overflow-y:auto;touch-action:pan-y;min-height:0}
   #mobile-viewport #mobile-app .mobile-spellbook .spell-row{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:2px;padding:4px;min-height:64px;height:auto}
   #mobile-viewport #mobile-app .mobile-spellbook .spell-row>span{display:flex;flex-direction:column;align-items:center;gap:1px;min-width:0;width:100%}
@@ -550,6 +553,7 @@
  dialog.exchange-advice-dialog .exchange-advice-dialog__close{flex:0 0 40px;width:40px;min-width:40px;min-height:40px;height:40px;padding:0;font:var(--ui-font-label)}
  dialog.exchange-advice-dialog .exchange-advice-dialog__body{overflow-y:auto;touch-action:pan-y;padding:12px;display:flex;flex-direction:column;gap:8px}
  dialog.exchange-advice-dialog .exchange-advice-dialog__headline{margin:0;font:var(--ui-font-label);color:#ffe8a3}
+ dialog.exchange-advice-dialog .exchange-advice-dialog__why{margin:0;font:var(--ui-font-body-small);color:#fff2cf}
  dialog.exchange-advice-dialog .exchange-advice-dialog__reasons{margin:0;padding-inline-start:18px;display:flex;flex-direction:column;gap:4px;font:var(--ui-font-body-small);color:#f3e4be}
  dialog.exchange-advice-dialog .exchange-advice-dialog__footer{display:flex;gap:8px;justify-content:flex-end;padding:8px 12px;border-top:1px solid rgba(237,202,132,0.35)}
  dialog.exchange-advice-dialog .exchange-advice-dialog__footer>button{min-height:44px;padding:6px 12px;font:var(--ui-font-label);font-weight:400}

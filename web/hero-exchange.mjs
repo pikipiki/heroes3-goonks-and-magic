@@ -239,6 +239,7 @@ export function createHeroExchange({root,command,refresh,portrait}){
    </header>
    <div class="exchange-advice-dialog__body">
     <p class="exchange-advice-dialog__headline">${escape(advice.headline)}</p>
+    ${advice.why?`<p class="exchange-advice-dialog__why">${escape(advice.why)}</p>`:''}
     <ul class="exchange-advice-dialog__reasons">${advice.reasons.map(line=>`<li>${escape(line)}</li>`).join('')}</ul>
    </div>
    <footer class="exchange-advice-dialog__footer">

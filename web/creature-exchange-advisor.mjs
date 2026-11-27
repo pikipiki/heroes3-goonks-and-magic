@@ -155,6 +155,36 @@ function teamCompatibility(candidate,currentUnits,resultingUnits,candidateScore,
  return {synergyDelta,notes};
 }
 
+function buildWhySummary(candidate,candScore,targetUnit,targetScore,compatNotes,verdict,language='fr'){
+ const fr=language==='fr';
+ const points=[];
+ if(targetUnit){
+  const candDmg=((num(candidate.damageMin,1)+num(candidate.damageMax,1))/2)*Math.max(1,num(candidate.count,1));
+  const targDmg=((num(targetUnit.damageMin,1)+num(targetUnit.damageMax,1))/2)*Math.max(1,num(targetUnit.count,1));
+  const candHp=num(candidate.health,1)*Math.max(1,num(candidate.count,1));
+  const targHp=num(targetUnit.health,1)*Math.max(1,num(targetUnit.count,1));
+  if(candDmg>targDmg*1.15)points.push(fr?'dégâts totaux supérieurs':'higher total damage');
+  else if(candDmg<targDmg*0.85)points.push(fr?'dégâts totaux inférieurs':'lower total damage');
+  if(candHp>targHp*1.15)points.push(fr?'plus de PV cumulés':'more total HP');
+  else if(candHp<targHp*0.85)points.push(fr?'moins de PV cumulés':'less total HP');
+  if(num(candidate.speed,0)>=num(targetUnit.speed,0)+2)points.push(fr?'plus rapide':'faster');
+  else if(num(candidate.speed,0)<=num(targetUnit.speed,0)-2)points.push(fr?'plus lent':'slower');
+  if(candScore.effectsMultiplier>targetScore.effectsMultiplier+0.08)points.push(fr?'meilleures capacités':'stronger abilities');
+ }
+ for(const note of compatNotes){
+  if(note.kind==='good'||note.kind==='warn')points.push(note.text.charAt(0).toLowerCase()+note.text.slice(1));
+ }
+ if(!points.length){
+  return verdict==='recommended'
+   ?(fr?'Renforce la puissance globale de votre armée.':'Strengthens your overall army power.')
+   :verdict==='neutral'
+    ?(fr?'Puissance globale très proche de la troupe actuelle.':'Overall power is very close to your current stack.')
+    :(fr?'Réduirait la puissance globale de votre armée.':'Would reduce your overall army power.');
+ }
+ const text=points.slice(0,3).join(', ');
+ return text.charAt(0).toUpperCase()+text.slice(1)+'.';
+}
+
 function buildDetailReasons(candidate,candScore,targetUnit,targetScore,compatNotes,language='fr'){
  const fr=language==='fr';
  const reasons=[];
@@ -209,6 +239,7 @@ export function adviseCreatureExchange(candidate,heroRoster=[],language='fr'){
    netDelta:candScore.total,
    deltaPercent:targetScore.total>0?Math.round((candScore.total/targetScore.total)*100):100,
    headline,
+   why:fr?'Renforce directement la pile existante sans utiliser d’emplacement supplémentaire.':'Directly reinforces your existing stack using no extra slot.',
    shortBadge:fr?'Fusion':'Merge',
    reasons:buildDetailReasons(candidate,candScore,mergeSlot,targetScore,[{kind:'good',text:fr?'Même créature : renfort gratuit sans prendre d’emplacement':'Same creature: free reinforcement using no extra slot'}],language)
   };
@@ -236,6 +267,7 @@ export function adviseCreatureExchange(candidate,heroRoster=[],language='fr'){
    netDelta,
    deltaPercent:100,
    headline,
+   why:buildWhySummary(candidate,candScore,null,null,compat.notes,verdict,language),
    shortBadge:verdict==='recommended'?(fr?'Ajouter':'Add'):verdict==='neutral'?(fr?'Mitigé':'Mixed'):(fr?'Éviter':'Skip'),
    reasons:buildDetailReasons(candidate,candScore,null,null,compat.notes,language)
   };
@@ -271,6 +303,7 @@ export function adviseCreatureExchange(candidate,heroRoster=[],language='fr'){
   netDelta:best.netDelta,
   deltaPercent:best.deltaPercent,
   headline,
+  why:buildWhySummary(candidate,candScore,best.slot,best.slotScore,best.compat.notes,verdict,language),
   shortBadge:verdict==='recommended'?`${sign}${best.deltaPercent}%`:verdict==='neutral'?'≈':`${best.deltaPercent}%`,
   reasons:buildDetailReasons(candidate,candScore,best.slot,best.slotScore,best.compat.notes,language)
  };
