@@ -237,9 +237,9 @@ function mount(){
    const magicDisabled=!!spellRecovery.pending||(!magicCancel&&(!cap.magic||(!state.heroHasSpellbook||state.heroCanCast===false)));
    items=[btn(cancelSpellAction?(fr?'Annuler le sort':'Cancel spell'):translate(action.label),'battle-action',true,cancelSpellAction?!!spellRecovery.pending:(!cap.move||!!spellRecovery.pending||!action.enabled)),
     btn(fr?'Magie':'Magic','battle-magic',false,magicDisabled),
-    btn(fr?'◎ Cibles':'◎ Targets','targets',false,!cap.move||!!spellRecovery.pending),
-    btn(state.canWait===false?(fr?'Déjà attendu':'Already waited'):(fr?'◷ Attendre':'◷ Wait'),'wait',false,state.canWait===false||!(cap.combatReady||cap.targeting)||!!spellRecovery.pending),
-    btn(fr?'⛨ Défendre':'⛨ Defend','defend',false,!(cap.combatReady||cap.targeting)||!!spellRecovery.pending),btn(fr?'ⓘ Inspecter':'ⓘ Inspect','battle-inspect',false,!canInspectBattle(state))].map(html=>html.replace('<button ','<button translate="no" '));
+    btn(fr?'Cibles':'Targets','targets',false,!cap.move||!!spellRecovery.pending),
+    btn(state.canWait===false?(fr?'Déjà attendu':'Already waited'):(fr?'Attendre':'Wait'),'wait',false,state.canWait===false||!(cap.combatReady||cap.targeting)||!!spellRecovery.pending),
+    btn(fr?'⛨ Défendre':'⛨ Defend','defend',false,!(cap.combatReady||cap.targeting)||!!spellRecovery.pending),btn(fr?'Inspecter':'Inspect','battle-inspect',false,!canInspectBattle(state))].map(html=>html.replace('<button ','<button translate="no" '));
   }
   else if(m==='recruit')items=[btn(fr?'Recruter':'Recruit','confirm-recruit',true,!state.turn||recruitLoading||!(state.recruitAmount>0)),btn(fr?'Tout':'All','max-recruit',false,!(state.recruitMaximum>0)),btn(fr?'Retour':'Back','cancel-recruit')];
   else if(m==='campaign')items=[btn('Back','back')];
