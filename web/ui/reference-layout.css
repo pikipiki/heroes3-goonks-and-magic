@@ -507,6 +507,12 @@
   #mobile-viewport #mobile-app[data-mode=map] .mobile-calendar.ui-rail-calendar>span,
   #mobile-viewport #mobile-app[data-mode=map] .mobile-calendar.ui-rail-calendar .calendar-recruit-cue,
   #mobile-viewport #mobile-app[data-mode=map] .mobile-calendar.ui-rail-calendar .calendar-recruit-cue>*{font:var(--ui-font-label)}
+  #mobile-viewport #mobile-app .hero-equipment-page[data-inventory=army]>.hero-army-dock-tools.ui-action-dock{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));align-items:stretch;align-self:end;justify-content:stretch;gap:4px;padding:0 0 4px;height:auto;min-height:0;box-sizing:border-box}
+  #mobile-viewport #mobile-app .hero-equipment-page[data-inventory=army]>.hero-army-dock-tools>.hero-army-split-toggle{grid-row:1;grid-column:1;width:100%;min-width:0;margin:0}
+  #mobile-viewport #mobile-app .hero-equipment-page[data-inventory=army]>.hero-army-dock-tools>button:not([hidden]):not(.ui-overflow-trigger){grid-row:1;grid-column:2;width:100%;min-width:0}
+  #mobile-viewport #mobile-app .hero-equipment-page[data-inventory=army]>.hero-army-dock-tools>button.ui-overflow-trigger{grid-row:1;grid-column:3;width:100%;min-width:0}
+  #mobile-viewport #mobile-app .hero-equipment-page[data-inventory=army]>.hero-army-dock-tools>.hero-army-split-amount:not([hidden]){position:static;inset:auto;grid-row:2;grid-column:1/-1;display:grid;grid-template-columns:48px minmax(0,1fr) 48px;gap:4px;height:48px;padding:0;background:transparent}
+  #mobile-viewport #mobile-app .hero-equipment-page[data-inventory=army]:has(.hero-army-split-amount:not([hidden]))>.hero-equipment-grid{height:100%;max-height:none;padding-bottom:0}
   #mobile-app .mobile-spellbook{grid-template-columns:minmax(0,1fr) var(--spell-control-rail,244px);grid-template-rows:48px auto minmax(0,1fr) 48px;grid-template-areas:"schools title" "book contexts" "book detail" "book footer";gap:6px 8px}
   #mobile-app .mobile-spellbook[data-browsing=false]{grid-template-rows:48px minmax(0,1fr) 48px;grid-template-areas:"schools title" "book detail" "book footer"}
   #mobile-app .mobile-spellbook>header.ui-screen-header{grid-area:title;min-height:48px;height:48px;padding:4px 4px 4px 56px;gap:8px}
