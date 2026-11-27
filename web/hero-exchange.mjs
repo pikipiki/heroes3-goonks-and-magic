@@ -289,7 +289,7 @@ export function createHeroExchange({root,command,refresh,portrait}){
      clearSelection();
     }
     dialog.close('select');
-    updateSelection();
+    render();
    }
   });
   dialog.addEventListener('close',()=>{dialog.returnValue='';dialog.remove();});
@@ -412,7 +412,7 @@ export function createHeroExchange({root,command,refresh,portrait}){
     else if(item.name){source=selection;destination=null;quantity=1;splitMode=false;}
    }
    message='';
-   updateSelection();
+   render();
    return;
   }
   message='';
