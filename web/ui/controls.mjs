@@ -35,7 +35,7 @@ export function useScreenControls(root){
 
 export function useNavigation(nav){
  nav.classList.add('ui-navigation');for(const button of nav.querySelectorAll(':scope>button'))decorateButton(button);
- const root=nav.closest('#mobile-app'),compact=root?.dataset.mode==='map'&&root.clientWidth>root.clientHeight&&root.clientHeight<400;
+ const root=nav.closest('#mobile-app'),compact=root?.dataset.mode==='map'&&root.clientWidth>root.clientHeight&&root.clientHeight<600;
  nav.classList.toggle('ui-map-compact',compact);
  if(root?.dataset.mode==='battle'){useBattleControls(root);return;}
  if(root?.dataset.mode==='town')useActionDock(nav,{overflow:true,limit:3,keepButtons:buttons=>buttons.filter(button=>['build','back'].includes(button.dataset.ui))});
