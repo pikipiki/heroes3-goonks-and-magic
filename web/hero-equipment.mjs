@@ -206,6 +206,7 @@ export function createHeroEquipment({root,command,pointer=()=>{},onViewChange=()
   <section class="hero-equipment-grid" aria-label="${isArmy?'Army':skills?'Skills':backpack?'Backpack artefacts':'Worn artefacts'}">${contents}</section>
   ${skills||isHenchman?'':isArmy?`
     <div class="hero-army-dock-tools">
+     <button type="button" class="hero-army-details-btn" data-hero-army-details ${!selectedUnit?'disabled':''} title="${fr?'Voir la fiche détaillée de la créature':'View creature details'}">${fr?'🔍 Fiche':'🔍 Details'}</button>
      ${state.troopEquipment?`<button type="button" data-hero-troop-equipment title="${fr?'Équiper une troupe avec un objet du sac':'Equip a troop with an item from your backpack'}">${fr?'Objets de troupe':'Troop items'}</button>`:''}
      ${hero.owned===false?'':`<button type="button" data-hero-manage-troops ${!selectedUnit||!state.turn?'disabled':''}>${fr?'Gérer la troupe':'Manage troop'}</button>`}
      <label class="hero-army-split-toggle">
@@ -217,7 +218,7 @@ export function createHeroEquipment({root,command,pointer=()=>{},onViewChange=()
       <input type="number" id="hero-army-split-num" min="1" max="${selectedUnit?selectedUnit.count-1:1}" value="${splitAmount}">
       <button type="button" data-hero-split-delta="1">+</button>
      </div>
-     <button type="button" class="hero-army-details-btn" data-hero-army-details ${!selectedUnit?'disabled':''} title="${fr?'Voir la fiche détaillée de la créature':'View creature details'}">${fr?'🔍 Fiche':'🔍 Details'}</button>
+     <button type="button" class="back-button" data-hero-army-back>${fr?'Retour':'Back'}</button>
     </div>
    `:`<section class="hero-artifact-detail" aria-live="polite">
     <h3>${esc(picked?'Moving: '+picked.name:item?.name||'Choose an artefact')}</h3>
@@ -251,7 +252,7 @@ export function createHeroEquipment({root,command,pointer=()=>{},onViewChange=()
   if(button.hasAttribute('data-hero-troop-equipment')){troopEquipment.show(selectedArmySlot);return;}
   if(button.hasAttribute('data-hero-commander')){command(85);return;}
   if(button.hasAttribute('data-hero-classic')){switchView(true);return;}
-  if(button.hasAttribute('data-hero-close')){command(63);return;}
+  if(button.hasAttribute('data-hero-close')||button.hasAttribute('data-hero-army-back')){command(63);return;}
   if(button.dataset.heroTab){tab=button.dataset.heroTab;selected=null;selectedArmySlot=null;splitActive=false;render();return;}
   if(button.dataset.heroSplitDelta!==undefined){
    const delta=Number(button.dataset.heroSplitDelta);
